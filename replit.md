@@ -129,6 +129,8 @@ Changelog:
 - July 02, 2025. Added database schema for users, tasks, and payouts
 - July 02, 2025. Replaced React Router with wouter for routing
 - July 02, 2025. Fixed Three.js components for Replit compatibility
+- July 02, 2025. Implemented enhanced cosmic animations for light mode landing page
+- July 02, 2025. Forced landing page to permanent dark mode for consistent experience
 ```
 
 ## User Preferences

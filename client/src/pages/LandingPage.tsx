@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 const LandingPage = () => {
   const { theme } = useTheme();
-  const isLightMode = theme === 'light';
+  const isLightMode = false; // Force dark mode appearance for landing page
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
