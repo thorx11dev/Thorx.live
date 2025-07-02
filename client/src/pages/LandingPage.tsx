@@ -1,18 +1,42 @@
 import { motion } from 'framer-motion';
 import { Link } from 'wouter';
 import { ArrowRight, Zap, Globe, Shield, Users, TrendingUp, DollarSign } from 'lucide-react';
+import { useTheme } from '../hooks/useTheme';
 
 const LandingPage = () => {
+  const { theme } = useTheme();
+  const isLightMode = theme === 'light';
+
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className={`relative min-h-screen overflow-hidden ${isLightMode ? 'bg-gradient-to-br from-white via-soft-pink/10 to-pale-blue/20' : ''}`}>
       {/* Hero Section with Cosmic Background */}
       <div className="relative h-screen">
-        {/* Animated cosmic background */}
-        <div className="absolute inset-0 cosmic-bg">
-          <div className="stars"></div>
-          <div className="stars2"></div>
-          <div className="stars3"></div>
-          <div className="cosmic-gradient"></div>
+        {/* Background - Different for light/dark mode */}
+        {!isLightMode && (
+          <div className="absolute inset-0 cosmic-bg">
+            <div className="stars"></div>
+            <div className="stars2"></div>
+            <div className="stars3"></div>
+            <div className="cosmic-gradient"></div>
+          </div>
+        )}
+        
+        {/* Cosmic Sphere Background Element */}
+        <div className="absolute inset-0 flex items-center justify-center z-0">
+          <motion.div
+            className={`cosmic-sphere ${isLightMode ? 'cosmic-sphere-light' : 'cosmic-sphere-dark'}`}
+            animate={{
+              rotate: 360,
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            <div className="cosmic-sphere-inner"></div>
+            <div className="cosmic-sphere-glow"></div>
+          </motion.div>
         </div>
         
         {/* Hero Content Overlay */}
@@ -24,12 +48,18 @@ const LandingPage = () => {
               transition={{ duration: 0.8 }}
               className="mb-8"
             >
-              <h1 className="text-6xl md:text-8xl font-bold text-primary mb-4 leading-tight">
-                <span className="bg-gradient-to-r from-soft-pink via-pale-blue to-light-teal bg-clip-text text-transparent font-extrabold">
+              <h1 className={`text-6xl md:text-8xl font-bold mb-4 leading-tight ${isLightMode ? '' : 'text-primary'}`}>
+                <span className={`font-extrabold ${
+                  isLightMode 
+                    ? 'bg-gradient-to-r from-cosmic-purple via-cosmic-blue to-cosmic-teal bg-clip-text text-transparent' 
+                    : 'bg-gradient-to-r from-soft-pink via-pale-blue to-light-teal bg-clip-text text-transparent'
+                }`}>
                   Thorx
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl text-secondary mb-8 max-w-2xl mx-auto font-medium">
+              <p className={`text-xl md:text-2xl mb-8 max-w-2xl mx-auto font-medium ${
+                isLightMode ? 'text-gray-700' : 'text-secondary'
+              }`}>
                 The next-generation earning platform designed for the cosmic age. 
                 Join 100,000+ users in the future of digital income.
               </p>
@@ -43,16 +73,19 @@ const LandingPage = () => {
             >
               <Link to="/dashboard">
                 <motion.button
-                  className="bg-gradient-to-r from-soft-pink to-pale-blue hover:from-pale-blue hover:to-light-teal font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 border-2 border-transparent"
+                  className={`font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 ${
+                    isLightMode 
+                      ? 'bg-gradient-to-r from-cosmic-purple to-cosmic-blue text-white' 
+                      : 'bg-gradient-to-r from-soft-pink to-pale-blue'
+                  }`}
                   style={{ 
-                    color: '#000000',
+                    color: isLightMode ? '#FFFFFF' : '#000000',
                     fontWeight: '800',
-                    textShadow: '0 1px 3px rgba(255,255,255,0.8)'
+                    textShadow: isLightMode ? '0 1px 3px rgba(0,0,0,0.3)' : '0 1px 3px rgba(255,255,255,0.8)'
                   }}
                   whileHover={{ 
                     scale: 1.05, 
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-                    color: '#000000'
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.15)"
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -62,18 +95,20 @@ const LandingPage = () => {
               </Link>
               
               <motion.button
-                className="bg-white/20 backdrop-blur-lg border-2 border-white/30 text-primary font-bold px-8 py-4 rounded-full hover:bg-white/30 transition-all duration-300 flex items-center space-x-2"
+                className={`backdrop-blur-lg border-2 font-bold px-8 py-4 rounded-full transition-all duration-300 flex items-center space-x-2 ${
+                  isLightMode 
+                    ? 'bg-white/60 border-gray-300 text-gray-800 hover:bg-white/80' 
+                    : 'bg-white/20 border-white/30 text-white hover:bg-white/30'
+                }`}
                 style={{
                   backdropFilter: 'blur(12px)',
                   WebkitBackdropFilter: 'blur(12px)',
-                  color: 'rgba(255, 255, 255, 0.9)',
                   fontWeight: '700',
-                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)'
+                  textShadow: isLightMode ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.5)'
                 }}
                 whileHover={{ 
                   scale: 1.05,
-                  backgroundColor: 'rgba(255, 255, 255, 0.25)',
-                  borderColor: 'rgba(255, 255, 255, 0.4)'
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)"
                 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -86,7 +121,7 @@ const LandingPage = () => {
       </div>
 
       {/* Features Section */}
-      <div className="relative bg-secondary py-24">
+      <div className={`relative py-24 ${isLightMode ? 'bg-gray-50' : 'bg-secondary'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -94,10 +129,10 @@ const LandingPage = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${isLightMode ? 'text-gray-800' : 'text-primary'}`}>
               Cosmic Features
             </h2>
-            <p className="text-xl text-secondary max-w-2xl mx-auto">
+            <p className={`text-xl max-w-2xl mx-auto ${isLightMode ? 'text-gray-600' : 'text-secondary'}`}>
               Experience the future of digital earning with our cutting-edge platform
             </p>
           </motion.div>
@@ -149,12 +184,16 @@ const LandingPage = () => {
                 whileHover={{ scale: 1.05, y: -10 }}
                 className="group"
               >
-                <div className="bg-secondary rounded-2xl p-8 shadow-primary hover:shadow-secondary transition-all duration-300 border border-primary h-full">
+                <div className={`rounded-2xl p-8 transition-all duration-300 h-full ${
+                  isLightMode 
+                    ? 'bg-white shadow-lg hover:shadow-xl border border-gray-200' 
+                    : 'bg-secondary shadow-primary hover:shadow-secondary border border-primary'
+                }`}>
                   <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
                     <feature.icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-primary mb-4">{feature.title}</h3>
-                  <p className="text-secondary leading-relaxed">{feature.description}</p>
+                  <h3 className={`text-xl font-bold mb-4 ${isLightMode ? 'text-gray-800' : 'text-primary'}`}>{feature.title}</h3>
+                  <p className={`leading-relaxed ${isLightMode ? 'text-gray-600' : 'text-secondary'}`}>{feature.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -163,7 +202,11 @@ const LandingPage = () => {
       </div>
 
       {/* Stats Section */}
-      <div className="bg-gradient-to-r from-soft-pink/10 via-pale-blue/10 to-light-teal/10 py-20">
+      <div className={`py-20 ${
+        isLightMode 
+          ? 'bg-gradient-to-r from-cosmic-purple/10 via-cosmic-blue/10 to-cosmic-teal/10' 
+          : 'bg-gradient-to-r from-soft-pink/10 via-pale-blue/10 to-light-teal/10'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -179,10 +222,10 @@ const LandingPage = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                <div className={`text-3xl md:text-4xl font-bold mb-2 ${isLightMode ? 'text-gray-800' : 'text-primary'}`}>
                   {stat.number}
                 </div>
-                <div className="text-secondary font-medium">{stat.label}</div>
+                <div className={`font-medium ${isLightMode ? 'text-gray-600' : 'text-secondary'}`}>{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -190,32 +233,35 @@ const LandingPage = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-secondary py-20">
+      <div className={`py-20 ${isLightMode ? 'bg-white' : 'bg-secondary'}`}>
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${isLightMode ? 'text-gray-800' : 'text-primary'}`}>
               Ready to Launch Your Cosmic Journey?
             </h2>
-            <p className="text-xl text-secondary mb-8 max-w-2xl mx-auto">
+            <p className={`text-xl mb-8 max-w-2xl mx-auto ${isLightMode ? 'text-gray-600' : 'text-secondary'}`}>
               Join thousands of users who are already earning with Thorx. 
               Start your journey to financial freedom today.
             </p>
             <Link to="/dashboard">
               <motion.button
-                className="bg-gradient-to-r from-soft-pink via-pale-blue to-light-teal hover:from-pale-blue hover:via-light-teal hover:to-muted-yellow font-bold px-12 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg border-2 border-transparent"
+                className={`font-bold px-12 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg border-2 border-transparent ${
+                  isLightMode 
+                    ? 'bg-gradient-to-r from-cosmic-purple via-cosmic-blue to-cosmic-teal text-white' 
+                    : 'bg-gradient-to-r from-soft-pink via-pale-blue to-light-teal'
+                }`}
                 style={{ 
-                  color: '#000000',
+                  color: isLightMode ? '#FFFFFF' : '#000000',
                   fontWeight: '800',
-                  textShadow: '0 1px 3px rgba(255,255,255,0.8)'
+                  textShadow: isLightMode ? '0 1px 3px rgba(0,0,0,0.3)' : '0 1px 3px rgba(255,255,255,0.8)'
                 }}
                 whileHover={{ 
                   scale: 1.05, 
-                  boxShadow: "0 25px 50px rgba(0,0,0,0.15)",
-                  color: '#000000'
+                  boxShadow: "0 25px 50px rgba(0,0,0,0.15)"
                 }}
                 whileTap={{ scale: 0.95 }}
               >
