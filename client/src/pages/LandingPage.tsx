@@ -1,35 +1,13 @@
-import React, { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Float } from '@react-three/drei';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link } from 'wouter';
 import { ArrowRight, Zap, Globe, Shield, Users, TrendingUp, DollarSign } from 'lucide-react';
-import CosmicSphere from '../components/3d/CosmicSphere';
-import ParticleField from '../components/3d/ParticleField';
-import CircularStars from '../components/3d/CircularStars';
 
 const LandingPage = () => {
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 3D Hero Section */}
-      <div className="relative h-screen">
-        <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-          <Suspense fallback={null}>
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} />
-            
-            {/* Enhanced Circular Stars Component */}
-            <CircularStars />
-            
-            <ParticleField />
-            <Float speed={1.5} rotationIntensity={1} floatIntensity={2}>
-              <CosmicSphere />
-            </Float>
-            <OrbitControls enableZoom={false} enablePan={false} />
-          </Suspense>
-        </Canvas>
-        
-        {/* Hero Content Overlay */}
+      {/* Hero Section */}
+      <div className="relative h-screen bg-gradient-to-br from-soft-pink via-pale-blue to-light-teal">
+        {/* Hero Content */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="text-center px-4 max-w-4xl">
             <motion.div
@@ -38,12 +16,12 @@ const LandingPage = () => {
               transition={{ duration: 0.8 }}
               className="mb-8"
             >
-              <h1 className="text-6xl md:text-8xl font-bold text-primary mb-4 leading-tight">
-                <span className="bg-gradient-to-r from-soft-pink via-pale-blue to-light-teal bg-clip-text text-transparent font-extrabold">
+              <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 leading-tight">
+                <span className="font-extrabold">
                   Thorx
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl text-secondary mb-8 max-w-2xl mx-auto font-medium">
+              <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
                 The next-generation earning platform designed for the cosmic age. 
                 Join 100,000+ users in the future of digital income.
               </p>
@@ -57,16 +35,10 @@ const LandingPage = () => {
             >
               <Link to="/dashboard">
                 <motion.button
-                  className="bg-gradient-to-r from-soft-pink to-pale-blue hover:from-pale-blue hover:to-light-teal font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 border-2 border-transparent"
-                  style={{ 
-                    color: '#000000',
-                    fontWeight: '800',
-                    textShadow: '0 1px 3px rgba(255,255,255,0.8)'
-                  }}
+                  className="bg-white text-black font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2"
                   whileHover={{ 
                     scale: 1.05, 
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-                    color: '#000000'
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -76,14 +48,7 @@ const LandingPage = () => {
               </Link>
               
               <motion.button
-                className="bg-white/20 backdrop-blur-lg border-2 border-white/30 text-primary font-bold px-8 py-4 rounded-full hover:bg-white/30 transition-all duration-300 flex items-center space-x-2"
-                style={{
-                  backdropFilter: 'blur(12px)',
-                  WebkitBackdropFilter: 'blur(12px)',
-                  color: 'rgba(255, 255, 255, 0.9)',
-                  fontWeight: '700',
-                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)'
-                }}
+                className="bg-white/20 backdrop-blur-lg border-2 border-white/30 text-white font-bold px-8 py-4 rounded-full hover:bg-white/30 transition-all duration-300 flex items-center space-x-2"
                 whileHover={{ 
                   scale: 1.05,
                   backgroundColor: 'rgba(255, 255, 255, 0.25)',

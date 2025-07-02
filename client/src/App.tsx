@@ -1,5 +1,4 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
 import AuthProvider from './components/AuthProvider';
 import ThemeProvider from './components/ThemeProvider';
@@ -20,51 +19,51 @@ function App() {
       <AuthProvider>
         <Router>
           <div className="min-h-screen bg-primary font-cosmic transition-all duration-300">
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/auth" element={<AuthPage />} />
-              <Route path="/performance" element={<PerformancePage />} />
-              <Route path="/dashboard" element={
+            <Switch>
+              <Route path="/" component={LandingPage} />
+              <Route path="/auth" component={AuthPage} />
+              <Route path="/performance" component={PerformancePage} />
+              <Route path="/dashboard">
                 <ProtectedRoute>
                   <>
                     <Navbar />
                     <Dashboard />
                   </>
                 </ProtectedRoute>
-              } />
-              <Route path="/earnings" element={
+              </Route>
+              <Route path="/earnings">
                 <ProtectedRoute>
                   <>
                     <Navbar />
                     <EarningsInterface />
                   </>
                 </ProtectedRoute>
-              } />
-              <Route path="/work" element={
+              </Route>
+              <Route path="/work">
                 <ProtectedRoute>
                   <>
                     <Navbar />
                     <WorkPortal />
                   </>
                 </ProtectedRoute>
-              } />
-              <Route path="/payout" element={
+              </Route>
+              <Route path="/payout">
                 <ProtectedRoute>
                   <>
                     <Navbar />
                     <PayoutSystem />
                   </>
                 </ProtectedRoute>
-              } />
-              <Route path="/settings" element={
+              </Route>
+              <Route path="/settings">
                 <ProtectedRoute>
                   <>
                     <Navbar />
                     <SettingsHub />
                   </>
                 </ProtectedRoute>
-              } />
-            </Routes>
+              </Route>
+            </Switch>
           </div>
         </Router>
       </AuthProvider>

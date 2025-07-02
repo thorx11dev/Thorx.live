@@ -16,7 +16,7 @@ import {
   Facebook,
   Twitter
 } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'wouter';
 
 interface FormData {
   email: string;
@@ -45,7 +45,7 @@ const AuthPage = () => {
   const [notification, setNotification] = useState<{type: 'success' | 'error', message: string} | null>(null);
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [attemptCount, setAttemptCount] = useState(0);
-  const navigate = useNavigate();
+  const [, setLocation] = useLocation();
 
   const [formData, setFormData] = useState<FormData>({
     email: '',
@@ -157,7 +157,7 @@ const AuthPage = () => {
         }
         
         setTimeout(() => {
-          navigate('/dashboard');
+          setLocation('/dashboard');
         }, 1500);
       } else {
         setAttemptCount(prev => prev + 1);
@@ -186,7 +186,7 @@ const AuthPage = () => {
     // Simulate social login redirect
     setTimeout(() => {
       setIsLoading(false);
-      navigate('/dashboard');
+      setLocation('/dashboard');
     }, 2000);
   };
 

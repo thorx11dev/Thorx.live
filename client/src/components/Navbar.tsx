@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'wouter';
 import { motion } from 'framer-motion';
 import { 
   Menu,
@@ -23,8 +23,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showSignOutConfirm, setShowSignOutConfirm] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const [location, setLocation] = useLocation();
   const { user, logout } = useAuth();
 
   const navItems = [
@@ -36,11 +35,11 @@ const Navbar = () => {
     { path: '/settings', icon: CosmicSettings, label: 'Settings' },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => location === path;
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    setLocation('/');
     setShowUserMenu(false);
     setShowSignOutConfirm(false);
   };

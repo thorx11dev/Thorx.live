@@ -1,0 +1,132 @@
+# Thorx - Cosmic Earning Platform
+
+## Overview
+
+Thorx is a modern full-stack web application built for the cosmic age of digital income. It's a comprehensive earning platform that allows users to complete tasks, track earnings, and manage payouts through an intuitive interface. The application features a React frontend with TypeScript, a Node.js/Express backend, and uses PostgreSQL with Drizzle ORM for data management.
+
+## System Architecture
+
+### Frontend Architecture
+- **Framework**: React 18 with TypeScript
+- **Build Tool**: Vite for fast development and optimized builds
+- **Styling**: Tailwind CSS with custom design system
+- **UI Components**: Shadcn/ui components with Radix UI primitives
+- **State Management**: TanStack Query for server state, React Context for global state
+- **Animations**: Framer Motion for smooth transitions and micro-interactions
+- **3D Graphics**: Three.js with React Three Fiber for cosmic visual elements
+- **Routing**: React Router for client-side navigation
+
+### Backend Architecture
+- **Runtime**: Node.js with Express.js framework
+- **Language**: TypeScript with ES modules
+- **Database**: PostgreSQL with Drizzle ORM
+- **Database Provider**: Neon Database (serverless PostgreSQL)
+- **Session Management**: PostgreSQL-based session storage
+- **API Design**: RESTful API structure with /api prefix
+
+### Design System
+- **Theme**: Cosmic-inspired with dual light/dark mode support
+- **Color Palette**: Soft pink, pale blue, and light teal primary colors
+- **Typography**: Custom font system with CSS variables
+- **Components**: Consistent spacing, borders, and shadows using CSS custom properties
+- **Accessibility**: High-contrast alternatives and mobile-first responsive design
+
+## Key Components
+
+### Authentication System
+- JWT-based authentication with secure token storage
+- User registration and login with form validation
+- Password strength checking and secure password handling
+- Protected routes with automatic redirection
+- Session persistence with localStorage
+
+### Earning System
+- Multiple earning categories: Ads Cosmos, Social Cosmos, Site Cosmos
+- Real-time earnings tracking and visualization
+- Task completion monitoring with progress indicators
+- Performance analytics and trend analysis
+- Comprehensive dashboard with interactive charts
+
+### Payout System
+- JazzCash integration for mobile wallet transfers
+- 13% platform fee structure with transparent calculations
+- Minimum payout threshold of $10.00
+- Instant transfer processing
+- Transaction history and error handling
+
+### Performance Optimization
+- Dedicated performance center with 100x optimization targets
+- Real-time performance simulation and monitoring
+- Bundle optimization and code splitting strategies
+- Caching mechanisms and database query optimization
+- Memory and CPU usage tracking
+
+## Data Flow
+
+### Frontend to Backend
+1. User actions trigger API calls to Express endpoints
+2. Authentication middleware validates JWT tokens
+3. Route handlers process requests and interact with storage layer
+4. Responses return JSON data with consistent error handling
+
+### Database Integration
+1. Drizzle ORM handles database schema and migrations
+2. Type-safe database operations with TypeScript integration
+3. Connection pooling through Neon Database serverless architecture
+4. Structured data validation using Zod schemas
+
+### State Management
+1. TanStack Query manages server state caching and synchronization
+2. React Context provides global state for authentication and theme
+3. Local storage persists user preferences and session data
+4. Real-time updates through optimistic UI patterns
+
+## External Dependencies
+
+### Core Dependencies
+- **Database**: @neondatabase/serverless for PostgreSQL connectivity
+- **ORM**: drizzle-orm with drizzle-zod for type-safe database operations
+- **UI Framework**: React with @radix-ui components for accessibility
+- **Styling**: Tailwind CSS with class-variance-authority for component variants
+- **State Management**: @tanstack/react-query for server state management
+- **Animations**: framer-motion for smooth UI transitions
+- **3D Graphics**: @react-three/fiber and @react-three/drei for cosmic visuals
+
+### Development Tools
+- **Build System**: Vite with TypeScript support
+- **Linting**: ESLint with TypeScript configuration
+- **CSS Processing**: PostCSS with Tailwind CSS and Autoprefixer
+- **Development Server**: Hot module replacement with Vite dev server
+
+## Deployment Strategy
+
+### Build Process
+1. Frontend builds to `dist/public` directory using Vite
+2. Backend compiles to `dist/index.js` using esbuild
+3. Database migrations run automatically via Drizzle Kit
+4. Environment variables configure database connections and API keys
+
+### Production Configuration
+- **Server**: Node.js production server with Express
+- **Database**: PostgreSQL connection via DATABASE_URL environment variable
+- **Static Files**: Served from Express with fallback to React app
+- **Error Handling**: Comprehensive error middleware with logging
+
+### Environment Setup
+- Development: Uses local development server with hot reload
+- Production: Optimized builds with minification and compression
+- Database: Automatic schema synchronization with Drizzle migrations
+- Monitoring: Request logging and performance tracking
+
+## Changelog
+
+```
+Changelog:
+- July 02, 2025. Initial setup
+```
+
+## User Preferences
+
+```
+Preferred communication style: Simple, everyday language.
+```
