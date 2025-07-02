@@ -1,6 +1,122 @@
+/* Custom font */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Base styles */
+@layer base {
+  body {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  .font-cosmic {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  .bg-primary {
+    background-color: var(--bg-primary);
+  }
+  
+  .bg-secondary {
+    background-color: var(--bg-secondary);
+  }
+  
+  .bg-tertiary {
+    background-color: var(--bg-tertiary);
+  }
+  
+  .text-primary {
+    color: var(--text-primary);
+  }
+  
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+  
+  .text-tertiary {
+    color: var(--text-tertiary);
+  }
+  
+  .border-primary {
+    border-color: var(--border-primary);
+  }
+  
+  .border-secondary {
+    border-color: var(--border-secondary);
+  }
+}
+
+/* Cosmic background animation */
+.cosmic-bg {
+  background: #0d0d2b;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cosmic-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(250, 218, 221, 0.1) 0%, rgba(214, 234, 248, 0.1) 25%, rgba(213, 244, 230, 0.1) 50%, rgba(255, 243, 224, 0.1) 75%, rgba(250, 218, 221, 0.1) 100%);
+  opacity: 0.8;
+}
+
+/* Stars animation */
+.stars, .stars2, .stars3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.stars {
+  background-image: radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+                    radial-gradient(2px 2px at 40px 70px, #eee, transparent),
+                    radial-gradient(1px 1px at 50px 90px, #eee, transparent),
+                    radial-gradient(1px 1px at 130px 80px, #eee, transparent),
+                    radial-gradient(2px 2px at 80px 10px, #eee, transparent);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: stars-move 100s linear infinite;
+}
+
+.stars2 {
+  background-image: radial-gradient(1px 1px at 150px 150px, #fff, transparent),
+                    radial-gradient(1px 1px at 60px 170px, #fff, transparent),
+                    radial-gradient(1px 1px at 180px 10px, #fff, transparent),
+                    radial-gradient(2px 2px at 110px 140px, #fff, transparent),
+                    radial-gradient(1px 1px at 90px 60px, #fff, transparent);
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  animation: stars-move 150s linear infinite;
+}
+
+.stars3 {
+  background-image: radial-gradient(1px 1px at 100px 50px, #fff, transparent),
+                    radial-gradient(1px 1px at 40px 130px, #fff, transparent),
+                    radial-gradient(2px 2px at 120px 20px, #fff, transparent),
+                    radial-gradient(1px 1px at 160px 120px, #fff, transparent),
+                    radial-gradient(1px 1px at 30px 40px, #fff, transparent);
+  background-repeat: repeat;
+  background-size: 250px 250px;
+  animation: stars-move 200s linear infinite;
+}
+
+@keyframes stars-move {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
 
 /* CSS Custom Properties for Theme System */
 :root {

@@ -16,9 +16,9 @@ export default {
         'pale-blue': '#D6EAF8',
         'light-teal': '#D5F4E6',
         'muted-yellow': '#FFF3E0',
-        primary: 'var(--text-primary)',
-        secondary: 'var(--text-secondary)',
-        tertiary: 'var(--text-tertiary)',
+        'peach-coral': '#FFDAB9',
+        'cosmic-purple': '#9B7EDE',
+        'cosmic-blue': '#7EC8E3',
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
