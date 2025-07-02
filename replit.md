@@ -123,6 +123,12 @@ Thorx is a modern full-stack web application built for the cosmic age of digital
 ```
 Changelog:
 - July 02, 2025. Initial setup
+- July 02, 2025. Migrated from Bolt to Replit environment
+- July 02, 2025. Added PostgreSQL database with Drizzle ORM
+- July 02, 2025. Implemented complete authentication system with JWT
+- July 02, 2025. Added database schema for users, tasks, and payouts
+- July 02, 2025. Replaced React Router with wouter for routing
+- July 02, 2025. Fixed Three.js components for Replit compatibility
 ```
 
 ## User Preferences
