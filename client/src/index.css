@@ -1283,6 +1283,263 @@
     transparent 70%);
 }
 
+/* Light Mode Cosmic Orbs */
+.cosmic-orb {
+  position: relative;
+  pointer-events: none;
+}
+
+.cosmic-orb-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, 
+    rgba(250, 218, 221, 0.9) 0%,
+    rgba(214, 234, 248, 0.8) 25%,
+    rgba(213, 244, 230, 0.6) 50%,
+    rgba(255, 243, 224, 0.4) 75%,
+    transparent 100%);
+  box-shadow: 
+    0 0 60px rgba(250, 218, 221, 0.6),
+    inset 0 0 40px rgba(214, 234, 248, 0.4);
+  animation: cosmic-pulse 4s ease-in-out infinite;
+}
+
+.cosmic-orb-glow {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -25%;
+  left: -25%;
+  border-radius: 50%;
+  background: radial-gradient(circle at center,
+    rgba(250, 218, 221, 0.3),
+    rgba(214, 234, 248, 0.2),
+    transparent 60%);
+  filter: blur(30px);
+  animation: cosmic-glow 6s ease-in-out infinite;
+}
+
+/* Cosmic Particles */
+.cosmic-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(135deg, 
+    var(--soft-pink),
+    var(--pale-blue),
+    var(--light-teal));
+  border-radius: 50%;
+  box-shadow: 
+    0 0 10px rgba(250, 218, 221, 0.8),
+    0 0 20px rgba(214, 234, 248, 0.6);
+  pointer-events: none;
+}
+
+/* 3D Cosmic Rings */
+.cosmic-ring-container {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.cosmic-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  animation: cosmic-ring-rotate 20s linear infinite;
+}
+
+.cosmic-ring:nth-child(1) {
+  border-color: rgba(250, 218, 221, 0.5);
+  transform: rotateX(70deg) rotateY(0deg);
+  box-shadow: 
+    0 0 30px rgba(250, 218, 221, 0.5),
+    inset 0 0 30px rgba(250, 218, 221, 0.3);
+}
+
+.cosmic-ring:nth-child(2) {
+  border-color: rgba(214, 234, 248, 0.5);
+  transform: rotateX(70deg) rotateY(120deg);
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+  animation-delay: -7s;
+  box-shadow: 
+    0 0 30px rgba(214, 234, 248, 0.5),
+    inset 0 0 30px rgba(214, 234, 248, 0.3);
+}
+
+.cosmic-ring:nth-child(3) {
+  border-color: rgba(213, 244, 230, 0.5);
+  transform: rotateX(70deg) rotateY(240deg);
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
+  animation-delay: -14s;
+  box-shadow: 
+    0 0 30px rgba(213, 244, 230, 0.5),
+    inset 0 0 30px rgba(213, 244, 230, 0.3);
+}
+
+/* Cosmic Stars */
+.cosmic-star {
+  position: absolute;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(213, 244, 230, 0.8));
+}
+
+/* Cosmic Text Effect for Light Mode */
+.cosmic-text {
+  background: linear-gradient(135deg,
+    #FADADD 0%,
+    #D6EAF8 25%,
+    #D5F4E6 50%,
+    #FFF3E0 75%,
+    #FADADD 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: cosmic-text-animate 8s ease-in-out infinite;
+  text-shadow: 0 0 40px rgba(250, 218, 221, 0.5);
+}
+
+.cosmic-text-glow {
+  background: radial-gradient(circle at center,
+    rgba(250, 218, 221, 0.4),
+    rgba(214, 234, 248, 0.3),
+    rgba(213, 244, 230, 0.2),
+    transparent 70%);
+  filter: blur(20px);
+  z-index: -1;
+}
+
+@keyframes cosmic-text-animate {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Cosmic Button for Light Mode */
+.cosmic-button-light {
+  background: linear-gradient(135deg,
+    rgba(250, 218, 221, 0.9),
+    rgba(214, 234, 248, 0.9),
+    rgba(213, 244, 230, 0.9));
+  background-size: 300% 300%;
+  animation: cosmic-button-gradient 5s ease-in-out infinite;
+  position: relative;
+  box-shadow: 
+    0 4px 15px rgba(250, 218, 221, 0.4),
+    0 0 30px rgba(214, 234, 248, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.cosmic-button-shimmer {
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@keyframes cosmic-button-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Cosmic Feature Cards for Light Mode */
+.cosmic-feature-card {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95), 
+    rgba(250, 218, 221, 0.05),
+    rgba(214, 234, 248, 0.05));
+  border: 1px solid rgba(214, 234, 248, 0.3);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    0 0 40px rgba(214, 234, 248, 0.15),
+    inset 0 0 30px rgba(255, 255, 255, 0.5);
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.cosmic-feature-card:hover {
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.12),
+    0 0 60px rgba(250, 218, 221, 0.25),
+    inset 0 0 40px rgba(255, 255, 255, 0.7);
+  transform: translateY(-5px);
+}
+
+.cosmic-feature-gradient {
+  background: linear-gradient(135deg,
+    rgba(250, 218, 221, 0.3),
+    rgba(214, 234, 248, 0.3),
+    rgba(213, 244, 230, 0.3));
+  filter: blur(50px);
+}
+
+.cosmic-feature-orb {
+  background: radial-gradient(circle at center,
+    rgba(250, 218, 221, 0.6),
+    rgba(214, 234, 248, 0.4),
+    transparent 70%);
+  border-radius: 50%;
+  filter: blur(20px);
+}
+
+/* Animations */
+@keyframes cosmic-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes cosmic-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes cosmic-ring-rotate {
+  from {
+    transform: rotateX(70deg) rotateY(0deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(70deg) rotateY(360deg) rotateZ(360deg);
+  }
+}
+
 .dark .bg-white\/20:hover {
   background-color: rgba(255, 255, 255, 0.25) !important;
   color: rgba(255, 255, 255, 1) !important;

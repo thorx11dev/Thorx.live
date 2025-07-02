@@ -1,14 +1,27 @@
 import { motion } from 'framer-motion';
 import { Link } from 'wouter';
-import { ArrowRight, Zap, Globe, Shield, Users, TrendingUp, DollarSign } from 'lucide-react';
+import { ArrowRight, Zap, Globe, Shield, Users, TrendingUp, DollarSign, Sparkles, Star } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
+import { useEffect, useState } from 'react';
 
 const LandingPage = () => {
   const { theme } = useTheme();
   const isLightMode = theme === 'light';
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    
+    if (isLightMode) {
+      window.addEventListener('mousemove', handleMouseMove);
+      return () => window.removeEventListener('mousemove', handleMouseMove);
+    }
+  }, [isLightMode]);
 
   return (
-    <div className={`relative min-h-screen overflow-hidden ${isLightMode ? 'bg-gradient-to-br from-white via-soft-pink/10 to-pale-blue/20' : ''}`}>
+    <div className={`relative min-h-screen overflow-hidden ${isLightMode ? 'bg-gradient-to-br from-white via-soft-pink/5 to-pale-blue/10' : ''}`}>
       {/* Hero Section with Cosmic Background */}
       <div className="relative h-screen">
         {/* Background - Different for light/dark mode */}
@@ -21,23 +34,134 @@ const LandingPage = () => {
           </div>
         )}
         
-        {/* Cosmic Sphere Background Element */}
-        <div className="absolute inset-0 flex items-center justify-center z-0">
-          <motion.div
-            className={`cosmic-sphere ${isLightMode ? 'cosmic-sphere-light' : 'cosmic-sphere-dark'}`}
-            animate={{
-              rotate: 360,
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          >
-            <div className="cosmic-sphere-inner"></div>
-            <div className="cosmic-sphere-glow"></div>
-          </motion.div>
-        </div>
+        {/* Enhanced Cosmic Elements for Light Mode */}
+        {isLightMode && (
+          <>
+            {/* Mouse-following gradient effect */}
+            <div 
+              className="absolute inset-0 z-0 pointer-events-none"
+              style={{
+                background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(250, 218, 221, 0.3), transparent 40%)`,
+              }}
+            />
+            
+            {/* Multiple Floating Cosmic Orbs */}
+            <div className="absolute inset-0 z-0">
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute cosmic-orb"
+                  style={{
+                    left: `${20 + i * 15}%`,
+                    top: `${10 + i * 10}%`,
+                    width: `${100 + i * 30}px`,
+                    height: `${100 + i * 30}px`,
+                  }}
+                  animate={{
+                    x: [0, 50, -30, 0],
+                    y: [0, -30, 50, 0],
+                    scale: [1, 1.2, 0.9, 1],
+                  }}
+                  transition={{
+                    duration: 15 + i * 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.5,
+                  }}
+                >
+                  <div className="cosmic-orb-inner" />
+                  <div className="cosmic-orb-glow" />
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Floating Particles */}
+            <div className="absolute inset-0 z-0">
+              {[...Array(20)].map((_, i) => (
+                <motion.div
+                  key={`particle-${i}`}
+                  className="cosmic-particle"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    y: [-20, -100],
+                    opacity: [0, 1, 0],
+                  }}
+                  transition={{
+                    duration: 3 + Math.random() * 2,
+                    repeat: Infinity,
+                    delay: Math.random() * 5,
+                    ease: "easeOut",
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* 3D Cosmic Ring */}
+            <div className="absolute inset-0 flex items-center justify-center z-0">
+              <motion.div
+                className="cosmic-ring-container"
+                animate={{ rotateY: 360 }}
+                transition={{
+                  duration: 30,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              >
+                <div className="cosmic-ring" />
+                <div className="cosmic-ring cosmic-ring-2" />
+                <div className="cosmic-ring cosmic-ring-3" />
+              </motion.div>
+            </div>
+
+            {/* Animated Stars */}
+            <div className="absolute inset-0 z-0">
+              {[...Array(15)].map((_, i) => (
+                <motion.div
+                  key={`star-${i}`}
+                  className="cosmic-star"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    scale: [0, 1, 0],
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{
+                    duration: 2 + Math.random() * 3,
+                    repeat: Infinity,
+                    delay: Math.random() * 5,
+                  }}
+                >
+                  <Star className="w-4 h-4 text-light-teal" />
+                </motion.div>
+              ))}
+            </div>
+          </>
+        )}
+        
+        {/* Dark Mode Background */}
+        {!isLightMode && (
+          <div className="absolute inset-0 flex items-center justify-center z-0">
+            <motion.div
+              className="cosmic-sphere cosmic-sphere-dark"
+              animate={{
+                rotate: 360,
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            >
+              <div className="cosmic-sphere-inner"></div>
+              <div className="cosmic-sphere-glow"></div>
+            </motion.div>
+          </div>
+        )}
         
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
@@ -49,13 +173,33 @@ const LandingPage = () => {
               className="mb-8"
             >
               <h1 className={`text-6xl md:text-8xl font-bold mb-4 leading-tight ${isLightMode ? '' : 'text-primary'}`}>
-                <span className={`font-extrabold ${
-                  isLightMode 
-                    ? 'bg-gradient-to-r from-cosmic-purple via-cosmic-blue to-cosmic-teal bg-clip-text text-transparent' 
-                    : 'bg-gradient-to-r from-soft-pink via-pale-blue to-light-teal bg-clip-text text-transparent'
-                }`}>
-                  Thorx
-                </span>
+                {isLightMode ? (
+                  <motion.span 
+                    className="relative inline-block"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <span className="cosmic-text font-extrabold">
+                      Thorx
+                    </span>
+                    <motion.div
+                      className="absolute -inset-4 cosmic-text-glow opacity-50"
+                      animate={{
+                        opacity: [0.3, 0.6, 0.3],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                    <Sparkles className="absolute -top-6 -right-6 w-8 h-8 text-muted-yellow animate-pulse" />
+                  </motion.span>
+                ) : (
+                  <span className="font-extrabold bg-gradient-to-r from-soft-pink via-pale-blue to-light-teal bg-clip-text text-transparent">
+                    Thorx
+                  </span>
+                )}
               </h1>
               <p className={`text-xl md:text-2xl mb-8 max-w-2xl mx-auto font-medium ${
                 isLightMode ? 'text-gray-700' : 'text-secondary'
@@ -73,9 +217,9 @@ const LandingPage = () => {
             >
               <Link to="/dashboard">
                 <motion.button
-                  className={`font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 ${
+                  className={`relative font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 overflow-hidden ${
                     isLightMode 
-                      ? 'bg-gradient-to-r from-cosmic-purple to-cosmic-blue text-white' 
+                      ? 'cosmic-button-light' 
                       : 'bg-gradient-to-r from-soft-pink to-pale-blue'
                   }`}
                   style={{ 
@@ -85,12 +229,34 @@ const LandingPage = () => {
                   }}
                   whileHover={{ 
                     scale: 1.05, 
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.15)"
+                    boxShadow: isLightMode ? "0 20px 40px rgba(250, 218, 221, 0.4)" : "0 20px 40px rgba(0,0,0,0.15)"
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span>Launch Dashboard</span>
-                  <ArrowRight className="w-5 h-5" />
+                  {isLightMode && (
+                    <motion.div
+                      className="absolute inset-0 cosmic-button-shimmer"
+                      animate={{
+                        x: ["-100%", "100%"],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        repeatDelay: 1,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-10">Launch Dashboard</span>
+                  <motion.div
+                    animate={isLightMode ? { x: [0, 5, 0] } : {}}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <ArrowRight className="w-5 h-5 relative z-10" />
+                  </motion.div>
                 </motion.button>
               </Link>
               
@@ -184,16 +350,41 @@ const LandingPage = () => {
                 whileHover={{ scale: 1.05, y: -10 }}
                 className="group"
               >
-                <div className={`rounded-2xl p-8 transition-all duration-300 h-full ${
+                <div className={`relative rounded-2xl p-8 transition-all duration-300 h-full overflow-hidden ${
                   isLightMode 
-                    ? 'bg-white shadow-lg hover:shadow-xl border border-gray-200' 
+                    ? 'cosmic-feature-card' 
                     : 'bg-secondary shadow-primary hover:shadow-secondary border border-primary'
                 }`}>
-                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  {isLightMode && (
+                    <motion.div
+                      className="absolute inset-0 cosmic-feature-gradient opacity-0"
+                      whileHover={{ opacity: 0.1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                  <motion.div 
+                    className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} mb-6 transition-transform duration-300 relative z-10`}
+                    whileHover={isLightMode ? { rotate: 360, scale: 1.2 } : { scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
                     <feature.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className={`text-xl font-bold mb-4 ${isLightMode ? 'text-gray-800' : 'text-primary'}`}>{feature.title}</h3>
-                  <p className={`leading-relaxed ${isLightMode ? 'text-gray-600' : 'text-secondary'}`}>{feature.description}</p>
+                  </motion.div>
+                  <h3 className={`text-xl font-bold mb-4 relative z-10 ${isLightMode ? 'text-gray-800' : 'text-primary'}`}>{feature.title}</h3>
+                  <p className={`leading-relaxed relative z-10 ${isLightMode ? 'text-gray-600' : 'text-secondary'}`}>{feature.description}</p>
+                  {isLightMode && (
+                    <motion.div
+                      className="absolute -bottom-2 -right-2 w-20 h-20 cosmic-feature-orb"
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.3, 0.6, 0.3],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        delay: index * 0.3,
+                      }}
+                    />
+                  )}
                 </div>
               </motion.div>
             ))}
