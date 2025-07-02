@@ -34,114 +34,134 @@ const LandingPage = () => {
           </div>
         )}
         
-        {/* Enhanced Cosmic Elements - Consistent for Both Modes */}
-        <>
-          {/* Mouse-following gradient effect */}
-          <div 
-            className="absolute inset-0 z-0 pointer-events-none"
-            style={{
-              background: isLightMode 
-                ? `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(250, 218, 221, 0.3), transparent 40%)`
-                : `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(106, 90, 205, 0.2), transparent 40%)`,
-            }}
-          />
-          
-          {/* Multiple Floating Cosmic Orbs */}
-          <div className="absolute inset-0 z-0">
-            {[...Array(5)].map((_, i) => (
+        {/* Enhanced Cosmic Elements for Light Mode */}
+        {isLightMode && (
+          <>
+            {/* Mouse-following gradient effect */}
+            <div 
+              className="absolute inset-0 z-0 pointer-events-none"
+              style={{
+                background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(250, 218, 221, 0.3), transparent 40%)`,
+              }}
+            />
+            
+            {/* Multiple Floating Cosmic Orbs */}
+            <div className="absolute inset-0 z-0">
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute cosmic-orb"
+                  style={{
+                    left: `${20 + i * 15}%`,
+                    top: `${10 + i * 10}%`,
+                    width: `${100 + i * 30}px`,
+                    height: `${100 + i * 30}px`,
+                  }}
+                  animate={{
+                    x: [0, 50, -30, 0],
+                    y: [0, -30, 50, 0],
+                    scale: [1, 1.2, 0.9, 1],
+                  }}
+                  transition={{
+                    duration: 15 + i * 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.5,
+                  }}
+                >
+                  <div className="cosmic-orb-inner" />
+                  <div className="cosmic-orb-glow" />
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Floating Particles */}
+            <div className="absolute inset-0 z-0">
+              {[...Array(20)].map((_, i) => (
+                <motion.div
+                  key={`particle-${i}`}
+                  className="cosmic-particle"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    y: [-20, -100],
+                    opacity: [0, 1, 0],
+                  }}
+                  transition={{
+                    duration: 3 + Math.random() * 2,
+                    repeat: Infinity,
+                    delay: Math.random() * 5,
+                    ease: "easeOut",
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* 3D Cosmic Ring */}
+            <div className="absolute inset-0 flex items-center justify-center z-0">
               <motion.div
-                key={i}
-                className={`absolute ${isLightMode ? 'cosmic-orb' : 'cosmic-orb-dark'}`}
-                style={{
-                  left: `${20 + i * 15}%`,
-                  top: `${10 + i * 10}%`,
-                  width: `${100 + i * 30}px`,
-                  height: `${100 + i * 30}px`,
-                }}
-                animate={{
-                  x: [0, 50, -30, 0],
-                  y: [0, -30, 50, 0],
-                  scale: [1, 1.2, 0.9, 1],
-                }}
+                className="cosmic-ring-container"
+                animate={{ rotateY: 360 }}
                 transition={{
-                  duration: 15 + i * 2,
+                  duration: 30,
                   repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.5,
+                  ease: "linear",
                 }}
               >
-                <div className={`${isLightMode ? 'cosmic-orb-inner' : 'cosmic-orb-inner-dark'}`} />
-                <div className={`${isLightMode ? 'cosmic-orb-glow' : 'cosmic-orb-glow-dark'}`} />
+                <div className="cosmic-ring" />
+                <div className="cosmic-ring cosmic-ring-2" />
+                <div className="cosmic-ring cosmic-ring-3" />
               </motion.div>
-            ))}
-          </div>
+            </div>
 
-          {/* Floating Particles */}
-          <div className="absolute inset-0 z-0">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={`particle-${i}`}
-                className={`${isLightMode ? 'cosmic-particle' : 'cosmic-particle-dark'}`}
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [-20, -100],
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 2,
-                  repeat: Infinity,
-                  delay: Math.random() * 5,
-                  ease: "easeOut",
-                }}
-              />
-            ))}
-          </div>
-
-          {/* 3D Cosmic Ring */}
+            {/* Animated Stars */}
+            <div className="absolute inset-0 z-0">
+              {[...Array(15)].map((_, i) => (
+                <motion.div
+                  key={`star-${i}`}
+                  className="cosmic-star"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    scale: [0, 1, 0],
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{
+                    duration: 2 + Math.random() * 3,
+                    repeat: Infinity,
+                    delay: Math.random() * 5,
+                  }}
+                >
+                  <Star className="w-4 h-4 text-light-teal" />
+                </motion.div>
+              ))}
+            </div>
+          </>
+        )}
+        
+        {/* Dark Mode Background */}
+        {!isLightMode && (
           <div className="absolute inset-0 flex items-center justify-center z-0">
             <motion.div
-              className="cosmic-ring-container"
-              animate={{ rotateY: 360 }}
+              className="cosmic-sphere cosmic-sphere-dark"
+              animate={{
+                rotate: 360,
+              }}
               transition={{
-                duration: 30,
+                duration: 20,
                 repeat: Infinity,
-                ease: "linear",
+                ease: "linear"
               }}
             >
-              <div className={`cosmic-ring ${isLightMode ? '' : 'cosmic-ring-dark'}`} />
-              <div className={`cosmic-ring cosmic-ring-2 ${isLightMode ? '' : 'cosmic-ring-dark'}`} />
-              <div className={`cosmic-ring cosmic-ring-3 ${isLightMode ? '' : 'cosmic-ring-dark'}`} />
+              <div className="cosmic-sphere-inner"></div>
+              <div className="cosmic-sphere-glow"></div>
             </motion.div>
           </div>
-
-          {/* Animated Stars */}
-          <div className="absolute inset-0 z-0">
-            {[...Array(15)].map((_, i) => (
-              <motion.div
-                key={`star-${i}`}
-                className="cosmic-star"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  scale: [0, 1, 0],
-                  rotate: [0, 180, 360],
-                }}
-                transition={{
-                  duration: 2 + Math.random() * 3,
-                  repeat: Infinity,
-                  delay: Math.random() * 5,
-                }}
-              >
-                <Star className={`w-4 h-4 ${isLightMode ? 'text-light-teal' : 'text-pale-blue'}`} />
-              </motion.div>
-            ))}
-          </div>
-        </>
+        )}
         
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
