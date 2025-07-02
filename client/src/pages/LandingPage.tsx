@@ -201,11 +201,25 @@ const LandingPage = () => {
                   </span>
                 )}
               </h1>
-              <p className={`text-xl md:text-2xl mb-8 max-w-2xl mx-auto font-medium ${
-                isLightMode ? 'text-gray-700' : 'text-secondary'
-              }`}>
-                The next-generation earning platform designed for the cosmic age. 
-                Join 100,000+ users in the future of digital income.
+              <p className={`text-xl md:text-2xl mb-8 max-w-2xl mx-auto font-semibold leading-relaxed ${
+                isLightMode 
+                  ? 'text-gray-800 drop-shadow-sm' 
+                  : 'text-white font-bold drop-shadow-lg'
+              }`}
+              style={{
+                textShadow: isLightMode 
+                  ? '0 2px 4px rgba(0,0,0,0.1)' 
+                  : '0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(250,218,221,0.3)'
+              }}>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className={isLightMode ? '' : 'bg-gradient-to-r from-white via-pale-blue/90 to-soft-pink/90 bg-clip-text text-transparent'}
+                >
+                  The next-generation earning platform designed for the cosmic age. 
+                  Join 100,000+ users in the future of digital income.
+                </motion.span>
               </p>
             </motion.div>
             
@@ -298,7 +312,16 @@ const LandingPage = () => {
             <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${isLightMode ? 'text-gray-800' : 'text-primary'}`}>
               Cosmic Features
             </h2>
-            <p className={`text-xl max-w-2xl mx-auto ${isLightMode ? 'text-gray-600' : 'text-secondary'}`}>
+            <p className={`text-xl max-w-2xl mx-auto font-medium ${
+              isLightMode 
+                ? 'text-gray-700' 
+                : 'text-white/90 font-semibold'
+            }`}
+            style={{
+              textShadow: isLightMode 
+                ? '0 1px 3px rgba(0,0,0,0.1)' 
+                : '0 2px 6px rgba(0,0,0,0.6)'
+            }}>
               Experience the future of digital earning with our cutting-edge platform
             </p>
           </motion.div>
@@ -416,7 +439,16 @@ const LandingPage = () => {
                 <div className={`text-3xl md:text-4xl font-bold mb-2 ${isLightMode ? 'text-gray-800' : 'text-primary'}`}>
                   {stat.number}
                 </div>
-                <div className={`font-medium ${isLightMode ? 'text-gray-600' : 'text-secondary'}`}>{stat.label}</div>
+                <div className={`font-semibold ${
+                  isLightMode 
+                    ? 'text-gray-700' 
+                    : 'text-white/85'
+                }`}
+                style={{
+                  textShadow: isLightMode 
+                    ? '0 1px 2px rgba(0,0,0,0.1)' 
+                    : '0 1px 4px rgba(0,0,0,0.5)'
+                }}>{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -434,7 +466,16 @@ const LandingPage = () => {
             <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${isLightMode ? 'text-gray-800' : 'text-primary'}`}>
               Ready to Launch Your Cosmic Journey?
             </h2>
-            <p className={`text-xl mb-8 max-w-2xl mx-auto ${isLightMode ? 'text-gray-600' : 'text-secondary'}`}>
+            <p className={`text-xl mb-8 max-w-2xl mx-auto font-medium ${
+              isLightMode 
+                ? 'text-gray-700' 
+                : 'text-white/90 font-semibold'
+            }`}
+            style={{
+              textShadow: isLightMode 
+                ? '0 1px 3px rgba(0,0,0,0.1)' 
+                : '0 2px 6px rgba(0,0,0,0.6)'
+            }}>
               Join thousands of users who are already earning with Thorx. 
               Start your journey to financial freedom today.
             </p>
