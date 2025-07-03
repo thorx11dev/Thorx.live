@@ -194,23 +194,23 @@ const LandingPage = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="relative z-50 flex justify-between items-center px-6 py-6">
+        <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
           <motion.div 
-            className="flex items-center space-x-3"
+            className="flex items-center space-x-2 sm:space-x-3"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.4 }}
           >
             <motion.div 
-              className="flex items-center justify-center w-10 h-10 bg-slate-800 rounded-xl border border-slate-700"
+              className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-slate-800 rounded-xl border border-slate-700"
               whileHover={{ scale: 1.1, rotate: 360, backgroundColor: '#475569' }}
               transition={{ duration: 0.6 }}
             >
-              <Rocket className="w-5 h-5 text-slate-300" />
+              <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-slate-300" />
             </motion.div>
-            <span className="text-2xl font-bold text-slate-200">Thorx</span>
+            <span className="text-xl sm:text-2xl font-bold text-slate-200">Thorx</span>
           </motion.div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 sm:gap-6">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -218,7 +218,7 @@ const LandingPage = () => {
             >
               <Link 
                 to="/login" 
-                className="text-slate-400 hover:text-slate-200 transition-colors relative group"
+                className="text-slate-400 hover:text-slate-200 transition-colors relative group text-sm sm:text-base"
               >
                 Sign In
                 <span className="absolute bottom-0 left-0 h-0.5 bg-slate-400 w-0 group-hover:w-full transition-all duration-300" />
@@ -231,7 +231,7 @@ const LandingPage = () => {
             >
               <Link 
                 to="/register" 
-                className="bg-slate-800 text-slate-200 px-4 py-2 rounded-lg hover:bg-slate-700 transition-all duration-300 border border-slate-700 hover:border-slate-600"
+                className="bg-slate-800 text-slate-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:bg-slate-700 transition-all duration-300 border border-slate-700 hover:border-slate-600 text-sm sm:text-base"
               >
                 Get Started
               </Link>
@@ -240,17 +240,17 @@ const LandingPage = () => {
         </nav>
 
         {/* Hero Content */}
-        <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 -mt-20">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 -mt-16 sm:-mt-20">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left side - Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-center lg:text-left"
+              className="text-center lg:text-left px-2 sm:px-0"
             >
               <motion.h1 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-200 mb-6 leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-200 mb-4 sm:mb-6 leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
@@ -260,7 +260,7 @@ const LandingPage = () => {
               </motion.h1>
               
               <motion.p 
-                className="text-xl text-slate-400 mb-8 max-w-lg"
+                className="text-base sm:text-lg md:text-xl text-slate-400 mb-6 sm:mb-8 max-w-lg mx-auto lg:mx-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 0.5 }}
@@ -269,22 +269,22 @@ const LandingPage = () => {
               </motion.p>
               
               <motion.div 
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.5 }}
               >
                 <Link 
                   to="/register" 
-                  className="bg-slate-200 text-slate-900 px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-all duration-300 inline-flex items-center gap-2 group"
+                  className="bg-slate-200 text-slate-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold hover:bg-slate-100 transition-all duration-300 inline-flex items-center justify-center gap-2 group text-sm sm:text-base"
                 >
                   <span>Start Your Journey</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 
                 <Link 
                   to="/login" 
-                  className="border border-slate-600 text-slate-200 px-8 py-3 rounded-lg font-semibold hover:bg-slate-800 transition-all duration-300"
+                  className="border border-slate-600 text-slate-200 px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold hover:bg-slate-800 transition-all duration-300 text-sm sm:text-base text-center"
                 >
                   Sign In
                 </Link>
@@ -296,10 +296,10 @@ const LandingPage = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex justify-center"
+              className="hidden lg:flex justify-center"
             >
               <div className="relative">
-                <svg viewBox="0 0 400 400" className="w-80 h-80 opacity-60">
+                <svg viewBox="0 0 400 400" className="w-60 md:w-72 lg:w-80 h-60 md:h-72 lg:h-80 opacity-60">
                   <defs>
                     <pattern id="starPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
                       <circle cx="5" cy="5" r="1" fill="#64748b" opacity="0.6">

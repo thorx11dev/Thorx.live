@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
 import { useAuth } from '../hooks/useAuth';
+import AnimatedLogo from '../components/AnimatedLogo';
 
 interface FormData {
   email: string;
@@ -54,6 +55,16 @@ const AuthPage = () => {
   useEffect(() => {
     setIsLogin(location === '/login' || location === '/auth');
   }, [location]);
+
+  // Force dark mode for Auth page
+  useEffect(() => {
+    document.documentElement.classList.add('dark');
+    document.body.style.backgroundColor = '#0f172a';
+    
+    return () => {
+      document.body.style.backgroundColor = '';
+    };
+  }, []);
 
   const [formData, setFormData] = useState<FormData>({
     email: '',
@@ -285,7 +296,7 @@ const AuthPage = () => {
         )}
       </AnimatePresence>
 
-      <div className="relative w-full max-w-md">
+      <div className="relative w-full max-w-md px-4 sm:px-0">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -293,16 +304,7 @@ const AuthPage = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-8"
         >
-          <Link to="/" className="inline-flex items-center space-x-3">
-            <motion.div 
-              className="flex items-center justify-center w-12 h-12 bg-slate-800 rounded-xl border border-slate-700"
-              whileHover={{ scale: 1.1, rotate: 360, backgroundColor: '#475569' }}
-              transition={{ duration: 0.6 }}
-            >
-              <Zap className="w-7 h-7 text-slate-300" />
-            </motion.div>
-            <span className="text-3xl font-bold text-slate-200">Thorx</span>
-          </Link>
+          <AnimatedLogo size="large" showText={true} linkTo="/" />
           <p className="text-slate-400 mt-2">
             {isLogin ? 'Welcome back to the cosmic earning platform' : 'Join the cosmic earning revolution'}
           </p>
@@ -322,27 +324,31 @@ const AuthPage = () => {
           }}
         >
           {/* Form Toggle */}
-          <div className="flex bg-slate-900 rounded-xl p-1 mb-8">
-            <button
+          <div className="flex bg-slate-900/50 rounded-xl p-1 mb-8 backdrop-blur-md border border-slate-700/50">
+            <motion.button
               onClick={() => setIsLogin(true)}
               className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all duration-300 ${
                 isLogin 
-                  ? 'bg-slate-700 text-slate-200 shadow-md' 
+                  ? 'bg-gradient-to-r from-slate-700 to-slate-600 text-slate-100 shadow-lg' 
                   : 'text-slate-400 hover:text-slate-200'
               }`}
+              whileHover={{ scale: isLogin ? 1 : 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Sign In
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               onClick={() => setIsLogin(false)}
               className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all duration-300 ${
                 !isLogin 
-                  ? 'bg-slate-700 text-slate-200 shadow-md' 
+                  ? 'bg-gradient-to-r from-slate-700 to-slate-600 text-slate-100 shadow-lg' 
                   : 'text-slate-400 hover:text-slate-200'
               }`}
+              whileHover={{ scale: !isLogin ? 1 : 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Sign Up
-            </button>
+            </motion.button>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -353,50 +359,50 @@ const AuthPage = () => {
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="grid grid-cols-2 gap-4"
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                 >
                   <div>
-                    <label className="block text-sm font-medium text-deep-navy mb-2">
+                    <label className="block text-sm font-medium text-slate-300 mb-2">
                       First Name
                     </label>
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-deep-navy/50 w-4 h-4" />
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 w-4 h-4" />
                       <input
                         type="text"
                         value={formData.firstName || ''}
                         onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-                        className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 ${
+                        className={`w-full pl-10 pr-4 py-3 bg-slate-700/50 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 text-slate-200 placeholder-slate-500 ${
                           errors.firstName 
-                            ? 'border-red-300 focus:ring-red-200' 
-                            : 'border-pale-blue/30 focus:ring-soft-pink/50'
+                            ? 'border-red-400 focus:ring-red-400/50' 
+                            : 'border-slate-600 focus:ring-slate-400/50 focus:border-slate-400'
                         }`}
                         placeholder="John"
                       />
                     </div>
                     {errors.firstName && (
-                      <p className="text-red-600 text-sm mt-1">{errors.firstName}</p>
+                      <p className="text-red-400 text-sm mt-1">{errors.firstName}</p>
                     )}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-deep-navy mb-2">
+                    <label className="block text-sm font-medium text-slate-300 mb-2">
                       Last Name
                     </label>
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-deep-navy/50 w-4 h-4" />
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 w-4 h-4" />
                       <input
                         type="text"
                         value={formData.lastName || ''}
                         onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-                        className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 ${
+                        className={`w-full pl-10 pr-4 py-3 bg-slate-700/50 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 text-slate-200 placeholder-slate-500 ${
                           errors.lastName 
-                            ? 'border-red-300 focus:ring-red-200' 
-                            : 'border-pale-blue/30 focus:ring-soft-pink/50'
+                            ? 'border-red-400 focus:ring-red-400/50' 
+                            : 'border-slate-600 focus:ring-slate-400/50 focus:border-slate-400'
                         }`}
                         placeholder="Doe"
                       />
                     </div>
                     {errors.lastName && (
-                      <p className="text-red-600 text-sm mt-1">{errors.lastName}</p>
+                      <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
                     )}
                   </div>
                 </motion.div>
@@ -405,56 +411,56 @@ const AuthPage = () => {
 
             {/* Email Field */}
             <div>
-              <label className="block text-sm font-medium text-deep-navy mb-2">
+              <label className="block text-sm font-medium text-slate-300 mb-2">
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-deep-navy/50 w-4 h-4" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 w-4 h-4" />
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 ${
+                  className={`w-full pl-10 pr-4 py-3 bg-slate-700/50 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 text-slate-200 placeholder-slate-500 ${
                     errors.email 
-                      ? 'border-red-300 focus:ring-red-200' 
-                      : 'border-pale-blue/30 focus:ring-soft-pink/50'
+                      ? 'border-red-400 focus:ring-red-400/50' 
+                      : 'border-slate-600 focus:ring-slate-400/50 focus:border-slate-400'
                   }`}
                   placeholder="john@example.com"
                 />
               </div>
               {errors.email && (
-                <p className="text-red-600 text-sm mt-1">{errors.email}</p>
+                <p className="text-red-400 text-sm mt-1">{errors.email}</p>
               )}
             </div>
 
             {/* Password Field */}
             <div>
-              <label className="block text-sm font-medium text-deep-navy mb-2">
+              <label className="block text-sm font-medium text-slate-300 mb-2">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-deep-navy/50 w-4 h-4" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 w-4 h-4" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   value={formData.password}
                   onChange={(e) => setFormData({...formData, password: e.target.value})}
-                  className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 ${
+                  className={`w-full pl-10 pr-12 py-3 bg-slate-700/50 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 text-slate-200 placeholder-slate-500 ${
                     errors.password 
-                      ? 'border-red-300 focus:ring-red-200' 
-                      : 'border-pale-blue/30 focus:ring-soft-pink/50'
+                      ? 'border-red-400 focus:ring-red-400/50' 
+                      : 'border-slate-600 focus:ring-slate-400/50 focus:border-slate-400'
                   }`}
                   placeholder="Enter your password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-deep-navy/50 hover:text-deep-navy"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
               {errors.password && (
-                <p className="text-red-600 text-sm mt-1">{errors.password}</p>
+                <p className="text-red-400 text-sm mt-1">{errors.password}</p>
               )}
               
               {/* Password Strength Indicator */}
@@ -465,15 +471,15 @@ const AuthPage = () => {
                   className="mt-2"
                 >
                   <div className="flex items-center justify-between text-sm mb-1">
-                    <span className="text-deep-navy/70">Password Strength</span>
+                    <span className="text-slate-400">Password Strength</span>
                     <span className={`font-medium ${
-                      passwordStrength < 50 ? 'text-red-600' : 
-                      passwordStrength < 75 ? 'text-yellow-600' : 'text-green-600'
+                      passwordStrength < 50 ? 'text-red-400' : 
+                      passwordStrength < 75 ? 'text-yellow-400' : 'text-green-400'
                     }`}>
                       {getPasswordStrengthText()}
                     </span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="w-full bg-slate-700 rounded-full h-2">
                     <motion.div
                       className={`h-2 rounded-full transition-all duration-300 ${getPasswordStrengthColor()}`}
                       initial={{ width: 0 }}
@@ -493,32 +499,32 @@ const AuthPage = () => {
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <label className="block text-sm font-medium text-deep-navy mb-2">
+                  <label className="block text-sm font-medium text-slate-300 mb-2">
                     Confirm Password
                   </label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-deep-navy/50 w-4 h-4" />
+                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 w-4 h-4" />
                     <input
                       type={showConfirmPassword ? 'text' : 'password'}
                       value={formData.confirmPassword || ''}
                       onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
-                      className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 ${
+                      className={`w-full pl-10 pr-12 py-3 bg-slate-700/50 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 text-slate-200 placeholder-slate-500 ${
                         errors.confirmPassword 
-                          ? 'border-red-300 focus:ring-red-200' 
-                          : 'border-pale-blue/30 focus:ring-soft-pink/50'
+                          ? 'border-red-400 focus:ring-red-400/50' 
+                          : 'border-slate-600 focus:ring-slate-400/50 focus:border-slate-400'
                       }`}
                       placeholder="Confirm your password"
                     />
                     <button
                       type="button"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-deep-navy/50 hover:text-deep-navy"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
                     >
                       {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
                   </div>
                   {errors.confirmPassword && (
-                    <p className="text-red-600 text-sm mt-1">{errors.confirmPassword}</p>
+                    <p className="text-red-400 text-sm mt-1">{errors.confirmPassword}</p>
                   )}
                 </motion.div>
               )}
@@ -569,7 +575,7 @@ const AuthPage = () => {
               disabled={isLoading}
               whileHover={{ scale: isLoading ? 1 : 1.02 }}
               whileTap={{ scale: isLoading ? 1 : 0.98 }}
-              className="w-full bg-soft-pink hover:bg-soft-pink/80 text-deep-navy font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed border border-soft-pink/20"
+              className="w-full bg-slate-200 hover:bg-slate-100 text-slate-900 font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <>
@@ -587,19 +593,19 @@ const AuthPage = () => {
             {/* Divider */}
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-pale-blue/20" />
+                <div className="w-full border-t border-slate-700" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-deep-navy/70">Or continue with</span>
+                <span className="px-4 bg-slate-800 text-slate-400">Or continue with</span>
               </div>
             </div>
 
             {/* Social Login */}
             <div className="grid grid-cols-3 gap-3">
               {[
-                { name: 'Google', icon: Chrome, color: 'hover:bg-red-50' },
-                { name: 'Facebook', icon: Facebook, color: 'hover:bg-blue-50' },
-                { name: 'Twitter', icon: Twitter, color: 'hover:bg-sky-50' }
+                { name: 'Google', icon: Chrome, color: 'hover:bg-slate-700' },
+                { name: 'Facebook', icon: Facebook, color: 'hover:bg-slate-700' },
+                { name: 'Twitter', icon: Twitter, color: 'hover:bg-slate-700' }
               ].map((social) => (
                 <motion.button
                   key={social.name}
@@ -607,9 +613,9 @@ const AuthPage = () => {
                   onClick={() => handleSocialLogin(social.name)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`flex items-center justify-center py-3 px-4 border border-pale-blue/20 rounded-lg transition-all duration-200 ${social.color}`}
+                  className={`flex items-center justify-center py-3 px-4 bg-slate-700/30 border border-slate-600 rounded-lg transition-all duration-200 ${social.color}`}
                 >
-                  <social.icon className="w-5 h-5 text-deep-navy/70" />
+                  <social.icon className="w-5 h-5 text-slate-400" />
                 </motion.button>
               ))}
             </div>
@@ -623,13 +629,13 @@ const AuthPage = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center mt-6"
         >
-          <p className="text-sm text-deep-navy/70">
+          <p className="text-sm text-slate-400">
             By continuing, you agree to our{' '}
-            <Link to="/terms" className="text-soft-pink hover:text-pale-blue transition-colors duration-200">
+            <Link to="/terms" className="text-slate-300 hover:text-slate-100 transition-colors duration-200">
               Terms of Service
             </Link>{' '}
             and{' '}
-            <Link to="/privacy" className="text-soft-pink hover:text-pale-blue transition-colors duration-200">
+            <Link to="/privacy" className="text-slate-300 hover:text-slate-100 transition-colors duration-200">
               Privacy Policy
             </Link>
           </p>

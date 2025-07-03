@@ -18,6 +18,7 @@ import {
   CosmicCreditCard, 
   CosmicSettings 
 } from './icons/CosmicIcons';
+import AnimatedLogo from './AnimatedLogo';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,16 +63,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo - Enhanced for Dark Mode */}
-          <Link to="/" className="flex items-center space-x-2">
-            <motion.div 
-              className="flex items-center justify-center w-10 h-10 bg-gradient-to-r from-cosmic-purple to-cosmic-blue rounded-lg"
-              whileHover={{ scale: 1.05, rotate: 360 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Zap className="w-6 h-6 text-white" />
-            </motion.div>
-            <span className="text-2xl font-bold navbar-logo-text">Thorx</span>
-          </Link>
+          <AnimatedLogo size="medium" showText={true} linkTo="/" />
 
           {/* Desktop Navigation - Enhanced for Dark Mode */}
           <div className="hidden md:flex items-center space-x-8">
