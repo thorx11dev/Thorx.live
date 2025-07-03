@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'wouter';
 import { ArrowRight, Zap, Globe, Shield, Users, TrendingUp, DollarSign, Sparkles, Star, Orbit, Satellite, Rocket, Target, Award, Activity } from 'lucide-react';
-import { useTheme } from '../hooks/useTheme';
 import { useEffect, useState } from 'react';
 
 const LandingPage = () => {
@@ -11,6 +10,17 @@ const LandingPage = () => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Force dark theme styles for landing page only
+  useEffect(() => {
+    document.documentElement.classList.add('dark');
+    document.body.style.backgroundColor = '#0f172a'; // slate-900
+    
+    return () => {
+      // Clean up when leaving landing page
+      document.body.style.backgroundColor = '';
+    };
   }, []);
 
   // Cosmic SVG Illustrations
