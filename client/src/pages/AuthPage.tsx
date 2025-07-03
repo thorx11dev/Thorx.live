@@ -226,12 +226,32 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-light-grey flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4 py-8">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-soft-pink/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-pale-blue/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-light-teal/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
+        <div className="absolute top-20 left-10 w-32 h-32 bg-slate-700/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-slate-600/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-slate-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
+        
+        {/* Constellation background */}
+        <div className="absolute inset-0 opacity-20">
+          <svg width="100%" height="100%" className="absolute inset-0">
+            <defs>
+              <pattern id="authConstellation" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <circle cx="50" cy="50" r="1" fill="#64748b" opacity="0.5">
+                  <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="150" cy="100" r="1" fill="#64748b" opacity="0.3">
+                  <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" begin="1s" />
+                </circle>
+                <circle cx="100" cy="150" r="1" fill="#64748b" opacity="0.4">
+                  <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.5s" repeatCount="indefinite" begin="0.5s" />
+                </circle>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#authConstellation)"/>
+          </svg>
+        </div>
       </div>
 
       {/* Notification */}
@@ -275,15 +295,15 @@ const AuthPage = () => {
         >
           <Link to="/" className="inline-flex items-center space-x-3">
             <motion.div 
-              className="flex items-center justify-center w-12 h-12 bg-soft-pink rounded-xl"
-              whileHover={{ scale: 1.05, rotate: 360 }}
-              transition={{ duration: 0.3 }}
+              className="flex items-center justify-center w-12 h-12 bg-slate-800 rounded-xl border border-slate-700"
+              whileHover={{ scale: 1.1, rotate: 360, backgroundColor: '#475569' }}
+              transition={{ duration: 0.6 }}
             >
-              <Zap className="w-7 h-7 text-white" />
+              <Zap className="w-7 h-7 text-slate-300" />
             </motion.div>
-            <span className="text-3xl font-bold text-deep-navy">Thorx</span>
+            <span className="text-3xl font-bold text-slate-200">Thorx</span>
           </Link>
-          <p className="text-deep-navy/70 mt-2">
+          <p className="text-slate-400 mt-2">
             {isLogin ? 'Welcome back to the cosmic earning platform' : 'Join the cosmic earning revolution'}
           </p>
         </motion.div>
@@ -294,21 +314,21 @@ const AuthPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           whileHover={{ 
-            boxShadow: "0 20px 40px rgba(45, 58, 74, 0.12)"
+            boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3)"
           }}
-          className="bg-white rounded-xl p-8 border border-pale-blue/10 transition-all duration-300"
+          className="bg-slate-800 rounded-xl p-8 border border-slate-700 transition-all duration-300 backdrop-blur-sm"
           style={{
-            boxShadow: "0 8px 20px rgba(45, 58, 74, 0.08)"
+            boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)"
           }}
         >
           {/* Form Toggle */}
-          <div className="flex bg-light-grey rounded-xl p-1 mb-8">
+          <div className="flex bg-slate-900 rounded-xl p-1 mb-8">
             <button
               onClick={() => setIsLogin(true)}
               className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all duration-300 ${
                 isLogin 
-                  ? 'bg-white text-deep-navy shadow-md' 
-                  : 'text-deep-navy/70 hover:text-deep-navy'
+                  ? 'bg-slate-700 text-slate-200 shadow-md' 
+                  : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               Sign In
@@ -317,8 +337,8 @@ const AuthPage = () => {
               onClick={() => setIsLogin(false)}
               className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all duration-300 ${
                 !isLogin 
-                  ? 'bg-white text-deep-navy shadow-md' 
-                  : 'text-deep-navy/70 hover:text-deep-navy'
+                  ? 'bg-slate-700 text-slate-200 shadow-md' 
+                  : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               Sign Up

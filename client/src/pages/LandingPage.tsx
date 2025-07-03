@@ -5,7 +5,6 @@ import { useEffect, useState, useRef } from 'react';
 
 const LandingPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeSection, setActiveSection] = useState(0);
   
   const heroRef = useRef<HTMLDivElement>(null);
@@ -30,28 +29,6 @@ const LandingPage = () => {
     return () => {
       document.body.style.backgroundColor = '';
       clearTimeout(timer);
-    };
-  }, []);
-
-  useEffect(() => {
-    let animationId: number;
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-      
-      animationId = requestAnimationFrame(() => {
-        setMousePosition({ x: e.clientX, y: e.clientY });
-      });
-    };
-    
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
     };
   }, []);
 
@@ -130,14 +107,11 @@ const LandingPage = () => {
       >
         {/* Background */}
         <div className="absolute inset-0 bg-slate-900">
-          {/* Mouse follower */}
+          {/* Static background gradient - mouse follower disabled */}
           <div
-            className="absolute w-96 h-96 rounded-full pointer-events-none opacity-20"
+            className="absolute w-96 h-96 rounded-full pointer-events-none opacity-20 top-1/4 left-1/4"
             style={{
               background: 'radial-gradient(circle, rgba(100, 116, 139, 0.1) 0%, transparent 70%)',
-              left: Math.max(0, Math.min(mousePosition.x - 192, window.innerWidth - 384)),
-              top: Math.max(0, Math.min(mousePosition.y - 192, window.innerHeight - 384)),
-              transition: 'all 0.1s ease-out',
             }}
           />
           
@@ -222,12 +196,19 @@ const LandingPage = () => {
         {/* Navigation */}
         <nav className="relative z-50 flex justify-between items-center px-6 py-6">
           <motion.div 
-            className="text-2xl font-bold text-slate-200"
+            className="flex items-center space-x-3"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.4 }}
           >
-            Thorx
+            <motion.div 
+              className="flex items-center justify-center w-10 h-10 bg-slate-800 rounded-xl border border-slate-700"
+              whileHover={{ scale: 1.1, rotate: 360, backgroundColor: '#475569' }}
+              transition={{ duration: 0.6 }}
+            >
+              <Rocket className="w-5 h-5 text-slate-300" />
+            </motion.div>
+            <span className="text-2xl font-bold text-slate-200">Thorx</span>
           </motion.div>
           <div className="flex items-center gap-6">
             <motion.div
@@ -259,8 +240,8 @@ const LandingPage = () => {
         </nav>
 
         {/* Hero Content */}
-        <div className="relative z-10 flex items-center justify-center h-full px-6 -mt-20">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 -mt-20">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left side - Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -269,7 +250,7 @@ const LandingPage = () => {
               className="text-center lg:text-left"
             >
               <motion.h1 
-                className="text-5xl md:text-6xl font-bold text-slate-200 mb-6 leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-200 mb-6 leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
@@ -426,7 +407,7 @@ const LandingPage = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
                 icon: Target,
@@ -449,15 +430,22 @@ const LandingPage = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isFeaturesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-slate-900 p-8 rounded-xl border border-slate-700 hover:border-slate-600 transition-all duration-300 group"
+                className="bg-slate-900 p-8 rounded-xl border border-slate-700 hover:border-slate-600 transition-all duration-300 group hover:shadow-2xl hover:shadow-slate-900/50 backdrop-blur-sm"
+                whileHover={{ scale: 1.02, y: -5 }}
               >
-                <feature.icon className="w-12 h-12 text-slate-400 mx-auto mb-6 group-hover:text-slate-300 transition-colors" />
+                <motion.div
+                  className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-700 transition-colors"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <feature.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-300 transition-colors" />
+                </motion.div>
                 
-                <h3 className="text-xl font-semibold text-slate-200 mb-3 text-center">
+                <h3 className="text-xl font-semibold text-slate-200 mb-4 text-center group-hover:text-white transition-colors">
                   {feature.title}
                 </h3>
                 
-                <p className="text-slate-400 text-center">
+                <p className="text-slate-400 text-center leading-relaxed group-hover:text-slate-300 transition-colors">
                   {feature.description}
                 </p>
               </motion.div>
@@ -484,7 +472,7 @@ const LandingPage = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {[
               {
                 icon: Zap,
@@ -513,20 +501,22 @@ const LandingPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center p-6 rounded-lg hover:bg-slate-800 transition-all duration-300 group"
+                className="text-center p-6 rounded-lg hover:bg-slate-800/50 border border-transparent hover:border-slate-700 transition-all duration-300 group backdrop-blur-sm"
+                whileHover={{ scale: 1.05, y: -3 }}
               >
                 <motion.div
-                  className="inline-block p-4 rounded-full bg-slate-800 mb-4 group-hover:bg-slate-700 transition-colors"
-                  whileHover={{ scale: 1.1 }}
+                  className="inline-block p-4 rounded-full bg-slate-800 mb-4 group-hover:bg-slate-700 transition-colors shadow-lg"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <benefit.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-300" />
                 </motion.div>
                 
-                <h3 className="text-lg font-semibold text-slate-200 mb-2">
+                <h3 className="text-lg font-semibold text-slate-200 mb-3 group-hover:text-white transition-colors">
                   {benefit.title}
                 </h3>
                 
-                <p className="text-slate-400 text-sm">
+                <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition-colors">
                   {benefit.description}
                 </p>
               </motion.div>
@@ -558,7 +548,7 @@ const LandingPage = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 text-center">
             {[
               { value: "10K+", label: "Active Users", icon: Users },
               { value: "$2M+", label: "Total Earnings", icon: DollarSign },
@@ -570,15 +560,25 @@ const LandingPage = () => {
                 initial={{ opacity: 0, y: 30, scale: 0.5 }}
                 animate={isStatsInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.5 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="p-6 group hover:bg-slate-900 rounded-lg transition-all duration-300"
+                className="p-6 group hover:bg-slate-900 rounded-lg transition-all duration-300 border border-transparent hover:border-slate-700 backdrop-blur-sm"
+                whileHover={{ scale: 1.05, y: -5 }}
               >
-                <stat.icon className="w-8 h-8 text-slate-400 mx-auto mb-4 group-hover:text-slate-300 transition-colors" />
+                <motion.div
+                  className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-slate-700 transition-colors shadow-lg"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <stat.icon className="w-6 h-6 text-slate-400 group-hover:text-slate-300 transition-colors" />
+                </motion.div>
                 
-                <div className="text-3xl font-bold text-slate-200 mb-2">
+                <motion.div 
+                  className="text-3xl font-bold text-slate-200 mb-2 group-hover:text-white transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                >
                   {stat.value}
-                </div>
+                </motion.div>
                 
-                <div className="text-slate-400">
+                <div className="text-slate-400 group-hover:text-slate-300 transition-colors">
                   {stat.label}
                 </div>
               </motion.div>
