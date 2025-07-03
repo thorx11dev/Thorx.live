@@ -95,13 +95,13 @@ const LandingPage = () => {
           </div>
         </div>
 
-        {/* Floating Cosmic Elements */}
+        {/* Optimized Floating Cosmic Elements */}
         <div className="absolute inset-0 z-0">
-          {/* Orbiting satellites */}
+          {/* Simplified orbiting satellites */}
           <motion.div
             className="absolute top-1/4 left-1/4 opacity-20"
             animate={{ rotate: 360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
           >
             <Satellite className="w-8 h-8 text-slate-600" />
           </motion.div>
@@ -109,32 +109,30 @@ const LandingPage = () => {
           <motion.div
             className="absolute top-3/4 right-1/4 opacity-15"
             animate={{ rotate: -360 }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
           >
             <Orbit className="w-12 h-12 text-slate-600" />
           </motion.div>
           
-          {/* Floating geometric shapes */}
-          {[...Array(6)].map((_, i) => (
+          {/* Reduced geometric shapes for performance */}
+          {[...Array(3)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute opacity-10"
               style={{
-                left: `${15 + (i * 15)}%`,
-                top: `${25 + (i * 10)}%`,
+                left: `${20 + (i * 25)}%`,
+                top: `${30 + (i * 20)}%`,
               }}
-              initial={{ y: 0 }}
               animate={{ 
-                y: [-10, 10, -10],
-                rotate: [0, 360]
+                y: [-5, 5, -5],
               }}
               transition={{
-                duration: 20 + i * 3,
+                duration: 15 + i * 5,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
             >
-              <div className="w-6 h-6 border border-slate-600 rounded-sm transform rotate-45" />
+              <div className="w-4 h-4 border border-slate-600 rounded-sm" />
             </motion.div>
           ))}
         </div>

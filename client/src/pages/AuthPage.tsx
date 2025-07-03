@@ -17,6 +17,7 @@ import {
   Twitter
 } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
+import { useAuth } from '../hooks/useAuth';
 
 interface FormData {
   email: string;
@@ -37,7 +38,8 @@ interface ValidationErrors {
 }
 
 const AuthPage = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const [location] = useLocation();
+  const [isLogin, setIsLogin] = useState(location === '/login');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,6 +48,12 @@ const AuthPage = () => {
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [attemptCount, setAttemptCount] = useState(0);
   const [, setLocation] = useLocation();
+  const { login, register } = useAuth();
+
+  // Update form mode based on route
+  useEffect(() => {
+    setIsLogin(location === '/login' || location === '/auth');
+  }, [location]);
 
   const [formData, setFormData] = useState<FormData>({
     email: '',
@@ -138,23 +146,24 @@ const AuthPage = () => {
     setErrors({});
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      let success = false;
       
-      // Simulate random success/failure for demo
-      const success = Math.random() > 0.3;
+      if (isLogin) {
+        success = await login(formData.email, formData.password, formData.rememberMe);
+      } else {
+        success = await register({
+          email: formData.email,
+          password: formData.password,
+          firstName: formData.firstName || '',
+          lastName: formData.lastName || ''
+        });
+      }
       
       if (success) {
         setNotification({
           type: 'success',
-          message: isLogin ? 'Welcome back to Thorx!' : 'Account created successfully! Please check your email for verification.'
+          message: isLogin ? 'Welcome back to Thorx!' : 'Account created successfully!'
         });
-        
-        // Simulate successful authentication
-        localStorage.setItem('thorx_auth_token', 'demo_jwt_token');
-        if (formData.rememberMe) {
-          localStorage.setItem('thorx_remember_me', 'true');
-        }
         
         setTimeout(() => {
           setLocation('/dashboard');

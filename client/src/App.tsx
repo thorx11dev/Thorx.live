@@ -22,6 +22,8 @@ function App() {
             <Switch>
               <Route path="/" component={LandingPage} />
               <Route path="/auth" component={AuthPage} />
+              <Route path="/login" component={AuthPage} />
+              <Route path="/register" component={AuthPage} />
               <Route path="/performance" component={PerformancePage} />
               <Route path="/dashboard">
                 <ProtectedRoute>

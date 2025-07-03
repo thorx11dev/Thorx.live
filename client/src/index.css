@@ -1182,40 +1182,10 @@
   text-shadow: none !important;
 }
 
-/* LANDING PAGE FIXES - Enhanced Gradient Button Text */
-.dark .bg-gradient-to-r.from-soft-pink.to-pale-blue,
-.dark .bg-gradient-to-r.from-pale-blue.to-light-teal,
-.dark .bg-gradient-to-r.from-soft-pink.via-pale-blue.to-light-teal {
-  color: #000000 !important;
-  font-weight: 800 !important;
-  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8) !important;
-}
-
-.dark .bg-gradient-to-r.from-soft-pink.to-pale-blue:hover,
-.dark .bg-gradient-to-r.from-pale-blue.to-light-teal:hover,
-.dark .bg-gradient-to-r.from-soft-pink.via-pale-blue.to-light-teal:hover {
-  color: #000000 !important;
-  font-weight: 900 !important;
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9) !important;
-}
-
-/* Landing page gradient text enhancement */
-.dark .bg-gradient-to-r.from-soft-pink.via-pale-blue.to-light-teal.bg-clip-text.text-transparent {
-  background: linear-gradient(to right, #FADADD, #D6EAF8, #D1F2EB);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: brightness(1.3) contrast(1.2);
-}
-
-/* Enhanced text visibility for landing page */
-.dark .bg-gradient-to-r.from-white.via-pale-blue\/90.to-soft-pink\/90.bg-clip-text.text-transparent {
-  background: linear-gradient(to right, #ffffff 20%, #D6EAF8 50%, #FADADD 80%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: brightness(1.4) contrast(1.3);
-  font-weight: 700 !important;
+/* Optimized landing page styles */
+.landing-page-optimized {
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Light mode cosmic text enhancements */
