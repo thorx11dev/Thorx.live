@@ -1,414 +1,256 @@
 import { motion } from 'framer-motion';
 import { Link } from 'wouter';
-import { ArrowRight, Zap, Globe, Shield, Users, TrendingUp, DollarSign, Sparkles, Star } from 'lucide-react';
+import { ArrowRight, Zap, Globe, Shield, Users, TrendingUp, DollarSign, Sparkles, Star, Orbit, Satellite, Rocket, Target, Award, Activity } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 import { useEffect, useState } from 'react';
 
 const LandingPage = () => {
-  const { theme } = useTheme();
-  const isLightMode = false; // Force dark mode appearance for landing page
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    
-    if (isLightMode) {
-      window.addEventListener('mousemove', handleMouseMove);
-      return () => window.removeEventListener('mousemove', handleMouseMove);
-    }
-  }, [isLightMode]);
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Cosmic SVG Illustrations
+  const CosmicIllustration = ({ className = "w-64 h-64" }: { className?: string }) => (
+    <svg viewBox="0 0 400 400" className={className}>
+      <defs>
+        <pattern id="starPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+          <circle cx="5" cy="5" r="1" fill="#64748b" opacity="0.6"/>
+          <circle cx="25" cy="15" r="0.5" fill="#64748b" opacity="0.4"/>
+          <circle cx="35" cy="35" r="0.8" fill="#64748b" opacity="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#starPattern)" opacity="0.3"/>
+      <circle cx="200" cy="200" r="80" fill="none" stroke="#475569" strokeWidth="1" opacity="0.5"/>
+      <circle cx="200" cy="200" r="120" fill="none" stroke="#475569" strokeWidth="1" opacity="0.3"/>
+      <circle cx="200" cy="200" r="160" fill="none" stroke="#475569" strokeWidth="1" opacity="0.2"/>
+      <circle cx="200" cy="200" r="4" fill="#64748b"/>
+      <circle cx="280" cy="200" r="2" fill="#64748b" opacity="0.8"/>
+      <circle cx="120" cy="200" r="1.5" fill="#64748b" opacity="0.6"/>
+      <circle cx="200" cy="120" r="1" fill="#64748b" opacity="0.7"/>
+      <circle cx="200" cy="280" r="1.5" fill="#64748b" opacity="0.5"/>
+    </svg>
+  );
+
+  const NetworkIllustration = ({ className = "w-48 h-48" }: { className?: string }) => (
+    <svg viewBox="0 0 300 300" className={className}>
+      <defs>
+        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#475569" strokeWidth="0.5" opacity="0.2"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+      <circle cx="150" cy="150" r="6" fill="#64748b"/>
+      <circle cx="100" cy="100" r="4" fill="#64748b" opacity="0.7"/>
+      <circle cx="200" cy="100" r="4" fill="#64748b" opacity="0.7"/>
+      <circle cx="100" cy="200" r="4" fill="#64748b" opacity="0.7"/>
+      <circle cx="200" cy="200" r="4" fill="#64748b" opacity="0.7"/>
+      <circle cx="80" cy="150" r="3" fill="#64748b" opacity="0.5"/>
+      <circle cx="220" cy="150" r="3" fill="#64748b" opacity="0.5"/>
+      <line x1="150" y1="150" x2="100" y2="100" stroke="#64748b" strokeWidth="1" opacity="0.4"/>
+      <line x1="150" y1="150" x2="200" y2="100" stroke="#64748b" strokeWidth="1" opacity="0.4"/>
+      <line x1="150" y1="150" x2="100" y2="200" stroke="#64748b" strokeWidth="1" opacity="0.4"/>
+      <line x1="150" y1="150" x2="200" y2="200" stroke="#64748b" strokeWidth="1" opacity="0.4"/>
+      <line x1="150" y1="150" x2="80" y2="150" stroke="#64748b" strokeWidth="1" opacity="0.4"/>
+      <line x1="150" y1="150" x2="220" y2="150" stroke="#64748b" strokeWidth="1" opacity="0.4"/>
+    </svg>
+  );
 
   return (
-    <div className={`relative min-h-screen overflow-hidden ${isLightMode ? 'bg-gradient-to-br from-white via-soft-pink/5 to-pale-blue/10' : ''}`}>
-      {/* Hero Section with Cosmic Background */}
+    <div className="relative min-h-screen overflow-hidden bg-slate-900">
+      {/* Hero Section */}
       <div className="relative h-screen">
-        {/* Background - Different for light/dark mode */}
-        {!isLightMode && (
-          <div className="absolute inset-0 cosmic-bg">
-            <div className="stars"></div>
-            <div className="stars2"></div>
-            <div className="stars3"></div>
-            <div className="cosmic-gradient"></div>
+        {/* Minimalistic Dark Cosmic Background */}
+        <div className="absolute inset-0 bg-slate-900">
+          {/* Subtle constellation pattern */}
+          <div className="absolute inset-0 opacity-20">
+            <svg width="100%" height="100%" className="absolute inset-0">
+              <defs>
+                <pattern id="constellation" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                  <circle cx="50" cy="50" r="1" fill="#64748b" opacity="0.5"/>
+                  <circle cx="150" cy="100" r="1" fill="#64748b" opacity="0.3"/>
+                  <circle cx="100" cy="150" r="1" fill="#64748b" opacity="0.4"/>
+                  <circle cx="25" cy="125" r="1" fill="#64748b" opacity="0.6"/>
+                  <circle cx="175" cy="25" r="1" fill="#64748b" opacity="0.2"/>
+                  <line x1="50" y1="50" x2="150" y2="100" stroke="#64748b" strokeWidth="0.5" opacity="0.1"/>
+                  <line x1="150" y1="100" x2="100" y2="150" stroke="#64748b" strokeWidth="0.5" opacity="0.1"/>
+                  <line x1="100" y1="150" x2="25" y2="125" stroke="#64748b" strokeWidth="0.5" opacity="0.1"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#constellation)"/>
+            </svg>
           </div>
-        )}
-        
-        {/* Enhanced Cosmic Elements for Light Mode */}
-        {isLightMode && (
-          <>
-            {/* Mouse-following gradient effect */}
-            <div 
-              className="absolute inset-0 z-0 pointer-events-none"
-              style={{
-                background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(250, 218, 221, 0.3), transparent 40%)`,
-              }}
-            />
-            
-            {/* Multiple Floating Cosmic Orbs */}
-            <div className="absolute inset-0 z-0">
-              {[...Array(5)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute cosmic-orb"
-                  style={{
-                    left: `${20 + i * 15}%`,
-                    top: `${10 + i * 10}%`,
-                    width: `${100 + i * 30}px`,
-                    height: `${100 + i * 30}px`,
-                  }}
-                  animate={{
-                    x: [0, 50, -30, 0],
-                    y: [0, -30, 50, 0],
-                    scale: [1, 1.2, 0.9, 1],
-                  }}
-                  transition={{
-                    duration: 15 + i * 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: i * 0.5,
-                  }}
-                >
-                  <div className="cosmic-orb-inner" />
-                  <div className="cosmic-orb-glow" />
-                </motion.div>
-              ))}
-            </div>
+        </div>
 
-            {/* Floating Particles */}
-            <div className="absolute inset-0 z-0">
-              {[...Array(20)].map((_, i) => (
-                <motion.div
-                  key={`particle-${i}`}
-                  className="cosmic-particle"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                  animate={{
-                    y: [-20, -100],
-                    opacity: [0, 1, 0],
-                  }}
-                  transition={{
-                    duration: 3 + Math.random() * 2,
-                    repeat: Infinity,
-                    delay: Math.random() * 5,
-                    ease: "easeOut",
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* 3D Cosmic Ring */}
-            <div className="absolute inset-0 flex items-center justify-center z-0">
-              <motion.div
-                className="cosmic-ring-container"
-                animate={{ rotateY: 360 }}
-                transition={{
-                  duration: 30,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              >
-                <div className="cosmic-ring" />
-                <div className="cosmic-ring cosmic-ring-2" />
-                <div className="cosmic-ring cosmic-ring-3" />
-              </motion.div>
-            </div>
-
-            {/* Animated Stars */}
-            <div className="absolute inset-0 z-0">
-              {[...Array(15)].map((_, i) => (
-                <motion.div
-                  key={`star-${i}`}
-                  className="cosmic-star"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                  animate={{
-                    scale: [0, 1, 0],
-                    rotate: [0, 180, 360],
-                  }}
-                  transition={{
-                    duration: 2 + Math.random() * 3,
-                    repeat: Infinity,
-                    delay: Math.random() * 5,
-                  }}
-                >
-                  <Star className="w-4 h-4 text-light-teal" />
-                </motion.div>
-              ))}
-            </div>
-          </>
-        )}
-        
-        {/* Dark Mode Background */}
-        {!isLightMode && (
-          <div className="absolute inset-0 flex items-center justify-center z-0">
+        {/* Floating Cosmic Elements */}
+        <div className="absolute inset-0 z-0">
+          {/* Orbiting satellites */}
+          <motion.div
+            className="absolute top-1/4 left-1/4 opacity-20"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          >
+            <Satellite className="w-8 h-8 text-slate-600" />
+          </motion.div>
+          
+          <motion.div
+            className="absolute top-3/4 right-1/4 opacity-15"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          >
+            <Orbit className="w-12 h-12 text-slate-600" />
+          </motion.div>
+          
+          {/* Floating geometric shapes */}
+          {[...Array(6)].map((_, i) => (
             <motion.div
-              className="cosmic-sphere cosmic-sphere-dark"
-              animate={{
-                rotate: 360,
+              key={i}
+              className="absolute opacity-10"
+              style={{
+                left: `${15 + (i * 15)}%`,
+                top: `${25 + (i * 10)}%`,
+              }}
+              initial={{ y: 0 }}
+              animate={{ 
+                y: [-10, 10, -10],
+                rotate: [0, 360]
               }}
               transition={{
-                duration: 20,
+                duration: 20 + i * 3,
                 repeat: Infinity,
-                ease: "linear"
+                ease: "easeInOut"
               }}
             >
-              <div className="cosmic-sphere-inner"></div>
-              <div className="cosmic-sphere-glow"></div>
+              <div className="w-6 h-6 border border-slate-600 rounded-sm transform rotate-45" />
             </motion.div>
+          ))}
+        </div>
+
+        {/* Navigation */}
+        <nav className="relative z-50 flex justify-between items-center px-6 py-6">
+          <div className="text-2xl font-bold text-slate-200">
+            Thorx
           </div>
-        )}
-        
-        {/* Hero Content Overlay */}
-        <div className="absolute inset-0 flex items-center justify-center z-10">
-          <div className="text-center px-4 max-w-4xl">
+          <div className="flex items-center gap-6">
+            <Link to="/login" className="text-slate-400 hover:text-slate-200 transition-colors">
+              Sign In
+            </Link>
+            <Link to="/register" className="bg-slate-800 text-slate-200 px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors border border-slate-700">
+              Get Started
+            </Link>
+          </div>
+        </nav>
+
+        {/* Hero Content */}
+        <div className="relative z-10 flex items-center justify-center h-full px-6 -mt-20">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left side - Content */}
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="mb-8"
+              className="text-center lg:text-left"
             >
-              <h1 className={`text-6xl md:text-8xl font-bold mb-4 leading-tight ${isLightMode ? '' : 'text-primary'}`}>
-                {isLightMode ? (
-                  <motion.span 
-                    className="relative inline-block"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <span className="cosmic-text font-extrabold">
-                      Thorx
-                    </span>
-                    <motion.div
-                      className="absolute -inset-4 cosmic-text-glow opacity-50"
-                      animate={{
-                        opacity: [0.3, 0.6, 0.3],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
-                    <Sparkles className="absolute -top-6 -right-6 w-8 h-8 text-muted-yellow animate-pulse" />
-                  </motion.span>
-                ) : (
-                  <span className="font-extrabold bg-gradient-to-r from-soft-pink via-pale-blue to-light-teal bg-clip-text text-transparent">
-                    Thorx
-                  </span>
-                )}
+              <h1 className="text-5xl md:text-6xl font-bold text-slate-200 mb-6 leading-tight">
+                Explore the
+                <span className="block text-slate-400">
+                  Digital Universe
+                </span>
               </h1>
-              <p className={`text-xl md:text-2xl mb-8 max-w-2xl mx-auto font-semibold leading-relaxed ${
-                isLightMode 
-                  ? 'text-gray-800 drop-shadow-sm' 
-                  : 'text-white font-bold drop-shadow-lg'
-              }`}
-              style={{
-                textShadow: isLightMode 
-                  ? '0 2px 4px rgba(0,0,0,0.1)' 
-                  : '0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(250,218,221,0.3)'
-              }}>
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className={isLightMode ? '' : 'bg-gradient-to-r from-white via-pale-blue/90 to-soft-pink/90 bg-clip-text text-transparent'}
-                >
-                  The next-generation earning platform designed for the cosmic age. 
-                  Join 100,000+ users in the future of digital income.
-                </motion.span>
+              <p className="text-xl text-slate-400 mb-8 max-w-lg">
+                Navigate through cosmic earning opportunities with Thorx. A minimalist platform designed for the modern digital explorer.
               </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link to="/register" className="bg-slate-200 text-slate-900 px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-colors inline-flex items-center gap-2">
+                  Start Your Journey
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link to="/login" className="border border-slate-600 text-slate-200 px-8 py-3 rounded-lg font-semibold hover:bg-slate-800 transition-colors">
+                  Sign In
+                </Link>
+              </div>
             </motion.div>
-            
+
+            {/* Right side - Cosmic Illustration */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex justify-center"
             >
-              <Link to="/dashboard">
-                <motion.button
-                  className={`relative font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 overflow-hidden ${
-                    isLightMode 
-                      ? 'cosmic-button-light' 
-                      : 'bg-gradient-to-r from-soft-pink to-pale-blue'
-                  }`}
-                  style={{ 
-                    color: isLightMode ? '#FFFFFF' : '#000000',
-                    fontWeight: '800',
-                    textShadow: isLightMode ? '0 1px 3px rgba(0,0,0,0.3)' : '0 1px 3px rgba(255,255,255,0.8)'
-                  }}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    boxShadow: isLightMode ? "0 20px 40px rgba(250, 218, 221, 0.4)" : "0 20px 40px rgba(0,0,0,0.15)"
-                  }}
-                  whileTap={{ scale: 0.95 }}
+              <div className="relative">
+                <CosmicIllustration className="w-80 h-80 opacity-60" />
+                <motion.div
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
                 >
-                  {isLightMode && (
-                    <motion.div
-                      className="absolute inset-0 cosmic-button-shimmer"
-                      animate={{
-                        x: ["-100%", "100%"],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        repeatDelay: 1,
-                      }}
-                    />
-                  )}
-                  <span className="relative z-10">Launch Dashboard</span>
-                  <motion.div
-                    animate={isLightMode ? { x: [0, 5, 0] } : {}}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <ArrowRight className="w-5 h-5 relative z-10" />
-                  </motion.div>
-                </motion.button>
-              </Link>
-              
-              <motion.button
-                className={`backdrop-blur-lg border-2 font-bold px-8 py-4 rounded-full transition-all duration-300 flex items-center space-x-2 ${
-                  isLightMode 
-                    ? 'bg-white/60 border-gray-300 text-gray-800 hover:bg-white/80' 
-                    : 'bg-white/20 border-white/30 text-white hover:bg-white/30'
-                }`}
-                style={{
-                  backdropFilter: 'blur(12px)',
-                  WebkitBackdropFilter: 'blur(12px)',
-                  fontWeight: '700',
-                  textShadow: isLightMode ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.5)'
-                }}
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)"
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span>Watch Demo</span>
-                <Zap className="w-5 h-5" />
-              </motion.button>
+                  <Rocket className="w-8 h-8 text-slate-500" />
+                </motion.div>
+              </div>
             </motion.div>
           </div>
         </div>
       </div>
 
       {/* Features Section */}
-      <div className={`relative py-24 ${isLightMode ? 'bg-gray-50' : 'bg-secondary'}`}>
+      <div className="relative py-24 bg-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${isLightMode ? 'text-gray-800' : 'text-primary'}`}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-200">
               Cosmic Features
             </h2>
-            <p className={`text-xl max-w-2xl mx-auto font-medium ${
-              isLightMode 
-                ? 'text-gray-700' 
-                : 'text-white/90 font-semibold'
-            }`}
-            style={{
-              textShadow: isLightMode 
-                ? '0 1px 3px rgba(0,0,0,0.1)' 
-                : '0 2px 6px rgba(0,0,0,0.6)'
-            }}>
-              Experience the future of digital earning with our cutting-edge platform
+            <p className="text-xl max-w-2xl mx-auto text-slate-400">
+              Discover the tools that make digital earning effortless
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                icon: Globe,
-                title: "Global Reach",
-                description: "Connect with opportunities worldwide through our cosmic network",
-                color: "from-soft-pink to-pale-blue"
-              },
-              {
-                icon: Shield,
-                title: "Secure Transactions",
-                description: "Bank-grade security with end-to-end encryption for all transactions",
-                color: "from-pale-blue to-light-teal"
-              },
-              {
-                icon: Users,
-                title: "100K+ Users",
-                description: "Join our thriving community of digital entrepreneurs",
-                color: "from-light-teal to-muted-yellow"
+                icon: Target,
+                title: "Task Management",
+                description: "Organize and track your earning activities with precision",
+                illustration: <NetworkIllustration className="w-32 h-32 mx-auto mb-6 opacity-40" />
               },
               {
                 icon: TrendingUp,
-                title: "Real-time Analytics",
-                description: "Track your performance with advanced 3D visualizations",
-                color: "from-muted-yellow to-peach-coral"
+                title: "Analytics Dashboard",
+                description: "Monitor your progress with detailed insights and reports",
+                illustration: <CosmicIllustration className="w-32 h-32 mx-auto mb-6 opacity-40" />
               },
               {
-                icon: DollarSign,
-                title: "Instant Payouts",
-                description: "Get paid instantly with our JazzCash integration",
-                color: "from-peach-coral to-soft-pink"
-              },
-              {
-                icon: Zap,
-                title: "Lightning Fast",
-                description: "Experience sub-100ms response times for all operations",
-                color: "from-cosmic-purple to-cosmic-blue"
+                icon: Shield,
+                title: "Secure Platform",
+                description: "Your data and earnings are protected with enterprise-grade security",
+                illustration: <NetworkIllustration className="w-32 h-32 mx-auto mb-6 opacity-40" />
               }
             ].map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -10 }}
-                className="group"
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-slate-900 p-8 rounded-xl border border-slate-700 hover:border-slate-600 transition-colors"
               >
-                <div className={`relative rounded-2xl p-8 transition-all duration-300 h-full overflow-hidden ${
-                  isLightMode 
-                    ? 'cosmic-feature-card' 
-                    : 'bg-secondary shadow-primary hover:shadow-secondary border border-primary'
-                }`}>
-                  {isLightMode && (
-                    <motion.div
-                      className="absolute inset-0 cosmic-feature-gradient opacity-0"
-                      whileHover={{ opacity: 0.1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  )}
-                  <motion.div 
-                    className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} mb-6 transition-transform duration-300 relative z-10`}
-                    whileHover={isLightMode ? { rotate: 360, scale: 1.2 } : { scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <feature.icon className="w-6 h-6 text-white" />
-                  </motion.div>
-                  <h3 className={`text-xl font-bold mb-4 relative z-10 ${isLightMode ? 'text-gray-800' : 'text-primary'}`}>{feature.title}</h3>
-                  <p className={`leading-relaxed relative z-10 ${isLightMode ? 'text-gray-600' : 'text-secondary'}`}>{feature.description}</p>
-                  {isLightMode && (
-                    <motion.div
-                      className="absolute -bottom-2 -right-2 w-20 h-20 cosmic-feature-orb"
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.3, 0.6, 0.3],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: index * 0.3,
-                      }}
-                    />
-                  )}
-                </div>
+                {feature.illustration}
+                <feature.icon className="w-8 h-8 text-slate-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-slate-200 mb-3 text-center">
+                  {feature.title}
+                </h3>
+                <p className="text-slate-400 text-center">
+                  {feature.description}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -416,39 +258,30 @@ const LandingPage = () => {
       </div>
 
       {/* Stats Section */}
-      <div className={`py-20 ${
-        isLightMode 
-          ? 'bg-gradient-to-r from-cosmic-purple/10 via-cosmic-blue/10 to-cosmic-teal/10' 
-          : 'bg-gradient-to-r from-soft-pink/10 via-pale-blue/10 to-light-teal/10'
-      }`}>
+      <div className="relative py-24 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             {[
-              { number: "100K+", label: "Active Users" },
-              { number: "$2M+", label: "Earned Total" },
-              { number: "99.9%", label: "Uptime" },
-              { number: "<100ms", label: "Response Time" }
+              { value: "10K+", label: "Active Users", icon: Users },
+              { value: "$2M+", label: "Total Earnings", icon: DollarSign },
+              { value: "50K+", label: "Tasks Completed", icon: Activity },
+              { value: "99.9%", label: "Uptime", icon: Shield }
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="p-6"
               >
-                <div className={`text-3xl md:text-4xl font-bold mb-2 ${isLightMode ? 'text-gray-800' : 'text-primary'}`}>
-                  {stat.number}
+                <stat.icon className="w-8 h-8 text-slate-400 mx-auto mb-4" />
+                <div className="text-3xl font-bold text-slate-200 mb-2">
+                  {stat.value}
                 </div>
-                <div className={`font-semibold ${
-                  isLightMode 
-                    ? 'text-gray-700' 
-                    : 'text-white/85'
-                }`}
-                style={{
-                  textShadow: isLightMode 
-                    ? '0 1px 2px rgba(0,0,0,0.1)' 
-                    : '0 1px 4px rgba(0,0,0,0.5)'
-                }}>{stat.label}</div>
+                <div className="text-slate-400">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -456,53 +289,75 @@ const LandingPage = () => {
       </div>
 
       {/* CTA Section */}
-      <div className={`py-20 ${isLightMode ? 'bg-white' : 'bg-secondary'}`}>
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <div className="relative py-24 bg-slate-800">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${isLightMode ? 'text-gray-800' : 'text-primary'}`}>
-              Ready to Launch Your Cosmic Journey?
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-200">
+              Ready to Start Your Journey?
             </h2>
-            <p className={`text-xl mb-8 max-w-2xl mx-auto font-medium ${
-              isLightMode 
-                ? 'text-gray-700' 
-                : 'text-white/90 font-semibold'
-            }`}
-            style={{
-              textShadow: isLightMode 
-                ? '0 1px 3px rgba(0,0,0,0.1)' 
-                : '0 2px 6px rgba(0,0,0,0.6)'
-            }}>
-              Join thousands of users who are already earning with Thorx. 
-              Start your journey to financial freedom today.
+            <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
+              Join thousands of users who have already discovered the power of Thorx
             </p>
-            <Link to="/dashboard">
-              <motion.button
-                className={`font-bold px-12 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg border-2 border-transparent ${
-                  isLightMode 
-                    ? 'bg-gradient-to-r from-cosmic-purple via-cosmic-blue to-cosmic-teal text-white' 
-                    : 'bg-gradient-to-r from-soft-pink via-pale-blue to-light-teal'
-                }`}
-                style={{ 
-                  color: isLightMode ? '#FFFFFF' : '#000000',
-                  fontWeight: '800',
-                  textShadow: isLightMode ? '0 1px 3px rgba(0,0,0,0.3)' : '0 1px 3px rgba(255,255,255,0.8)'
-                }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  boxShadow: "0 25px 50px rgba(0,0,0,0.15)"
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Get Started Now
-              </motion.button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/register" className="bg-slate-200 text-slate-900 px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-colors inline-flex items-center gap-2">
+                Get Started Free
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link to="/login" className="border border-slate-600 text-slate-200 px-8 py-3 rounded-lg font-semibold hover:bg-slate-800 transition-colors">
+                Learn More
+              </Link>
+            </div>
           </motion.div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 py-12 border-t border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <div className="text-2xl font-bold text-slate-200 mb-4">Thorx</div>
+              <p className="text-slate-400">
+                Navigate the digital universe with confidence
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-slate-200 mb-4">Product</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-slate-400 hover:text-slate-200 transition-colors">Features</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-slate-200 transition-colors">Pricing</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-slate-200 transition-colors">Updates</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-slate-200 mb-4">Support</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-slate-400 hover:text-slate-200 transition-colors">Help Center</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-slate-200 transition-colors">Contact</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-slate-200 transition-colors">Community</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-slate-200 mb-4">Company</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-slate-400 hover:text-slate-200 transition-colors">About</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-slate-200 transition-colors">Blog</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-slate-200 transition-colors">Careers</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-slate-800 mt-8 pt-8 text-center">
+            <p className="text-slate-400">
+              © 2025 Thorx. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
