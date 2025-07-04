@@ -24,11 +24,11 @@ const LandingPage = () => {
     document.documentElement.classList.add('dark');
     document.body.style.backgroundColor = '#0f172a';
     
-    const timer = setTimeout(() => setIsLoaded(true), 50);
+    // Set loaded immediately for better UX
+    setIsLoaded(true);
     
     return () => {
       document.body.style.backgroundColor = '';
-      clearTimeout(timer);
     };
   }, []);
 
@@ -97,16 +97,13 @@ const LandingPage = () => {
       </motion.div>
       
       {/* Hero Section */}
-      <motion.div 
+      <section 
         ref={heroRef}
-        className="relative h-screen"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
+        className="relative h-screen bg-slate-900 overflow-hidden"
       >
-        {/* Background */}
-        <div className="absolute inset-0 bg-slate-900">
-          {/* Static background gradient - mouse follower disabled */}
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          {/* Static background gradient */}
           <div
             className="absolute w-96 h-96 rounded-full pointer-events-none opacity-20 top-1/4 left-1/4"
             style={{
@@ -140,7 +137,7 @@ const LandingPage = () => {
         </div>
 
         {/* Floating Elements */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0">
           <motion.div
             className="absolute top-1/4 left-1/4 opacity-20"
             animate={{ 
@@ -193,7 +190,7 @@ const LandingPage = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
+        <nav className="relative z-40 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
           <motion.div 
             className="flex items-center space-x-2 sm:space-x-3"
             initial={{ opacity: 0, x: -20 }}
@@ -239,15 +236,10 @@ const LandingPage = () => {
         </nav>
 
         {/* Hero Content */}
-        <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 -mt-16 sm:-mt-20">
+        <div className="relative z-30 flex items-center justify-center h-full px-4 sm:px-6 -mt-16 sm:-mt-20">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left side - Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-center lg:text-left px-2 sm:px-0"
-            >
+            <div className="text-center lg:text-left px-2 sm:px-0">
               <motion.h1 
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-200 mb-4 sm:mb-6 leading-tight"
                 initial={{ opacity: 0, y: 30 }}
@@ -288,7 +280,7 @@ const LandingPage = () => {
                   Sign In
                 </Link>
               </motion.div>
-            </motion.div>
+            </div>
 
             {/* Right side - Illustration */}
             <motion.div
@@ -368,7 +360,7 @@ const LandingPage = () => {
 
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer z-30"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
@@ -381,7 +373,7 @@ const LandingPage = () => {
             <ChevronDown className="w-6 h-6 text-slate-400" />
           </motion.div>
         </motion.div>
-      </motion.div>
+      </section>
 
       {/* Features Section */}
       <motion.div 
