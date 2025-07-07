@@ -13,7 +13,6 @@ const LandingPage = () => {
   const ctaRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll();
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
   const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   const isFeaturesInView = useInView(featuresRef, { once: true, amount: 0.2 });
