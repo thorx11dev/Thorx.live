@@ -248,6 +248,511 @@ body {
   border-color: #94a3b8 !important;
 }
 
+/* ========================================
+   3D ANIMATED CLOUDS - PREMIUM SECTION
+   ======================================== */
+
+/* Cloud base shape with volumetric appearance */
+.cloud-shape {
+  position: relative;
+  transform-style: preserve-3d;
+  filter: blur(0.5px);
+}
+
+/* Multiple cloud layers for 3D volume effect */
+.cloud-layer {
+  position: absolute;
+  border-radius: 50px;
+  background: radial-gradient(circle at 30% 30%, 
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.7) 25%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.3) 75%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  filter: blur(1px);
+}
+
+/* Individual cloud layers for volumetric effect */
+.cloud-layer-1 {
+  width: 100%;
+  height: 60%;
+  top: 20%;
+  left: 0%;
+  background: radial-gradient(ellipse 100% 60% at 40% 40%, 
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.6) 30%,
+    rgba(255, 255, 255, 0.4) 60%,
+    rgba(255, 255, 255, 0.2) 85%,
+    transparent 100%
+  );
+}
+
+.cloud-layer-2 {
+  width: 80%;
+  height: 50%;
+  top: 10%;
+  left: 15%;
+  background: radial-gradient(ellipse 80% 50% at 60% 50%, 
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.5) 40%,
+    rgba(255, 255, 255, 0.3) 70%,
+    transparent 100%
+  );
+  filter: blur(0.8px);
+}
+
+.cloud-layer-3 {
+  width: 70%;
+  height: 45%;
+  top: 25%;
+  left: 25%;
+  background: radial-gradient(ellipse 70% 45% at 30% 60%, 
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  filter: blur(1.2px);
+}
+
+.cloud-layer-4 {
+  width: 90%;
+  height: 35%;
+  top: 35%;
+  left: 5%;
+  background: radial-gradient(ellipse 90% 35% at 70% 40%, 
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.3) 60%,
+    transparent 100%
+  );
+  filter: blur(1.5px);
+}
+
+.cloud-layer-5 {
+  width: 60%;
+  height: 40%;
+  top: 45%;
+  left: 35%;
+  background: radial-gradient(ellipse 60% 40% at 50% 30%, 
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.2) 70%,
+    transparent 100%
+  );
+  filter: blur(2px);
+}
+
+/* Cloud highlighting for 3D volume */
+.cloud-highlight {
+  position: absolute;
+  width: 40%;
+  height: 25%;
+  top: 15%;
+  left: 20%;
+  background: radial-gradient(ellipse 40% 25% at 50% 50%, 
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
+  );
+  border-radius: 50px;
+  filter: blur(0.5px);
+}
+
+/* Cloud shadow for depth */
+.cloud-shadow {
+  position: absolute;
+  width: 85%;
+  height: 20%;
+  bottom: -5%;
+  left: 10%;
+  background: radial-gradient(ellipse 85% 20% at 50% 50%, 
+    rgba(100, 116, 139, 0.3) 0%,
+    rgba(100, 116, 139, 0.2) 40%,
+    rgba(100, 116, 139, 0.1) 70%,
+    transparent 100%
+  );
+  border-radius: 50px;
+  filter: blur(3px);
+}
+
+/* Cloud drift animation with natural movement */
+@keyframes cloud-drift {
+  0% {
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateX(15px) translateY(-8px) rotate(0.5deg) scale(1.02);
+  }
+  50% {
+    transform: translateX(25px) translateY(-12px) rotate(0deg) scale(1);
+  }
+  75% {
+    transform: translateX(10px) translateY(-5px) rotate(-0.5deg) scale(0.98);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
+  }
+}
+
+.animate-cloud-drift {
+  animation: cloud-drift linear infinite;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Enhanced cloud opacity for dark backgrounds */
+.dark .cloud-layer {
+  background: radial-gradient(circle at 30% 30%, 
+    rgba(226, 232, 240, 0.7) 0%,
+    rgba(226, 232, 240, 0.5) 25%,
+    rgba(226, 232, 240, 0.3) 50%,
+    rgba(226, 232, 240, 0.2) 75%,
+    rgba(226, 232, 240, 0.05) 100%
+  );
+}
+
+.dark .cloud-highlight {
+  background: radial-gradient(ellipse 40% 25% at 50% 50%, 
+    rgba(248, 250, 252, 0.8) 0%,
+    rgba(248, 250, 252, 0.4) 50%,
+    transparent 100%
+  );
+}
+
+.dark .cloud-shadow {
+  background: radial-gradient(ellipse 85% 20% at 50% 50%, 
+    rgba(15, 23, 42, 0.4) 0%,
+    rgba(15, 23, 42, 0.3) 40%,
+    rgba(15, 23, 42, 0.2) 70%,
+    transparent 100%
+  );
+}
+
+/* Light theme cloud adjustments */
+.light .cloud-layer {
+  background: radial-gradient(circle at 30% 30%, 
+    rgba(203, 213, 225, 0.8) 0%,
+    rgba(203, 213, 225, 0.6) 25%,
+    rgba(203, 213, 225, 0.4) 50%,
+    rgba(203, 213, 225, 0.25) 75%,
+    rgba(203, 213, 225, 0.1) 100%
+  );
+}
+
+.light .cloud-highlight {
+  background: radial-gradient(ellipse 40% 25% at 50% 50%, 
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+}
+
+.light .cloud-shadow {
+  background: radial-gradient(ellipse 85% 20% at 50% 50%, 
+    rgba(71, 85, 105, 0.15) 0%,
+    rgba(71, 85, 105, 0.1) 40%,
+    rgba(71, 85, 105, 0.05) 70%,
+    transparent 100%
+  );
+}
+
+/* ========================================
+   ENHANCED 3D CLOUDS - PREMIUM VOLUMETRIC SECTION
+   ======================================== */
+
+/* Enhanced cloud base with improved 3D appearance */
+.enhanced-cloud-shape {
+  position: relative;
+  transform-style: preserve-3d;
+  filter: blur(0.3px);
+  transition: filter 0.5s ease;
+}
+
+/* Enhanced volumetric layers with more realistic gradients */
+.enhanced-layer-1 {
+  width: 100%;
+  height: 65%;
+  top: 18%;
+  left: 0%;
+  background: radial-gradient(ellipse 100% 65% at 35% 35%, 
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.7) 25%,
+    rgba(255, 255, 255, 0.5) 45%,
+    rgba(255, 255, 255, 0.3) 65%,
+    rgba(255, 255, 255, 0.15) 80%,
+    transparent 100%
+  );
+  filter: blur(0.8px);
+  border-radius: 60px;
+}
+
+.enhanced-layer-2 {
+  width: 85%;
+  height: 55%;
+  top: 8%;
+  left: 12%;
+  background: radial-gradient(ellipse 85% 55% at 65% 45%, 
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.6) 35%,
+    rgba(255, 255, 255, 0.4) 60%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  filter: blur(0.6px);
+  border-radius: 50px;
+}
+
+.enhanced-layer-3 {
+  width: 75%;
+  height: 50%;
+  top: 22%;
+  left: 20%;
+  background: radial-gradient(ellipse 75% 50% at 25% 55%, 
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.5) 40%,
+    rgba(255, 255, 255, 0.3) 65%,
+    rgba(255, 255, 255, 0.1) 85%,
+    transparent 100%
+  );
+  filter: blur(1px);
+  border-radius: 45px;
+}
+
+.enhanced-layer-4 {
+  width: 95%;
+  height: 40%;
+  top: 32%;
+  left: 3%;
+  background: radial-gradient(ellipse 95% 40% at 75% 35%, 
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 100%
+  );
+  filter: blur(1.3px);
+  border-radius: 55px;
+}
+
+.enhanced-layer-5 {
+  width: 65%;
+  height: 45%;
+  top: 42%;
+  left: 30%;
+  background: radial-gradient(ellipse 65% 45% at 45% 25%, 
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.3) 60%,
+    rgba(255, 255, 255, 0.1) 85%,
+    transparent 100%
+  );
+  filter: blur(1.8px);
+  border-radius: 40px;
+}
+
+.enhanced-layer-6 {
+  width: 55%;
+  height: 35%;
+  top: 15%;
+  left: 40%;
+  background: radial-gradient(ellipse 55% 35% at 60% 60%, 
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.2) 70%,
+    transparent 100%
+  );
+  filter: blur(2.2px);
+  border-radius: 35px;
+}
+
+/* Enhanced highlighting with multiple light sources */
+.enhanced-cloud-highlight {
+  position: absolute;
+  width: 45%;
+  height: 30%;
+  top: 12%;
+  left: 18%;
+  background: radial-gradient(ellipse 45% 30% at 50% 50%, 
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.7) 40%,
+    rgba(255, 255, 255, 0.4) 70%,
+    transparent 100%
+  );
+  border-radius: 50px;
+  filter: blur(0.4px);
+}
+
+.enhanced-cloud-highlight-2 {
+  position: absolute;
+  width: 25%;
+  height: 18%;
+  top: 8%;
+  left: 55%;
+  background: radial-gradient(ellipse 25% 18% at 50% 50%, 
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  border-radius: 40px;
+  filter: blur(0.3px);
+}
+
+/* Enhanced shadow with atmospheric scattering */
+.enhanced-cloud-shadow {
+  position: absolute;
+  width: 90%;
+  height: 25%;
+  bottom: -8%;
+  left: 8%;
+  background: radial-gradient(ellipse 90% 25% at 50% 50%, 
+    rgba(71, 85, 105, 0.35) 0%,
+    rgba(71, 85, 105, 0.25) 30%,
+    rgba(71, 85, 105, 0.15) 60%,
+    rgba(71, 85, 105, 0.08) 80%,
+    transparent 100%
+  );
+  border-radius: 50px;
+  filter: blur(4px);
+}
+
+/* Wispy cloud edges for realistic appearance */
+.cloud-wisp {
+  position: absolute;
+  border-radius: 30px;
+  filter: blur(2px);
+}
+
+.cloud-wisp-1 {
+  width: 30%;
+  height: 20%;
+  top: 5%;
+  left: -8%;
+  background: radial-gradient(ellipse 30% 20% at 70% 50%, 
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.15) 60%,
+    transparent 100%
+  );
+  transform: rotate(-15deg);
+}
+
+.cloud-wisp-2 {
+  width: 25%;
+  height: 15%;
+  top: 60%;
+  right: -5%;
+  background: radial-gradient(ellipse 25% 15% at 30% 50%, 
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.1) 70%,
+    transparent 100%
+  );
+  transform: rotate(20deg);
+}
+
+.cloud-wisp-3 {
+  width: 20%;
+  height: 12%;
+  bottom: 8%;
+  left: 15%;
+  background: radial-gradient(ellipse 20% 12% at 50% 50%, 
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.08) 80%,
+    transparent 100%
+  );
+  transform: rotate(-8deg);
+}
+
+/* Enhanced cloud drift animation with more natural movement */
+@keyframes enhanced-cloud-drift {
+  0% {
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1) scaleY(1);
+  }
+  20% {
+    transform: translateX(12px) translateY(-6px) rotate(0.3deg) scale(1.01) scaleY(0.98);
+  }
+  40% {
+    transform: translateX(20px) translateY(-10px) rotate(-0.2deg) scale(1.02) scaleY(1.01);
+  }
+  60% {
+    transform: translateX(15px) translateY(-8px) rotate(0.4deg) scale(1) scaleY(0.99);
+  }
+  80% {
+    transform: translateX(5px) translateY(-3px) rotate(-0.1deg) scale(0.99) scaleY(1.01);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1) scaleY(1);
+  }
+}
+
+.animate-enhanced-cloud-drift {
+  animation: enhanced-cloud-drift linear infinite;
+  animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Dark theme enhancements for clouds */
+.dark .enhanced-layer-1,
+.dark .enhanced-layer-2,
+.dark .enhanced-layer-3,
+.dark .enhanced-layer-4,
+.dark .enhanced-layer-5,
+.dark .enhanced-layer-6 {
+  background: radial-gradient(ellipse var(--size, 100% 65%) at var(--position, 35% 35%), 
+    rgba(226, 232, 240, 0.7) 0%,
+    rgba(226, 232, 240, 0.5) 30%,
+    rgba(226, 232, 240, 0.3) 60%,
+    rgba(226, 232, 240, 0.15) 80%,
+    transparent 100%
+  );
+}
+
+.dark .enhanced-cloud-highlight,
+.dark .enhanced-cloud-highlight-2 {
+  background: radial-gradient(ellipse var(--size, 45% 30%) at 50% 50%, 
+    rgba(248, 250, 252, 0.8) 0%,
+    rgba(248, 250, 252, 0.5) 50%,
+    transparent 100%
+  );
+}
+
+.dark .enhanced-cloud-shadow {
+  background: radial-gradient(ellipse 90% 25% at 50% 50%, 
+    rgba(15, 23, 42, 0.5) 0%,
+    rgba(15, 23, 42, 0.35) 40%,
+    rgba(15, 23, 42, 0.2) 70%,
+    transparent 100%
+  );
+}
+
+.dark .cloud-wisp-1,
+.dark .cloud-wisp-2,
+.dark .cloud-wisp-3 {
+  background: radial-gradient(ellipse var(--wisp-size, 30% 20%) at var(--wisp-position, 50% 50%), 
+    rgba(226, 232, 240, 0.25) 0%,
+    rgba(226, 232, 240, 0.1) 70%,
+    transparent 100%
+  );
+}
+
+/* Light theme cloud adjustments */
+.light .enhanced-layer-1,
+.light .enhanced-layer-2,
+.light .enhanced-layer-3,
+.light .enhanced-layer-4,
+.light .enhanced-layer-5,
+.light .enhanced-layer-6 {
+  background: radial-gradient(ellipse var(--size, 100% 65%) at var(--position, 35% 35%), 
+    rgba(203, 213, 225, 0.85) 0%,
+    rgba(203, 213, 225, 0.65) 30%,
+    rgba(203, 213, 225, 0.45) 60%,
+    rgba(203, 213, 225, 0.25) 80%,
+    transparent 100%
+  );
+}
+
+.light .enhanced-cloud-shadow {
+  background: radial-gradient(ellipse 90% 25% at 50% 50%, 
+    rgba(71, 85, 105, 0.2) 0%,
+    rgba(71, 85, 105, 0.15) 40%,
+    rgba(71, 85, 105, 0.08) 70%,
+    transparent 100%
+  );
+}
+
 /* Cosmic background animation */
 .cosmic-bg {
   background: #0d0d2b;
