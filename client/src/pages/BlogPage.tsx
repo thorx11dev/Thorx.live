@@ -360,7 +360,7 @@ const BlogPage = () => {
                   className="px-6 py-4 bg-slate-800/60 border-2 border-slate-700 rounded-xl text-slate-200 focus:outline-none focus:border-slate-500 focus:bg-slate-800/80 transition-all duration-300 hover:border-slate-600 backdrop-blur-sm shadow-lg"
                 >
                   {categories.map(category => (
-                    <option key={category} value={category} className="bg-slate-800">
+                    <option key={category} value={category} className="bg-slate-800 text-slate-200">
                       {category}
                     </option>
                   ))}
@@ -399,7 +399,7 @@ const BlogPage = () => {
                 className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-300 hover:scale-105 ${
                   selectedCategory === category
                     ? 'bg-gradient-to-r from-slate-200 to-slate-100 text-slate-900 border-slate-200 shadow-lg' 
-                    : 'bg-slate-800/50 text-slate-400 border-slate-700 hover:border-slate-600 hover:text-slate-300'
+                    : 'bg-slate-800/50 text-slate-400 border-slate-700'
                 }`}
               >
                 {category}
@@ -524,9 +524,9 @@ const BlogPage = () => {
                 </div>
                 
                 <Link to={`/blog/${post.id}`}>
-                  <button className="w-full bg-gradient-to-r from-slate-700 to-slate-600 text-slate-200 px-6 py-3 rounded-xl font-bold hover:from-slate-600 hover:to-slate-500 transition-all duration-300 inline-flex items-center justify-center gap-2 group/btn hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 transform active:scale-95">
+                  <button className="w-full bg-gradient-to-r from-slate-200 to-slate-100 text-slate-900 px-6 py-3 rounded-xl font-bold hover:from-slate-100 hover:to-white transition-all duration-300 inline-flex items-center justify-center gap-2 group/btn hover:scale-105 hover:shadow-xl hover:shadow-slate-200/20 transform active:scale-95">
                     <span>Read More</span>
-                    <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:rotate-12 transition-all duration-300" />
                   </button>
                 </Link>
               </div>
