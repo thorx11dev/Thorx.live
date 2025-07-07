@@ -1,6 +1,7 @@
 import { Link } from 'wouter';
 import { ArrowRight, Globe, Shield, Users, TrendingUp, DollarSign, Activity, ChevronDown, Satellite, Rocket, Target, Star, Zap, Award, Clock } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import AnimatedClouds from '../components/3d/AnimatedClouds';
 import EnhancedAnimatedClouds from '../components/3d/EnhancedAnimatedClouds';
 
 const LandingPage = () => {
@@ -29,10 +30,10 @@ const LandingPage = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-900">
-      {/* Realistic 3D Clouds with Waving Animation - All Sections */}
+      {/* 3D Animated Clouds with Parallax Effect */}
       <EnhancedAnimatedClouds 
-        density="high" 
-        scrollFactor={0.5} 
+        density="medium" 
+        scrollFactor={0.4} 
         className="z-5" 
         enableInteraction={true} 
       />
@@ -232,8 +233,8 @@ const LandingPage = () => {
 
       {/* Features Section */}
       <div className="relative py-24 bg-slate-800 overflow-hidden">
-        {/* Additional clouds for Features section */}
-        <EnhancedAnimatedClouds density="low" scrollFactor={0.2} className="z-0 opacity-60" enableInteraction={false} />
+        {/* Additional clouds for this section */}
+        <AnimatedClouds density="low" scrollFactor={0.2} className="z-0 opacity-60" />
         {/* Enhanced Background Effects */}
         <div className="absolute inset-0">
           {/* Floating geometric shapes */}
@@ -377,8 +378,6 @@ const LandingPage = () => {
 
       {/* Benefits Section */}
       <div className="relative py-24 bg-slate-900 overflow-hidden">
-        {/* Clouds for Benefits section */}
-        <EnhancedAnimatedClouds density="medium" scrollFactor={0.35} className="z-0 opacity-50" enableInteraction={false} />
         {/* Enhanced Background with Cosmic Elements */}
         <div className="absolute inset-0">
           {/* Animated constellation pattern */}
@@ -539,9 +538,8 @@ const LandingPage = () => {
 
       {/* Stats Section */}
       <div className="relative py-24 bg-slate-800 overflow-hidden">
-        {/* Clouds for Stats section */}
-        <EnhancedAnimatedClouds density="low" scrollFactor={0.3} className="z-0 opacity-40" enableInteraction={false} />
-
+        {/* Additional clouds for stats section */}
+        <AnimatedClouds density="low" scrollFactor={0.15} className="z-0 opacity-40" />
         {/* Enhanced Background with Data Visualization Effects */}
         <div className="absolute inset-0">
           {/* Matrix-style data streams */}
@@ -729,8 +727,6 @@ const LandingPage = () => {
 
       {/* CTA Section */}
       <div className="relative py-24 bg-slate-900 overflow-hidden">
-        {/* Clouds for CTA section */}
-        <EnhancedAnimatedClouds density="medium" scrollFactor={0.25} className="z-0 opacity-45" enableInteraction={false} />
         {/* Enhanced Background with Call-to-Action Energy */}
         <div className="absolute inset-0">
           {/* Radial energy waves */}

@@ -32,9 +32,9 @@ const EnhancedAnimatedClouds: React.FC<EnhancedAnimatedCloudsProps> = ({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
-  // Generate clouds based on density with enhanced properties - matching reference structure
+  // Generate clouds based on density with enhanced properties
   const clouds = useMemo(() => {
-    const cloudCount = density === 'low' ? 5 : density === 'medium' ? 9 : 15;
+    const cloudCount = density === 'low' ? 4 : density === 'medium' ? 7 : 12;
     const newClouds: Cloud[] = [];
 
     for (let i = 0; i < cloudCount; i++) {
@@ -110,12 +110,6 @@ const EnhancedAnimatedClouds: React.FC<EnhancedAnimatedCloudsProps> = ({
       y: Math.cos(time * cloud.speedY + cloud.driftDirection) * 15
     };
 
-    // Waving animation for natural cloud movement
-    const waveOffset = {
-      x: Math.sin(time * 0.5 + cloud.id * 0.3) * 8,
-      y: Math.cos(time * 0.3 + cloud.id * 0.5) * 6
-    };
-
     return (
       <div
         className="absolute pointer-events-none select-none will-change-transform"
@@ -124,8 +118,8 @@ const EnhancedAnimatedClouds: React.FC<EnhancedAnimatedCloudsProps> = ({
           top: `${cloud.y}%`,
           transform: `
             translate3d(
-              ${explorationOffset.x + mouseInfluence.x + waveOffset.x}px, 
-              ${baseParallaxOffset + explorationOffset.y + mouseInfluence.y + waveOffset.y}px, 
+              ${explorationOffset.x + mouseInfluence.x}px, 
+              ${baseParallaxOffset + explorationOffset.y + mouseInfluence.y}px, 
               ${cloud.z * 100}px
             ) 
             scale(${cloud.z * 1.2 + 0.3}) 
