@@ -50,52 +50,17 @@ export const useThemeState = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
-  // Apply theme on mount and prevent conflicts with enhanced stability
+  // Apply theme on mount - CSS handles all styling
   useEffect(() => {
-    // Force initial application with stronger overrides to prevent conflicts
     const root = document.documentElement;
     
-    // Clear all possible conflicting classes first
+    // Clear conflicting classes and apply theme
     root.classList.remove('light', 'dark', 'system');
     root.classList.add(theme);
     root.setAttribute('data-theme', theme);
     
-    // Set CSS custom properties immediately with enhanced stability
-    if (theme === 'dark') {
-      // Dark theme variables
-      root.style.setProperty('--bg-primary', '#0f172a', 'important');
-      root.style.setProperty('--bg-secondary', '#1e293b', 'important');
-      root.style.setProperty('--bg-tertiary', '#334155', 'important');
-      root.style.setProperty('--text-primary', '#f8fafc', 'important');
-      root.style.setProperty('--text-secondary', '#e2e8f0', 'important');
-      root.style.setProperty('--text-tertiary', '#cbd5e1', 'important');
-      root.style.setProperty('--border-primary', '#475569', 'important');
-      root.style.setProperty('--border-secondary', '#334155', 'important');
-      root.style.setProperty('--shadow-primary', 'rgba(0, 0, 0, 0.4)', 'important');
-      root.style.setProperty('--shadow-secondary', 'rgba(0, 0, 0, 0.25)', 'important');
-      root.style.setProperty('color-scheme', 'dark');
-      document.body.style.setProperty('background-color', '#0f172a', 'important');
-    } else {
-      // Light theme variables
-      root.style.setProperty('--bg-primary', '#ffffff', 'important');
-      root.style.setProperty('--bg-secondary', '#f8fafc', 'important');
-      root.style.setProperty('--bg-tertiary', '#f1f5f9', 'important');
-      root.style.setProperty('--text-primary', '#0f172a', 'important');
-      root.style.setProperty('--text-secondary', '#334155', 'important');
-      root.style.setProperty('--text-tertiary', '#64748b', 'important');
-      root.style.setProperty('--border-primary', '#e2e8f0', 'important');
-      root.style.setProperty('--border-secondary', '#f1f5f9', 'important');
-      root.style.setProperty('--shadow-primary', 'rgba(15, 23, 42, 0.1)', 'important');
-      root.style.setProperty('--shadow-secondary', 'rgba(15, 23, 42, 0.05)', 'important');
-      root.style.setProperty('color-scheme', 'light');
-      document.body.style.setProperty('background-color', '#ffffff', 'important');
-    }
-    
-    // Prevent any interference from other sources
-    requestAnimationFrame(() => {
-      root.classList.remove('light', 'dark', 'system');
-      root.classList.add(theme);
-    });
+    // Let CSS variables handle all styling - no direct DOM manipulation
+    // This prevents conflicts and ensures stability
   }, [theme]);
 
   // Listen for system theme changes but respect user preference
