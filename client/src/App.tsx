@@ -1,5 +1,4 @@
 import { Router, Route, Switch } from 'wouter';
-import { motion, AnimatePresence } from 'framer-motion';
 import AuthProvider from './components/AuthProvider';
 import ThemeProvider from './components/ThemeProvider';
 import ProtectedRoute from './components/ProtectedRoute';
