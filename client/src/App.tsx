@@ -11,6 +11,12 @@ import WorkPortal from './pages/WorkPortal';
 import PayoutSystem from './pages/PayoutSystem';
 import SettingsHub from './pages/SettingsHub';
 import PerformancePage from './pages/PerformancePage';
+import FeaturesPage from './pages/FeaturesPage';
+import UpdatesPage from './pages/UpdatesPage';
+import HelpCenterPage from './pages/HelpCenterPage';
+import ContactPage from './pages/ContactPage';
+import AboutPage from './pages/AboutPage';
+import BlogPage from './pages/BlogPage';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -65,6 +71,12 @@ function App() {
                   </>
                 </ProtectedRoute>
               </Route>
+              <Route path="/features" component={FeaturesPage} />
+              <Route path="/updates" component={UpdatesPage} />
+              <Route path="/help" component={HelpCenterPage} />
+              <Route path="/contact" component={ContactPage} />
+              <Route path="/about" component={AboutPage} />
+              <Route path="/blog" component={BlogPage} />
             </Switch>
           </div>
         </Router>

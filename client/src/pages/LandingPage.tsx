@@ -420,13 +420,25 @@ const LandingPage = () => {
               <div key={section.title}>
                 <h3 className="text-lg font-semibold text-slate-200 mb-4">{section.title}</h3>
                 <ul className="space-y-2">
-                  {section.links.map((link) => (
-                    <li key={link}>
-                      <a href="#" className="text-slate-400 hover:text-slate-200 transition-colors">
-                        {link}
-                      </a>
-                    </li>
-                  ))}
+                  {section.links.map((link) => {
+                    const linkMap = {
+                      "Features": "/features",
+                      "Updates": "/updates",
+                      "Help Center": "/help",
+                      "Contact": "/contact",
+                      "About": "/about",
+                      "Blog": "/blog"
+                    };
+                    const linkPath = linkMap[link] || "#";
+                    
+                    return (
+                      <li key={link}>
+                        <Link to={linkPath} className="text-slate-400 hover:text-slate-200 transition-colors">
+                          {link}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
