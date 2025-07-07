@@ -727,6 +727,13 @@ const LandingPage = () => {
 
       {/* CTA Section */}
       <div className="relative py-24 bg-slate-900 overflow-hidden">
+        {/* 3D Animated Clouds for CTA Section */}
+        <AnimatedClouds 
+          density="low" 
+          scrollFactor={0.3} 
+          className="z-5" 
+        />
+        
         {/* Enhanced Background with Call-to-Action Energy */}
         <div className="absolute inset-0">
           {/* Radial energy waves */}
