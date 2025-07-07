@@ -657,31 +657,87 @@ body {
   transform: rotate(-8deg);
 }
 
-/* Enhanced cloud drift animation with more natural movement */
+/* Realistic cloud waving animation with natural flowing movement */
 @keyframes enhanced-cloud-drift {
   0% {
-    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1) scaleY(1);
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1) scaleY(1) skewX(0deg);
   }
-  20% {
-    transform: translateX(12px) translateY(-6px) rotate(0.3deg) scale(1.01) scaleY(0.98);
+  15% {
+    transform: translateX(8px) translateY(-4px) rotate(0.2deg) scale(1.01) scaleY(0.99) skewX(0.5deg);
   }
-  40% {
-    transform: translateX(20px) translateY(-10px) rotate(-0.2deg) scale(1.02) scaleY(1.01);
+  30% {
+    transform: translateX(15px) translateY(-8px) rotate(-0.1deg) scale(1.02) scaleY(1.01) skewX(-0.3deg);
+  }
+  45% {
+    transform: translateX(20px) translateY(-6px) rotate(0.3deg) scale(1.01) scaleY(0.98) skewX(0.8deg);
   }
   60% {
-    transform: translateX(15px) translateY(-8px) rotate(0.4deg) scale(1) scaleY(0.99);
+    transform: translateX(12px) translateY(-10px) rotate(-0.2deg) scale(1) scaleY(1.02) skewX(-0.4deg);
   }
-  80% {
-    transform: translateX(5px) translateY(-3px) rotate(-0.1deg) scale(0.99) scaleY(1.01);
+  75% {
+    transform: translateX(6px) translateY(-4px) rotate(0.1deg) scale(0.99) scaleY(1.01) skewX(0.2deg);
+  }
+  90% {
+    transform: translateX(2px) translateY(-2px) rotate(-0.1deg) scale(1.01) scaleY(0.99) skewX(-0.1deg);
   }
   100% {
-    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1) scaleY(1);
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1) scaleY(1) skewX(0deg);
+  }
+}
+
+/* Waving effect for cloud layers to create volumetric movement */
+@keyframes cloud-wave {
+  0% {
+    transform: scaleX(1) scaleY(1) translateY(0px) skewX(0deg);
+  }
+  25% {
+    transform: scaleX(1.02) scaleY(0.98) translateY(-2px) skewX(0.5deg);
+  }
+  50% {
+    transform: scaleX(0.98) scaleY(1.02) translateY(-1px) skewX(-0.3deg);
+  }
+  75% {
+    transform: scaleX(1.01) scaleY(0.99) translateY(-3px) skewX(0.2deg);
+  }
+  100% {
+    transform: scaleX(1) scaleY(1) translateY(0px) skewX(0deg);
   }
 }
 
 .animate-enhanced-cloud-drift {
   animation: enhanced-cloud-drift linear infinite;
   animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Apply waving animation to individual cloud layers for realistic movement */
+.enhanced-layer-1 {
+  animation: cloud-wave 8s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.enhanced-layer-2 {
+  animation: cloud-wave 9s ease-in-out infinite;
+  animation-delay: -1s;
+}
+
+.enhanced-layer-3 {
+  animation: cloud-wave 7s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.enhanced-layer-4 {
+  animation: cloud-wave 10s ease-in-out infinite;
+  animation-delay: -0.5s;
+}
+
+.enhanced-layer-5 {
+  animation: cloud-wave 6s ease-in-out infinite;
+  animation-delay: -1.5s;
+}
+
+.enhanced-layer-6 {
+  animation: cloud-wave 8.5s ease-in-out infinite;
+  animation-delay: -3s;
 }
 
 /* Dark theme enhancements for clouds */
