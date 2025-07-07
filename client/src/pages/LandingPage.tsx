@@ -233,8 +233,8 @@ const LandingPage = () => {
 
       {/* Features Section */}
       <div className="relative py-24 bg-slate-800 overflow-hidden">
-        {/* Additional clouds for this section with enhanced visibility */}
-        <EnhancedAnimatedClouds density="low" scrollFactor={0.2} className="z-0" enableInteraction={false} />
+        {/* Additional clouds for this section */}
+        <AnimatedClouds density="low" scrollFactor={0.2} className="z-0 opacity-60" />
         {/* Enhanced Background Effects */}
         <div className="absolute inset-0">
           {/* Floating geometric shapes */}
@@ -538,8 +538,8 @@ const LandingPage = () => {
 
       {/* Stats Section */}
       <div className="relative py-24 bg-slate-800 overflow-hidden">
-        {/* Additional clouds for stats section with consistent visibility */}
-        <EnhancedAnimatedClouds density="low" scrollFactor={0.15} className="z-0" enableInteraction={false} />
+        {/* Additional clouds for stats section */}
+        <AnimatedClouds density="low" scrollFactor={0.15} className="z-0 opacity-40" />
         {/* Enhanced Background with Data Visualization Effects */}
         <div className="absolute inset-0">
           {/* Matrix-style data streams */}
