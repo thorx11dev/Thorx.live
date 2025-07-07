@@ -146,6 +146,57 @@
   box-shadow: 0 20px 40px rgba(226, 232, 240, 0.2) !important;
 }
 
+/* ========================================
+   LANDING PAGE ANIMATIONS - CRITICAL SECTION
+   ======================================== */
+
+/* CRITICAL: Landing page fade-in animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced 3D perspective for cards */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-gpu {
+  transform-style: preserve-3d;
+}
+
+/* Cosmic glow keyframes */
+@keyframes cosmicGlow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+/* Enhanced hover transforms */
+.rotate-x-2 {
+  transform: rotateX(2deg);
+}
+
+.rotate-y-1 {
+  transform: rotateY(1deg);
+}
+
+/* Gradient radial utility */
+.bg-gradient-radial {
+  background-image: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
 /* Cosmic background animation */
 .cosmic-bg {
   background: #0d0d2b;
