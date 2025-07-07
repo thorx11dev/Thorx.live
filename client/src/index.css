@@ -201,30 +201,38 @@
    ENHANCED THEME STABILITY - CRITICAL SECTION
    ======================================== */
 
-/* Base theme stability with controlled transitions */
-html {
-  transition: background-color 0.3s ease, color 0.3s ease !important;
-}
-
-/* Root theme setup with stronger specificity */
+/* ABSOLUTE THEME CONTROL - Highest Priority Rules */
 :root {
-  --theme-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --theme-bg-light: #ffffff;
-  --theme-bg-dark: #0f172a;
-  --theme-text-light: #0f172a;
-  --theme-text-dark: #ffffff;
+  --theme-transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  color-scheme: light;
 }
 
-/* Light theme defaults - stable inheritance */
-html:not(.dark) {
+/* LIGHT THEME - Default State with Absolute Priority */
+html,
+html:not(.dark),
+html.light {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
   color-scheme: light !important;
-  background-color: var(--theme-bg-light) !important;
 }
 
-/* Dark theme with controlled inheritance */
+/* DARK THEME - Controlled State with Absolute Priority */
 html.dark {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
   color-scheme: dark !important;
-  background-color: var(--theme-bg-dark) !important;
+}
+
+/* BODY STABILITY - Prevent any background color conflicts */
+body {
+  background-color: inherit !important;
+  color: inherit !important;
+  transition: var(--theme-transition) !important;
+}
+
+/* PREVENT ALL THEME CONFLICTS - Nuclear Option */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease !important;
 }
 
 /* Body transition control */
@@ -467,6 +475,41 @@ body {
     rgba(71, 85, 105, 0.05) 70%,
     transparent 100%
   );
+}
+
+/* ========================================
+   ABSOLUTE COLOR STABILITY ENFORCER - CRITICAL FIX
+   ======================================== */
+
+/* PREVENT ANY COLOR INSTABILITY - HIGHEST PRIORITY OVERRIDES */
+html.dark,
+html.dark *:not(.thorx-btn-primary):not(.thorx-btn-secondary) {
+  background-color: inherit !important;
+  color: inherit !important;
+}
+
+html:not(.dark),
+html:not(.dark) *:not(.thorx-btn-primary):not(.thorx-btn-secondary) {
+  background-color: inherit !important;
+  color: inherit !important;
+}
+
+/* FORCE STABLE THEME INHERITANCE */
+html.dark {
+  background: #0f172a !important;
+  color: #ffffff !important;
+}
+
+html:not(.dark) {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* BODY CONSISTENCY ENFORCER */
+body {
+  background: inherit !important;
+  color: inherit !important;
+  transition: all 0.2s ease !important;
 }
 
 /* ========================================
@@ -866,8 +909,8 @@ body {
   --transition-theme: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark theme variables - Enhanced for better visibility */
-.dark {
+/* ENHANCED DARK THEME VARIABLES - Absolute Priority */
+html.dark {
   --bg-primary: #0f172a !important;
   --bg-secondary: #1e293b !important;
   --bg-tertiary: #334155 !important;
