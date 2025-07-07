@@ -201,32 +201,43 @@
    ENHANCED THEME STABILITY - CRITICAL SECTION
    ======================================== */
 
-/* Force theme stability with highest specificity */
-html[data-theme="dark"] {
-  color-scheme: dark !important;
+/* Base theme stability with controlled transitions */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease !important;
 }
 
-html[data-theme="light"] {
+/* Root theme setup with stronger specificity */
+:root {
+  --theme-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --theme-bg-light: #ffffff;
+  --theme-bg-dark: #0f172a;
+  --theme-text-light: #0f172a;
+  --theme-text-dark: #ffffff;
+}
+
+/* Light theme defaults - stable inheritance */
+html:not(.dark) {
   color-scheme: light !important;
+  background-color: var(--theme-bg-light) !important;
 }
 
-/* Prevent theme conflicts with absolute priority */
+/* Dark theme with controlled inheritance */
 html.dark {
-  background-color: #0f172a !important;
+  color-scheme: dark !important;
+  background-color: var(--theme-bg-dark) !important;
 }
 
-html.light {
-  background-color: #ffffff !important;
-}
-
+/* Body transition control */
 body {
-  transition: background-color 0.3s ease !important;
+  transition: var(--theme-transition) !important;
 }
 
-/* Force button colors with absolute priority to prevent instability */
+/* Button stability with theme-aware colors */
 .thorx-btn-primary {
   background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
   color: #0f172a !important;
+  font-weight: 700 !important;
+  transition: var(--theme-transition) !important;
   border: 2px solid transparent !important;
 }
 
@@ -234,11 +245,14 @@ body {
   background: linear-gradient(to right, #f1f5f9, #ffffff) !important;
   color: #0f172a !important;
   transform: scale(1.05) !important;
+  box-shadow: 0 20px 40px rgba(226, 232, 240, 0.2) !important;
 }
 
 .thorx-btn-secondary {
   background: transparent !important;
   color: #e2e8f0 !important;
+  font-weight: 600 !important;
+  transition: var(--theme-transition) !important;
   border: 2px solid #64748b !important;
 }
 
@@ -1798,12 +1812,11 @@ body {
 
 /* Remove conflicting hover states that cause animation issues */
 .dark .hover\:bg-pale-blue\/10:hover,
-.dark .hover\:border-pale-blue\/20:hover,
-.dark [style*="backgroundColor"]:hover {
+.dark .hover\:border-pale-blue\/20:hover {
   /* Reset conflicting styles */
-  background-color: unset !important;
-  border-color: unset !important;
-  transform: unset !important;
+  background-color: transparent !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  transition: var(--theme-transition) !important;
 }
 
 /* Enhanced dark theme specific styles */
@@ -1836,14 +1849,14 @@ body {
   border-color: var(--border-secondary);
 }
 
-/* CRITICAL BUTTON TEXT FIXES - Black text on gradient buttons in dark mode */
-.dark .bg-gradient-to-r {
+/* BUTTON TEXT FIXES - Controlled gradient button text */
+.dark .bg-gradient-to-r:not(.thorx-btn-primary):not(.thorx-btn-secondary) {
   color: #000000 !important;
   font-weight: 800 !important;
   text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9) !important;
 }
 
-.dark .bg-gradient-to-r:hover {
+.dark .bg-gradient-to-r:not(.thorx-btn-primary):not(.thorx-btn-secondary):hover {
   color: #000000 !important;
   font-weight: 900 !important;
   text-shadow: 0 2px 4px rgba(255, 255, 255, 1) !important;

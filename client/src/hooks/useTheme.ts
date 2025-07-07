@@ -34,22 +34,16 @@ export const useThemeState = () => {
     setThemeState(newTheme);
     localStorage.setItem('thorx_theme', newTheme);
     
-    // Apply theme to document with proper cleanup and immediate effect
+    // Apply theme to document with controlled cleanup
     const root = document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(newTheme);
     
-    // Force immediate theme application with stronger CSS properties
+    // Set data-theme attribute for CSS targeting
     root.setAttribute('data-theme', newTheme);
     
-    // Ensure body background is consistent with !important override
-    if (newTheme === 'dark') {
-      document.body.style.setProperty('background-color', '#0f172a', 'important');
-      root.style.setProperty('color-scheme', 'dark');
-    } else {
-      document.body.style.setProperty('background-color', '#ffffff', 'important');
-      root.style.setProperty('color-scheme', 'light');
-    }
+    // Let CSS handle the styling - remove direct JS style manipulation
+    // This prevents conflicts with the CSS theme system
   };
 
   const toggleTheme = () => {
