@@ -6,6 +6,7 @@ const AboutPage = () => {
   useEffect(() => {
     document.documentElement.classList.add('dark');
     document.body.style.backgroundColor = '#0f172a';
+    window.scrollTo(0, 0);
     
     return () => {
       document.body.style.backgroundColor = '';
@@ -37,28 +38,28 @@ const AboutPage = () => {
 
   const team = [
     {
-      name: "Alex Chen",
-      role: "CEO & Founder",
-      description: "Visionary leader with 10+ years in fintech and digital platforms. Previously led engineering teams at major tech companies.",
-      image: "AC"
+      name: "Aon Imran",
+      role: "CEO & Founder of Thorx",
+      description: "Visionary leader driving the future of digital earning platforms. Passionate about empowering individuals through innovative technology solutions.",
+      image: "AI"
     },
     {
-      name: "Sarah Johnson",
-      role: "CTO",
-      description: "Technical architect passionate about scalable systems and user experience. Expert in distributed systems and security.",
-      image: "SJ"
+      name: "Zohaib Nadeem",
+      role: "Social Media Ambassador",
+      description: "Expert in building online communities and driving engagement across all social platforms. Connects Thorx with users worldwide.",
+      image: "ZN"
     },
     {
-      name: "Mike Rodriguez",
-      role: "Head of Product",
-      description: "Product strategist focused on user-centric design. Former product manager at leading SaaS companies.",
-      image: "MR"
+      name: "Zain Abbas",
+      role: "Marketing Maestro of Thorx",
+      description: "Strategic marketing leader focused on growth and brand development. Specializes in digital marketing and user acquisition strategies.",
+      image: "ZA"
     },
     {
-      name: "Emily Zhang",
-      role: "Head of Design",
-      description: "Creative director with expertise in UI/UX design and user research. Award-winning designer with global recognition.",
-      image: "EZ"
+      name: "Prof. Muhammad Awais",
+      role: "Admin of Thorx",
+      description: "Administrative leader ensuring smooth operations and platform excellence. Academic background with extensive management experience.",
+      image: "MA"
     }
   ];
 

@@ -17,6 +17,7 @@ import HelpCenterPage from './pages/HelpCenterPage';
 import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -77,6 +78,7 @@ function App() {
               <Route path="/contact" component={ContactPage} />
               <Route path="/about" component={AboutPage} />
               <Route path="/blog" component={BlogPage} />
+              <Route path="/blog/:id" component={BlogPostPage} />
             </Switch>
           </div>
         </Router>

@@ -6,6 +6,7 @@ const BlogPage = () => {
   useEffect(() => {
     document.documentElement.classList.add('dark');
     document.body.style.backgroundColor = '#0f172a';
+    window.scrollTo(0, 0);
     
     return () => {
       document.body.style.backgroundColor = '';
@@ -246,10 +247,12 @@ const BlogPage = () => {
                     </div>
                   </div>
                   
-                  <button className="bg-slate-200 text-slate-900 px-6 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-all duration-300 inline-flex items-center gap-2 group/btn hover:scale-105">
-                    <span>Read Full Article</span>
-                    <ChevronRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
+                  <Link to={`/blog/${post.id}`}>
+                    <button className="bg-gradient-to-r from-slate-200 to-slate-100 text-slate-900 px-8 py-4 rounded-xl font-bold hover:from-slate-100 hover:to-white transition-all duration-300 inline-flex items-center gap-3 group/btn hover:scale-105 hover:shadow-2xl hover:shadow-slate-200/20 transform active:scale-95">
+                      <span>Read Full Article</span>
+                      <ChevronRight className="w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:rotate-12 transition-all duration-300" />
+                    </button>
+                  </Link>
                 </div>
                 
                 <div className="hidden lg:flex justify-center">
@@ -316,10 +319,12 @@ const BlogPage = () => {
                   ))}
                 </div>
                 
-                <button className="w-full bg-slate-700 text-slate-200 px-4 py-2 rounded-lg font-semibold hover:bg-slate-600 transition-all duration-300 inline-flex items-center justify-center gap-2 group/btn hover:scale-105">
-                  <span>Read More</span>
-                  <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
+                <Link to={`/blog/${post.id}`}>
+                  <button className="w-full bg-gradient-to-r from-slate-700 to-slate-600 text-slate-200 px-6 py-3 rounded-xl font-bold hover:from-slate-600 hover:to-slate-500 transition-all duration-300 inline-flex items-center justify-center gap-2 group/btn hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 transform active:scale-95">
+                    <span>Read More</span>
+                    <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
+                </Link>
               </div>
             ))}
           </div>
@@ -341,9 +346,9 @@ const BlogPage = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-600 transition-colors"
+              className="flex-1 px-6 py-4 bg-slate-800/60 border-2 border-slate-700 rounded-xl text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:bg-slate-800/80 transition-all duration-300 hover:border-slate-600 backdrop-blur-sm shadow-lg"
             />
-            <button className="bg-slate-200 text-slate-900 px-6 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-all duration-300 hover:scale-105">
+            <button className="bg-gradient-to-r from-slate-200 to-slate-100 text-slate-900 px-8 py-4 rounded-xl font-bold hover:from-slate-100 hover:to-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-slate-200/20 transform active:scale-95">
               Subscribe
             </button>
           </div>

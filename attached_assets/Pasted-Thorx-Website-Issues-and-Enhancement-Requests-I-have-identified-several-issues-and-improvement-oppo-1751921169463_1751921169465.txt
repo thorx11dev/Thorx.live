@@ -1,0 +1,56 @@
+Thorx Website Issues and Enhancement Requests
+I have identified several issues and improvement opportunities in the recently created pages of the Thorx platform. Please address the following points carefully:
+
+1. Navigation Behavior on Footer Links
+Issue: When clicking footer links on the landing page, the destination pages load scrolled to the bottom instead of the top.
+
+Request: Modify the navigation behavior so that when users click these footer links, the pages open starting at the top.
+
+2. Blog Page Content and Functionality
+Issue: Blog articles on the blog page are incomplete and unreadable.
+
+Request: Write and add complete, well-structured blog articles. Implement functionality that allows users to easily read the full content of each blog post.
+
+3. Input Box Design Improvement
+Issue: Input fields, such as the “Send a Message” section on the contact page, look unattractive and outdated.
+
+Request: Redesign these input boxes to be visually appealing and consistent with the overall theme and design of Thorx, enhancing the user experience.
+
+4. Button Visibility and Interaction
+Issue: Current button interactions are unappealing and cause visibility problems.
+
+Request: Improve button styles and interactions to make them more prominent, visually engaging, and user-friendly.
+
+5. Update Contact Information
+Please update the contact details with the following information:
+
+Emails:
+
+support@thorx.live
+
+team@thorx.live
+
+Phone Number:
+
++923254029852
+
+6. Remove Live Chat Feature
+Request: Completely remove the live chat option from the website.
+
+7. Add Physical Address
+Request: Add the following address to the contact or relevant section:
+
+Tahir Street, just off Gojra Road, in the heart of Jhang, Pakistan.
+
+8. Update ‘Meet Our Team’ Section on About Page
+Please rename and update the team members as follows:
+
+Replace Alex Chen with Aon Imran as CEO and Founder of Thorx.
+
+Replace Sarah Johnson with Zohaib Nadeem as Social Media Ambassador.
+
+Replace Mike Rodriguez with Zain Abbas as Marketing Maestro of Thorx.
+
+Replace Emily Zhang with Prof. Muhammad Awais as Admin of Thorx.
+
+Please ensure these changes are implemented accurately to enhance the overall usability and professionalism of the Thorx platform. Let me know if you need any further clarifications.

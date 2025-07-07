@@ -13,6 +13,7 @@ const ContactPage = () => {
   useEffect(() => {
     document.documentElement.classList.add('dark');
     document.body.style.backgroundColor = '#0f172a';
+    window.scrollTo(0, 0);
     
     return () => {
       document.body.style.backgroundColor = '';
@@ -36,28 +37,21 @@ const ContactPage = () => {
     {
       icon: Mail,
       title: "Email Support",
-      details: "support@thorx.com",
+      details: "support@thorx.live",
       description: "Get detailed assistance via email",
       availability: "24/7 Response"
     },
     {
       icon: Phone,
       title: "Phone Support",
-      details: "+1 (555) 123-4567",
+      details: "+923254029852",
       description: "Speak directly with our experts",
-      availability: "Mon-Fri, 9 AM - 6 PM EST"
-    },
-    {
-      icon: MessageCircle,
-      title: "Live Chat",
-      details: "Available on website",
-      description: "Instant help for urgent matters",
-      availability: "24/7 Available"
+      availability: "Available Daily"
     },
     {
       icon: MapPin,
       title: "Office Location",
-      details: "123 Digital Avenue, Tech City, TC 12345",
+      details: "Tahir Street, just off Gojra Road, in the heart of Jhang, Pakistan",
       description: "Visit us for in-person meetings",
       availability: "By Appointment"
     }
@@ -67,19 +61,13 @@ const ContactPage = () => {
     {
       icon: Users,
       title: "General Support",
-      email: "support@thorx.com",
+      email: "support@thorx.live",
       description: "Account help, technical issues, and general inquiries"
     },
     {
-      icon: Shield,
-      title: "Security Team",
-      email: "security@thorx.com",
-      description: "Report security issues and account concerns"
-    },
-    {
       icon: Star,
-      title: "Business Inquiries",
-      email: "business@thorx.com",
+      title: "Team Inquiries",
+      email: "team@thorx.live",
       description: "Partnerships, enterprise solutions, and collaborations"
     }
   ];
@@ -164,7 +152,7 @@ const ContactPage = () => {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-slate-200 mb-12 text-center">How to Reach Us</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {contactInfo.map((info, index) => (
               <div
                 key={index}
@@ -215,7 +203,7 @@ const ContactPage = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 transition-colors"
+                  className="w-full px-6 py-4 bg-slate-800/60 border-2 border-slate-700 rounded-xl text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:bg-slate-800/80 transition-all duration-300 hover:border-slate-600 backdrop-blur-sm shadow-lg"
                   placeholder="Enter your full name"
                 />
               </div>
@@ -231,7 +219,7 @@ const ContactPage = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 transition-colors"
+                  className="w-full px-6 py-4 bg-slate-800/60 border-2 border-slate-700 rounded-xl text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:bg-slate-800/80 transition-all duration-300 hover:border-slate-600 backdrop-blur-sm shadow-lg"
                   placeholder="Enter your email address"
                 />
               </div>
@@ -247,7 +235,7 @@ const ContactPage = () => {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 transition-colors"
+                  className="w-full px-6 py-4 bg-slate-800/60 border-2 border-slate-700 rounded-xl text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:bg-slate-800/80 transition-all duration-300 hover:border-slate-600 backdrop-blur-sm shadow-lg"
                   placeholder="What's this about?"
                 />
               </div>
@@ -263,17 +251,17 @@ const ContactPage = () => {
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 transition-colors resize-none"
+                  className="w-full px-6 py-4 bg-slate-800/60 border-2 border-slate-700 rounded-xl text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:bg-slate-800/80 transition-all duration-300 hover:border-slate-600 backdrop-blur-sm shadow-lg resize-none"
                   placeholder="Tell us how we can help you..."
                 />
               </div>
               
               <button
                 type="submit"
-                className="w-full bg-slate-200 text-slate-900 px-6 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-all duration-300 inline-flex items-center justify-center gap-2 group hover:scale-[1.02]"
+                className="w-full bg-gradient-to-r from-slate-200 to-slate-100 text-slate-900 px-8 py-4 rounded-xl font-bold hover:from-slate-100 hover:to-white transition-all duration-300 inline-flex items-center justify-center gap-3 group hover:scale-[1.02] hover:shadow-2xl hover:shadow-slate-200/20 transform active:scale-95"
               >
                 <span>Send Message</span>
-                <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:rotate-12 transition-all duration-300" />
               </button>
             </form>
           </div>
@@ -327,9 +315,8 @@ const ContactPage = () => {
             We're committed to providing fast, helpful responses to all your inquiries.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              { method: "Live Chat", time: "< 2 minutes", description: "Instant support for urgent matters" },
               { method: "Email Support", time: "< 4 hours", description: "Detailed responses during business hours" },
               { method: "Phone Support", time: "< 1 minute", description: "Direct connection to our team" }
             ].map((response, index) => (

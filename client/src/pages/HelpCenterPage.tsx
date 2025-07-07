@@ -8,6 +8,7 @@ const HelpCenterPage = () => {
   useEffect(() => {
     document.documentElement.classList.add('dark');
     document.body.style.backgroundColor = '#0f172a';
+    window.scrollTo(0, 0);
     
     return () => {
       document.body.style.backgroundColor = '';
@@ -165,7 +166,7 @@ const HelpCenterPage = () => {
               placeholder="Search for help articles, guides, and FAQs..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-slate-800/50 border border-slate-700 rounded-xl text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-600 transition-colors backdrop-blur-sm"
+              className="w-full pl-12 pr-6 py-4 bg-slate-800/60 border-2 border-slate-700 rounded-xl text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:bg-slate-800/80 transition-all duration-300 hover:border-slate-600 backdrop-blur-sm shadow-lg"
             />
           </div>
         </div>
@@ -265,7 +266,7 @@ const HelpCenterPage = () => {
                   {contact.description}
                 </p>
                 
-                <button className="bg-slate-700 text-slate-200 px-6 py-3 rounded-lg font-semibold hover:bg-slate-600 transition-all duration-300 group-hover:scale-105">
+                <button className="bg-gradient-to-r from-slate-700 to-slate-600 text-slate-200 px-8 py-3 rounded-xl font-bold hover:from-slate-600 hover:to-slate-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 transform active:scale-95">
                   {contact.action}
                 </button>
               </div>
