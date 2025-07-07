@@ -354,9 +354,9 @@ const BlogPage = () => {
       <footer className="relative z-10 bg-slate-800/50 py-12 border-t border-slate-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Link to="/" className="inline-flex items-center space-x-3 group mb-4">
-              <div className="flex items-center justify-center w-10 h-10 bg-slate-800 rounded-xl border border-slate-700 group-hover:bg-slate-700 transition-colors">
-                <Rocket className="w-5 h-5 text-slate-300" />
+            <Link to="/" className="inline-flex items-center space-x-3 group mb-4 hover:scale-105 transition-all duration-300">
+              <div className="flex items-center justify-center w-10 h-10 bg-slate-800 rounded-xl border border-slate-700 group-hover:bg-slate-700 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-slate-700/30">
+                <Rocket className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors group-hover:rotate-12" />
               </div>
               <span className="text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">Thorx</span>
             </Link>

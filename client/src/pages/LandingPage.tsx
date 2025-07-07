@@ -406,7 +406,12 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <div className="text-2xl font-bold text-slate-200 mb-4">Thorx</div>
+              <Link to="/" className="inline-block group">
+                <div className="text-2xl font-bold text-slate-200 mb-4 group-hover:text-white transition-all duration-300 hover:scale-105 relative">
+                  <span className="relative z-10">Thorx</span>
+                  <span className="absolute inset-0 bg-slate-700/20 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></span>
+                </div>
+              </Link>
               <p className="text-slate-400">
                 Navigate the digital universe with confidence
               </p>
@@ -433,8 +438,12 @@ const LandingPage = () => {
                     
                     return (
                       <li key={link}>
-                        <Link to={linkPath} className="text-slate-400 hover:text-slate-200 transition-colors">
-                          {link}
+                        <Link 
+                          to={linkPath} 
+                          className="text-slate-400 hover:text-slate-200 transition-all duration-300 hover:translate-x-1 hover:scale-105 inline-block relative group"
+                        >
+                          <span className="relative z-10">{link}</span>
+                          <span className="absolute inset-0 bg-slate-700/20 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-1"></span>
                         </Link>
                       </li>
                     );
