@@ -1094,229 +1094,14 @@
   transition: all var(--animation-normal) var(--animation-easing);
 }
 
-/* PREVENT COLOR INSTABILITY - Remove all conflicting hover states */
+/* Remove conflicting hover states that cause animation issues */
 .dark .hover\:bg-pale-blue\/10:hover,
 .dark .hover\:border-pale-blue\/20:hover,
-.dark [style*="backgroundColor"]:hover,
-.dark .hover\:text-slate-300:hover,
-.dark .hover\:text-slate-200:hover {
-  /* Disable all dynamic color changes that cause instability */
-  background-color: inherit !important;
-  border-color: inherit !important;
-  color: inherit !important;
-  transform: none !important;
-}
-
-/* STABLE DROPDOWN AND SEARCH BAR COLORS */
-.dark select,
-.dark select option,
-.dark input[type="search"],
-.dark input[type="text"] {
-  background-color: rgba(30, 41, 59, 0.8) !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  border-color: rgba(71, 85, 105, 0.6) !important;
-  font-weight: 500 !important;
-}
-
-.dark select:hover,
-.dark select:focus,
-.dark input[type="search"]:hover,
-.dark input[type="search"]:focus,
-.dark input[type="text"]:hover,
-.dark input[type="text"]:focus {
-  background-color: rgba(30, 41, 59, 0.9) !important;
-  color: rgba(255, 255, 255, 1) !important;
-  border-color: rgba(71, 85, 105, 0.8) !important;
-  font-weight: 500 !important;
-}
-
-/* STABLE TAG COLORS */
-.dark .bg-slate-800\/50,
-.dark .text-slate-400,
-.dark .border-slate-700 {
-  background-color: rgba(30, 41, 59, 0.5) !important;
-  color: rgba(156, 163, 175, 1) !important;
-  border-color: rgba(55, 65, 81, 1) !important;
-}
-
-.dark .bg-slate-800\/50:hover,
-.dark .text-slate-400:hover {
-  background-color: rgba(30, 41, 59, 0.5) !important;
-  color: rgba(156, 163, 175, 1) !important;
-}
-
-/* COMPREHENSIVE COLOR STABILITY FIXES */
-/* Prevent any CSS variable or computed color changes */
-* {
-  color-scheme: initial !important;
-}
-
-.dark * {
-  color-scheme: dark !important;
-}
-
-/* Force stable button text colors globally */
-button,
-.button,
-[role="button"],
-a[href] button,
-a[href] .button {
-  color: inherit !important;
-}
-
-button.bg-gradient-to-r,
-.button.bg-gradient-to-r,
-[role="button"].bg-gradient-to-r,
-a[href] button.bg-gradient-to-r,
-a[href] .button.bg-gradient-to-r {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
-}
-
-/* Override any computed style changes */
-.dark button.bg-gradient-to-r,
-.dark .button.bg-gradient-to-r,
-.dark [role="button"].bg-gradient-to-r,
-.dark a[href] button.bg-gradient-to-r,
-.dark a[href] .button.bg-gradient-to-r {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
-}
-
-/* Lock down any animation or transition that affects colors */
-.bg-gradient-to-r * {
-  color: inherit !important;
-}
-
-/* Force specific button types to maintain white text */
-.bg-gradient-to-r.from-slate-200.to-slate-100,
-.bg-gradient-to-r.from-slate-700.to-slate-600,
-.bg-gradient-to-r.from-slate-100.to-white {
-  color: #ffffff !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
-}
-
-.bg-gradient-to-r.from-slate-200.to-slate-100 *,
-.bg-gradient-to-r.from-slate-700.to-slate-600 *,
-.bg-gradient-to-r.from-slate-100.to-white * {
-  color: #ffffff !important;
-}
-
-/* Prevent inheritance of unstable colors */
-.bg-gradient-to-r span,
-.bg-gradient-to-r div,
-.bg-gradient-to-r svg {
-  color: #ffffff !important;
-  fill: currentColor !important;
-}
-
-/* Newsletter subscription button fix */
-button[type="submit"].bg-gradient-to-r,
-input[type="submit"].bg-gradient-to-r {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-}
-
-/* Specific fixes for Blog page elements */
-.dark .text-slate-300,
-.dark .text-slate-200,
-.dark .hover\:text-slate-200,
-.dark .hover\:text-slate-300 {
-  color: rgba(203, 213, 225, 1) !important;
-}
-
-.dark .text-slate-300:hover,
-.dark .text-slate-200:hover,
-.dark .hover\:text-slate-200:hover,
-.dark .hover\:text-slate-300:hover {
-  color: rgba(203, 213, 225, 1) !important;
-}
-
-/* ULTIMATE COLOR STABILITY LOCKS */
-/* Prevent all runtime color modifications */
-body[class*="dark"] *,
-.dark * {
-  color: inherit !important;
-}
-
-/* Force button colors to never change */
-body[class*="dark"] .bg-gradient-to-r,
-.dark .bg-gradient-to-r,
-body[class*="dark"] button.bg-gradient-to-r,
-.dark button.bg-gradient-to-r {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
-}
-
-body[class*="dark"] .bg-gradient-to-r:hover,
-.dark .bg-gradient-to-r:hover,
-body[class*="dark"] button.bg-gradient-to-r:hover,
-.dark button.bg-gradient-to-r:hover {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
-}
-
-/* Lock computed styles to prevent changes */
-body[class*="dark"] .bg-gradient-to-r *,
-.dark .bg-gradient-to-r * {
-  color: #ffffff !important;
-}
-
-/* Prevent any CSS variable manipulation */
-:root,
-html,
-body {
-  --color-stability-lock: 1;
-}
-
-/* Override any late-loading CSS that might change colors */
-.bg-gradient-to-r[style*="color"],
-button.bg-gradient-to-r[style*="color"],
-.dark .bg-gradient-to-r[style*="color"],
-.dark button.bg-gradient-to-r[style*="color"] {
-  color: #ffffff !important;
-}
-
-/* Ultimate fallback for any color changes */
-@supports (selector(:where(*))) {
-  :where(.bg-gradient-to-r),
-  :where(button.bg-gradient-to-r),
-  :where(.dark .bg-gradient-to-r),
-  :where(.dark button.bg-gradient-to-r) {
-    color: #ffffff !important;
-    font-weight: 700 !important;
-  }
-}
-
-/* Animation performance optimization to prevent color flicker */
-.bg-gradient-to-r,
-button.bg-gradient-to-r {
-  will-change: transform, box-shadow;
-  /* Exclude color from will-change to prevent browser optimization issues */
-}
-
-/* Ensure newsletter signup button maintains white text */
-form button.bg-gradient-to-r,
-form .bg-gradient-to-r,
-[role="form"] button.bg-gradient-to-r,
-[role="form"] .bg-gradient-to-r {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
-}
-
-/* Additional specificity for deeply nested components */
-.dark form button.bg-gradient-to-r,
-.dark form .bg-gradient-to-r,
-.dark [role="form"] button.bg-gradient-to-r,
-.dark [role="form"] .bg-gradient-to-r {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+.dark [style*="backgroundColor"]:hover {
+  /* Reset conflicting styles */
+  background-color: unset !important;
+  border-color: unset !important;
+  transform: unset !important;
 }
 
 /* Enhanced dark theme specific styles */
@@ -1349,67 +1134,52 @@ form .bg-gradient-to-r,
   border-color: var(--border-secondary);
 }
 
-/* CRITICAL BUTTON TEXT FIXES - Consistent white text on gradient buttons */
-.bg-gradient-to-r {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
-}
-
-.bg-gradient-to-r:hover {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
-}
-
+/* CRITICAL BUTTON TEXT FIXES - Black text on gradient buttons in dark mode */
 .dark .bg-gradient-to-r {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9) !important;
 }
 
 .dark .bg-gradient-to-r:hover {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+  color: #000000 !important;
+  font-weight: 900 !important;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 1) !important;
 }
 
-/* STABLE BUTTON COLOR FIXES - Consistent across all themes and states */
-.bg-gradient-to-r.from-slate-200,
-.bg-gradient-to-r.from-slate-700,
-button.bg-gradient-to-r,
-a .bg-gradient-to-r {
-  color: #ffffff !important;
+/* Specific button fixes for all pages */
+.dark .bg-soft-pink {
+  background-color: #FADADD !important;
+  color: #000000 !important;
   font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+  text-shadow: none !important;
 }
 
-.bg-gradient-to-r.from-slate-200:hover,
-.bg-gradient-to-r.from-slate-700:hover,
-button.bg-gradient-to-r:hover,
-a .bg-gradient-to-r:hover {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+.dark .bg-soft-pink:hover {
+  background-color: rgba(250, 173, 221, 0.9) !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
 }
 
-/* Dark mode overrides */
-.dark .bg-gradient-to-r.from-slate-200,
-.dark .bg-gradient-to-r.from-slate-700,
-.dark button.bg-gradient-to-r,
-.dark a .bg-gradient-to-r {
-  color: #ffffff !important;
+.dark .bg-pale-blue {
+  background-color: #D6EAF8 !important;
+  color: #000000 !important;
   font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+  text-shadow: none !important;
 }
 
-.dark .bg-gradient-to-r.from-slate-200:hover,
-.dark .bg-gradient-to-r.from-slate-700:hover,
-.dark button.bg-gradient-to-r:hover,
-.dark a .bg-gradient-to-r:hover {
-  color: #ffffff !important;
+.dark .bg-light-teal {
+  background-color: #D1F2EB !important;
+  color: #000000 !important;
   font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+  text-shadow: none !important;
+}
+
+.dark .bg-muted-yellow {
+  background-color: #FCF3CF !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
 }
 
 /* Optimized landing page styles */
