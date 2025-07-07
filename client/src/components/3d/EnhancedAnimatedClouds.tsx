@@ -95,19 +95,31 @@ const EnhancedAnimatedClouds: React.FC<EnhancedAnimatedCloudsProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Enhanced cloud component with volumetric layers
+  // Enhanced cloud component with realistic 3D volumetric layers
   const EnhancedCloudElement: React.FC<{ cloud: Cloud; index: number }> = ({ cloud, index }) => {
     const baseParallaxOffset = scrollY * scrollFactor * cloud.z;
     const mouseInfluence = enableInteraction ? {
-      x: mousePosition.x * 10 * (1 - cloud.z),
-      y: mousePosition.y * 5 * (1 - cloud.z)
+      x: mousePosition.x * 15 * (1 - cloud.z),
+      y: mousePosition.y * 8 * (1 - cloud.z)
     } : { x: 0, y: 0 };
 
-    // Time-based movement for exploration effect
+    // Enhanced time-based movement with realistic waving and drifting
     const time = Date.now() * 0.0001;
-    const explorationOffset = {
-      x: Math.sin(time * cloud.speedX + cloud.driftDirection) * 20,
-      y: Math.cos(time * cloud.speedY + cloud.driftDirection) * 15
+    const waveTime = time * 2; // Faster wave cycles
+    const driftTime = time * 0.5; // Slower drift cycles
+    
+    const realisticMovement = {
+      // Primary wave motion (gentle up-down movement)
+      waveY: Math.sin(waveTime * cloud.speedY + cloud.driftDirection) * 8,
+      // Secondary wave motion (side-to-side sway)
+      waveX: Math.cos(waveTime * cloud.speedX + cloud.driftDirection * 0.7) * 6,
+      // Long-term drift exploration
+      driftX: Math.sin(driftTime * cloud.speedX + cloud.driftDirection) * 25,
+      driftY: Math.cos(driftTime * cloud.speedY + cloud.driftDirection) * 18,
+      // Subtle rotation for volume effect
+      rotation: Math.sin(time * cloud.rotationSpeed + cloud.id) * 3,
+      // Breathing scale effect
+      scale: 1 + Math.sin(time * 0.3 + cloud.id) * 0.05
     };
 
     return (
@@ -118,46 +130,62 @@ const EnhancedAnimatedClouds: React.FC<EnhancedAnimatedCloudsProps> = ({
           top: `${cloud.y}%`,
           transform: `
             translate3d(
-              ${explorationOffset.x + mouseInfluence.x}px, 
-              ${baseParallaxOffset + explorationOffset.y + mouseInfluence.y}px, 
-              ${cloud.z * 100}px
+              ${realisticMovement.driftX + realisticMovement.waveX + mouseInfluence.x}px, 
+              ${baseParallaxOffset + realisticMovement.driftY + realisticMovement.waveY + mouseInfluence.y}px, 
+              ${cloud.z * 150}px
             ) 
-            scale(${cloud.z * 1.2 + 0.3}) 
-            rotate(${time * cloud.rotationSpeed * 57.3}deg)
+            scale(${(cloud.z * 1.3 + 0.4) * realisticMovement.scale}) 
+            rotate(${realisticMovement.rotation}deg)
           `,
-          opacity: cloud.opacity * (0.8 + cloud.z * 0.4),
+          opacity: Math.max(0.15, cloud.opacity * (0.7 + cloud.z * 0.5)),
           animationDelay: `${cloud.animationDelay}s`,
-          zIndex: Math.floor(cloud.z * 15) + 1
+          zIndex: Math.floor(cloud.z * 20) + 5,
+          // Ensure clouds remain visible during scroll
+          position: 'fixed',
+          pointerEvents: 'none',
+          willChange: 'transform, opacity'
         }}
       >
-        {/* Enhanced volumetric cloud with multiple detail levels */}
+        {/* Enhanced volumetric cloud with realistic 3D detail levels */}
         <div
-          className="enhanced-cloud-shape animate-enhanced-cloud-drift"
+          className="enhanced-cloud-shape animate-enhanced-cloud-drift animate-cloud-breathing"
           style={{
             width: `${cloud.size}px`,
             height: `${cloud.size * 0.65}px`,
-            animationDuration: `${25 / Math.max(cloud.speedX + cloud.speedY + 0.1, 0.1)}s`,
+            animationDuration: `${30 / Math.max(cloud.speedX + cloud.speedY + 0.1, 0.1)}s`,
             animationDelay: `${cloud.animationDelay}s`,
-            filter: `blur(${(1 - cloud.z) * 1.5 + 0.3}px) brightness(${0.9 + cloud.z * 0.3})`
+            filter: `
+              blur(${(1 - cloud.z) * 2 + 0.5}px) 
+              brightness(${0.85 + cloud.z * 0.4})
+              contrast(${1.1 + cloud.z * 0.2})
+              saturate(${0.8 + cloud.z * 0.3})
+            `,
+            // Enhanced 3D transform for depth
+            transformStyle: 'preserve-3d',
+            backfaceVisibility: 'hidden'
           }}
         >
-          {/* Primary cloud mass - 6 layers for enhanced volume */}
-          <div className="cloud-layer enhanced-layer-1"></div>
-          <div className="cloud-layer enhanced-layer-2"></div>
-          <div className="cloud-layer enhanced-layer-3"></div>
-          <div className="cloud-layer enhanced-layer-4"></div>
-          <div className="cloud-layer enhanced-layer-5"></div>
-          <div className="cloud-layer enhanced-layer-6"></div>
+          {/* Enhanced volumetric cloud with realistic 3D detail levels */}
+          <div className="cloud-layer enhanced-layer-1" style={{ '--wave-delay': cloud.animationDelay * 0.1 } as React.CSSProperties}></div>
+          <div className="cloud-layer enhanced-layer-2" style={{ '--wave-delay': cloud.animationDelay * 0.15 } as React.CSSProperties}></div>
+          <div className="cloud-layer enhanced-layer-3" style={{ '--wave-delay': cloud.animationDelay * 0.2 } as React.CSSProperties}></div>
+          <div className="cloud-layer enhanced-layer-4" style={{ '--wave-delay': cloud.animationDelay * 0.12 } as React.CSSProperties}></div>
+          <div className="cloud-layer enhanced-layer-5" style={{ '--wave-delay': cloud.animationDelay * 0.18 } as React.CSSProperties}></div>
+          <div className="cloud-layer enhanced-layer-6" style={{ '--wave-delay': cloud.animationDelay * 0.25 } as React.CSSProperties}></div>
           
-          {/* Enhanced lighting effects */}
-          <div className="enhanced-cloud-highlight"></div>
-          <div className="enhanced-cloud-highlight-2"></div>
-          <div className="enhanced-cloud-shadow"></div>
+          {/* Enhanced 3D lighting effects with realistic shadows */}
+          <div className="enhanced-cloud-highlight" style={{ '--animation-delay': cloud.animationDelay * 0.08 } as React.CSSProperties}></div>
+          <div className="enhanced-cloud-highlight-2" style={{ '--animation-delay': cloud.animationDelay * 0.12 } as React.CSSProperties}></div>
+          <div className="enhanced-cloud-shadow" style={{ '--animation-delay': cloud.animationDelay * 0.05 } as React.CSSProperties}></div>
           
-          {/* Wispy edges for more realistic appearance */}
-          <div className="cloud-wisp cloud-wisp-1"></div>
-          <div className="cloud-wisp cloud-wisp-2"></div>
-          <div className="cloud-wisp cloud-wisp-3"></div>
+          {/* Enhanced wispy edges with natural movement */}
+          <div className="cloud-wisp cloud-wisp-1 animate-cloud-edge-wave" style={{ '--wave-delay': cloud.animationDelay * 0.3 } as React.CSSProperties}></div>
+          <div className="cloud-wisp cloud-wisp-2 animate-cloud-edge-wave" style={{ '--wave-delay': cloud.animationDelay * 0.4 } as React.CSSProperties}></div>
+          <div className="cloud-wisp cloud-wisp-3 animate-cloud-edge-wave" style={{ '--wave-delay': cloud.animationDelay * 0.35 } as React.CSSProperties}></div>
+          
+          {/* Additional volumetric depth layers for ultra-realism */}
+          <div className="cloud-depth-layer cloud-depth-1"></div>
+          <div className="cloud-depth-layer cloud-depth-2"></div>
         </div>
       </div>
     );
@@ -168,8 +196,9 @@ const EnhancedAnimatedClouds: React.FC<EnhancedAnimatedCloudsProps> = ({
       ref={containerRef}
       className={`fixed inset-0 pointer-events-none overflow-hidden ${className}`}
       style={{ 
-        perspective: '2000px',
-        perspectiveOrigin: '50% 50%'
+        perspective: '3000px',
+        perspectiveOrigin: '50% 50%',
+        zIndex: 1
       }}
     >
       {/* Background atmosphere for depth */}
