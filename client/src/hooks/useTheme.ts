@@ -20,52 +20,30 @@ export const useTheme = () => {
 
 export const useThemeState = () => {
   const [theme, setThemeState] = useState<Theme>(() => {
-    // Check localStorage first, then system preference
+    // For Thorx cosmic theme, default to dark mode for the best experience
     const savedTheme = localStorage.getItem('thorx_theme') as Theme;
     if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
       return savedTheme;
     }
     
-    // Check system preference
-    if (typeof window !== 'undefined' && window.matchMedia) {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    
-    return 'light';
+    // Default to dark mode for cosmic theme consistency
+    return 'dark';
   });
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
     localStorage.setItem('thorx_theme', newTheme);
     
-    // Apply theme to document
+    // Apply theme to document with proper cleanup
     const root = document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(newTheme);
     
-    // Update CSS custom properties for smooth transitions
+    // Ensure body background is consistent
     if (newTheme === 'dark') {
-      root.style.setProperty('--bg-primary', '#121212');
-      root.style.setProperty('--bg-secondary', '#1e1e1e');
-      root.style.setProperty('--bg-tertiary', '#2a2a2a');
-      root.style.setProperty('--text-primary', '#ffffff');
-      root.style.setProperty('--text-secondary', 'rgba(255, 255, 255, 0.7)');
-      root.style.setProperty('--text-tertiary', 'rgba(255, 255, 255, 0.5)');
-      root.style.setProperty('--border-primary', 'rgba(255, 255, 255, 0.1)');
-      root.style.setProperty('--border-secondary', 'rgba(255, 255, 255, 0.05)');
-      root.style.setProperty('--shadow-primary', 'rgba(0, 0, 0, 0.3)');
-      root.style.setProperty('--shadow-secondary', 'rgba(0, 0, 0, 0.2)');
+      document.body.style.backgroundColor = '#0f172a';
     } else {
-      root.style.setProperty('--bg-primary', '#FAFAFA');
-      root.style.setProperty('--bg-secondary', '#ffffff');
-      root.style.setProperty('--bg-tertiary', '#f8f9fa');
-      root.style.setProperty('--text-primary', '#2D3A4A');
-      root.style.setProperty('--text-secondary', 'rgba(45, 58, 74, 0.7)');
-      root.style.setProperty('--text-tertiary', 'rgba(45, 58, 74, 0.5)');
-      root.style.setProperty('--border-primary', 'rgba(214, 234, 248, 0.2)');
-      root.style.setProperty('--border-secondary', 'rgba(214, 234, 248, 0.1)');
-      root.style.setProperty('--shadow-primary', 'rgba(45, 58, 74, 0.08)');
-      root.style.setProperty('--shadow-secondary', 'rgba(45, 58, 74, 0.05)');
+      document.body.style.backgroundColor = '#ffffff';
     }
   };
 
@@ -73,16 +51,45 @@ export const useThemeState = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
-  // Apply theme on mount
+  // Apply theme on mount and prevent conflicts
   useEffect(() => {
-    setTheme(theme);
-  }, []);
+    // Force initial application to prevent conflicts
+    const root = document.documentElement;
+    root.classList.remove('light', 'dark');
+    root.classList.add(theme);
+    
+    // Set CSS custom properties immediately
+    if (theme === 'dark') {
+      root.style.setProperty('--bg-primary', '#0f172a');
+      root.style.setProperty('--bg-secondary', '#1e293b');
+      root.style.setProperty('--bg-tertiary', '#334155');
+      root.style.setProperty('--text-primary', '#f8fafc');
+      root.style.setProperty('--text-secondary', '#e2e8f0');
+      root.style.setProperty('--text-tertiary', '#cbd5e1');
+      root.style.setProperty('--border-primary', '#475569');
+      root.style.setProperty('--border-secondary', '#334155');
+      root.style.setProperty('--shadow-primary', 'rgba(0, 0, 0, 0.4)');
+      root.style.setProperty('--shadow-secondary', 'rgba(0, 0, 0, 0.25)');
+    } else {
+      root.style.setProperty('--bg-primary', '#ffffff');
+      root.style.setProperty('--bg-secondary', '#f8fafc');
+      root.style.setProperty('--bg-tertiary', '#f1f5f9');
+      root.style.setProperty('--text-primary', '#0f172a');
+      root.style.setProperty('--text-secondary', '#334155');
+      root.style.setProperty('--text-tertiary', '#64748b');
+      root.style.setProperty('--border-primary', '#e2e8f0');
+      root.style.setProperty('--border-secondary', '#f1f5f9');
+      root.style.setProperty('--shadow-primary', 'rgba(15, 23, 42, 0.1)');
+      root.style.setProperty('--shadow-secondary', 'rgba(15, 23, 42, 0.05)');
+    }
+  }, [theme]);
 
-  // Listen for system theme changes
+  // Listen for system theme changes but respect user preference
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e: MediaQueryListEvent) => {
       const savedTheme = localStorage.getItem('thorx_theme');
+      // Only update if user hasn't set a preference
       if (!savedTheme) {
         setTheme(e.matches ? 'dark' : 'light');
       }
@@ -90,7 +97,7 @@ export const useThemeState = () => {
 
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
+  }, [setTheme]);
 
   return {
     theme,

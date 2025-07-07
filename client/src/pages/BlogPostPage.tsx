@@ -6,13 +6,7 @@ const BlogPostPage = () => {
   const params = useParams();
   
   useEffect(() => {
-    document.documentElement.classList.add('dark');
-    document.body.style.backgroundColor = '#0f172a';
     window.scrollTo(0, 0);
-    
-    return () => {
-      document.body.style.backgroundColor = '';
-    };
   }, [params.id]); // Re-run when the article ID changes
 
   const blogPosts = {
@@ -155,8 +149,8 @@ const BlogPostPage = () => {
         </div>
       `
     },
-    "2": {
-      id: 2,
+    "7": {
+      id: 7,
       title: "Maximizing Your Earning Potential: Advanced Strategies",
       author: "Zain Abbas",
       date: "January 12, 2025",

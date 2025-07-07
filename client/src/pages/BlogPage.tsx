@@ -7,13 +7,7 @@ const BlogPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   
   useEffect(() => {
-    document.documentElement.classList.add('dark');
-    document.body.style.backgroundColor = '#0f172a';
     window.scrollTo(0, 0);
-    
-    return () => {
-      document.body.style.backgroundColor = '';
-    };
   }, []);
 
   const blogPosts = [

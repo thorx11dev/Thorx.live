@@ -51,6 +51,101 @@
   }
 }
 
+/* ========================================
+   STABLE BUTTON STYLING - CRITICAL SECTION
+   ======================================== */
+
+/* CRITICAL: Stable button styles that cannot be overridden */
+.thorx-btn-primary {
+  background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.thorx-btn-primary:hover {
+  background: linear-gradient(to right, #f1f5f9, #ffffff) !important;
+  color: #0f172a !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 20px 40px rgba(226, 232, 240, 0.2) !important;
+}
+
+.thorx-btn-secondary {
+  background: linear-gradient(to right, #475569, #64748b) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.thorx-btn-secondary:hover {
+  background: linear-gradient(to right, #64748b, #94a3b8) !important;
+  color: #ffffff !important;
+  transform: scale(1.05) !important;
+}
+
+/* CRITICAL: Search and input field styles */
+.thorx-search-input {
+  background-color: rgba(30, 41, 59, 0.6) !important;
+  border: 2px solid #475569 !important;
+  color: #e2e8f0 !important;
+}
+
+.thorx-search-input:focus {
+  background-color: rgba(30, 41, 59, 0.8) !important;
+  border-color: #64748b !important;
+  color: #f8fafc !important;
+}
+
+.thorx-search-input::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* CRITICAL: Dropdown and select styles */
+.thorx-select {
+  background-color: rgba(30, 41, 59, 0.6) !important;
+  border: 2px solid #475569 !important;
+  color: #e2e8f0 !important;
+}
+
+.thorx-select:hover {
+  border-color: #64748b !important;
+}
+
+.thorx-select option {
+  background-color: #1e293b !important;
+  color: #e2e8f0 !important;
+}
+
+/* CRITICAL: Category filter buttons */
+.thorx-filter-btn {
+  background-color: rgba(30, 41, 59, 0.5) !important;
+  color: #94a3b8 !important;
+  border: 1px solid #475569 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.thorx-filter-btn.active {
+  background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 8px 25px rgba(226, 232, 240, 0.15) !important;
+}
+
+/* CRITICAL: Newsletter and form buttons */
+.thorx-newsletter-btn {
+  background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.thorx-newsletter-btn:hover {
+  background: linear-gradient(to right, #f1f5f9, #ffffff) !important;
+  color: #0f172a !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 20px 40px rgba(226, 232, 240, 0.2) !important;
+}
+
 /* Cosmic background animation */
 .cosmic-bg {
   background: #0d0d2b;
@@ -152,16 +247,16 @@
 
 /* Dark theme variables - Enhanced for better visibility */
 .dark {
-  --bg-primary: #121212;
-  --bg-secondary: #1e1e1e;
-  --bg-tertiary: #2a2a2a;
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.87);
-  --text-tertiary: rgba(255, 255, 255, 0.65);
-  --border-primary: rgba(255, 255, 255, 0.15);
-  --border-secondary: rgba(255, 255, 255, 0.08);
-  --shadow-primary: rgba(0, 0, 0, 0.4);
-  --shadow-secondary: rgba(0, 0, 0, 0.25);
+  --bg-primary: #0f172a !important;
+  --bg-secondary: #1e293b !important;
+  --bg-tertiary: #334155 !important;
+  --text-primary: #f8fafc !important;
+  --text-secondary: #e2e8f0 !important;
+  --text-tertiary: #cbd5e1 !important;
+  --border-primary: #475569 !important;
+  --border-secondary: #334155 !important;
+  --shadow-primary: rgba(0, 0, 0, 0.4) !important;
+  --shadow-secondary: rgba(0, 0, 0, 0.25) !important;
   
   /* Error message theme variables - Dark Mode */
   --error-bg: #2A2329;

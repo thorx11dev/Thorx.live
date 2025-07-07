@@ -6,13 +6,10 @@ const LandingPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    document.documentElement.classList.add('dark');
-    document.body.style.backgroundColor = '#0f172a';
-    
     const timer = setTimeout(() => setIsLoaded(true), 100);
+    window.scrollTo(0, 0);
     
     return () => {
-      document.body.style.backgroundColor = '';
       clearTimeout(timer);
     };
   }, []);
