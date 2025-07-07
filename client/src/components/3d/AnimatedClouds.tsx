@@ -82,40 +82,24 @@ const AnimatedClouds: React.FC<AnimatedCloudsProps> = ({
       >
         {/* CSS-based volumetric cloud */}
         <div
-          className="realistic-cloud-shape animate-realistic-cloud-drift"
+          className="cloud-shape animate-cloud-drift"
           style={{
             width: `${cloud.size}px`,
-            height: `${cloud.size * 0.55}px`,
-            animationDuration: `${25 / cloud.speed}s`,
+            height: `${cloud.size * 0.6}px`,
+            animationDuration: `${20 / cloud.speed}s`,
             animationDelay: `${cloud.delay}s`
           }}
         >
-          {/* Core cloud mass - dense center matching reference */}
-          <div className="cloud-core"></div>
+          {/* Main cloud body with multiple layers for volume */}
+          <div className="cloud-layer cloud-layer-1"></div>
+          <div className="cloud-layer cloud-layer-2"></div>
+          <div className="cloud-layer cloud-layer-3"></div>
+          <div className="cloud-layer cloud-layer-4"></div>
+          <div className="cloud-layer cloud-layer-5"></div>
           
-          {/* Multiple volumetric layers for realistic density */}
-          <div className="realistic-layer realistic-layer-1"></div>
-          <div className="realistic-layer realistic-layer-2"></div>
-          <div className="realistic-layer realistic-layer-3"></div>
-          <div className="realistic-layer realistic-layer-4"></div>
-          <div className="realistic-layer realistic-layer-5"></div>
-          <div className="realistic-layer realistic-layer-6"></div>
-          <div className="realistic-layer realistic-layer-7"></div>
-          
-          {/* Billowing edges like reference image */}
-          <div className="cloud-billow cloud-billow-left"></div>
-          <div className="cloud-billow cloud-billow-right"></div>
-          <div className="cloud-billow cloud-billow-top"></div>
-          
-          {/* Wispy extensions */}
-          <div className="cloud-wisp-realistic cloud-wisp-1"></div>
-          <div className="cloud-wisp-realistic cloud-wisp-2"></div>
-          <div className="cloud-wisp-realistic cloud-wisp-3"></div>
-          <div className="cloud-wisp-realistic cloud-wisp-4"></div>
-          
-          {/* Volumetric lighting */}
-          <div className="realistic-cloud-highlight"></div>
-          <div className="realistic-cloud-shadow"></div>
+          {/* Cloud highlights and shadows for 3D effect */}
+          <div className="cloud-highlight"></div>
+          <div className="cloud-shadow"></div>
         </div>
       </div>
     );

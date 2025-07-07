@@ -1,6 +1,7 @@
 import { Link } from 'wouter';
 import { ArrowRight, Globe, Shield, Users, TrendingUp, DollarSign, Activity, ChevronDown, Satellite, Rocket, Target, Star, Zap, Award, Clock } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import AnimatedClouds from '../components/3d/AnimatedClouds';
 import EnhancedAnimatedClouds from '../components/3d/EnhancedAnimatedClouds';
 
 const LandingPage = () => {
@@ -233,7 +234,7 @@ const LandingPage = () => {
       {/* Features Section */}
       <div className="relative py-24 bg-slate-800 overflow-hidden">
         {/* Additional clouds for this section */}
-        <EnhancedAnimatedClouds density="low" scrollFactor={0.2} className="z-0 opacity-60" />
+        <AnimatedClouds density="low" scrollFactor={0.2} className="z-0 opacity-60" />
         {/* Enhanced Background Effects */}
         <div className="absolute inset-0">
           {/* Floating geometric shapes */}
@@ -538,7 +539,7 @@ const LandingPage = () => {
       {/* Stats Section */}
       <div className="relative py-24 bg-slate-800 overflow-hidden">
         {/* Additional clouds for stats section */}
-        <EnhancedAnimatedClouds density="low" scrollFactor={0.15} className="z-0 opacity-40" />
+        <AnimatedClouds density="low" scrollFactor={0.15} className="z-0 opacity-40" />
         {/* Enhanced Background with Data Visualization Effects */}
         <div className="absolute inset-0">
           {/* Matrix-style data streams */}
