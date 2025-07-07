@@ -413,9 +413,9 @@ const LandingPage = () => {
             </div>
             
             {[
-              { title: "Product", links: ["Features", "Pricing", "Updates"] },
-              { title: "Support", links: ["Help Center", "Contact", "Community"] },
-              { title: "Company", links: ["About", "Blog", "Careers"] }
+              { title: "Product", links: ["Features", "Updates"] },
+              { title: "Support", links: ["Help Center", "Contact"] },
+              { title: "Company", links: ["About", "Blog"] }
             ].map((section, index) => (
               <div key={section.title}>
                 <h3 className="text-lg font-semibold text-slate-200 mb-4">{section.title}</h3>
