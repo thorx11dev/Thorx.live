@@ -197,6 +197,57 @@
   background-image: radial-gradient(circle, var(--tw-gradient-stops));
 }
 
+/* ========================================
+   ENHANCED THEME STABILITY - CRITICAL SECTION
+   ======================================== */
+
+/* Force theme stability with highest specificity */
+html[data-theme="dark"] {
+  color-scheme: dark !important;
+}
+
+html[data-theme="light"] {
+  color-scheme: light !important;
+}
+
+/* Prevent theme conflicts with absolute priority */
+html.dark {
+  background-color: #0f172a !important;
+}
+
+html.light {
+  background-color: #ffffff !important;
+}
+
+body {
+  transition: background-color 0.3s ease !important;
+}
+
+/* Force button colors with absolute priority to prevent instability */
+.thorx-btn-primary {
+  background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
+  color: #0f172a !important;
+  border: 2px solid transparent !important;
+}
+
+.thorx-btn-primary:hover {
+  background: linear-gradient(to right, #f1f5f9, #ffffff) !important;
+  color: #0f172a !important;
+  transform: scale(1.05) !important;
+}
+
+.thorx-btn-secondary {
+  background: transparent !important;
+  color: #e2e8f0 !important;
+  border: 2px solid #64748b !important;
+}
+
+.thorx-btn-secondary:hover {
+  background: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #94a3b8 !important;
+}
+
 /* Cosmic background animation */
 .cosmic-bg {
   background: #0d0d2b;

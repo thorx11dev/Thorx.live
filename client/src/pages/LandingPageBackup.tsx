@@ -20,13 +20,10 @@ const LandingPage = () => {
   const isCtaInView = useInView(ctaRef, { once: true, amount: 0.3 });
 
   useEffect(() => {
-    document.documentElement.classList.add('dark');
-    document.body.style.backgroundColor = '#0f172a';
-    
+    // Removed forced dark mode - now respects user theme preference
     const timer = setTimeout(() => setIsLoaded(true), 50);
     
     return () => {
-      document.body.style.backgroundColor = '';
       clearTimeout(timer);
     };
   }, []);

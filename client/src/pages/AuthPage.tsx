@@ -57,14 +57,7 @@ const AuthPage = () => {
   }, [location]);
 
   // Force dark mode for Auth page
-  useEffect(() => {
-    document.documentElement.classList.add('dark');
-    document.body.style.backgroundColor = '#0f172a';
-    
-    return () => {
-      document.body.style.backgroundColor = '';
-    };
-  }, []);
+  // Removed forced dark mode - now respects user theme preference
 
   const [formData, setFormData] = useState<FormData>({
     email: '',
