@@ -47,9 +47,9 @@ const FeaturesPage = () => {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-900">
+    <div className="relative min-h-screen overflow-hidden bg-primary">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-slate-900">
+      <div className="absolute inset-0 bg-primary">
         <div
           className="absolute w-96 h-96 rounded-full pointer-events-none opacity-10 top-1/4 right-1/4"
           style={{
@@ -105,16 +105,16 @@ const FeaturesPage = () => {
       <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
         <div className="flex items-center space-x-2 sm:space-x-3">
           <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group">
-            <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-slate-800 rounded-xl border border-slate-700 group-hover:bg-slate-700 transition-colors">
+            <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-secondary rounded-xl border border-primary group-hover:bg-tertiary transition-colors">
               <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-slate-300" />
             </div>
-            <span className="text-xl sm:text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">Thorx</span>
+            <span className="text-xl sm:text-2xl font-bold text-primary group-hover:text-white transition-colors">Thorx</span>
           </Link>
         </div>
         <div className="flex items-center gap-3 sm:gap-6">
           <Link 
             to="/" 
-            className="text-slate-400 hover:text-slate-200 transition-colors inline-flex items-center gap-2 text-sm sm:text-base"
+            className="text-secondary hover:text-primary transition-colors inline-flex items-center gap-2 text-sm sm:text-base"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
@@ -125,12 +125,12 @@ const FeaturesPage = () => {
       {/* Hero Section */}
       <div className="relative z-10 py-16 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-200 mb-6 leading-tight">
-            <span className="block text-slate-400">Cosmic</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 leading-tight">
+            <span className="block text-secondary">Cosmic</span>
             <span>Features</span>
           </h1>
           
-          <p className="text-lg sm:text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-secondary mb-8 max-w-2xl mx-auto">
             Discover the powerful tools and capabilities that make Thorx the ultimate platform for digital earning and productivity.
           </p>
         </div>
@@ -143,21 +143,21 @@ const FeaturesPage = () => {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-slate-600 transition-all duration-300 group hover:shadow-2xl hover:shadow-slate-900/50 backdrop-blur-sm hover:scale-105 hover:-translate-y-1"
+                className="bg-secondary/50 p-8 rounded-2xl border border-primary hover:border-secondary transition-all duration-300 group hover:shadow-2xl hover:shadow-primary/50 backdrop-blur-sm hover:scale-105 hover:-translate-y-1"
               >
                 <div className="flex items-start space-x-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center group-hover:bg-slate-700 transition-colors shadow-lg">
-                      <feature.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-300 transition-colors" />
+                    <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center group-hover:bg-tertiary transition-colors shadow-lg">
+                      <feature.icon className="w-8 h-8 text-secondary group-hover:text-tertiary transition-colors" />
                     </div>
                   </div>
                   
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-slate-200 mb-4 group-hover:text-white transition-colors">
+                    <h3 className="text-2xl font-bold text-primary mb-4 group-hover:text-white transition-colors">
                       {feature.title}
                     </h3>
                     
-                    <p className="text-slate-400 mb-6 leading-relaxed group-hover:text-slate-300 transition-colors">
+                    <p className="text-secondary mb-6 leading-relaxed group-hover:text-tertiary transition-colors">
                       {feature.description}
                     </p>
                     

@@ -81,9 +81,9 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-900">
+    <div className="relative min-h-screen overflow-hidden bg-primary">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-slate-900">
+      <div className="absolute inset-0 bg-primary">
         <div
           className="absolute w-96 h-96 rounded-full pointer-events-none opacity-10 top-1/4 right-1/4"
           style={{
@@ -181,11 +181,11 @@ const AboutPage = () => {
                 key={index}
                 className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-slate-600 transition-all duration-300 group hover:shadow-2xl hover:shadow-slate-900/50 backdrop-blur-sm hover:scale-105 hover:-translate-y-1 text-center"
               >
-                <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-700 transition-colors shadow-lg">
-                  <value.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-300 transition-colors" />
+                <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-tertiary transition-colors shadow-lg">
+                  <value.icon className="w-8 h-8 text-secondary group-hover:text-tertiary transition-colors" />
                 </div>
                 
-                <h3 className="text-xl font-bold text-slate-200 mb-4 group-hover:text-white transition-colors">
+                <h3 className="text-xl font-bold text-primary mb-4 group-hover:text-white transition-colors">
                   {value.title}
                 </h3>
                 
