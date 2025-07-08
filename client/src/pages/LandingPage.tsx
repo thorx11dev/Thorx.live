@@ -420,61 +420,89 @@ const LandingPage = () => {
                 icon: Zap,
                 title: "Lightning Fast",
                 description: "Complete tasks in record time with our optimized workflow",
-                delay: "0.6s"
+                delay: "0.6s",
+                accentColor: "border-yellow-500/30 bg-yellow-500/5"
               },
               {
                 icon: Star,
                 title: "Premium Quality",
                 description: "Access to high-paying, verified opportunities only",
-                delay: "0.8s"
+                delay: "0.8s",
+                accentColor: "border-blue-500/30 bg-blue-500/5"
               },
               {
                 icon: Award,
                 title: "Certified Success",
                 description: "Join thousands of successful earners in our community",
-                delay: "1s"
+                delay: "1s",
+                accentColor: "border-green-500/30 bg-green-500/5"
               },
               {
                 icon: Clock,
                 title: "24/7 Support",
                 description: "Round-the-clock assistance whenever you need help",
-                delay: "1.2s"
+                delay: "1.2s",
+                accentColor: "border-purple-500/30 bg-purple-500/5"
               }
             ].map((benefit, index) => (
               <div
                 key={index}
-                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group"
+                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group thorx-feature-card"
                 style={{ '--delay': benefit.delay } as React.CSSProperties}
               >
-                {/* CLEAN SIMPLE CARD - No complex animations */}
-                <div className="text-center p-8 rounded-2xl
+                {/* REDESIGNED CARD WITH SUBTLE INTERACTIONS */}
+                <div className="text-center p-8 rounded-2xl relative overflow-hidden
                               border border-slate-700/30 bg-slate-800/30 backdrop-blur-xl
+                              transition-all duration-500 ease-out
                               group-hover:border-slate-500/50 group-hover:bg-slate-800/50
-                              transition-all duration-300 group-hover:shadow-lg
-                              transform group-hover:scale-105 group-hover:-translate-y-2">
+                              group-hover:shadow-xl group-hover:shadow-slate-900/50
+                              transform group-hover:scale-[1.02] group-hover:-translate-y-1">
                   
-                  {/* SIMPLE ICON CONTAINER - Minimal design */}
-                  <div className="mb-6">
+                  {/* ANIMATED BORDER GLOW */}
+                  <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 
+                                 transition-opacity duration-700 ${benefit.accentColor}`}></div>
+                  
+                  {/* FLOATING ICON WITH SUBTLE PULSE */}
+                  <div className="relative mb-6 z-10">
                     <div className="inline-flex items-center justify-center w-16 h-16 
                                   rounded-full bg-slate-700/50 border border-slate-600/30
-                                  group-hover:bg-slate-600/50 transition-colors duration-300">
+                                  transition-all duration-500 group-hover:bg-slate-600/50
+                                  group-hover:border-slate-500/50 group-hover:scale-110
+                                  relative overflow-hidden">
                       
-                      {/* CLEAN ICON - No filters or complex effects */}
-                      <benefit.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-200 
-                                            transition-colors duration-300 thorx-clean-icon" />
+                      {/* SUBTLE INNER GLOW */}
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-br 
+                                    from-slate-500/10 to-transparent opacity-0 
+                                    group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      {/* ICON WITH SMOOTH TRANSITIONS */}
+                      <benefit.icon className="w-8 h-8 text-slate-400 relative z-10
+                                            transition-all duration-500 thorx-feature-icon
+                                            group-hover:text-slate-200 group-hover:scale-110" />
+                      
+                      {/* GENTLE RIPPLE EFFECT */}
+                      <div className="absolute inset-0 rounded-full border-2 border-slate-500/20
+                                    scale-100 opacity-0 group-hover:scale-150 group-hover:opacity-100
+                                    transition-all duration-700 ease-out"></div>
                     </div>
                   </div>
                   
-                  {/* SIMPLE TEXT */}
-                  <h3 className="text-lg font-semibold text-slate-200 mb-3
-                               group-hover:text-white transition-colors duration-300">
+                  {/* ENHANCED TEXT WITH SMOOTH ANIMATIONS */}
+                  <h3 className="text-lg font-semibold text-slate-200 mb-3 relative z-10
+                               transition-all duration-500 group-hover:text-white
+                               group-hover:scale-105 group-hover:tracking-wide">
                     {benefit.title}
                   </h3>
                   
-                  <p className="text-slate-400 text-sm leading-relaxed
-                              group-hover:text-slate-300 transition-colors duration-300">
+                  <p className="text-slate-400 text-sm leading-relaxed relative z-10
+                              transition-all duration-500 group-hover:text-slate-300">
                     {benefit.description}
                   </p>
+                  
+                  {/* SLIDING ACCENT LINE */}
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r 
+                                from-slate-500 to-slate-400 group-hover:w-full 
+                                transition-all duration-700 ease-out"></div>
                 </div>
               </div>
             ))}

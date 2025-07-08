@@ -498,32 +498,61 @@ div[class*="bg-gradient-to-r"] {
   z-index: 20 !important;
 }
 
-/* CLEAN SIMPLE ICONS - No complex effects */
-.thorx-clean-icon {
+/* REDESIGNED FEATURE ICONS - Smooth and reliable */
+.thorx-feature-icon {
   display: inline-block !important;
   opacity: 1 !important;
   visibility: visible !important;
   color: #94a3b8 !important; /* slate-400 */
-  transition: color 0.3s ease !important;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
   stroke-width: 2px !important;
   fill: currentColor !important;
   stroke: currentColor !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
 }
 
-.group:hover .thorx-clean-icon {
+.group:hover .thorx-feature-icon {
   color: #e2e8f0 !important; /* slate-200 */
   opacity: 1 !important;
   visibility: visible !important;
+  transform: scale(1.1) translateZ(0) !important;
 }
 
-/* Cross-browser compatibility */
+/* Feature card container optimizations */
+.thorx-feature-card {
+  isolation: isolate !important;
+}
+
+.thorx-feature-card:hover .thorx-feature-icon {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1.1) translateZ(0) !important;
+}
+
+/* Enhanced cross-browser compatibility */
 @supports (-webkit-appearance: none) {
-  .thorx-clean-icon {
+  .thorx-feature-icon {
     -webkit-text-fill-color: #94a3b8 !important;
+    -webkit-transform: translateZ(0) !important;
+    -webkit-backface-visibility: hidden !important;
   }
   
-  .group:hover .thorx-clean-icon {
+  .group:hover .thorx-feature-icon {
     -webkit-text-fill-color: #e2e8f0 !important;
+    -webkit-transform: scale(1.1) translateZ(0) !important;
+  }
+}
+
+@supports (-moz-appearance: none) {
+  .thorx-feature-icon {
+    -moz-transform: translateZ(0) !important;
+    -moz-backface-visibility: hidden !important;
+  }
+  
+  .group:hover .thorx-feature-icon {
+    -moz-transform: scale(1.1) translateZ(0) !important;
   }
 }
 
