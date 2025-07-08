@@ -264,6 +264,9 @@ Changelog:
 - July 08, 2025. CTA: "Ready to Start Your Journey?" (sign-in gradient)
 - July 08, 2025. SIGN-IN BUTTON COLOR: All header text now uses linear gradient from #FADADD to #D6EAF8 matching navigation sign-in button
 - July 08, 2025. REMOVED TEXT SHADOWS: Completely removed drop shadows from all header text for cleaner appearance
+- July 08, 2025. ENHANCED HOVER ANIMATIONS: Added headerHoverFloat animation with increased visibility against clouds
+- July 08, 2025. Hover effects now use higher brightness (1.3-1.5), contrast (1.4-1.6), and dramatic scaling (1.08-1.15)
+- July 08, 2025. Preserved original whimsicalFloat animation for mouse-away interactions per user preference
 ```
 
 ## User Preferences
