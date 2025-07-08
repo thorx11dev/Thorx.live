@@ -447,41 +447,36 @@ const LandingPage = () => {
             ].map((benefit, index) => (
               <div
                 key={index}
-                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group"
+                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group thorx-cosmic-feature-card"
                 style={{ '--delay': benefit.delay } as React.CSSProperties}
               >
-                {/* Magnetic hover container */}
-                <div className="relative perspective-1000 transform-gpu transition-transform duration-500 
-                              group-hover:scale-110 group-hover:-translate-y-4">
+                {/* Simplified hover container */}
+                <div className="relative transform transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-4">
                   
                   {/* Main card */}
                   <div className="text-center p-8 rounded-2xl relative overflow-hidden
                                 border border-slate-700/30 bg-slate-800/30 backdrop-blur-xl
                                 group-hover:border-slate-500/50 group-hover:bg-slate-800/50
-                                transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-slate-900/80
-                                before:absolute before:inset-0 before:bg-gradient-to-br before:opacity-0 
-                                before:group-hover:opacity-100 before:transition-opacity before:duration-700 before:rounded-2xl"
-                       style={{ '--gradient': `${benefit.color}` } as React.CSSProperties}>
+                                transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-slate-900/80">
                     
                     {/* Dynamic gradient overlay */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-100 
                                    transition-opacity duration-700 rounded-2xl`}></div>
                     
-                    {/* Floating icon with orbital animation */}
+                    {/* Simplified icon container */}
                     <div className="relative mb-6">
                       <div className="inline-block p-6 rounded-full bg-slate-800/80 backdrop-blur-sm
                                     group-hover:bg-slate-700/80 transition-all duration-500 
                                     shadow-lg group-hover:shadow-xl group-hover:shadow-slate-700/50
-                                    transform-gpu group-hover:scale-125 group-hover:rotate-12
+                                    transform group-hover:scale-125 group-hover:rotate-12
                                     relative overflow-hidden border border-slate-600/30">
                         
                         {/* Icon inner glow */}
                         <div className="absolute inset-0 bg-gradient-to-br from-slate-500/20 via-transparent to-slate-700/20 
                                       opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
                         
-                        <benefit.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-200 
-                                                transition-all duration-500 relative z-10
-                                                thorx-cosmic-icon" />
+                        {/* OPTIMIZED ICON - No conflicting filters */}
+                        <benefit.icon className="w-8 h-8 text-slate-400 relative z-20 thorx-feature-icon" />
                         
                         {/* Pulsing ring effect */}
                         <div className="absolute inset-0 border-2 border-slate-500/30 rounded-full 

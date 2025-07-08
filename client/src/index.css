@@ -498,6 +498,67 @@ div[class*="bg-gradient-to-r"] {
   z-index: 20 !important;
 }
 
+/* OPTIMIZED: Feature icons with perfect visibility */
+.thorx-feature-icon {
+  display: inline-block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: #94a3b8 !important; /* slate-400 */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform: translateZ(0) !important;
+  will-change: transform, color !important;
+  backface-visibility: hidden !important;
+  position: relative !important;
+  z-index: 25 !important;
+  stroke-width: 2px !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+.group:hover .thorx-feature-icon {
+  color: #e2e8f0 !important; /* slate-200 */
+  transform: scale(1.1) translateZ(0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 30 !important;
+}
+
+/* Feature card optimizations */
+.thorx-cosmic-feature-card {
+  isolation: isolate !important;
+}
+
+.thorx-cosmic-feature-card:hover .thorx-feature-icon {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1.1) translateZ(0) !important;
+}
+
+/* Cross-browser compatibility for feature icons */
+@supports (-webkit-appearance: none) {
+  .thorx-feature-icon {
+    -webkit-transform: translateZ(0) !important;
+    -webkit-backface-visibility: hidden !important;
+  }
+  
+  .group:hover .thorx-feature-icon {
+    -webkit-transform: scale(1.1) translateZ(0) !important;
+    -webkit-text-fill-color: #e2e8f0 !important;
+  }
+}
+
+@supports (-moz-appearance: none) {
+  .thorx-feature-icon {
+    -moz-transform: translateZ(0) !important;
+    -moz-backface-visibility: hidden !important;
+  }
+  
+  .group:hover .thorx-feature-icon {
+    -moz-transform: scale(1.1) translateZ(0) !important;
+  }
+}
+
 /* CRITICAL: Search and input field styles */
 .thorx-search-input {
   background-color: rgba(30, 41, 59, 0.6) !important;
