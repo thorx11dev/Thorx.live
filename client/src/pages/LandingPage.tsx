@@ -110,7 +110,7 @@ const LandingPage = () => {
           <div className="flex items-center gap-3 sm:gap-6">
             <Link 
               to="/auth" 
-              className="text-white hover:text-slate-200 transition-colors relative group text-sm sm:text-base"
+              className="text-white transition-colors relative group text-sm sm:text-base"
             >
               Sign In
               <span className="absolute bottom-0 left-0 h-0.5 bg-slate-400 w-0 group-hover:w-full transition-all duration-300" />

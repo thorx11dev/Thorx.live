@@ -11,7 +11,10 @@
     color: #ffffff !important;
   }
   
-  .text-white:hover {
+  .text-white:hover,
+  .text-white:focus,
+  .text-white:active,
+  .text-white:visited {
     color: #ffffff !important;
   }
 }
@@ -246,7 +249,11 @@ body {
 /* CRITICAL OVERRIDE: Ensure text-white is always white */
 body *[class*="text-white"],
 html *[class*="text-white"],
-.text-white {
+.text-white,
+.text-white:hover,
+.text-white:focus,
+.text-white:active,
+.text-white:visited {
   color: #ffffff !important;
 }
 
@@ -301,7 +308,21 @@ a.text-white:hover,
 link.text-white:hover,
 [class*="bg-gradient-to-r"][class*="text-white"]:hover,
 .text-white.bg-gradient-to-r:hover,
-*[class*="text-white"]:hover {
+*[class*="text-white"]:hover,
+.bg-gradient-to-r.text-white:focus,
+button.text-white:focus,
+a.text-white:focus,
+link.text-white:focus,
+[class*="bg-gradient-to-r"][class*="text-white"]:focus,
+.text-white.bg-gradient-to-r:focus,
+*[class*="text-white"]:focus,
+.bg-gradient-to-r.text-white:active,
+button.text-white:active,
+a.text-white:active,
+link.text-white:active,
+[class*="bg-gradient-to-r"][class*="text-white"]:active,
+.text-white.bg-gradient-to-r:active,
+*[class*="text-white"]:active {
   color: #ffffff !important;
 }
 
@@ -320,6 +341,16 @@ html.dark .text-white,
 html:not(.dark) .text-white,
 body .text-white,
 * .text-white {
+  color: #ffffff !important;
+}
+
+/* CRITICAL: Override specific hover classes that change text color */
+.text-white.hover\:text-slate-200:hover,
+.text-white.hover\:text-slate-300:hover,
+.text-white.hover\:text-slate-400:hover,
+.text-white.hover\:text-primary:hover,
+.text-white.hover\:text-secondary:hover,
+.text-white.hover\:text-tertiary:hover {
   color: #ffffff !important;
 }
 
@@ -2555,7 +2586,16 @@ body {
 /* Critical override: Ensure text-white elements are always white regardless of theme */
 body .text-white,
 html .text-white,
-* .text-white {
+* .text-white,
+body .text-white:hover,
+html .text-white:hover,
+* .text-white:hover,
+body .text-white:focus,
+html .text-white:focus,
+* .text-white:focus,
+body .text-white:active,
+html .text-white:active,
+* .text-white:active {
   color: #ffffff !important;
 }
 
