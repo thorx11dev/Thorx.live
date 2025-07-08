@@ -9,6 +9,8 @@
 @layer utilities {
   .text-white {
     color: #ffffff !important;
+    text-shadow: none !important;
+    filter: none !important;
   }
   
   .text-white:hover,
@@ -16,6 +18,8 @@
   .text-white:active,
   .text-white:visited {
     color: #ffffff !important;
+    text-shadow: none !important;
+    filter: none !important;
   }
 }
 
@@ -246,7 +250,7 @@ body {
   transition: var(--theme-transition) !important;
 }
 
-/* CRITICAL OVERRIDE: Ensure text-white is always white */
+/* CRITICAL OVERRIDE: Ensure text-white is always white with no effects */
 body *[class*="text-white"],
 html *[class*="text-white"],
 .text-white,
@@ -255,6 +259,9 @@ html *[class*="text-white"],
 .text-white:active,
 .text-white:visited {
   color: #ffffff !important;
+  text-shadow: none !important;
+  filter: none !important;
+  text-decoration: none !important;
 }
 
 /* Button stability with theme-aware colors */
@@ -300,6 +307,8 @@ link.text-white,
 .text-white.bg-gradient-to-r,
 *[class*="text-white"] {
   color: #ffffff !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 .bg-gradient-to-r.text-white:hover,
@@ -324,6 +333,8 @@ link.text-white:active,
 .text-white.bg-gradient-to-r:active,
 *[class*="text-white"]:active {
   color: #ffffff !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 /* Specific overrides for button combinations with maximum specificity */
@@ -351,6 +362,19 @@ body .text-white,
 .text-white.hover\:text-primary:hover,
 .text-white.hover\:text-secondary:hover,
 .text-white.hover\:text-tertiary:hover {
+  color: #ffffff !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* CRITICAL: Remove any global text effects that might affect white text */
+button, a, span, div, p, h1, h2, h3, h4, h5, h6 {
+  filter: none !important;
+}
+
+button.text-white, a.text-white, span.text-white {
+  text-shadow: none !important;
+  filter: none !important;
   color: #ffffff !important;
 }
 
@@ -2597,6 +2621,8 @@ body .text-white:active,
 html .text-white:active,
 * .text-white:active {
   color: #ffffff !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 /* ENSURE PROPER CONTRAST RATIOS */
