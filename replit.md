@@ -194,6 +194,8 @@ Changelog:
 - July 08, 2025. SIMPLIFIED LOGO BRANDING: Removed text and tagline from logo component for cleaner icon-only design
 - July 08, 2025. Added standalone tagline "Navigate the digital universe with confidence" only to footer section
 - July 08, 2025. Updated all logo implementations to use simplified logo-only format throughout website
+- July 08, 2025. REPOSITIONED LANDING PAGE LOGO: Moved Thorx logo from hero section to top-left navigation corner
+- July 08, 2025. Increased navigation logo size from sm to md for better visibility and brand presence
 ```
 
 ## User Preferences
