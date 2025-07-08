@@ -142,7 +142,7 @@ const LandingPage = () => {
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left side - Content */}
             <div className="text-center lg:text-left px-2 sm:px-0">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight cosmic-slide-up cosmic-header-readable">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight cosmic-slide-up cosmic-text-glow">
                 <span>Explore the</span>
                 <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Digital Universe</span>
               </h1>
@@ -306,7 +306,7 @@ const LandingPage = () => {
           {/* Professional Title Section */}
           <div className="text-center mb-20">
             <div className="inline-block mb-6 cosmic-slide-up">
-              <h2 className="text-5xl md:text-6xl font-bold mb-4 text-white relative cosmic-header-readable">
+              <h2 className="text-5xl md:text-6xl font-bold mb-4 text-white relative cosmic-text-glow">
                 <span className="relative z-10">Cosmic Features</span>
               </h2>
             </div>
@@ -416,13 +416,13 @@ const LandingPage = () => {
                     <div className="space-y-6 relative z-10 text-center">
                       <h3 className="text-2xl font-bold text-white relative
                                    transition-all duration-500 group-hover:text-blue-100
-                                   group-hover:scale-105 cosmic-text-readable">
+                                   group-hover:scale-105 cosmic-text-shadow">
                         {feature.title}
                       </h3>
                       
                       <p className="text-slate-300 leading-relaxed text-lg
                                   transition-all duration-500 group-hover:text-slate-200
-                                  group-hover:scale-105 cosmic-text-readable">
+                                  group-hover:scale-105">
                         {feature.description}
                       </p>
                     </div>
@@ -475,7 +475,7 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-block mb-4 cosmic-slide-up">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white relative cosmic-header-readable">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white relative cosmic-text-glow">
                 Why Choose Thorx?
               </h2>
             </div>
@@ -567,13 +567,13 @@ const LandingPage = () => {
                     <div className="space-y-4 relative z-10">
                       <h3 className="text-xl font-bold text-white mb-4 relative
                                    transition-all duration-500 group-hover:text-blue-100
-                                   group-hover:scale-105 cosmic-text-readable">
+                                   group-hover:scale-105 cosmic-text-shadow">
                         {feature.title}
                       </h3>
                       
                       <p className="text-slate-300 text-sm leading-relaxed
                                   transition-all duration-500 group-hover:text-slate-200
-                                  group-hover:scale-105 cosmic-text-readable">
+                                  group-hover:scale-105">
                         {feature.description}
                       </p>
                     </div>
@@ -630,11 +630,11 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-block mb-4 cosmic-slide-up">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white relative cosmic-header-readable">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white relative cosmic-text-glow">
                 Trusted by Thousands
               </h2>
             </div>
-            <p className="text-xl max-w-2xl mx-auto text-slate-300 cosmic-slide-up cosmic-text-readable" style={{animationDelay: '0.2s'}}>
+            <p className="text-xl max-w-2xl mx-auto text-slate-300 cosmic-slide-up" style={{animationDelay: '0.2s'}}>
               Join our growing community of successful earners
             </p>
           </div>
@@ -768,12 +768,12 @@ const LandingPage = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           {/* Professional heading */}
           <div className="mb-6 cosmic-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-white relative cosmic-header-readable">
+            <h2 className="text-4xl md:text-5xl font-bold text-white relative cosmic-text-glow">
               Ready to Start Your Journey?
             </h2>
           </div>
           
-          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto cosmic-slide-up cosmic-text-readable" style={{animationDelay: '0.2s'}}>
+          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto cosmic-slide-up" style={{animationDelay: '0.2s'}}>
             Join thousands of users who have already discovered the power of Thorx
           </p>
           
