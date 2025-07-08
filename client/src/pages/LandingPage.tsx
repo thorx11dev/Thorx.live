@@ -110,14 +110,14 @@ const LandingPage = () => {
           <div className="flex items-center gap-3 sm:gap-6">
             <Link 
               to="/auth" 
-              className="text-slate-400 hover:text-slate-200 transition-colors relative group text-sm sm:text-base"
+              className="text-white transition-colors relative text-sm sm:text-base"
             >
               Sign In
-              <span className="absolute bottom-0 left-0 h-0.5 bg-slate-400 w-0 group-hover:w-full transition-all duration-300" />
+              <span className="absolute bottom-0 left-0 h-0.5 bg-slate-400 w-0 hover:w-full transition-all duration-300" />
             </Link>
             <Link 
               to="/auth" 
-              className="bg-gradient-to-r from-slate-700 to-slate-600 text-slate-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:from-slate-600 hover:to-slate-500 transition-all duration-300 text-sm sm:text-base hover:scale-105 transform active:scale-95"
+              className="bg-gradient-to-r from-slate-700 to-slate-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:from-slate-600 hover:to-slate-500 transition-all duration-300 text-sm sm:text-base hover:scale-105 transform active:scale-95"
             >
               Get Started
             </Link>
@@ -141,7 +141,7 @@ const LandingPage = () => {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Link 
                   to="/auth" 
-                  className="thorx-btn-cta-primary"
+                  className="bg-gradient-to-r from-slate-200 to-slate-100 text-slate-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:from-slate-100 hover:to-white transition-all duration-300 inline-flex items-center justify-center gap-2 sm:gap-3 group text-sm sm:text-base hover:scale-105 hover:shadow-2xl hover:shadow-slate-200/20 transform active:scale-95"
                 >
                   <span>Start Your Journey</span>
                   <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 group-hover:rotate-12 transition-all duration-300" />
@@ -149,7 +149,7 @@ const LandingPage = () => {
                 
                 <Link 
                   to="/auth" 
-                  className="thorx-btn-cta-secondary"
+                  className="bg-gradient-to-r from-slate-700 to-slate-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:from-slate-600 hover:to-slate-500 transition-all duration-300 text-sm sm:text-base text-center hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 transform active:scale-95"
                 >
                   Sign In
                 </Link>
@@ -786,7 +786,15 @@ const LandingPage = () => {
               
               <Link 
                 to="/auth" 
-                className="thorx-btn-cta-primary group"
+                className="relative bg-gradient-to-r from-slate-200 to-slate-100 text-slate-900 
+                         px-10 py-4 rounded-2xl font-bold 
+                         transition-all duration-500 inline-flex items-center justify-center gap-3 
+                         group-hover:scale-110 group-hover:-translate-y-1
+                         group-hover:shadow-2xl group-hover:shadow-slate-300/20
+                         transform-gpu perspective-1000
+                         before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/20 before:to-transparent 
+                         before:opacity-0 before:group-hover:opacity-100 before:transition-opacity before:duration-500 before:rounded-2xl
+                         overflow-hidden border-2 border-transparent group-hover:border-slate-300/30"
               >
                 {/* Button shimmer effect */}
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent 
@@ -829,7 +837,16 @@ const LandingPage = () => {
               
               <Link 
                 to="/features" 
-                className="thorx-btn-cta-secondary group"
+                className="relative border-2 border-slate-600 bg-slate-900/60 backdrop-blur-xl text-white 
+                         px-10 py-4 rounded-2xl font-semibold 
+                         transition-all duration-500 inline-flex items-center justify-center gap-3
+                         group-hover:scale-105 group-hover:-translate-y-1
+                         group-hover:border-slate-400 group-hover:bg-slate-800/80
+                         group-hover:shadow-xl group-hover:shadow-slate-700/50
+                         transform-gpu perspective-1000
+                         before:absolute before:inset-0 before:bg-gradient-to-r before:from-slate-700/20 before:to-slate-600/20 
+                         before:opacity-0 before:group-hover:opacity-100 before:transition-opacity before:duration-500 before:rounded-2xl
+                         overflow-hidden"
               >
                 {/* Button scanning line */}
                 <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-slate-400 to-transparent 
