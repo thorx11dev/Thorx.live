@@ -474,13 +474,12 @@ const LandingPage = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-block mb-4 opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-200 relative">
+            <div className="inline-block mb-4 cosmic-slide-up">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white relative cosmic-text-glow">
                 Why Choose Thorx?
-
               </h2>
             </div>
-            <p className="text-xl max-w-2xl mx-auto text-slate-400 opacity-0 animate-[fadeInUp_1s_ease-out_0.4s_forwards]">
+            <p className="text-xl max-w-2xl mx-auto text-slate-300 cosmic-slide-up" style={{animationDelay: '0.2s'}}>
               Experience the advantages that set us apart
             </p>
           </div>
@@ -527,134 +526,63 @@ const LandingPage = () => {
             ].map((feature, index) => (
               <div
                 key={index}
-                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group thorx-constellation-card"
-                style={{ '--delay': feature.delay } as React.CSSProperties}
+                className="cosmic-scale-in group"
+                style={{ animationDelay: feature.delay }}
               >
-                {/* CONSTELLATION CARD - Inspired by stats section structure */}
-                <div className="relative perspective-1000 transform-gpu transition-all duration-700 
-                              group-hover:scale-105 group-hover:-translate-y-8 group-hover:rotate-2">
+                {/* Professional benefit card */}
+                <div className="relative cosmic-hover-lift">
                   
-                  {/* MAIN CARD CONTAINER */}
-                  <div className="p-8 rounded-3xl relative overflow-hidden
-                                border border-slate-700/40 bg-slate-900/30 backdrop-blur-sm
-                                group-hover:border-slate-500/60 group-hover:bg-slate-900/50
-                                transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-slate-900/90
-                                text-center min-h-[280px] flex flex-col justify-center">
+                  {/* Main card container */}
+                  <div className="p-8 rounded-2xl relative overflow-hidden cosmic-glass text-center min-h-[300px] flex flex-col justify-center">
                     
-                    {/* CONSTELLATION BACKGROUND PATTERN */}
-                    <div className="absolute inset-0 overflow-hidden">
-                      {/* Constellation dots */}
-                      <div className="absolute top-4 left-4 w-1 h-1 bg-slate-500 rounded-full opacity-60 
-                                    group-hover:opacity-100 transition-opacity duration-700"></div>
-                      <div className="absolute top-8 right-8 w-1 h-1 bg-slate-500 rounded-full opacity-60 
-                                    group-hover:opacity-100 transition-opacity duration-700"></div>
-                      <div className="absolute bottom-6 left-6 w-1 h-1 bg-slate-500 rounded-full opacity-60 
-                                    group-hover:opacity-100 transition-opacity duration-700"></div>
-                      <div className="absolute bottom-4 right-4 w-1 h-1 bg-slate-500 rounded-full opacity-60 
-                                    group-hover:opacity-100 transition-opacity duration-700"></div>
-                      
-                      {/* Constellation lines */}
-                      <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                        <line x1="16" y1="16" x2="50" y2="50" stroke="#64748b" strokeWidth="0.5" 
-                              opacity="0.3" className="group-hover:opacity-60 transition-opacity duration-700" />
-                        <line x1="90%" y1="32" x2="70%" y2="70%" stroke="#64748b" strokeWidth="0.5" 
-                              opacity="0.3" className="group-hover:opacity-60 transition-opacity duration-700" />
-                      </svg>
-                    </div>
+                    {/* Elegant background gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
                     
-                    {/* DYNAMIC SOLID COLOR OVERLAY */}
-                    <div className={`absolute inset-0 ${feature.color} opacity-0 group-hover:opacity-100 
-                                   transition-opacity duration-1000 rounded-3xl`}></div>
-                    
-                    {/* FLOATING CONSTELLATION ICON */}
+                    {/* Professional icon */}
                     <div className="relative mb-6 z-10">
-                      <div className="w-20 h-20 bg-slate-800/50 backdrop-blur-sm rounded-full 
+                      <div className="w-20 h-20 cosmic-glass-light rounded-full 
                                     flex items-center justify-center mx-auto 
-                                    group-hover:bg-slate-700/60 transition-all duration-700 
-                                    shadow-lg group-hover:shadow-2xl group-hover:shadow-slate-700/60
+                                    transition-all duration-500 
+                                    shadow-lg group-hover:shadow-blue-500/20
                                     transform-gpu group-hover:scale-110 group-hover:rotate-6
                                     relative overflow-hidden border-2 border-slate-600/30 
-                                    group-hover:border-slate-500/50">
+                                    group-hover:border-blue-400/50">
                         
-                        {/* COSMIC ENERGY FIELD */}
-                        <div className="absolute inset-0 bg-slate-500/20 
-                                      opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-full"></div>
+                        {/* Energy field */}
+                        <div className="absolute inset-0 bg-blue-500/20 
+                                      opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
                         
-                        {/* CONSTELLATION ICON */}
-                        <feature.icon className="w-10 h-10 text-slate-400 group-hover:text-slate-200 
-                                             transition-all duration-700 relative z-10 thorx-constellation-icon
-                                             group-hover:scale-105 group-hover:drop-shadow-lg" />
+                        {/* Clean icon */}
+                        <feature.icon className="w-10 h-10 text-slate-300 group-hover:text-white 
+                                             transition-all duration-500 relative z-10" />
                         
-                        {/* ORBITAL RINGS */}
-                        <div className="absolute inset-0 border-2 border-slate-500/30 rounded-full 
-                                      scale-100 group-hover:scale-125 opacity-100 group-hover:opacity-0 
-                                      transition-all duration-1000"></div>
-                        <div className="absolute inset-0 border border-slate-400/20 rounded-full 
-                                      scale-90 opacity-0 group-hover:scale-140 group-hover:opacity-100 
-                                      transition-all duration-1200 delay-200"></div>
-                        
-                        {/* CONSTELLATION PARTICLES */}
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                          {[...Array(8)].map((_, i) => (
-                            <div
-                              key={i}
-                              className="absolute w-0.5 h-0.5 bg-slate-300 rounded-full opacity-0 
-                                       group-hover:opacity-80 group-hover:animate-pulse"
-                              style={{
-                                left: `${Math.cos((i * Math.PI) / 4) * 35}px`,
-                                top: `${Math.sin((i * Math.PI) / 4) * 35}px`,
-                                animationDelay: `${i * 0.1}s`,
-                                animationDuration: '2s'
-                              }}
-                            ></div>
-                          ))}
-                        </div>
+                        {/* Elegant ring */}
+                        <div className="absolute inset-0 border border-blue-400/30 rounded-full 
+                                      scale-100 group-hover:scale-125 opacity-0 group-hover:opacity-100 
+                                      transition-all duration-500"></div>
                       </div>
                     </div>
                     
-                    {/* ENHANCED TYPOGRAPHY */}
+                    {/* Professional content */}
                     <div className="space-y-4 relative z-10">
-                      <h3 className="text-xl font-bold text-slate-200 mb-4 relative
-                                   transition-all duration-700 group-hover:text-white
-                                   group-hover:scale-105 group-hover:tracking-wide
-                                   group-hover:drop-shadow-sm">
+                      <h3 className="text-xl font-bold text-white mb-4 relative
+                                   transition-all duration-500 group-hover:text-blue-100
+                                   group-hover:scale-105 cosmic-text-shadow">
                         {feature.title}
-                        
-                        {/* Title enhancement glow */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-300/10 to-transparent 
-                                      opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-lg"></div>
                       </h3>
                       
-                      <p className="text-slate-400 text-sm leading-relaxed
-                                  transition-all duration-700 group-hover:text-slate-300
-                                  group-hover:scale-102">
+                      <p className="text-slate-300 text-sm leading-relaxed
+                                  transition-all duration-500 group-hover:text-slate-200
+                                  group-hover:scale-105">
                         {feature.description}
                       </p>
                     </div>
                     
-                    {/* INTERACTIVE CONSTELLATION SYMBOL */}
-                    <div className="absolute top-4 right-4 text-2xl opacity-20 
-                                  group-hover:opacity-60 group-hover:scale-125 group-hover:rotate-12
-                                  transition-all duration-700 filter blur-sm group-hover:blur-none">
-                      {feature.constellation}
-                    </div>
-                    
-                    {/* COSMIC SCANNING LINES */}
-                    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r 
-                                  from-transparent via-slate-400/60 to-transparent
-                                  transform -translate-x-full group-hover:translate-x-full
-                                  transition-transform duration-1500 ease-out"></div>
-                    <div className="absolute bottom-0 right-0 w-0.5 h-full bg-gradient-to-t 
-                                  from-transparent via-slate-400/60 to-transparent
-                                  transform translate-y-full group-hover:-translate-y-full
-                                  transition-transform duration-1500 ease-out delay-300"></div>
+                    {/* Elegant accent line */}
+                    <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r 
+                                  from-transparent via-blue-400/50 to-transparent
+                                  opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
-                  
-                  {/* HOLOGRAPHIC REFLECTION */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-700/10 to-transparent 
-                                rounded-3xl transform translate-y-8 scale-95 opacity-0 
-                                group-hover:opacity-100 group-hover:translate-y-12 group-hover:scale-90 
-                                transition-all duration-700 blur-sm"></div>
                 </div>
               </div>
             ))}
@@ -838,55 +766,35 @@ const LandingPage = () => {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          {/* Enhanced heading with energy effect */}
-          <div className="mb-6 opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-200 relative">
+          {/* Professional heading */}
+          <div className="mb-6 cosmic-slide-up">
+            <h2 className="text-4xl md:text-5xl font-bold text-white relative cosmic-text-glow">
               Ready to Start Your Journey?
-              {/* Multi-layered glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/10 via-blue-400/10 via-purple-400/10 to-yellow-400/10 
-                            animate-pulse blur-xl scale-125 opacity-40"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-300/5 to-transparent 
-                            animate-pulse blur-lg scale-110 opacity-60"></div>
             </h2>
           </div>
           
-          <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto opacity-0 animate-[fadeInUp_1s_ease-out_0.4s_forwards]">
+          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto cosmic-slide-up" style={{animationDelay: '0.2s'}}>
             Join thousands of users who have already discovered the power of Thorx
           </p>
           
-          {/* Enhanced CTA buttons with magnetic hover effects */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]">
+          {/* Professional CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center cosmic-scale-in" style={{animationDelay: '0.4s'}}>
             {/* Primary CTA Button */}
             <div className="relative group">
-              {/* Button glow container */}
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-300 to-slate-100 rounded-2xl blur-lg 
-                            opacity-0 group-hover:opacity-30 transition-opacity duration-500 scale-110"></div>
               
               <Link 
                 to="/auth" 
-                className="relative bg-gradient-to-r from-slate-200 to-slate-100 text-slate-900 
+                className="relative cosmic-btn-primary 
                          px-10 py-4 rounded-2xl font-bold 
                          transition-all duration-500 inline-flex items-center justify-center gap-3 
-                         group-hover:scale-110 group-hover:-translate-y-1
-                         group-hover:shadow-2xl group-hover:shadow-slate-300/20
-                         transform-gpu perspective-1000
-                         before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/20 before:to-transparent 
-                         before:opacity-0 before:group-hover:opacity-100 before:transition-opacity before:duration-500 before:rounded-2xl
-                         overflow-hidden border-2 border-transparent group-hover:border-slate-300/30"
+                         group-hover:scale-105 group-hover:-translate-y-1
+                         transform-gpu"
               >
-                {/* Button shimmer effect */}
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent 
-                              transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                
                 <span className="relative z-10 group-hover:scale-105 transition-transform duration-300">
                   Get Started Free
                 </span>
                 
-                {/* Enhanced arrow with trail effect */}
-                <div className="relative">
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300 relative z-10" />
-                  <ArrowRight className="w-5 h-5 absolute top-0 left-0 opacity-30 group-hover:translate-x-1 group-hover:opacity-0 transition-all duration-300" />
-                </div>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300 relative z-10" />
                 
                 {/* Success particles */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -909,54 +817,25 @@ const LandingPage = () => {
             
             {/* Secondary CTA Button */}
             <div className="relative group">
-              {/* Button outline glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-600 to-slate-500 rounded-2xl blur-md 
-                            opacity-0 group-hover:opacity-20 transition-opacity duration-500 scale-105"></div>
               
               <Link 
                 to="/features" 
-                className="relative border-2 border-slate-600 bg-slate-900/30 backdrop-blur-sm text-slate-200 
+                className="relative cosmic-btn-secondary 
                          px-10 py-4 rounded-2xl font-semibold 
                          transition-all duration-500 inline-flex items-center justify-center gap-3
                          group-hover:scale-105 group-hover:-translate-y-1
-                         group-hover:border-slate-400 group-hover:bg-slate-800/80 group-hover:text-white
-                         group-hover:shadow-xl group-hover:shadow-slate-700/50
-                         transform-gpu perspective-1000
-                         before:absolute before:inset-0 before:bg-gradient-to-r before:from-slate-700/20 before:to-slate-600/20 
-                         before:opacity-0 before:group-hover:opacity-100 before:transition-opacity before:duration-500 before:rounded-2xl
-                         overflow-hidden"
+                         transform-gpu"
               >
-                {/* Button scanning line */}
-                <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-slate-400 to-transparent 
-                              transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                
                 <span className="relative z-10 group-hover:scale-105 transition-transform duration-300">
                   Learn More
                 </span>
-                
-                {/* Info particles */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  {[...Array(4)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-0 
-                               group-hover:opacity-40 group-hover:animate-ping"
-                      style={{
-                        left: `${Math.cos((i * Math.PI) / 2) * 40}px`,
-                        top: `${Math.sin((i * Math.PI) / 2) * 25}px`,
-                        animationDelay: `${i * 0.3}s`,
-                        animationDuration: '2s'
-                      }}
-                    ></div>
-                  ))}
-                </div>
               </Link>
             </div>
           </div>
           
           {/* Trust indicators */}
-          <div className="mt-12 opacity-0 animate-[fadeInUp_1s_ease-out_0.8s_forwards]">
-            <div className="flex flex-wrap justify-center items-center gap-8 text-slate-500 text-sm">
+          <div className="mt-12 cosmic-fade-in" style={{animationDelay: '0.6s'}}>
+            <div className="flex flex-wrap justify-center items-center gap-8 text-slate-400 text-sm">
               <div className="flex items-center gap-2">
                 <Shield className="w-4 h-4" />
                 <span>100% Secure</span>
