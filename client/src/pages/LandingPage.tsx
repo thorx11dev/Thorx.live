@@ -463,29 +463,32 @@ const LandingPage = () => {
                     <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-100 
                                    transition-opacity duration-700 rounded-2xl`}></div>
                     
-                    {/* Simplified icon container */}
-                    <div className="relative mb-6">
+                    {/* BULLETPROOF ICON CONTAINER - Isolated for perfect visibility */}
+                    <div className="relative mb-6 thorx-icon-container">
+                      {/* Background circle */}
                       <div className="inline-block p-6 rounded-full bg-slate-800/80 backdrop-blur-sm
                                     group-hover:bg-slate-700/80 transition-all duration-500 
                                     shadow-lg group-hover:shadow-xl group-hover:shadow-slate-700/50
                                     transform group-hover:scale-125 group-hover:rotate-12
-                                    relative overflow-hidden border border-slate-600/30">
+                                    relative border border-slate-600/30">
                         
-                        {/* Icon inner glow */}
+                        {/* Background glow - positioned behind icon */}
                         <div className="absolute inset-0 bg-gradient-to-br from-slate-500/20 via-transparent to-slate-700/20 
-                                      opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
+                                      opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full -z-10"></div>
                         
-                        {/* OPTIMIZED ICON - No conflicting filters */}
-                        <benefit.icon className="w-8 h-8 text-slate-400 relative z-20 thorx-feature-icon" />
-                        
-                        {/* Pulsing ring effect */}
+                        {/* Pulsing ring - positioned behind icon */}
                         <div className="absolute inset-0 border-2 border-slate-500/30 rounded-full 
                                       scale-100 group-hover:scale-150 opacity-100 group-hover:opacity-0 
-                                      transition-all duration-1000"></div>
+                                      transition-all duration-1000 -z-10"></div>
                       </div>
                       
-                      {/* Orbital particles */}
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                      {/* ISOLATED ICON - Positioned absolutely on top */}
+                      <div className="absolute inset-0 flex items-center justify-center z-50">
+                        <benefit.icon className="w-8 h-8 thorx-bulletproof-icon" />
+                      </div>
+                      
+                      {/* Orbital particles - positioned behind icon */}
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10">
                         {[...Array(4)].map((_, i) => (
                           <div
                             key={i}

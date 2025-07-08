@@ -498,29 +498,46 @@ div[class*="bg-gradient-to-r"] {
   z-index: 20 !important;
 }
 
-/* OPTIMIZED: Feature icons with perfect visibility */
-.thorx-feature-icon {
+/* BULLETPROOF: Feature icons with absolute visibility guarantee */
+.thorx-bulletproof-icon {
+  /* Base properties */
   display: inline-block !important;
   opacity: 1 !important;
   visibility: visible !important;
   color: #94a3b8 !important; /* slate-400 */
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  transform: translateZ(0) !important;
-  will-change: transform, color !important;
-  backface-visibility: hidden !important;
+  
+  /* Positioning and layering */
   position: relative !important;
-  z-index: 25 !important;
+  z-index: 100 !important;
+  
+  /* Animations and transitions */
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform: translateZ(0) !important;
+  will-change: color !important;
+  backface-visibility: hidden !important;
+  
+  /* SVG properties */
   stroke-width: 2px !important;
   fill: currentColor !important;
   stroke: currentColor !important;
+  
+  /* Pointer events */
+  pointer-events: none !important;
 }
 
-.group:hover .thorx-feature-icon {
+/* Hover state with absolute priority */
+.group:hover .thorx-bulletproof-icon {
   color: #e2e8f0 !important; /* slate-200 */
-  transform: scale(1.1) translateZ(0) !important;
   opacity: 1 !important;
   visibility: visible !important;
-  z-index: 30 !important;
+  z-index: 101 !important;
+}
+
+/* Icon container optimizations */
+.thorx-icon-container {
+  isolation: isolate !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 /* Feature card optimizations */
@@ -528,34 +545,29 @@ div[class*="bg-gradient-to-r"] {
   isolation: isolate !important;
 }
 
-.thorx-cosmic-feature-card:hover .thorx-feature-icon {
+.thorx-cosmic-feature-card:hover .thorx-bulletproof-icon {
   color: #e2e8f0 !important;
   opacity: 1 !important;
   visibility: visible !important;
-  transform: scale(1.1) translateZ(0) !important;
 }
 
-/* Cross-browser compatibility for feature icons */
+/* Cross-browser compatibility with absolute color values */
 @supports (-webkit-appearance: none) {
-  .thorx-feature-icon {
+  .thorx-bulletproof-icon {
     -webkit-transform: translateZ(0) !important;
     -webkit-backface-visibility: hidden !important;
+    -webkit-text-fill-color: #94a3b8 !important;
   }
   
-  .group:hover .thorx-feature-icon {
-    -webkit-transform: scale(1.1) translateZ(0) !important;
+  .group:hover .thorx-bulletproof-icon {
     -webkit-text-fill-color: #e2e8f0 !important;
   }
 }
 
 @supports (-moz-appearance: none) {
-  .thorx-feature-icon {
+  .thorx-bulletproof-icon {
     -moz-transform: translateZ(0) !important;
     -moz-backface-visibility: hidden !important;
-  }
-  
-  .group:hover .thorx-feature-icon {
-    -moz-transform: scale(1.1) translateZ(0) !important;
   }
 }
 
