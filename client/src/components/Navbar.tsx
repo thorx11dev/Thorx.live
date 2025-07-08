@@ -19,6 +19,7 @@ import {
   CosmicSettings 
 } from './icons/CosmicIcons';
 import AnimatedLogo from './AnimatedLogo';
+import ThorxLogo from './ThorxLogo';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +64,9 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo - Enhanced for Dark Mode */}
-          <AnimatedLogo size="medium" showText={true} linkTo="/" />
+          <Link to="/">
+            <ThorxLogo size="sm" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+          </Link>
 
           {/* Desktop Navigation - Enhanced for Dark Mode */}
           <div className="hidden md:flex items-center space-x-8">

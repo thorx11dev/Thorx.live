@@ -3,6 +3,7 @@ import { ArrowRight, Globe, Shield, Users, TrendingUp, DollarSign, Activity, Che
 import { useEffect, useState } from 'react';
 import AnimatedClouds from '../components/3d/AnimatedClouds';
 import EnhancedAnimatedClouds from '../components/3d/EnhancedAnimatedClouds';
+import ThorxLogo from '../components/ThorxLogo';
 
 const LandingPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -98,12 +99,7 @@ const LandingPage = () => {
 
         {/* Navigation */}
         <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
-          <div className="flex items-center space-x-2 sm:space-x-3">
-            <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-slate-800 rounded-xl border border-slate-700 hover:bg-slate-700 transition-colors">
-              <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-slate-300" />
-            </div>
-            <span className="text-xl sm:text-2xl font-bold text-slate-200">Thorx</span>
-          </div>
+          <ThorxLogo size="sm" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
           <div className="flex items-center gap-3 sm:gap-6">
             <Link 
               to="/auth" 
@@ -126,6 +122,11 @@ const LandingPage = () => {
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left side - Content */}
             <div className="text-center lg:text-left px-2 sm:px-0">
+              {/* Hero Logo */}
+              <div className="flex justify-center lg:justify-start mb-6 sm:mb-8">
+                <ThorxLogo size="xl" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+              </div>
+              
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-200 mb-4 sm:mb-6 leading-tight">
                 <span>Explore the</span>
                 <span className="block text-slate-400">Digital Universe</span>
@@ -1053,9 +1054,8 @@ const LandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <Link to="/" className="inline-block group">
-                <div className="text-2xl font-bold text-slate-200 mb-4 group-hover:text-white transition-all duration-300 hover:scale-105 relative">
-                  <span className="relative z-10">Thorx</span>
-                  <span className="absolute inset-0 bg-slate-700/20 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></span>
+                <div className="mb-4 group-hover:scale-105 transition-transform duration-300">
+                  <ThorxLogo size="md" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
                 </div>
               </Link>
               <p className="text-slate-400">

@@ -19,6 +19,7 @@ import {
 import { Link, useLocation } from 'wouter';
 import { useAuth } from '../hooks/useAuth';
 import AnimatedLogo from '../components/AnimatedLogo';
+import ThorxLogo from '../components/ThorxLogo';
 
 interface FormData {
   email: string;
@@ -297,7 +298,9 @@ const AuthPage = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-8"
         >
-          <AnimatedLogo size="large" showText={true} linkTo="/" />
+          <Link to="/">
+            <ThorxLogo size="lg" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+          </Link>
           <p className="text-slate-400 mt-2">
             {isLogin ? 'Welcome back to the cosmic earning platform' : 'Join the cosmic earning revolution'}
           </p>
