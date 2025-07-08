@@ -5,6 +5,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CRITICAL: Override any Tailwind utilities that might interfere with text-white */
+@layer utilities {
+  .text-white {
+    color: #ffffff !important;
+  }
+  
+  .text-white:hover {
+    color: #ffffff !important;
+  }
+}
+
 /* Base styles */
 @layer base {
   body {
@@ -232,6 +243,13 @@ body {
   transition: var(--theme-transition) !important;
 }
 
+/* CRITICAL OVERRIDE: Ensure text-white is always white */
+body *[class*="text-white"],
+html *[class*="text-white"],
+.text-white {
+  color: #ffffff !important;
+}
+
 /* Button stability with theme-aware colors */
 .thorx-btn-primary {
   background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
@@ -266,24 +284,42 @@ body {
    BUTTON TEXT COLOR OVERRIDES - CRITICAL SECTION
    ======================================== */
 
-/* Force white text on all buttons regardless of background */
+/* Force white text on all buttons regardless of background - MAXIMUM SPECIFICITY */
 .bg-gradient-to-r.text-white,
 button.text-white,
 a.text-white,
-[class*="bg-gradient-to-r"][class*="text-white"] {
+link.text-white,
+[class*="bg-gradient-to-r"][class*="text-white"],
+.text-white.bg-gradient-to-r,
+*[class*="text-white"] {
   color: #ffffff !important;
 }
 
 .bg-gradient-to-r.text-white:hover,
 button.text-white:hover,
 a.text-white:hover,
-[class*="bg-gradient-to-r"][class*="text-white"]:hover {
+link.text-white:hover,
+[class*="bg-gradient-to-r"][class*="text-white"]:hover,
+.text-white.bg-gradient-to-r:hover,
+*[class*="text-white"]:hover {
   color: #ffffff !important;
 }
 
-/* Specific overrides for button combinations */
+/* Specific overrides for button combinations with maximum specificity */
 .bg-gradient-to-r.from-slate-700.to-slate-600.text-white,
-.bg-gradient-to-r.from-slate-600.to-slate-500.text-white {
+.bg-gradient-to-r.from-slate-600.to-slate-500.text-white,
+a.bg-gradient-to-r.from-slate-700.to-slate-600.text-white,
+a.bg-gradient-to-r.from-slate-600.to-slate-500.text-white,
+button.bg-gradient-to-r.from-slate-700.to-slate-600.text-white,
+button.bg-gradient-to-r.from-slate-600.to-slate-500.text-white {
+  color: #ffffff !important;
+}
+
+/* Override any inherited theme text colors for white text elements */
+html.dark .text-white,
+html:not(.dark) .text-white,
+body .text-white,
+* .text-white {
   color: #ffffff !important;
 }
 
@@ -2514,6 +2550,13 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   transition: var(--transition-theme);
+}
+
+/* Critical override: Ensure text-white elements are always white regardless of theme */
+body .text-white,
+html .text-white,
+* .text-white {
+  color: #ffffff !important;
 }
 
 /* ENSURE PROPER CONTRAST RATIOS */
