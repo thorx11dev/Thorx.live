@@ -256,6 +256,8 @@ Changelog:
 - July 08, 2025. Reduced cloud opacity to 0.6/0.55 for subtler appearance per user request
 - July 08, 2025. Updated all section headers to use thorx-hero-title class with exact logo typography
 - July 08, 2025. Ensured clean, professional text appearance matching SVG logo design without any luminescence
+- July 08, 2025. HEADER COLOR UPDATE: Changed all header text to cosmic dark grey (text-slate-700/#374151)
+- July 08, 2025. Applied consistent dark grey color across all sections: hero, features, benefits, stats, and CTA
 ```
 
 ## User Preferences
