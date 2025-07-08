@@ -321,7 +321,7 @@ const LandingPage = () => {
                         
                         <feature.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-200 
                                                 transition-all duration-500 relative z-10
-                                                group-hover:scale-110 group-hover:drop-shadow-lg" />
+                                                thorx-cosmic-icon" />
                         
                         {/* Rotating border effect */}
                         <div className="absolute inset-0 border-2 border-transparent bg-gradient-to-r from-slate-600/30 via-slate-500/30 to-slate-600/30 
@@ -481,8 +481,7 @@ const LandingPage = () => {
                         
                         <benefit.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-200 
                                                 transition-all duration-500 relative z-10
-                                                group-hover:scale-110 group-hover:drop-shadow-lg 
-                                                filter group-hover:brightness-125" />
+                                                thorx-cosmic-icon" />
                         
                         {/* Pulsing ring effect */}
                         <div className="absolute inset-0 border-2 border-slate-500/30 rounded-full 
@@ -659,7 +658,7 @@ const LandingPage = () => {
                         
                         <stat.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-200 
                                            transition-all duration-500 relative z-10
-                                           group-hover:scale-110 group-hover:drop-shadow-lg" />
+                                           thorx-cosmic-icon" />
                         
                         {/* Pulse ring indicator */}
                         <div className="absolute inset-0 border-2 border-slate-500/30 rounded-2xl 
@@ -693,7 +692,7 @@ const LandingPage = () => {
                     <div className="text-3xl font-bold text-slate-200 mb-3 relative z-10
                                   group-hover:text-white transition-all duration-500
                                   group-hover:scale-110 group-hover:tracking-wider
-                                  filter group-hover:drop-shadow-lg">
+                                  thorx-cosmic-text">
                       {stat.value}
                     </div>
                     

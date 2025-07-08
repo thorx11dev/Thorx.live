@@ -422,6 +422,82 @@ div[class*="bg-gradient-to-r"] {
   -webkit-transform-style: preserve-3d !important;
 }
 
+/* CRITICAL: Specific cosmic icon styling for optimal visibility */
+.thorx-cosmic-icon {
+  display: inline-block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: #94a3b8 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform: translateZ(0) !important;
+  will-change: transform, color !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  position: relative !important;
+  z-index: 15 !important;
+}
+
+/* Enhanced hover state for cosmic icons */
+.group:hover .thorx-cosmic-icon {
+  color: #e2e8f0 !important;
+  transform: scale(1.1) translateZ(0) !important;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25)) brightness(1.15) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 20 !important;
+}
+
+/* Focus and active states */
+.group:focus .thorx-cosmic-icon,
+.group:focus-within .thorx-cosmic-icon,
+.group:active .thorx-cosmic-icon {
+  color: #e2e8f0 !important;
+  transform: scale(1.1) translateZ(0) !important;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25)) brightness(1.15) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 20 !important;
+}
+
+/* SVG path styling for cosmic icons */
+.thorx-cosmic-icon svg {
+  stroke: currentColor !important;
+  stroke-width: 1.5px !important;
+  fill: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateZ(0) !important;
+}
+
+/* Browser-specific optimizations */
+@supports (-webkit-appearance: none) {
+  .group:hover .thorx-cosmic-icon {
+    -webkit-transform: scale(1.1) translateZ(0) !important;
+    -webkit-filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25)) brightness(1.15) !important;
+  }
+}
+
+/* CRITICAL: Cosmic text element styling for enhanced visibility */
+.thorx-cosmic-text {
+  display: inline-block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform: translateZ(0) !important;
+  will-change: transform !important;
+  backface-visibility: hidden !important;
+  position: relative !important;
+  z-index: 15 !important;
+}
+
+.group:hover .thorx-cosmic-text {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1.1) translateZ(0) !important;
+  z-index: 20 !important;
+}
+
 /* CRITICAL: Search and input field styles */
 .thorx-search-input {
   background-color: rgba(30, 41, 59, 0.6) !important;
