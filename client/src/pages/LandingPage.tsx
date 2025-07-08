@@ -40,51 +40,60 @@ const LandingPage = () => {
       />
       
       {/* Hero Section */}
-      <div className="relative h-screen bg-slate-900">
-        {/* Background Elements */}
-        <div className="absolute inset-0 bg-slate-900">
-          {/* Static background pattern */}
-          <div
-            className="absolute w-96 h-96 rounded-full pointer-events-none opacity-20 top-1/4 left-1/4 bg-slate-700/5"
-          />
+      <div className="relative h-screen cosmic-gradient-primary">
+        {/* Professional Cosmic Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Elegant orbital rings */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full border border-slate-700/30 animate-pulse" />
+          <div className="absolute top-1/3 right-1/3 w-72 h-72 rounded-full border border-slate-600/20 animate-pulse" style={{animationDelay: '1s'}} />
+          <div className="absolute bottom-1/4 left-1/2 w-48 h-48 rounded-full border border-slate-500/15 animate-pulse" style={{animationDelay: '2s'}} />
           
-          {/* Constellation Background */}
-          <div className="absolute inset-0 opacity-20">
+          {/* Sophisticated gradient orbs */}
+          <div className="absolute top-20 right-20 w-32 h-32 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-xl animate-pulse" />
+          <div className="absolute bottom-20 left-20 w-24 h-24 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 blur-xl animate-pulse" style={{animationDelay: '1.5s'}} />
+          
+          {/* Refined constellation pattern */}
+          <div className="absolute inset-0 opacity-25">
             <svg width="100%" height="100%" className="absolute inset-0">
               <defs>
-                <pattern id="constellation" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-                  <circle cx="50" cy="50" r="1" fill="#64748b" opacity="0.5">
-                    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite" />
+                <pattern id="professionalConstellation" x="0" y="0" width="300" height="300" patternUnits="userSpaceOnUse">
+                  <circle cx="75" cy="75" r="1.5" fill="#e2e8f0" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite" />
                   </circle>
-                  <circle cx="150" cy="100" r="1" fill="#64748b" opacity="0.3">
-                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" begin="1s" />
+                  <circle cx="225" cy="150" r="1" fill="#cbd5e1" opacity="0.4">
+                    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite" begin="1s" />
                   </circle>
-                  <circle cx="100" cy="150" r="1" fill="#64748b" opacity="0.4">
-                    <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.5s" repeatCount="indefinite" begin="0.5s" />
+                  <circle cx="150" cy="225" r="1.2" fill="#e2e8f0" opacity="0.5">
+                    <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3.5s" repeatCount="indefinite" begin="0.5s" />
                   </circle>
-                  <line x1="50" y1="50" x2="150" y2="100" stroke="#64748b" strokeWidth="0.5" opacity="0.1" />
+                  <line x1="75" y1="75" x2="225" y2="150" stroke="#e2e8f0" strokeWidth="0.5" opacity="0.15" />
+                  <line x1="225" y1="150" x2="150" y2="225" stroke="#e2e8f0" strokeWidth="0.5" opacity="0.15" />
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#constellation)"/>
+              <rect width="100%" height="100%" fill="url(#professionalConstellation)"/>
             </svg>
           </div>
+          
+          {/* Elegant light rays */}
+          <div className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-slate-400/20 to-transparent transform -translate-x-1/2 rotate-12" />
+          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-slate-400/15 to-transparent transform -translate-x-1/2 -rotate-12" />
         </div>
 
-        {/* Floating Elements */}
+        {/* Professional Floating Elements */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/4 left-1/4 opacity-20 animate-spin" style={{ animationDuration: '60s' }}>
-            <Satellite className="w-8 h-8 text-slate-600" />
+          <div className="absolute top-1/4 left-1/4 opacity-30 animate-spin" style={{ animationDuration: '60s' }}>
+            <Satellite className="w-8 h-8 text-slate-400" />
           </div>
           
-          <div className="absolute top-3/4 right-1/4 opacity-15 animate-spin" style={{ animationDuration: '80s', animationDirection: 'reverse' }}>
-            <Globe className="w-12 h-12 text-slate-600" />
+          <div className="absolute top-3/4 right-1/4 opacity-25 animate-spin" style={{ animationDuration: '80s', animationDirection: 'reverse' }}>
+            <Globe className="w-12 h-12 text-slate-400" />
           </div>
           
-          {/* Geometric shapes */}
+          {/* Refined geometric shapes */}
           {[0, 1, 2, 3].map((i) => (
             <div
               key={i}
-              className="absolute opacity-10 animate-pulse"
+              className="absolute opacity-15 animate-pulse"
               style={{
                 left: `${20 + (i * 20)}%`,
                 top: `${30 + (i * 15)}%`,
@@ -92,49 +101,60 @@ const LandingPage = () => {
                 animationDuration: `${3 + i}s`
               }}
             >
-              <div className="w-4 h-4 border border-slate-600 rounded-sm" />
+              <div className="w-4 h-4 border border-slate-500 rounded-sm" />
             </div>
           ))}
+          
+          {/* Additional professional elements */}
+          <div className="absolute top-1/2 right-1/4 opacity-20 animate-bounce" style={{ animationDuration: '3s' }}>
+            <Star className="w-4 h-4 text-slate-300" />
+          </div>
+          
+          <div className="absolute bottom-1/3 right-1/2 opacity-25 animate-pulse" style={{ animationDelay: '2s' }}>
+            <Sparkles className="w-5 h-5 text-slate-300" />
+          </div>
         </div>
 
-        {/* Navigation */}
+        {/* Professional Navigation */}
         <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
-          <ThorxLogo size="md" logoColor="#e2e8f0" />
-          <div className="flex items-center gap-3 sm:gap-6">
+          <div className="cosmic-fade-in">
+            <ThorxLogo size="md" logoColor="#e2e8f0" />
+          </div>
+          <div className="flex items-center gap-3 sm:gap-6 cosmic-fade-in" style={{animationDelay: '0.3s'}}>
             <Link 
               to="/auth" 
-              className="text-slate-400 hover:text-slate-200 transition-colors relative group text-sm sm:text-base"
+              className="text-slate-300 hover:text-white transition-all duration-300 relative group text-sm sm:text-base font-medium"
             >
               Sign In
-              <span className="absolute bottom-0 left-0 h-0.5 bg-slate-400 w-0 group-hover:w-full transition-all duration-300" />
+              <span className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 w-0 group-hover:w-full transition-all duration-300" />
             </Link>
             <Link 
               to="/auth" 
-              className="bg-slate-700 text-slate-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:bg-slate-600 transition-all duration-300 text-sm sm:text-base hover:scale-105 transform active:scale-95"
+              className="cosmic-btn-primary px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-sm sm:text-base font-semibold"
             >
               Get Started
             </Link>
           </div>
         </nav>
 
-        {/* Hero Content */}
+        {/* Professional Hero Content */}
         <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 -mt-16 sm:-mt-20">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left side - Content */}
             <div className="text-center lg:text-left px-2 sm:px-0">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-200 mb-4 sm:mb-6 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight cosmic-slide-up cosmic-text-glow">
                 <span>Explore the</span>
-                <span className="block text-slate-400">Digital Universe</span>
+                <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Digital Universe</span>
               </h1>
               
-              <p className="text-base sm:text-lg md:text-xl text-slate-400 mb-6 sm:mb-8 max-w-lg mx-auto lg:mx-0">
-                Navigate through cosmic earning opportunities with Thorx. A minimalist platform designed for the modern digital explorer.
+              <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-6 sm:mb-8 max-w-lg mx-auto lg:mx-0 cosmic-slide-up" style={{animationDelay: '0.3s'}}>
+                Navigate through cosmic earning opportunities with Thorx. A professional platform designed for the modern digital explorer.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start cosmic-scale-in" style={{animationDelay: '0.6s'}}>
                 <Link 
                   to="/auth" 
-                  className="bg-slate-200 text-slate-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:bg-slate-100 transition-all duration-300 inline-flex items-center justify-center gap-2 sm:gap-3 group text-sm sm:text-base hover:scale-105 hover:shadow-2xl hover:shadow-slate-200/20 transform active:scale-95"
+                  className="cosmic-btn-primary px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold inline-flex items-center justify-center gap-2 sm:gap-3 group text-sm sm:text-base"
                 >
                   <span>Start Your Journey</span>
                   <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 group-hover:rotate-12 transition-all duration-300" />
@@ -142,7 +162,7 @@ const LandingPage = () => {
                 
                 <Link 
                   to="/auth" 
-                  className="bg-slate-700 text-slate-200 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:bg-slate-600 transition-all duration-300 text-sm sm:text-base text-center hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 transform active:scale-95"
+                  className="cosmic-btn-secondary px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base text-center"
                 >
                   Sign In
                 </Link>
@@ -283,25 +303,24 @@ const LandingPage = () => {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Enhanced Title Section */}
+          {/* Professional Title Section */}
           <div className="text-center mb-20">
-            <div className="inline-block mb-6 opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]">
-              <h2 className="text-5xl md:text-6xl font-bold mb-4 text-slate-200 relative">
+            <div className="inline-block mb-6 cosmic-slide-up">
+              <h2 className="text-5xl md:text-6xl font-bold mb-4 text-white relative cosmic-text-glow">
                 <span className="relative z-10">Cosmic Features</span>
-
               </h2>
             </div>
-            <p className="text-xl max-w-3xl mx-auto text-slate-400 opacity-0 animate-[fadeInUp_1s_ease-out_0.4s_forwards] leading-relaxed">
+            <p className="text-xl max-w-3xl mx-auto text-slate-300 cosmic-slide-up leading-relaxed" style={{animationDelay: '0.2s'}}>
               Discover the next-generation tools that make digital earning effortless and intuitive
             </p>
             
-            {/* Subtitle accent line */}
-            <div className="mt-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]">
-              <div className="w-24 h-px bg-slate-500 mx-auto"></div>
+            {/* Elegant accent line */}
+            <div className="mt-8 cosmic-fade-in" style={{animationDelay: '0.4s'}}>
+              <div className="w-24 h-px bg-gradient-to-r from-blue-400 to-purple-400 mx-auto"></div>
             </div>
           </div>
 
-          {/* REDESIGNED FEATURES GRID */}
+          {/* Professional Features Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             {[
               {
@@ -309,8 +328,6 @@ const LandingPage = () => {
                 title: "Task Orchestration",
                 description: "Advanced AI-powered task management with intelligent prioritization and automated workflows",
                 delay: "0.8s",
-                solidColor: "bg-blue-500/10",
-                accentColor: "blue",
                 badge: "AI-Powered"
               },
               {
@@ -318,8 +335,6 @@ const LandingPage = () => {
                 title: "Global Analytics", 
                 description: "Real-time insights and comprehensive reporting across all your earning channels worldwide",
                 delay: "1s",
-                solidColor: "bg-green-500/10",
-                accentColor: "green",
                 badge: "Real-Time"
               },
               {
@@ -327,39 +342,31 @@ const LandingPage = () => {
                 title: "Quantum Security",
                 description: "Military-grade encryption and quantum-resistant protocols protecting your valuable data",
                 delay: "1.2s",
-                solidColor: "bg-purple-500/10",
-                accentColor: "purple",
                 badge: "Enterprise"
               }
             ].map((feature, index) => (
               <div
                 key={index}
-                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group thorx-neo-feature"
-                style={{ '--delay': feature.delay } as React.CSSProperties}
+                className="cosmic-scale-in group"
+                style={{ animationDelay: feature.delay }}
               >
-                {/* NEO-COSMIC FEATURE CARD */}
-                <div className="relative perspective-1000 transform-gpu transition-all duration-1000 
-                              group-hover:scale-110 group-hover:-translate-y-12 group-hover:rotate-y-6">
+                {/* Professional Cosmic Feature Card */}
+                <div className="relative cosmic-hover-lift">
                   
-                  {/* MAIN CARD STRUCTURE */}
-                  <div className="relative p-10 rounded-3xl overflow-hidden
-                                border-2 border-slate-700/40 bg-slate-900/40 backdrop-blur-sm
-                                transition-all duration-1000 group-hover:border-slate-500/60 
-                                group-hover:bg-slate-900/90 group-hover:shadow-2xl 
-                                group-hover:shadow-slate-900/80 min-h-[400px] flex flex-col justify-between">
+                  {/* Main Card Structure */}
+                  <div className="relative p-10 rounded-3xl overflow-hidden cosmic-glass min-h-[400px] flex flex-col justify-between">
                     
-                    {/* DYNAMIC SOLID COLOR OVERLAY */}
-                    <div className={`absolute inset-0 ${feature.solidColor} opacity-0 
-                                   group-hover:opacity-100 transition-opacity duration-1000 rounded-3xl`}></div>
+                    {/* Elegant background gradient on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
                     
-                    {/* QUANTUM FIELD EFFECT */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-1000">
-                      <div className="absolute inset-0 bg-slate-600/10"></div>
+                    {/* Professional particle effects */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5"></div>
                       <div className="absolute top-0 left-0 w-full h-full">
-                        {[...Array(20)].map((_, i) => (
+                        {[...Array(8)].map((_, i) => (
                           <div
                             key={i}
-                            className="absolute w-px h-px bg-slate-400 rounded-full animate-pulse"
+                            className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
                             style={{
                               left: `${Math.random() * 100}%`,
                               top: `${Math.random() * 100}%`,
@@ -371,87 +378,59 @@ const LandingPage = () => {
                       </div>
                     </div>
                     
-                    {/* FLOATING ICON CLUSTER */}
+                    {/* Professional Icon Container */}
                     <div className="relative mb-8 z-10">
                       <div className="relative mx-auto w-24 h-24">
                         {/* Main icon container */}
-                        <div className="w-24 h-24 bg-slate-800/60 backdrop-blur-sm rounded-full 
+                        <div className="w-24 h-24 cosmic-glass-light rounded-full 
                                       flex items-center justify-center 
-                                      transition-all duration-1000 group-hover:bg-slate-700/90 
-                                      shadow-2xl group-hover:shadow-slate-700/60
-                                      transform-gpu group-hover:scale-125 group-hover:rotate-12
-                                      border-2 border-slate-600/40 group-hover:border-slate-500/60
+                                      transition-all duration-500 group-hover:bg-slate-700/90 
+                                      shadow-2xl group-hover:shadow-blue-500/20
+                                      transform-gpu group-hover:scale-110 group-hover:rotate-6
+                                      border-2 border-slate-600/40 group-hover:border-blue-400/60
                                       relative overflow-hidden">
                           
-
-                          
                           {/* Main icon */}
-                          <feature.icon className="w-12 h-12 text-slate-400 group-hover:text-slate-200 
-                                                 transition-all duration-1000 relative z-10 thorx-neo-icon
+                          <feature.icon className="w-12 h-12 text-slate-300 group-hover:text-white 
+                                                 transition-all duration-500 relative z-10
                                                  group-hover:scale-110 group-hover:drop-shadow-lg" />
                           
-                          {/* Orbital rings */}
-                          <div className="absolute inset-0 border-2 border-slate-500/30 rounded-full 
-                                        scale-100 group-hover:scale-150 opacity-100 group-hover:opacity-0 
-                                        transition-all duration-1200"></div>
-                          <div className="absolute inset-0 border border-slate-400/20 rounded-full 
-                                        scale-75 opacity-0 group-hover:scale-175 group-hover:opacity-100 
-                                        transition-all duration-1500 delay-300"></div>
+                          {/* Elegant orbital ring */}
+                          <div className="absolute inset-0 border border-blue-400/30 rounded-full 
+                                        scale-100 group-hover:scale-125 opacity-0 group-hover:opacity-100 
+                                        transition-all duration-500"></div>
                         </div>
                         
-                        {/* Floating satellites */}
-                        <div className="absolute top-0 left-0 w-full h-full">
-                          {[...Array(6)].map((_, i) => (
-                            <div
-                              key={i}
-                              className="absolute w-2 h-2 bg-slate-500 rounded-full opacity-0 
-                                       group-hover:opacity-70 transition-all duration-1000"
-                              style={{
-                                left: `${Math.cos((i * Math.PI) / 3) * 50 + 50}%`,
-                                top: `${Math.sin((i * Math.PI) / 3) * 50 + 50}%`,
-                                animationDelay: `${i * 0.2}s`,
-                                transform: `scale(0)`,
-                                transition: 'all 1s ease-out'
-                              }}
-                            ></div>
-                          ))}
+                        {/* Professional badge */}
+                        <div className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 
+                                      transition-all duration-300 delay-200">
+                          <span className="px-3 py-1 bg-blue-500/20 backdrop-blur-sm text-blue-300 
+                                         text-xs font-medium rounded-full border border-blue-400/40">
+                            {feature.badge}
+                          </span>
                         </div>
-                      </div>
-                      
-                      {/* Feature badge */}
-                      <div className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 
-                                    transition-all duration-700 delay-500">
-                        <span className="px-3 py-1 bg-slate-700/50 backdrop-blur-sm text-slate-300 
-                                       text-xs font-medium rounded-full border border-slate-600/40">
-                          {feature.badge}
-                        </span>
                       </div>
                     </div>
                     
-                    {/* ENHANCED CONTENT */}
+                    {/* Professional Content */}
                     <div className="space-y-6 relative z-10 text-center">
-                      <h3 className="text-2xl font-bold text-slate-200 relative
-                                   transition-all duration-1000 group-hover:text-white
-                                   group-hover:scale-105 group-hover:tracking-wide">
+                      <h3 className="text-2xl font-bold text-white relative
+                                   transition-all duration-500 group-hover:text-blue-100
+                                   group-hover:scale-105 cosmic-text-shadow">
                         {feature.title}
-                        
-
                       </h3>
                       
-                      <p className="text-slate-400 leading-relaxed text-lg
-                                  transition-all duration-1000 group-hover:text-slate-300
+                      <p className="text-slate-300 leading-relaxed text-lg
+                                  transition-all duration-500 group-hover:text-slate-200
                                   group-hover:scale-105">
                         {feature.description}
                       </p>
                     </div>
                     
-                    {/* HOLOGRAPHIC SCAN LINES */}
-                    <div className="absolute top-0 left-0 w-full h-1 bg-slate-400/80
-                                  transform -translate-x-full group-hover:translate-x-full
-                                  transition-transform duration-2000 ease-out"></div>
-                    <div className="absolute bottom-0 right-0 w-1 h-full bg-slate-400/80
-                                  transform translate-y-full group-hover:-translate-y-full
-                                  transition-transform duration-2000 ease-out delay-500"></div>
+                    {/* Elegant accent line */}
+                    <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r 
+                                  from-transparent via-blue-400/50 to-transparent
+                                  opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     
                     {/* CORNER ACCENTS */}
                     <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-slate-600/40 
@@ -722,15 +701,12 @@ const LandingPage = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-block mb-4 opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-200 relative">
+            <div className="inline-block mb-4 cosmic-slide-up">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white relative cosmic-text-glow">
                 Trusted by Thousands
-                {/* Data-inspired glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-blue-500/10 to-purple-500/10 
-                              animate-pulse blur-lg scale-125 opacity-30"></div>
               </h2>
             </div>
-            <p className="text-xl max-w-2xl mx-auto text-slate-400 opacity-0 animate-[fadeInUp_1s_ease-out_0.4s_forwards]">
+            <p className="text-xl max-w-2xl mx-auto text-slate-300 cosmic-slide-up" style={{animationDelay: '0.2s'}}>
               Join our growing community of successful earners
             </p>
           </div>
@@ -772,99 +748,54 @@ const LandingPage = () => {
             ].map((stat, index) => (
               <div
                 key={index}
-                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group"
-                style={{ '--delay': stat.delay } as React.CSSProperties}
+                className="cosmic-scale-in group"
+                style={{ animationDelay: stat.delay }}
               >
-                {/* Enhanced stat card with data-theme styling */}
-                <div className="relative perspective-1000 transform-gpu transition-all duration-700 
-                              group-hover:scale-110 group-hover:-translate-y-6">
+                {/* Professional stat card */}
+                <div className="relative cosmic-hover-lift">
                   
                   {/* Main card container */}
-                  <div className="p-8 rounded-2xl relative overflow-hidden
-                                border border-slate-700/40 bg-slate-900/30 backdrop-blur-sm
-                                group-hover:border-slate-500/60 group-hover:bg-slate-900/50
-                                transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-slate-900/90
-                                before:absolute before:inset-0 before:bg-gradient-to-br before:opacity-0 
-                                before:group-hover:opacity-100 before:transition-opacity before:duration-700 before:rounded-2xl">
+                  <div className="p-8 rounded-2xl relative overflow-hidden cosmic-glass text-center">
                     
-                    {/* Dynamic gradient overlay with stat-specific colors */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-100 
-                                   transition-opacity duration-700 rounded-2xl`}></div>
+                    {/* Elegant background gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
                     
-                    {/* Animated icon with counter effect */}
+                    {/* Professional icon */}
                     <div className="relative mb-6">
-                      <div className="w-16 h-16 bg-slate-800/50 backdrop-blur-sm rounded-2xl 
+                      <div className="w-16 h-16 cosmic-glass-light rounded-2xl 
                                     flex items-center justify-center mx-auto 
-                                    group-hover:bg-slate-700/60 transition-all duration-500 
-                                    shadow-lg group-hover:shadow-xl group-hover:shadow-slate-700/60
-                                    transform-gpu group-hover:scale-125 group-hover:rotate-12
+                                    transition-all duration-500 
+                                    shadow-lg group-hover:shadow-blue-500/20
+                                    transform-gpu group-hover:scale-110 group-hover:rotate-6
                                     relative overflow-hidden border border-slate-600/30">
                         
-                        {/* Icon background glow */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-slate-500/20 via-transparent to-slate-700/20 
-                                      opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                        <stat.icon className="w-8 h-8 text-slate-300 group-hover:text-white 
+                                           transition-all duration-500 relative z-10" />
                         
-                        <stat.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-200 
-                                           transition-all duration-500 relative z-10
-                                           thorx-cosmic-icon" />
-                        
-                        {/* Pulse ring indicator */}
-                        <div className="absolute inset-0 border-2 border-slate-500/30 rounded-2xl 
-                                      scale-100 group-hover:scale-150 opacity-100 group-hover:opacity-0 
-                                      transition-all duration-1000"></div>
-                        
-                        {/* Data connection lines */}
-                        <div className="absolute top-1/2 left-full w-4 h-px bg-gradient-to-r from-slate-500/50 to-transparent 
-                                      opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                      </div>
-                      
-                      {/* Floating data indicators */}
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
-                        {[...Array(2)].map((_, i) => (
-                          <div
-                            key={i}
-                            className={`absolute w-1 h-1 bg-${stat.accentColor}-400 rounded-full opacity-0 
-                                      group-hover:opacity-60 group-hover:animate-ping`}
-                            style={{
-                              left: `${(i - 0.5) * 30}px`,
-                              top: `${-15 - i * 8}px`,
-                              animationDelay: `${i * 0.7}s`,
-                              animationDuration: '2s'
-                            }}
-                          ></div>
-                        ))}
+                        {/* Elegant ring */}
+                        <div className="absolute inset-0 border border-blue-400/30 rounded-2xl 
+                                      scale-100 group-hover:scale-125 opacity-0 group-hover:opacity-100 
+                                      transition-all duration-500"></div>
                       </div>
                     </div>
                     
-                    {/* Counter-style value display */}
-                    <div className="text-3xl font-bold text-slate-200 mb-3 relative z-10
-                                  group-hover:text-white transition-all duration-500
-                                  group-hover:scale-110 group-hover:tracking-wider
-                                  thorx-cosmic-text">
+                    {/* Clean value display */}
+                    <div className="text-3xl font-bold text-white mb-3 relative z-10
+                                  group-hover:text-blue-100 transition-all duration-500
+                                  group-hover:scale-110 cosmic-text-shadow">
                       {stat.value}
                     </div>
                     
-                    <div className="text-slate-400 group-hover:text-slate-300 transition-all duration-500 relative z-10
+                    <div className="text-slate-300 group-hover:text-slate-200 transition-all duration-500 relative z-10
                                   group-hover:scale-105">
                       {stat.label}
                     </div>
                     
-                    {/* Progress bar indicator */}
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700/30 rounded-b-2xl overflow-hidden">
-                      <div className={`h-full bg-gradient-to-r ${stat.color} transform -translate-x-full 
-                                     group-hover:translate-x-0 transition-transform duration-1000 ease-out`}></div>
-                    </div>
-                    
-                    {/* Corner accent */}
-                    <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-slate-600/50 
-                                  group-hover:bg-slate-400/70 group-hover:scale-150 transition-all duration-500"></div>
+                    {/* Elegant accent line */}
+                    <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r 
+                                  from-transparent via-blue-400/50 to-transparent
+                                  opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
-                  
-                  {/* Enhanced reflection */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-700/30 
-                                rounded-2xl transform translate-y-8 scale-95 opacity-0 
-                                group-hover:opacity-100 group-hover:translate-y-16 group-hover:scale-85 
-                                transition-all duration-700 blur-sm"></div>
                 </div>
               </div>
             ))}
