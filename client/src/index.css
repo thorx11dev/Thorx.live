@@ -52,35 +52,271 @@
 }
 
 /* ========================================
-   STABLE BUTTON STYLING - CRITICAL SECTION
+   UNIVERSAL BUTTON STYLING - CRITICAL SECTION
    ======================================== */
 
-/* CRITICAL: Stable button styles that cannot be overridden */
+/* CRITICAL: Universal button styles that work consistently across all environments */
 .thorx-btn-primary {
-  background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
+  background: #e2e8f0 !important;
   color: #0f172a !important;
   font-weight: 700 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: 2px solid transparent !important;
+  text-decoration: none !important;
 }
 
 .thorx-btn-primary:hover {
-  background: linear-gradient(to right, #f1f5f9, #ffffff) !important;
+  background: #f1f5f9 !important;
   color: #0f172a !important;
   transform: scale(1.05) !important;
   box-shadow: 0 20px 40px rgba(226, 232, 240, 0.2) !important;
 }
 
 .thorx-btn-secondary {
-  background: linear-gradient(to right, #475569, #64748b) !important;
+  background: #475569 !important;
   color: #ffffff !important;
   font-weight: 600 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: 2px solid transparent !important;
+  text-decoration: none !important;
 }
 
 .thorx-btn-secondary:hover {
-  background: linear-gradient(to right, #64748b, #94a3b8) !important;
+  background: #64748b !important;
   color: #ffffff !important;
   transform: scale(1.05) !important;
+}
+
+/* CRITICAL: Environment-specific button overrides for gradient compatibility */
+.thorx-landing-btn-primary {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: 2px solid transparent !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 15px rgba(226, 232, 240, 0.2) !important;
+}
+
+.thorx-landing-btn-primary:hover {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 8px 25px rgba(226, 232, 240, 0.3) !important;
+}
+
+.thorx-landing-btn-secondary {
+  background: #475569 !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: 2px solid transparent !important;
+  text-decoration: none !important;
+}
+
+.thorx-landing-btn-secondary:hover {
+  background: #64748b !important;
+  color: #ffffff !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 8px 25px rgba(71, 85, 105, 0.3) !important;
+}
+
+/* CRITICAL: Navigation button overrides */
+.thorx-nav-btn-primary {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: 2px solid transparent !important;
+  text-decoration: none !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.thorx-nav-btn-primary:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  transform: scale(1.05) !important;
+}
+
+.thorx-nav-btn-secondary {
+  background: transparent !important;
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: 2px solid transparent !important;
+  text-decoration: none !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.thorx-nav-btn-secondary:hover {
+  background: rgba(148, 163, 184, 0.1) !important;
+  color: #e2e8f0 !important;
+}
+
+/* ========================================
+   UNIVERSAL GRADIENT OVERRIDES - CRITICAL SECTION
+   ======================================== */
+
+/* CRITICAL: Override all gradient buttons to use solid colors for cross-browser consistency */
+.bg-gradient-to-r {
+  background-image: none !important;
+  background: var(--btn-fallback-bg, #e2e8f0) !important;
+  color: var(--btn-fallback-color, #0f172a) !important;
+  -webkit-text-fill-color: var(--btn-fallback-color, #0f172a) !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Primary gradient button fallbacks */
+.bg-gradient-to-r.from-slate-200 {
+  --btn-fallback-bg: #e2e8f0;
+  --btn-fallback-color: #0f172a;
+}
+
+.bg-gradient-to-r.from-slate-700 {
+  --btn-fallback-bg: #475569;
+  --btn-fallback-color: #ffffff;
+}
+
+/* Hover state overrides */
+.bg-gradient-to-r:hover {
+  background-image: none !important;
+  background: var(--btn-fallback-hover-bg, #f1f5f9) !important;
+  color: var(--btn-fallback-color, #0f172a) !important;
+  -webkit-text-fill-color: var(--btn-fallback-color, #0f172a) !important;
+  transform: scale(1.05) !important;
+}
+
+.bg-gradient-to-r.from-slate-200:hover {
+  --btn-fallback-hover-bg: #f8fafc;
+  --btn-fallback-color: #0f172a;
+}
+
+.bg-gradient-to-r.from-slate-700:hover {
+  --btn-fallback-hover-bg: #64748b;
+  --btn-fallback-color: #ffffff;
+}
+
+/* CRITICAL: Specific overrides for landing page buttons */
+.bg-gradient-to-r.from-slate-200.to-slate-100 {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+}
+
+.bg-gradient-to-r.from-slate-200.to-slate-100:hover {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  transform: scale(1.05) !important;
+}
+
+.bg-gradient-to-r.from-slate-700.to-slate-600 {
+  background: #475569 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+
+.bg-gradient-to-r.from-slate-700.to-slate-600:hover {
+  background: #64748b !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  transform: scale(1.05) !important;
+}
+
+/* CRITICAL: Prevent all gradient rendering issues */
+* {
+  -webkit-background-clip: border-box !important;
+  -moz-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* Text selection and highlight overrides */
+::selection {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+::-moz-selection {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* ========================================
+   FINAL CRITICAL OVERRIDE - ENVIRONMENT AGNOSTIC
+   ======================================== */
+
+/* CRITICAL: Absolute final override for all button text colors - Works across all environments */
+.bg-gradient-to-r,
+.bg-gradient-to-r:hover,
+.bg-gradient-to-r:focus,
+.bg-gradient-to-r:active,
+.bg-gradient-to-r:visited {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  -moz-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: unset !important;
+  -webkit-text-stroke: none !important;
+  text-decoration: none !important;
+}
+
+/* Environment-agnostic button text colors */
+.bg-gradient-to-r.from-slate-200.to-slate-100,
+.bg-gradient-to-r.from-slate-200.to-slate-100:hover,
+.bg-gradient-to-r.from-slate-200.to-slate-100:focus,
+.bg-gradient-to-r.from-slate-200.to-slate-100:active,
+.bg-gradient-to-r.from-slate-200.to-slate-100:visited {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+.bg-gradient-to-r.from-slate-700.to-slate-600,
+.bg-gradient-to-r.from-slate-700.to-slate-600:hover,
+.bg-gradient-to-r.from-slate-700.to-slate-600:focus,
+.bg-gradient-to-r.from-slate-700.to-slate-600:active,
+.bg-gradient-to-r.from-slate-700.to-slate-600:visited {
+  background: #475569 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+/* Force all gradient buttons to use solid colors */
+.bg-gradient-to-r.from-slate-200.to-slate-100:hover {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+}
+
+.bg-gradient-to-r.from-slate-700.to-slate-600:hover {
+  background: #64748b !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Universal button text color enforcement */
+a[class*="bg-gradient-to-r"],
+button[class*="bg-gradient-to-r"],
+div[class*="bg-gradient-to-r"] {
+  -webkit-text-fill-color: inherit !important;
+  -webkit-text-stroke: none !important;
+  text-decoration: none !important;
 }
 
 /* CRITICAL: Search and input field styles */
@@ -223,29 +459,39 @@ body {
   transition: background-color 0.3s ease !important;
 }
 
-/* Force button colors with absolute priority to prevent instability */
+/* CRITICAL: Cross-browser button color enforcement */
 .thorx-btn-primary {
-  background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
+  background: #e2e8f0 !important;
   color: #0f172a !important;
   border: 2px solid transparent !important;
+  -webkit-text-fill-color: #0f172a !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 }
 
 .thorx-btn-primary:hover {
-  background: linear-gradient(to right, #f1f5f9, #ffffff) !important;
+  background: #f1f5f9 !important;
   color: #0f172a !important;
   transform: scale(1.05) !important;
+  -webkit-text-fill-color: #0f172a !important;
 }
 
 .thorx-btn-secondary {
-  background: transparent !important;
-  color: #e2e8f0 !important;
-  border: 2px solid #64748b !important;
+  background: #475569 !important;
+  color: #ffffff !important;
+  border: 2px solid transparent !important;
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 }
 
 .thorx-btn-secondary:hover {
-  background: #1e293b !important;
-  color: #f8fafc !important;
+  background: #64748b !important;
+  color: #ffffff !important;
   border-color: #94a3b8 !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
 /* ========================================
@@ -1836,17 +2082,41 @@ body {
   border-color: var(--border-secondary);
 }
 
-/* CRITICAL BUTTON TEXT FIXES - Black text on gradient buttons in dark mode */
-.dark .bg-gradient-to-r {
-  color: #000000 !important;
-  font-weight: 800 !important;
-  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9) !important;
+/* CRITICAL BUTTON TEXT FIXES - Universal color enforcement */
+.bg-gradient-to-r {
+  background-image: none !important;
 }
 
-.dark .bg-gradient-to-r:hover {
-  color: #000000 !important;
-  font-weight: 900 !important;
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 1) !important;
+.dark .bg-gradient-to-r.from-slate-200 {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+.dark .bg-gradient-to-r.from-slate-200:hover {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+.dark .bg-gradient-to-r.from-slate-700 {
+  background: #475569 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+
+.dark .bg-gradient-to-r.from-slate-700:hover {
+  background: #64748b !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
 }
 
 /* Specific button fixes for all pages */
