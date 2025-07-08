@@ -203,6 +203,10 @@ Changelog:
 - July 08, 2025. REDUCED GLASS EFFECTS: Significantly lowered backdrop-blur intensity across landing page from backdrop-blur-xl to backdrop-blur-sm
 - July 08, 2025. Updated all glass card backgrounds from high opacity (70-90%) to subtle opacity (30-50%) for better cloud visibility
 - July 08, 2025. Maintained parallax scrolling cloud visibility while preserving modern glass morphism aesthetic
+- July 08, 2025. REMOVED LIVE CHAT FEATURE: Completely removed Live Chat functionality from HelpCenterPage contact section
+- July 08, 2025. Updated contact support grid from 3 columns to 2 columns (Email Support and Phone Support only)
+- July 08, 2025. Removed MessageCircle import and updated FAQ answer to exclude live chat references
+- July 08, 2025. Verified Telegram Bot feature in UpdatesPage is legitimate task management tool, not live chat support
 ```
 
 ## User Preferences

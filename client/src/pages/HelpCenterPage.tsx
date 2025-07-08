@@ -1,5 +1,5 @@
 import { Link } from 'wouter';
-import { ArrowLeft, Search, HelpCircle, Book, MessageCircle, Mail, Phone, Rocket, Satellite, Globe, ChevronRight, Star, Shield, Clock } from 'lucide-react';
+import { ArrowLeft, Search, HelpCircle, Book, Mail, Phone, Rocket, Satellite, Globe, ChevronRight, Star, Shield, Clock } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const HelpCenterPage = () => {
@@ -68,7 +68,7 @@ const HelpCenterPage = () => {
     },
     {
       question: "What support options are available?",
-      answer: "We offer 24/7 support through live chat, email support, phone assistance during business hours, and comprehensive documentation in our help center."
+      answer: "We offer 24/7 support through email support, phone assistance during business hours, and comprehensive documentation in our help center."
     }
   ];
 
@@ -238,9 +238,8 @@ const HelpCenterPage = () => {
             Our support team is here to help you 24/7. Choose your preferred way to get in touch.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              { icon: MessageCircle, title: "Live Chat", description: "Get instant help", action: "Start Chat" },
               { icon: Mail, title: "Email Support", description: "Detailed assistance", action: "Send Email" },
               { icon: Phone, title: "Phone Support", description: "Speak with an expert", action: "Call Now" }
             ].map((contact, index) => (
