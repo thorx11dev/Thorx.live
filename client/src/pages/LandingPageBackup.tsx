@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'wouter';
 import { ArrowRight, Globe, Shield, Users, TrendingUp, DollarSign, Activity, ChevronDown, Satellite, Rocket, Target, Star, Zap, Award, Clock } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
+import ThorxLogo from '../components/ThorxLogo';
 
 const LandingPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -196,14 +197,7 @@ const LandingPage = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.4 }}
           >
-            <motion.div 
-              className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-slate-800 rounded-xl border border-slate-700"
-              whileHover={{ scale: 1.1, rotate: 360, backgroundColor: '#475569' }}
-              transition={{ duration: 0.6 }}
-            >
-              <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-slate-300" />
-            </motion.div>
-            <span className="text-xl sm:text-2xl font-bold text-slate-200">Thorx</span>
+            <ThorxLogo size="md" className="text-slate-200 group-hover:text-white transition-colors" />
           </motion.div>
           <div className="flex items-center gap-3 sm:gap-6">
             <motion.div
@@ -644,7 +638,7 @@ const LandingPage = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <div className="text-2xl font-bold text-slate-200 mb-4">Thorx</div>
+              <ThorxLogo size="lg" className="text-slate-200 mb-4" />
               <p className="text-slate-400">
                 Navigate the digital universe with confidence
               </p>

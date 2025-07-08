@@ -1,6 +1,7 @@
 import { Link, useParams } from 'wouter';
 import { ArrowLeft, Calendar, Clock, User, Tag, Share2, Rocket, Satellite, Globe, TrendingUp, Star, Shield, Zap, Target, Award, Briefcase, Calculator, Users } from 'lucide-react';
 import { useEffect } from 'react';
+import ThorxLogo from '../components/ThorxLogo';
 
 const BlogPostPage = () => {
   const params = useParams();
@@ -368,10 +369,7 @@ const BlogPostPage = () => {
       <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
         <div className="flex items-center space-x-2 sm:space-x-3">
           <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group">
-            <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-slate-800 rounded-xl border border-slate-700 group-hover:bg-slate-700 transition-colors">
-              <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-slate-300" />
-            </div>
-            <span className="text-xl sm:text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">Thorx</span>
+            <ThorxLogo size="md" className="text-slate-200 group-hover:text-white transition-colors" />
           </Link>
         </div>
         <div className="flex items-center gap-3 sm:gap-6">
@@ -492,10 +490,7 @@ const BlogPostPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Link to="/" className="inline-flex items-center space-x-3 group mb-4 hover:scale-105 transition-all duration-300">
-              <div className="flex items-center justify-center w-10 h-10 bg-slate-800 rounded-xl border border-slate-700 group-hover:bg-slate-700 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-slate-700/30">
-                <Rocket className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors group-hover:rotate-12" />
-              </div>
-              <span className="text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">Thorx</span>
+              <ThorxLogo size="lg" className="text-slate-200 group-hover:text-white transition-colors" />
             </Link>
             <p className="text-slate-400">Navigate the digital universe with confidence</p>
           </div>
