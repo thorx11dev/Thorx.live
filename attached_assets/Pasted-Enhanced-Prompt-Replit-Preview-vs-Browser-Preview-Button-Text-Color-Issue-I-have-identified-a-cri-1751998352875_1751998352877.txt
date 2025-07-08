@@ -1,0 +1,42 @@
+Enhanced Prompt: Replit Preview vs. Browser Preview Button Text Color Issue
+I have identified a critical issue regarding the appearance of button text colors when viewing the Thorx platform via Replit's preview and the browser preview (using the Replit Thor link):
+
+Issue:
+The text color of some buttons changes when viewed in the browser preview, whereas in the Replit preview, the appearance is as intended. This inconsistency impacts the user experience and visual integrity of the platform.
+
+Requirement:
+I want the appearance of the buttons (specifically their text color) to remain exactly as they appear in the Replit preview, even when accessed through the browser preview or the Replit Thor link. Please do not introduce any changes to other design elements or overall appearance.
+
+Detailed Request
+Deep Analysis:
+
+Investigate the root cause of why button text colors differ between the Replit preview and the browser preview.
+
+Consider factors such as environment-specific CSS, theme or color mode handling, or differences in how styles are loaded or applied in each preview mode.
+
+Examine any conditional logic or environment variables that might alter styles depending on the preview context.
+
+Precise Fix:
+
+Implement a solution that ensures the button text colors are consistent and match the Replit preview in all environments, including the browser preview and shared Replit Thor links.
+
+Do not modify any other aspects of the buttons or the platform’s appearance—focus solely on resolving this color inconsistency.
+
+Confirmation:
+
+After applying the fix, verify that the button text colors remain unchanged and consistent across both the Replit preview and browser preview.
+
+Confirm that no other visual or functional changes have been introduced.
+
+Please prioritize this issue and provide a robust, targeted solution to maintain a professional and unified appearance for all users, regardless of how they access the Thorx platform.
+
+References:
+
+Differences in web app rendering between Replit preview and browser preview.
+
+Common causes of color inconsistencies in browser environments.
+
+ https://docs.replit.com/replit-workspace/workspace-features/preview
+ https://www.reddit.com/r/RedReader/comments/ynbenz/preview_has_different_color_space_than_the_loaded/
+ https://www.youtube.com/watch?v=NxDXpZDn57I
+ https://graphicdesign.stackexchange.com/questions/104381/colours-being-shown-differently-throughout-web-browsers-and-image-editing-softwa
