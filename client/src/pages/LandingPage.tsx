@@ -1,12 +1,45 @@
 import { Link } from 'wouter';
-import { ArrowRight, Globe, Shield, Users, TrendingUp, DollarSign, Activity, ChevronDown, Satellite, Rocket, Target, Star, Gem, Headphones, Sparkles, Trophy } from 'lucide-react';
+import { ArrowRight, Mail, Lock, User, Eye, EyeOff, Shield, Star, Sparkles, Check, AlertCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import AnimatedClouds from '../components/3d/AnimatedClouds';
-import EnhancedAnimatedClouds from '../components/3d/EnhancedAnimatedClouds';
+import { useAuth } from '../hooks/useAuth';
 import ThorxLogo from '../components/ThorxLogo';
+
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  acceptTerms: boolean;
+}
+
+interface ValidationErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+  acceptTerms?: string;
+  general?: string;
+}
 
 const LandingPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState(0);
+  const [formData, setFormData] = useState<FormData>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    acceptTerms: false
+  });
+  const [errors, setErrors] = useState<ValidationErrors>({});
+  const [notification, setNotification] = useState<{type: 'success' | 'error', message: string} | null>(null);
+  const { register } = useAuth();
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 100);
@@ -17,17 +50,124 @@ const LandingPage = () => {
     };
   }, []);
 
+  // Password strength calculation
+  useEffect(() => {
+    if (formData.password) {
+      let strength = 0;
+      if (formData.password.length >= 8) strength += 25;
+      if (/[A-Z]/.test(formData.password)) strength += 25;
+      if (/[0-9]/.test(formData.password)) strength += 25;
+      if (/[^A-Za-z0-9]/.test(formData.password)) strength += 25;
+      setPasswordStrength(strength);
+    }
+  }, [formData.password]);
+
   if (!isLoaded) {
     return (
       <div className="fixed inset-0 z-50 bg-slate-900 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-slate-700 border-t-slate-400 rounded-full mx-auto mb-4 animate-spin" />
           <h2 className="text-2xl font-bold text-slate-200 mb-2">Thorx</h2>
-          <p className="text-slate-400">Loading cosmic experience...</p>
+          <p className="text-slate-400">Loading cosmic registration...</p>
         </div>
       </div>
     );
   }
+
+  const validateForm = (): boolean => {
+    const newErrors: ValidationErrors = {};
+
+    // Name validation
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    } else if (formData.firstName.length < 2) {
+      newErrors.firstName = 'First name must be at least 2 characters';
+    }
+
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
+    } else if (formData.lastName.length < 2) {
+      newErrors.lastName = 'Last name must be at least 2 characters';
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    // Password validation
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 8) {
+      newErrors.password = 'Password must be at least 8 characters';
+    }
+
+    // Confirm password validation
+    if (!formData.confirmPassword) {
+      newErrors.confirmPassword = 'Please confirm your password';
+    } else if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
+
+    // Terms validation
+    if (!formData.acceptTerms) {
+      newErrors.acceptTerms = 'You must accept the terms and conditions';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) return;
+    
+    setIsLoading(true);
+    setNotification(null);
+    
+    try {
+      const success = await register({
+        email: formData.email,
+        password: formData.password,
+        firstName: formData.firstName,
+        lastName: formData.lastName
+      });
+      
+      if (success) {
+        setNotification({ type: 'success', message: 'Registration successful! Welcome to Thorx.' });
+      } else {
+        setNotification({ type: 'error', message: 'Registration failed. Please try again.' });
+      }
+    } catch (error) {
+      setNotification({ type: 'error', message: 'An error occurred. Please try again.' });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleInputChange = (field: keyof FormData, value: string | boolean) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
+  };
+
+  const getPasswordStrengthColor = () => {
+    if (passwordStrength < 25) return 'bg-red-400';
+    if (passwordStrength < 50) return 'bg-orange-400';
+    if (passwordStrength < 75) return 'bg-yellow-400';
+    return 'bg-green-400';
+  };
+
+  const getPasswordStrengthText = () => {
+    if (passwordStrength < 25) return 'Weak';
+    if (passwordStrength < 50) return 'Fair';
+    if (passwordStrength < 75) return 'Good';
+    return 'Strong';
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-900">
