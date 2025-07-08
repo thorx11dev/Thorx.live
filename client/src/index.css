@@ -561,13 +561,23 @@ div[class*="bg-gradient-to-r"] {
   position: relative;
   z-index: 10;
   transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  filter: brightness(0.4) contrast(0.6) blur(0.5px);
-  opacity: 0.3;
+  filter: brightness(0.6) contrast(0.8) blur(0.5px);
+  opacity: 0.5;
   transform: translateY(2px);
+  background: none !important;
+}
+
+.cosmic-header-container .cosmic-header-text.cosmic-text-glow {
+  background: none !important;
+  filter: brightness(0.6) contrast(0.8) blur(0.5px) !important;
+  opacity: 0.5 !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2) !important;
 }
 
 .cosmic-header-container:hover .cosmic-header-text,
-.cosmic-header-container:focus .cosmic-header-text {
+.cosmic-header-container:focus .cosmic-header-text,
+.cosmic-header-container:hover .cosmic-header-text.cosmic-text-glow,
+.cosmic-header-container:focus .cosmic-header-text.cosmic-text-glow {
   filter: brightness(1.4) contrast(1.3) blur(0px) !important;
   opacity: 1 !important;
   transform: translateY(-3px) scale(1.02) !important;
@@ -575,6 +585,7 @@ div[class*="bg-gradient-to-r"] {
                0 0 60px rgba(147, 197, 253, 0.3),
                0 0 100px rgba(196, 181, 253, 0.2) !important;
   animation: whimsicalFloat 2s ease-in-out infinite !important;
+  background: none !important;
 }
 
 .cosmic-cloud-veil {
@@ -665,7 +676,8 @@ div[class*="bg-gradient-to-r"] {
 
 /* Touch device support */
 @media (hover: none) and (pointer: coarse) {
-  .cosmic-header-container:active .cosmic-header-text {
+  .cosmic-header-container:active .cosmic-header-text,
+  .cosmic-header-container:active .cosmic-header-text.cosmic-text-glow {
     filter: brightness(1.4) contrast(1.3) blur(0px) !important;
     opacity: 1 !important;
     transform: translateY(-3px) scale(1.02) !important;
@@ -673,6 +685,7 @@ div[class*="bg-gradient-to-r"] {
                  0 0 60px rgba(147, 197, 253, 0.3),
                  0 0 100px rgba(196, 181, 253, 0.2) !important;
     animation: whimsicalFloat 2s ease-in-out infinite !important;
+    background: none !important;
   }
   
   .cosmic-header-container:active .cosmic-cloud-veil {
