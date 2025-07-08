@@ -57,29 +57,6 @@ const AboutPage = () => {
     }
   ];
 
-  const milestones = [
-    {
-      year: "2023",
-      title: "Company Founded",
-      description: "Thorx was born from the vision to democratize digital earning opportunities worldwide."
-    },
-    {
-      year: "2024",
-      title: "Platform Launch",
-      description: "Official launch of the Thorx platform with initial task management and earning features."
-    },
-    {
-      year: "2024",
-      title: "10K Users",
-      description: "Reached our first major milestone of 10,000 active users within 6 months of launch."
-    },
-    {
-      year: "2025",
-      title: "Global Expansion",
-      description: "Expanded operations globally with advanced analytics and enhanced security features."
-    }
-  ];
-
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-900">
       {/* Background Elements */}
@@ -232,38 +209,147 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* Timeline */}
+      {/* MVP Section */}
       <div className="relative z-10 py-16 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-200 mb-12 text-center">Our Journey</h2>
-          
-          <div className="space-y-8">
-            {milestones.map((milestone, index) => (
-              <div
-                key={index}
-                className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-slate-600 transition-all duration-300 group hover:shadow-2xl hover:shadow-slate-900/50 backdrop-blur-sm hover:scale-[1.02] hover:-translate-y-1"
-              >
-                <div className="flex items-start space-x-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center group-hover:bg-slate-700 transition-colors shadow-lg">
-                      <span className="text-xl font-bold text-slate-300 group-hover:text-white transition-colors">
-                        {milestone.year}
-                      </span>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-200 mb-6">
+              Minimum Viable Product
+            </h2>
+            <p className="text-xl text-slate-400 max-w-3xl mx-auto">
+              Our MVP represents the foundation of Thorx - a carefully crafted set of core features designed to deliver immediate value while paving the way for future innovation.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            {/* MVP Vision */}
+            <div className="space-y-8">
+              <div className="bg-slate-800/30 p-8 rounded-2xl border border-slate-700/50 backdrop-blur-sm">
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center">
+                    <Target className="w-6 h-6 text-slate-300" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-200">Core Vision</h3>
+                </div>
+                <p className="text-slate-400 leading-relaxed">
+                  To create a seamless, intuitive platform that connects opportunity seekers with digital earning possibilities. Our MVP focuses on essential functionality that delivers real value from day one.
+                </p>
+              </div>
+
+              <div className="bg-slate-800/30 p-8 rounded-2xl border border-slate-700/50 backdrop-blur-sm">
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center">
+                    <Rocket className="w-6 h-6 text-slate-300" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-200">Launch Strategy</h3>
+                </div>
+                <p className="text-slate-400 leading-relaxed">
+                  Built with scalability in mind, our MVP establishes the foundation for rapid feature expansion while maintaining performance and user experience excellence.
+                </p>
+              </div>
+            </div>
+
+            {/* MVP Features Grid */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-slate-800/20 rounded-3xl blur-xl"></div>
+              <div className="relative bg-slate-800/40 p-8 rounded-2xl border border-slate-700/50 backdrop-blur-sm">
+                <h3 className="text-2xl font-bold text-slate-200 mb-8 text-center">Core Features</h3>
+                <div className="grid grid-cols-2 gap-6">
+                  {[
+                    { icon: Users, title: "User Management", desc: "Secure authentication & profiles" },
+                    { icon: Award, title: "Task System", desc: "Intuitive task creation & tracking" },
+                    { icon: Shield, title: "Secure Payments", desc: "Reliable payout processing" },
+                    { icon: Globe, title: "Global Access", desc: "Worldwide platform availability" }
+                  ].map((feature, index) => (
+                    <div key={index} className="group">
+                      <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700/30 hover:border-slate-600/50 transition-all duration-300 hover:bg-slate-900/70 hover:scale-105">
+                        <feature.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-300 transition-colors mb-4" />
+                        <h4 className="text-lg font-semibold text-slate-200 group-hover:text-white transition-colors mb-2">
+                          {feature.title}
+                        </h4>
+                        <p className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+                          {feature.desc}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-slate-200 mb-3 group-hover:text-white transition-colors">
-                      {milestone.title}
-                    </h3>
-                    
-                    <p className="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">
-                      {milestone.description}
-                    </p>
-                  </div>
+                  ))}
                 </div>
               </div>
-            ))}
+            </div>
+          </div>
+
+          {/* MVP Progress Timeline */}
+          <div className="bg-slate-800/30 p-8 rounded-2xl border border-slate-700/50 backdrop-blur-sm">
+            <h3 className="text-2xl font-bold text-slate-200 mb-8 text-center">Development Progress</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  phase: "Phase 1",
+                  title: "Foundation",
+                  status: "Completed",
+                  progress: 100,
+                  features: ["User Authentication", "Basic Dashboard", "Profile Management"],
+                  color: "bg-green-500"
+                },
+                {
+                  phase: "Phase 2",
+                  title: "Core Features",
+                  status: "In Progress",
+                  progress: 85,
+                  features: ["Task Management", "Earning System", "Payment Integration"],
+                  color: "bg-blue-500"
+                },
+                {
+                  phase: "Phase 3",
+                  title: "Enhancement",
+                  status: "Planning",
+                  progress: 25,
+                  features: ["Analytics Dashboard", "Mobile App", "Advanced Features"],
+                  color: "bg-slate-500"
+                }
+              ].map((phase, index) => (
+                <div key={index} className="group">
+                  <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700/30 hover:border-slate-600/50 transition-all duration-300 hover:bg-slate-900/70 hover:scale-105">
+                    <div className="flex items-center justify-between mb-4">
+                      <div>
+                        <h4 className="text-lg font-semibold text-slate-200 group-hover:text-white transition-colors">
+                          {phase.phase}
+                        </h4>
+                        <p className="text-xl font-bold text-slate-300 group-hover:text-white transition-colors">
+                          {phase.title}
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+                          {phase.status}
+                        </div>
+                        <div className="text-lg font-bold text-slate-200 group-hover:text-white transition-colors">
+                          {phase.progress}%
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="w-full bg-slate-800 rounded-full h-2 mb-4">
+                      <div 
+                        className={`h-2 rounded-full transition-all duration-500 ${phase.color}`}
+                        style={{ width: `${phase.progress}%` }}
+                      ></div>
+                    </div>
+                    
+                    <ul className="space-y-2">
+                      {phase.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center space-x-2">
+                          <div className={`w-2 h-2 rounded-full ${phase.progress > 50 ? 'bg-green-500' : 'bg-slate-500'}`}></div>
+                          <span className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+                            {feature}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
