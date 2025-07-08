@@ -337,6 +337,18 @@ div[class*="bg-gradient-to-r"] {
   -moz-osx-font-smoothing: grayscale !important;
 }
 
+/* Floating Animation for Upcoming Features */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 0.8;
+  }
+}
+
 /* Ensure icon stroke rendering consistency */
 .group:hover .w-8.h-8.text-slate-400 svg {
   stroke: currentColor !important;

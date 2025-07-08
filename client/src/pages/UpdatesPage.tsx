@@ -1,11 +1,95 @@
 import { Link } from 'wouter';
-import { ArrowLeft, Calendar, Tag, Rocket, Satellite, Globe, ChevronRight, Star, Zap, Shield } from 'lucide-react';
-import { useEffect } from 'react';
+import { ArrowLeft, Calendar, Tag, Rocket, Satellite, Globe, ChevronRight, Star, Zap, Shield, Smartphone, MessageCircle, Gift, ArrowUpRight, Clock, Sparkles } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import ThorxLogo from '../components/ThorxLogo';
 
 const UpdatesPage = () => {
+  const [isUpcomingVisible, setIsUpcomingVisible] = useState(false);
+  const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
+  
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Animate upcoming section on scroll
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsUpcomingVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    
+    const upcomingSection = document.getElementById('upcoming-section');
+    if (upcomingSection) {
+      observer.observe(upcomingSection);
+    }
+    
+    return () => {
+      if (upcomingSection) {
+        observer.unobserve(upcomingSection);
+      }
+    };
   }, []);
+
+  const upcomingFeatures = [
+    {
+      id: 1,
+      title: "Thorx Mobile Application",
+      description: "Native mobile app with full platform functionality, push notifications, and offline capability for seamless earning on-the-go.",
+      icon: Smartphone,
+      status: "In Development",
+      timeline: "Q2 2025",
+      features: [
+        "Native iOS and Android apps",
+        "Push notifications for new tasks",
+        "Offline task completion",
+        "Enhanced mobile UI/UX",
+        "Biometric authentication"
+      ],
+      color: "bg-blue-500/15",
+      accentColor: "bg-blue-500",
+      textColor: "text-blue-300"
+    },
+    {
+      id: 2,
+      title: "Thorx Telegram Bot",
+      description: "Integrated Telegram bot for instant notifications, quick task management, and seamless communication within the Thorx ecosystem.",
+      icon: MessageCircle,
+      status: "Coming Soon",
+      timeline: "Q3 2025",
+      features: [
+        "Instant task notifications",
+        "Quick task completion",
+        "Earnings tracking",
+        "Community features",
+        "Automated reporting"
+      ],
+      color: "bg-green-500/15",
+      accentColor: "bg-green-500",
+      textColor: "text-green-300"
+    },
+    {
+      id: 3,
+      title: "Thorx Giveaway Technologies",
+      description: "Advanced giveaway platform with automated distribution, fraud prevention, and engaging user participation mechanics.",
+      icon: Gift,
+      status: "Planning",
+      timeline: "Q4 2025",
+      features: [
+        "Automated prize distribution",
+        "Fraud detection system",
+        "Social media integration",
+        "Participation tracking",
+        "Custom giveaway creation"
+      ],
+      color: "bg-purple-500/15",
+      accentColor: "bg-purple-500",
+      textColor: "text-purple-300"
+    }
+  ];
 
   const updates = [
     {
@@ -139,10 +223,7 @@ const UpdatesPage = () => {
       <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
         <div className="flex items-center space-x-2 sm:space-x-3">
           <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group">
-            <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-slate-800 rounded-xl border border-slate-700 group-hover:bg-slate-700 transition-colors">
-              <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-slate-300" />
-            </div>
-            <span className="text-xl sm:text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">Thorx</span>
+            <ThorxLogo size="md" logoColor="#e2e8f0" />
           </Link>
         </div>
         <div className="flex items-center gap-3 sm:gap-6">
@@ -224,8 +305,142 @@ const UpdatesPage = () => {
         </div>
       </div>
 
+      {/* Upcoming Features Section */}
+      <div id="upcoming-section" className="relative z-10 py-24 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className={`inline-flex items-center space-x-3 mb-6 transition-all duration-1000 ${isUpcomingVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-slate-700 to-slate-600 rounded-xl border border-slate-600 shadow-lg">
+                <Sparkles className="w-6 h-6 text-slate-200" />
+              </div>
+              <h2 className="text-4xl sm:text-5xl font-bold text-slate-200">
+                Upcoming Features
+              </h2>
+            </div>
+            
+            <p className={`text-xl text-slate-400 max-w-3xl mx-auto transition-all duration-1000 delay-300 ${isUpcomingVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              Exciting new features coming to Thorx that will revolutionize your digital earning experience. Stay tuned for these game-changing additions.
+            </p>
+          </div>
+
+          {/* Upcoming Features Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {upcomingFeatures.map((feature, index) => {
+              const Icon = feature.icon;
+              const isHovered = hoveredFeature === feature.id;
+              const animationDelay = `${600 + index * 200}ms`;
+              
+              return (
+                <div
+                  key={feature.id}
+                  className={`relative group transition-all duration-1000 ${isUpcomingVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+                  style={{ transitionDelay: animationDelay }}
+                  onMouseEnter={() => setHoveredFeature(feature.id)}
+                  onMouseLeave={() => setHoveredFeature(null)}
+                >
+                  {/* Main Card */}
+                  <div className={`relative h-full bg-slate-800/40 backdrop-blur-sm rounded-2xl border border-slate-700 p-8 transition-all duration-500 hover:border-slate-600 hover:bg-slate-800/60 hover:shadow-2xl hover:shadow-slate-900/50 hover:scale-[1.02] ${feature.color}`}>
+                    
+                    {/* Status Badge */}
+                    <div className="absolute top-6 right-6">
+                      <div className={`inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-medium border ${feature.accentColor} bg-slate-900/50 border-slate-600 text-slate-300`}>
+                        <Clock className="w-3 h-3" />
+                        <span>{feature.status}</span>
+                      </div>
+                    </div>
+
+                    {/* Icon */}
+                    <div className="relative mb-6">
+                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl border-2 transition-all duration-500 ${feature.color} border-slate-600 group-hover:border-slate-500 group-hover:scale-110`}>
+                        <Icon className={`w-8 h-8 transition-all duration-500 ${feature.textColor} group-hover:scale-110`} />
+                      </div>
+                      
+                      {/* Glow Effect */}
+                      <div className={`absolute inset-0 rounded-2xl transition-all duration-500 opacity-0 group-hover:opacity-20 ${feature.accentColor} blur-xl`} />
+                    </div>
+
+                    {/* Content */}
+                    <div className="space-y-4">
+                      <h3 className="text-xl font-bold text-slate-200 group-hover:text-white transition-colors duration-300">
+                        {feature.title}
+                      </h3>
+                      
+                      <p className="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors duration-300">
+                        {feature.description}
+                      </p>
+                      
+                      {/* Timeline */}
+                      <div className="flex items-center space-x-2 text-sm">
+                        <Calendar className="w-4 h-4 text-slate-500" />
+                        <span className={`font-medium ${feature.textColor}`}>
+                          Expected: {feature.timeline}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Features List */}
+                    <div className={`mt-6 space-y-2 transition-all duration-500 ${isHovered ? 'opacity-100 max-h-96' : 'opacity-0 max-h-0'} overflow-hidden`}>
+                      <div className="border-t border-slate-700 pt-4">
+                        <h4 className="text-sm font-medium text-slate-300 mb-3">Key Features:</h4>
+                        <div className="space-y-2">
+                          {feature.features.map((item, itemIndex) => (
+                            <div key={itemIndex} className="flex items-center space-x-3">
+                              <ChevronRight className="w-3 h-3 text-slate-500" />
+                              <span className="text-xs text-slate-400">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Interactive Arrow */}
+                    <div className={`absolute bottom-6 right-6 transition-all duration-300 ${isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'}`}>
+                      <ArrowUpRight className={`w-5 h-5 ${feature.textColor}`} />
+                    </div>
+
+                    {/* Animated Border */}
+                    <div className={`absolute inset-0 rounded-2xl border-2 border-transparent transition-all duration-500 ${isHovered ? feature.accentColor.replace('bg-', 'border-') : ''}`} />
+                  </div>
+
+                  {/* Floating Particles */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    {[...Array(3)].map((_, i) => (
+                      <div
+                        key={i}
+                        className={`absolute w-1 h-1 rounded-full transition-all duration-1000 ${feature.accentColor} ${isHovered ? 'opacity-60' : 'opacity-0'}`}
+                        style={{
+                          left: `${20 + i * 30}%`,
+                          top: `${20 + i * 20}%`,
+                          animationDelay: `${i * 0.5}s`,
+                          animation: isHovered ? 'float 3s ease-in-out infinite' : 'none'
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Call to Action */}
+          <div className={`text-center mt-16 transition-all duration-1000 delay-1000 ${isUpcomingVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <p className="text-slate-400 mb-6">
+              Want to be the first to know when these features launch?
+            </p>
+            <Link
+              to="#newsletter"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-700 to-slate-600 text-slate-200 px-6 py-3 rounded-xl font-medium hover:from-slate-600 hover:to-slate-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 group"
+            >
+              <span>Get Notified</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* Newsletter Signup */}
-      <div className="relative z-10 py-24 px-4 sm:px-6">
+      <div id="newsletter" className="relative z-10 py-24 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-slate-200">
             Stay Updated
@@ -253,10 +468,7 @@ const UpdatesPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Link to="/" className="inline-flex items-center space-x-3 group mb-4 hover:scale-105 transition-all duration-300">
-              <div className="flex items-center justify-center w-10 h-10 bg-slate-800 rounded-xl border border-slate-700 group-hover:bg-slate-700 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-slate-700/30">
-                <Rocket className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors group-hover:rotate-12" />
-              </div>
-              <span className="text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">Thorx</span>
+              <ThorxLogo size="md" logoColor="#e2e8f0" />
             </Link>
             <p className="text-slate-400">Navigate the digital universe with confidence</p>
           </div>

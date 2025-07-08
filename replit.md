@@ -196,6 +196,10 @@ Changelog:
 - July 08, 2025. Updated all logo implementations to use simplified logo-only format throughout website
 - July 08, 2025. REPOSITIONED LANDING PAGE LOGO: Moved Thorx logo from hero section to top-left navigation corner
 - July 08, 2025. Increased navigation logo size from sm to md for better visibility and brand presence
+- July 08, 2025. CREATED UPCOMING FEATURES SECTION: Added comprehensive animated upcoming features section to Updates page
+- July 08, 2025. Featured Thorx Mobile App, Telegram Bot, and Giveaway Technologies with interactive cards and hover animations
+- July 08, 2025. Implemented scroll-triggered animations, floating particles, and expandable feature details on hover
+- July 08, 2025. Added status badges, timelines, and call-to-action integration with newsletter signup
 ```
 
 ## User Preferences
