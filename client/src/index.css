@@ -580,13 +580,13 @@ div[class*="bg-gradient-to-r"] {
 .cosmic-header-container:focus .cosmic-header-text,
 .cosmic-header-container:hover .cosmic-header-text.cosmic-text-glow,
 .cosmic-header-container:focus .cosmic-header-text.cosmic-text-glow {
-  filter: brightness(1.05) contrast(1.02) blur(0px) !important;
+  filter: brightness(1.3) contrast(1.4) blur(0px) !important;
   opacity: 1 !important;
-  transform: translateY(-3px) scale(1.02) !important;
+  transform: translateY(-8px) scale(1.08) !important;
   text-shadow: none !important;
-  animation: headerHoverFloat 2s ease-in-out infinite !important;
+  animation: headerHoverFloat 1.5s ease-in-out infinite !important;
   background: none !important;
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
 /* Thorx Header Text - Exact same font style as SVG logo with geometric visual effects */
@@ -632,11 +632,12 @@ div[class*="bg-gradient-to-r"] {
 }
 
 .thorx-signin-color:hover {
-  background: linear-gradient(to right, #D6EAF8, #FADADD) !important;
+  background: linear-gradient(to right, #D6EAF8, #FADADD, #D1F2EB) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
-  transform: translateY(-2px) scale(1.05) !important;
+  transform: translateY(-4px) scale(1.12) !important;
+  filter: brightness(1.4) contrast(1.5) !important;
 }
 
 /* Make headers more geometric and structured like logo */
@@ -740,23 +741,23 @@ div[class*="bg-gradient-to-r"] {
   }
 }
 
-/* Header hover animation - smooth floating effect */
+/* Header hover animation - enhanced visibility against clouds */
 @keyframes headerHoverFloat {
   0%, 100% { 
-    transform: translateY(-3px) scale(1.02); 
-    filter: brightness(1.05) contrast(1.02);
+    transform: translateY(-8px) scale(1.08); 
+    filter: brightness(1.3) contrast(1.4);
   }
   25% { 
-    transform: translateY(-6px) scale(1.025) rotate(0.5deg); 
-    filter: brightness(1.08) contrast(1.05);
+    transform: translateY(-12px) scale(1.12) rotate(1deg); 
+    filter: brightness(1.4) contrast(1.5);
   }
   50% { 
-    transform: translateY(-4px) scale(1.03); 
-    filter: brightness(1.1) contrast(1.08);
+    transform: translateY(-10px) scale(1.15); 
+    filter: brightness(1.5) contrast(1.6);
   }
   75% { 
-    transform: translateY(-5px) scale(1.025) rotate(-0.5deg); 
-    filter: brightness(1.07) contrast(1.04);
+    transform: translateY(-11px) scale(1.1) rotate(-1deg); 
+    filter: brightness(1.35) contrast(1.45);
   }
 }
 
@@ -764,13 +765,13 @@ div[class*="bg-gradient-to-r"] {
 @media (hover: none) and (pointer: coarse) {
   .cosmic-header-container:active .cosmic-header-text,
   .cosmic-header-container:active .cosmic-header-text.cosmic-text-glow {
-    filter: brightness(1.05) contrast(1.02) blur(0px) !important;
+    filter: brightness(1.3) contrast(1.4) blur(0px) !important;
     opacity: 1 !important;
-    transform: translateY(-3px) scale(1.02) !important;
+    transform: translateY(-8px) scale(1.08) !important;
     text-shadow: none !important;
-    animation: headerHoverFloat 2s ease-in-out infinite !important;
+    animation: headerHoverFloat 1.5s ease-in-out infinite !important;
     background: none !important;
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
   }
   
   .cosmic-header-container:active .cosmic-cloud-veil {
