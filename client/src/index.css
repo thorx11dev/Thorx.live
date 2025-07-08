@@ -631,6 +631,15 @@ div[class*="bg-gradient-to-r"] {
   font-weight: 600;
 }
 
+/* Sign-in button color for header text */
+.thorx-signin-color {
+  background: linear-gradient(to right, #FADADD, #D6EAF8) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-weight: 600;
+}
+
 /* Make headers more geometric and structured like logo */
 .thorx-hero-title {
   font-variant: small-caps;
