@@ -584,7 +584,7 @@ div[class*="bg-gradient-to-r"] {
   opacity: 1 !important;
   transform: translateY(-3px) scale(1.02) !important;
   text-shadow: none !important;
-  animation: whimsicalFloat 2s ease-in-out infinite !important;
+  animation: headerHoverFloat 2s ease-in-out infinite !important;
   background: none !important;
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
@@ -621,13 +621,22 @@ div[class*="bg-gradient-to-r"] {
   font-weight: 600;
 }
 
-/* Sign-in button color for header text */
+/* Sign-in button color for header text with hover animation */
 .thorx-signin-color {
   background: linear-gradient(to right, #FADADD, #D6EAF8) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
   font-weight: 600;
+  transition: all 0.3s ease !important;
+}
+
+.thorx-signin-color:hover {
+  background: linear-gradient(to right, #D6EAF8, #FADADD) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  transform: translateY(-2px) scale(1.05) !important;
 }
 
 /* Make headers more geometric and structured like logo */
@@ -731,6 +740,26 @@ div[class*="bg-gradient-to-r"] {
   }
 }
 
+/* Header hover animation - smooth floating effect */
+@keyframes headerHoverFloat {
+  0%, 100% { 
+    transform: translateY(-3px) scale(1.02); 
+    filter: brightness(1.05) contrast(1.02);
+  }
+  25% { 
+    transform: translateY(-6px) scale(1.025) rotate(0.5deg); 
+    filter: brightness(1.08) contrast(1.05);
+  }
+  50% { 
+    transform: translateY(-4px) scale(1.03); 
+    filter: brightness(1.1) contrast(1.08);
+  }
+  75% { 
+    transform: translateY(-5px) scale(1.025) rotate(-0.5deg); 
+    filter: brightness(1.07) contrast(1.04);
+  }
+}
+
 /* Touch device support */
 @media (hover: none) and (pointer: coarse) {
   .cosmic-header-container:active .cosmic-header-text,
@@ -739,7 +768,7 @@ div[class*="bg-gradient-to-r"] {
     opacity: 1 !important;
     transform: translateY(-3px) scale(1.02) !important;
     text-shadow: none !important;
-    animation: whimsicalFloat 2s ease-in-out infinite !important;
+    animation: headerHoverFloat 2s ease-in-out infinite !important;
     background: none !important;
     transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
   }
