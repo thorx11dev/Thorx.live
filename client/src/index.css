@@ -319,6 +319,109 @@ div[class*="bg-gradient-to-r"] {
   text-decoration: none !important;
 }
 
+/* ========================================
+   COSMIC FEATURES ICON VISIBILITY FIX - CRITICAL SECTION
+   ======================================== */
+
+/* CRITICAL: Fix icon visibility issues during hover interactions */
+.group:hover .w-8.h-8.text-slate-400 {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1.1) !important;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) brightness(1.25) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  z-index: 20 !important;
+  position: relative !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Ensure icon stroke rendering consistency */
+.group:hover .w-8.h-8.text-slate-400 svg {
+  stroke: currentColor !important;
+  stroke-width: 1.5px !important;
+  fill: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Prevent filter conflicts during transition */
+.group .w-8.h-8.text-slate-400 {
+  will-change: transform, color, filter !important;
+  backface-visibility: hidden !important;
+  transform: translateZ(0) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Fix for webkit-based browsers */
+@supports (-webkit-appearance: none) {
+  .group:hover .w-8.h-8.text-slate-400 {
+    -webkit-transform: scale(1.1) translateZ(0) !important;
+    -webkit-filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) brightness(1.25) !important;
+    -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+}
+
+/* Fix for Firefox */
+@-moz-document url-prefix() {
+  .group:hover .w-8.h-8.text-slate-400 {
+    -moz-transform: scale(1.1) translateZ(0) !important;
+    -moz-filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) brightness(1.25) !important;
+    -moz-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+}
+
+/* Enhanced icon container for better isolation */
+.group .relative.mb-6 .inline-block {
+  transform: translateZ(0) !important;
+  will-change: transform !important;
+}
+
+/* CRITICAL: Fix focus and active states for icon visibility */
+.group:focus .w-8.h-8.text-slate-400,
+.group:focus-within .w-8.h-8.text-slate-400,
+.group:active .w-8.h-8.text-slate-400 {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1.1) !important;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) brightness(1.25) !important;
+  z-index: 20 !important;
+  position: relative !important;
+}
+
+/* Ensure proper rendering order for icon containers */
+.group .inline-block.p-6 {
+  isolation: isolate !important;
+  contain: layout style !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Fix for high DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .group:hover .w-8.h-8.text-slate-400 {
+    transform: scale(1.1) translateZ(0) !important;
+    -webkit-font-smoothing: subpixel-antialiased !important;
+  }
+}
+
+/* Accessibility improvements for keyboard navigation */
+.group:focus-visible .w-8.h-8.text-slate-400 {
+  outline: 2px solid #e2e8f0 !important;
+  outline-offset: 2px !important;
+  border-radius: 4px !important;
+}
+
+/* Ensure consistent icon rendering in all states */
+.w-8.h-8.text-slate-400 {
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform-style: preserve-3d !important;
+  -webkit-transform-style: preserve-3d !important;
+}
+
 /* CRITICAL: Search and input field styles */
 .thorx-search-input {
   background-color: rgba(30, 41, 59, 0.6) !important;
