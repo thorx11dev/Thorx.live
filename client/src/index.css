@@ -498,61 +498,94 @@ div[class*="bg-gradient-to-r"] {
   z-index: 20 !important;
 }
 
-/* REDESIGNED FEATURE ICONS - Smooth and reliable */
-.thorx-feature-icon {
+/* ENHANCED MAGNETIC ICONS - Dynamic and engaging */
+.thorx-magnetic-icon {
   display: inline-block !important;
   opacity: 1 !important;
   visibility: visible !important;
   color: #94a3b8 !important; /* slate-400 */
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
   stroke-width: 2px !important;
   fill: currentColor !important;
   stroke: currentColor !important;
   transform: translateZ(0) !important;
   backface-visibility: hidden !important;
+  will-change: transform, color, filter !important;
 }
 
-.group:hover .thorx-feature-icon {
+.group:hover .thorx-magnetic-icon {
   color: #e2e8f0 !important; /* slate-200 */
   opacity: 1 !important;
   visibility: visible !important;
   transform: scale(1.1) translateZ(0) !important;
+  filter: drop-shadow(0 4px 12px rgba(148, 163, 184, 0.3)) !important;
 }
 
-/* Feature card container optimizations */
-.thorx-feature-card {
+/* Enhanced card container with isolation */
+.thorx-enhanced-card {
   isolation: isolate !important;
+  perspective: 1000px !important;
 }
 
-.thorx-feature-card:hover .thorx-feature-icon {
+.thorx-enhanced-card:hover .thorx-magnetic-icon {
   color: #e2e8f0 !important;
   opacity: 1 !important;
   visibility: visible !important;
   transform: scale(1.1) translateZ(0) !important;
+  filter: drop-shadow(0 4px 12px rgba(148, 163, 184, 0.3)) !important;
+}
+
+/* Floating particles animation */
+.thorx-particle {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+    opacity: 0.3; 
+  }
+  50% { 
+    transform: translateY(-10px) rotate(180deg); 
+    opacity: 0.8; 
+  }
 }
 
 /* Enhanced cross-browser compatibility */
 @supports (-webkit-appearance: none) {
-  .thorx-feature-icon {
+  .thorx-magnetic-icon {
     -webkit-text-fill-color: #94a3b8 !important;
     -webkit-transform: translateZ(0) !important;
     -webkit-backface-visibility: hidden !important;
+    -webkit-filter: none !important;
   }
   
-  .group:hover .thorx-feature-icon {
+  .group:hover .thorx-magnetic-icon {
     -webkit-text-fill-color: #e2e8f0 !important;
     -webkit-transform: scale(1.1) translateZ(0) !important;
+    -webkit-filter: drop-shadow(0 4px 12px rgba(148, 163, 184, 0.3)) !important;
   }
 }
 
 @supports (-moz-appearance: none) {
-  .thorx-feature-icon {
+  .thorx-magnetic-icon {
     -moz-transform: translateZ(0) !important;
     -moz-backface-visibility: hidden !important;
   }
   
-  .group:hover .thorx-feature-icon {
+  .group:hover .thorx-magnetic-icon {
     -moz-transform: scale(1.1) translateZ(0) !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .thorx-enhanced-card {
+    perspective: 500px !important;
+  }
+  
+  .thorx-magnetic-icon {
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
   }
 }
 

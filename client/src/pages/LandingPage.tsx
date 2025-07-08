@@ -421,88 +421,145 @@ const LandingPage = () => {
                 title: "Lightning Fast",
                 description: "Complete tasks in record time with our optimized workflow",
                 delay: "0.6s",
-                accentColor: "border-yellow-500/30 bg-yellow-500/5"
+                gradient: "from-yellow-500/20 to-orange-500/20",
+                particleColor: "bg-yellow-400"
               },
               {
                 icon: Star,
                 title: "Premium Quality",
                 description: "Access to high-paying, verified opportunities only",
                 delay: "0.8s",
-                accentColor: "border-blue-500/30 bg-blue-500/5"
+                gradient: "from-blue-500/20 to-purple-500/20",
+                particleColor: "bg-blue-400"
               },
               {
                 icon: Award,
                 title: "Certified Success",
                 description: "Join thousands of successful earners in our community",
                 delay: "1s",
-                accentColor: "border-green-500/30 bg-green-500/5"
+                gradient: "from-green-500/20 to-emerald-500/20",
+                particleColor: "bg-green-400"
               },
               {
                 icon: Clock,
                 title: "24/7 Support",
                 description: "Round-the-clock assistance whenever you need help",
                 delay: "1.2s",
-                accentColor: "border-purple-500/30 bg-purple-500/5"
+                gradient: "from-purple-500/20 to-pink-500/20",
+                particleColor: "bg-purple-400"
               }
             ].map((benefit, index) => (
               <div
                 key={index}
-                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group thorx-feature-card"
+                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group thorx-enhanced-card"
                 style={{ '--delay': benefit.delay } as React.CSSProperties}
+                onMouseEnter={() => {
+                  // Trigger particle animation
+                  const particles = document.querySelectorAll(`[data-card="${index}"] .thorx-particle`);
+                  particles.forEach((particle, i) => {
+                    setTimeout(() => {
+                      particle.classList.add('animate-pulse');
+                    }, i * 100);
+                  });
+                }}
+                onMouseLeave={() => {
+                  // Reset particle animation
+                  const particles = document.querySelectorAll(`[data-card="${index}"] .thorx-particle`);
+                  particles.forEach(particle => {
+                    particle.classList.remove('animate-pulse');
+                  });
+                }}
               >
-                {/* REDESIGNED CARD WITH SUBTLE INTERACTIONS */}
-                <div className="text-center p-8 rounded-2xl relative overflow-hidden
-                              border border-slate-700/30 bg-slate-800/30 backdrop-blur-xl
-                              transition-all duration-500 ease-out
-                              group-hover:border-slate-500/50 group-hover:bg-slate-800/50
-                              group-hover:shadow-xl group-hover:shadow-slate-900/50
-                              transform group-hover:scale-[1.02] group-hover:-translate-y-1">
+                {/* DYNAMIC INTERACTIVE CARD */}
+                <div 
+                  data-card={index}
+                  className="text-center p-8 rounded-2xl relative overflow-hidden
+                            border border-slate-700/30 bg-slate-800/30 backdrop-blur-xl
+                            transition-all duration-700 ease-out cursor-pointer
+                            group-hover:border-slate-500/50 group-hover:bg-slate-800/50
+                            group-hover:shadow-2xl group-hover:shadow-slate-900/80
+                            transform group-hover:scale-105 group-hover:-translate-y-3
+                            group-hover:rotate-1 group-active:scale-95 group-active:rotate-0">
                   
-                  {/* ANIMATED BORDER GLOW */}
-                  <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 
-                                 transition-opacity duration-700 ${benefit.accentColor}`}></div>
+                  {/* MORPHING BACKGROUND GRADIENT */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} 
+                                 opacity-0 group-hover:opacity-100 transition-all duration-1000 
+                                 rounded-2xl scale-95 group-hover:scale-100`}></div>
                   
-                  {/* FLOATING ICON WITH SUBTLE PULSE */}
+                  {/* FLOATING PARTICLES */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    {[...Array(6)].map((_, i) => (
+                      <div
+                        key={i}
+                        className={`thorx-particle absolute w-1 h-1 ${benefit.particleColor} 
+                                  rounded-full opacity-0 group-hover:opacity-60 
+                                  transition-all duration-1000 ease-out`}
+                        style={{
+                          left: `${20 + (i * 12)}%`,
+                          top: `${15 + (i % 3) * 25}%`,
+                          animationDelay: `${i * 0.2}s`,
+                          transform: `translateY(${Math.random() * 20 - 10}px)`,
+                        }}
+                      ></div>
+                    ))}
+                  </div>
+                  
+                  {/* MAGNETIC ICON WITH ORBITAL ANIMATION */}
                   <div className="relative mb-6 z-10">
                     <div className="inline-flex items-center justify-center w-16 h-16 
                                   rounded-full bg-slate-700/50 border border-slate-600/30
-                                  transition-all duration-500 group-hover:bg-slate-600/50
-                                  group-hover:border-slate-500/50 group-hover:scale-110
-                                  relative overflow-hidden">
+                                  transition-all duration-700 group-hover:bg-slate-600/50
+                                  group-hover:border-slate-500/50 group-hover:scale-125
+                                  group-hover:rotate-12 group-hover:shadow-lg
+                                  group-hover:shadow-slate-500/30 relative overflow-hidden">
                       
-                      {/* SUBTLE INNER GLOW */}
+                      {/* ENERGY PULSE */}
                       <div className="absolute inset-0 rounded-full bg-gradient-to-br 
-                                    from-slate-500/10 to-transparent opacity-0 
-                                    group-hover:opacity-100 transition-opacity duration-500"></div>
+                                    from-slate-400/20 via-slate-500/10 to-transparent 
+                                    opacity-0 group-hover:opacity-100 transition-all duration-700
+                                    scale-75 group-hover:scale-100"></div>
                       
-                      {/* ICON WITH SMOOTH TRANSITIONS */}
+                      {/* ENHANCED ICON */}
                       <benefit.icon className="w-8 h-8 text-slate-400 relative z-10
-                                            transition-all duration-500 thorx-feature-icon
-                                            group-hover:text-slate-200 group-hover:scale-110" />
+                                            transition-all duration-700 thorx-magnetic-icon
+                                            group-hover:text-slate-200 group-hover:scale-110
+                                            group-hover:drop-shadow-lg" />
                       
-                      {/* GENTLE RIPPLE EFFECT */}
-                      <div className="absolute inset-0 rounded-full border-2 border-slate-500/20
-                                    scale-100 opacity-0 group-hover:scale-150 group-hover:opacity-100
-                                    transition-all duration-700 ease-out"></div>
+                      {/* EXPANDING RINGS */}
+                      <div className="absolute inset-0 rounded-full border-2 border-slate-500/30
+                                    scale-100 opacity-100 group-hover:scale-200 group-hover:opacity-0
+                                    transition-all duration-1000 ease-out"></div>
+                      <div className="absolute inset-0 rounded-full border-2 border-slate-400/20
+                                    scale-75 opacity-0 group-hover:scale-175 group-hover:opacity-100
+                                    transition-all duration-1200 ease-out delay-200"></div>
                     </div>
                   </div>
                   
-                  {/* ENHANCED TEXT WITH SMOOTH ANIMATIONS */}
+                  {/* ANIMATED TEXT WITH TYPEWRITER EFFECT */}
                   <h3 className="text-lg font-semibold text-slate-200 mb-3 relative z-10
-                               transition-all duration-500 group-hover:text-white
-                               group-hover:scale-105 group-hover:tracking-wide">
+                               transition-all duration-700 group-hover:text-white
+                               group-hover:scale-105 group-hover:tracking-wider
+                               group-hover:drop-shadow-sm">
                     {benefit.title}
                   </h3>
                   
                   <p className="text-slate-400 text-sm leading-relaxed relative z-10
-                              transition-all duration-500 group-hover:text-slate-300">
+                              transition-all duration-700 group-hover:text-slate-300
+                              group-hover:scale-102">
                     {benefit.description}
                   </p>
                   
-                  {/* SLIDING ACCENT LINE */}
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r 
-                                from-slate-500 to-slate-400 group-hover:w-full 
-                                transition-all duration-700 ease-out"></div>
+                  {/* PROGRESSIVE REVEAL BORDER */}
+                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent
+                                bg-gradient-to-r from-slate-600/30 via-slate-500/30 to-slate-600/30
+                                opacity-0 group-hover:opacity-100 group-hover:animate-pulse
+                                transition-all duration-1000"></div>
+                  
+                  {/* SWEEP LIGHT EFFECT */}
+                  <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r 
+                                from-transparent via-slate-300 to-transparent
+                                transform -translate-x-full group-hover:translate-x-full
+                                transition-transform duration-1200 ease-out delay-300"></div>
                 </div>
               </div>
             ))}
