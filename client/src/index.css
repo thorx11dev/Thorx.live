@@ -5,6 +5,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* NUCLEAR OPTION: Force ALL white text to stay white */
+* {
+  --tw-text-white: #ffffff !important;
+}
+
 /* CRITICAL: Override any Tailwind utilities that might interfere with text-white */
 @layer utilities {
   .text-white {
@@ -367,35 +372,63 @@ body .text-white,
   filter: none !important;
 }
 
-/* CRITICAL: Remove any global text effects that might affect white text */
-button, a, span, div, p, h1, h2, h3, h4, h5, h6 {
-  filter: none !important;
-}
-
-button.text-white, a.text-white, span.text-white {
-  text-shadow: none !important;
-  filter: none !important;
+/* DIRECT BUTTON TARGETING: Force specific buttons to stay white */
+nav a[href="/auth"]:first-of-type,
+nav a[href="/auth"]:last-of-type,
+a[href="/features"],
+button:contains("Start Chat"),
+button:contains("Send Email"), 
+button:contains("Call Now"),
+a:contains("Contact Us"),
+button:contains("Share Article"),
+button:contains("Read More") {
   color: #ffffff !important;
 }
 
-/* CRITICAL: Override group-hover effects that change text color */
-.group:hover .group-hover\:text-white,
-.group:hover .group-hover\:text-slate-200,
-.group:hover .group-hover\:text-slate-300,
-.group:hover .group-hover\:text-slate-400,
-.group:hover .group-hover\:text-primary,
-.group:hover .group-hover\:text-secondary,
-.group:hover .group-hover\:text-tertiary {
+nav a[href="/auth"]:first-of-type:hover,
+nav a[href="/auth"]:last-of-type:hover,
+a[href="/features"]:hover,
+button:contains("Start Chat"):hover,
+button:contains("Send Email"):hover, 
+button:contains("Call Now"):hover,
+a:contains("Contact Us"):hover,
+button:contains("Share Article"):hover,
+button:contains("Read More"):hover {
+  color: #ffffff !important;
+}
+
+/* NUCLEAR APPROACH: Override ALL possible text color variations */
+button, a, span, div, p, h1, h2, h3, h4, h5, h6 {
+  --tw-text-slate-200: #ffffff !important;
+  --tw-text-slate-300: #ffffff !important;
+  --tw-text-slate-400: #ffffff !important;
+}
+
+button.text-white, a.text-white, span.text-white,
+button:contains("Sign In"), a:contains("Get Started"), button:contains("Learn More"),
+button:contains("Start Chat"), button:contains("Send Email"), button:contains("Call Now"),
+button:contains("Contact Us"), a:contains("Contact Us"), button:contains("Share Article") {
+  color: #ffffff !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+button.text-white:hover, a.text-white:hover, span.text-white:hover,
+button:contains("Sign In"):hover, a:contains("Get Started"):hover, button:contains("Learn More"):hover,
+button:contains("Start Chat"):hover, button:contains("Send Email"):hover, button:contains("Call Now"):hover,
+button:contains("Contact Us"):hover, a:contains("Contact Us"):hover, button:contains("Share Article"):hover {
+  color: #ffffff !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* CRITICAL: Override ALL group-hover text effects */
+.group:hover *, .group:focus *, .group:active * {
   color: inherit !important;
 }
 
-/* CRITICAL: Force text-white elements to stay white even with group-hover */
-.group:hover .text-white,
-.group:focus .text-white,
-.group:active .text-white {
+.group:hover .text-white, .group:focus .text-white, .group:active .text-white {
   color: #ffffff !important;
-  text-shadow: none !important;
-  filter: none !important;
 }
 
 /* ========================================
