@@ -171,6 +171,181 @@
 }
 
 /* ========================================
+   COSMIC REGISTRATION PAGE ANIMATIONS
+   ======================================== */
+
+/* Orbital floating animation for particles */
+@keyframes cosmicOrbitalFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  33% {
+    transform: translateY(-10px) rotate(120deg);
+    opacity: 0.7;
+  }
+  66% {
+    transform: translateY(5px) rotate(240deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0px) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+.cosmic-orbital-float {
+  animation: cosmicOrbitalFloat 8s ease-in-out infinite;
+}
+
+/* Gentle drift animation for small particles */
+@keyframes cosmicDrift {
+  0% {
+    transform: translateX(0px) translateY(0px) scale(1);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translateX(10px) translateY(-5px) scale(1.1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(5px) translateY(10px) scale(0.9);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translateX(-5px) translateY(5px) scale(1.05);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) scale(1);
+    opacity: 0.2;
+  }
+}
+
+.cosmic-drift {
+  animation: cosmicDrift 12s ease-in-out infinite;
+}
+
+/* Nebula drift animation for large gradient orbs */
+@keyframes cosmicNebulaDrift {
+  0% {
+    transform: translateX(0px) translateY(0px) scale(1) rotate(0deg);
+    opacity: 0.1;
+  }
+  25% {
+    transform: translateX(20px) translateY(-10px) scale(1.1) rotate(90deg);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateX(-10px) translateY(15px) scale(0.9) rotate(180deg);
+    opacity: 0.2;
+  }
+  75% {
+    transform: translateX(-15px) translateY(-5px) scale(1.05) rotate(270deg);
+    opacity: 0.12;
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) scale(1) rotate(360deg);
+    opacity: 0.1;
+  }
+}
+
+.cosmic-nebula-drift {
+  animation: cosmicNebulaDrift 20s ease-in-out infinite;
+}
+
+/* Enhanced form field focus animations */
+.cosmic-form-field {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cosmic-form-field:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(100, 116, 139, 0.2);
+}
+
+.cosmic-form-field::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.cosmic-form-field:focus-within::before {
+  left: 100%;
+}
+
+/* Enhanced button animations */
+.cosmic-interactive-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cosmic-interactive-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.cosmic-interactive-btn:hover::before {
+  left: 100%;
+}
+
+.cosmic-interactive-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Staggered fade-in animation for benefit cards */
+@keyframes cosmicStaggeredFade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cosmic-benefit-card {
+  animation: cosmicStaggeredFade 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+/* Password strength animation */
+@keyframes cosmicStrengthPulse {
+  0% {
+    transform: scaleX(0);
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0.8;
+  }
+}
+
+.cosmic-strength-bar {
+  animation: cosmicStrengthPulse 0.5s ease-out forwards;
+  transform-origin: left;
+}
+
+/* ========================================
    UNIVERSAL BUTTON STYLING - CRITICAL SECTION
    ======================================== */
 

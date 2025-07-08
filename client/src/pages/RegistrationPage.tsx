@@ -218,35 +218,68 @@ const RegistrationPage = () => {
 
       {/* Cosmic Background Elements */}
       <div className="absolute inset-0 z-10">
-        {/* Floating Particles */}
-        <div className="absolute top-20 left-20 w-3 h-3 bg-slate-400/30 rounded-full animate-pulse" 
+        {/* Floating Orbital Particles */}
+        <div className="absolute top-20 left-20 w-3 h-3 bg-gradient-to-r from-blue-400/40 to-purple-400/40 rounded-full animate-pulse cosmic-orbital-float" 
              style={{ animationDelay: '0s' }} />
-        <div className="absolute top-40 right-32 w-2 h-2 bg-slate-300/40 rounded-full animate-pulse" 
+        <div className="absolute top-40 right-32 w-2 h-2 bg-gradient-to-r from-teal-400/50 to-cyan-400/50 rounded-full animate-pulse cosmic-orbital-float" 
              style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-32 left-16 w-4 h-4 bg-slate-500/25 rounded-full animate-pulse" 
+        <div className="absolute bottom-32 left-16 w-4 h-4 bg-gradient-to-r from-pink-400/30 to-rose-400/30 rounded-full animate-pulse cosmic-orbital-float" 
              style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-20 right-20 w-2 h-2 bg-slate-400/35 rounded-full animate-pulse" 
+        <div className="absolute bottom-20 right-20 w-2 h-2 bg-gradient-to-r from-indigo-400/45 to-purple-400/45 rounded-full animate-pulse cosmic-orbital-float" 
              style={{ animationDelay: '3s' }} />
+        
+        {/* Additional Floating Elements */}
+        <div className="absolute top-1/3 left-1/4 w-1 h-1 bg-slate-300/60 rounded-full animate-pulse cosmic-drift" 
+             style={{ animationDelay: '0.5s' }} />
+        <div className="absolute top-2/3 right-1/4 w-1 h-1 bg-slate-400/50 rounded-full animate-pulse cosmic-drift" 
+             style={{ animationDelay: '1.5s' }} />
+        <div className="absolute top-1/2 left-1/3 w-1 h-1 bg-slate-200/40 rounded-full animate-pulse cosmic-drift" 
+             style={{ animationDelay: '2.5s' }} />
 
-        {/* Constellation Lines */}
+        {/* Enhanced Constellation Network */}
         <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="constellationGrid" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-              <circle cx="50" cy="50" r="1" fill="#64748b" opacity="0.5">
+              <circle cx="50" cy="50" r="1.5" fill="#64748b" opacity="0.5">
                 <animate attributeName="opacity" values="0.5;1;0.5" dur="4s" repeatCount="indefinite" />
+                <animate attributeName="r" values="1.5;2;1.5" dur="4s" repeatCount="indefinite" />
               </circle>
               <circle cx="150" cy="100" r="1" fill="#64748b" opacity="0.3">
                 <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" begin="1s" />
+                <animate attributeName="r" values="1;1.5;1" dur="3s" repeatCount="indefinite" begin="1s" />
               </circle>
-              <circle cx="100" cy="150" r="1" fill="#64748b" opacity="0.4">
+              <circle cx="100" cy="150" r="1.2" fill="#64748b" opacity="0.4">
                 <animate attributeName="opacity" values="0.4;0.9;0.4" dur="3.5s" repeatCount="indefinite" begin="0.5s" />
+                <animate attributeName="r" values="1.2;1.8;1.2" dur="3.5s" repeatCount="indefinite" begin="0.5s" />
               </circle>
-              <line x1="50" y1="50" x2="150" y2="100" stroke="#64748b" strokeWidth="0.5" opacity="0.2" />
-              <line x1="150" y1="100" x2="100" y2="150" stroke="#64748b" strokeWidth="0.5" opacity="0.2" />
+              <line x1="50" y1="50" x2="150" y2="100" stroke="#64748b" strokeWidth="0.5" opacity="0.2">
+                <animate attributeName="opacity" values="0.2;0.4;0.2" dur="5s" repeatCount="indefinite" />
+              </line>
+              <line x1="150" y1="100" x2="100" y2="150" stroke="#64748b" strokeWidth="0.5" opacity="0.2">
+                <animate attributeName="opacity" values="0.2;0.4;0.2" dur="5s" repeatCount="indefinite" begin="1s" />
+              </line>
+              <line x1="100" y1="150" x2="50" y2="50" stroke="#64748b" strokeWidth="0.3" opacity="0.1">
+                <animate attributeName="opacity" values="0.1;0.3;0.1" dur="6s" repeatCount="indefinite" begin="2s" />
+              </line>
             </pattern>
+            <filter id="starGlow">
+              <feGaussianBlur stdDeviation="0.5" result="coloredBlur"/>
+              <feMerge> 
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
           </defs>
-          <rect width="100%" height="100%" fill="url(#constellationGrid)" />
+          <rect width="100%" height="100%" fill="url(#constellationGrid)" filter="url(#starGlow)" />
         </svg>
+        
+        {/* Nebula-inspired Gradient Orbs */}
+        <div className="absolute top-1/4 left-1/5 w-32 h-32 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse cosmic-nebula-drift" 
+             style={{ animationDelay: '0s' }} />
+        <div className="absolute bottom-1/4 right-1/5 w-40 h-40 bg-gradient-to-r from-blue-500/8 to-teal-500/8 rounded-full blur-3xl animate-pulse cosmic-nebula-drift" 
+             style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 right-1/3 w-24 h-24 bg-gradient-to-r from-indigo-500/12 to-cyan-500/12 rounded-full blur-3xl animate-pulse cosmic-nebula-drift" 
+             style={{ animationDelay: '4s' }} />
       </div>
 
       {/* Main Content */}
@@ -266,10 +299,73 @@ const RegistrationPage = () => {
               <h1 className="text-4xl xl:text-5xl font-bold text-slate-200 mb-4 thorx-hero-title thorx-signin-color">
                 Join the Cosmic Revolution
               </h1>
-              <p className="text-xl text-slate-400 leading-relaxed">
+              <p className="text-xl text-slate-400 leading-relaxed mb-8">
                 Embark on your digital earning journey with Thorx. Connect with opportunities 
                 across the universe and transform your potential into profit.
               </p>
+              
+              {/* Cosmic Illustration */}
+              <div className="relative w-full h-32 mb-8 cosmic-fade-in" style={{ animationDelay: '0.3s' }}>
+                <svg 
+                  className="w-full h-full opacity-60" 
+                  viewBox="0 0 400 120" 
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <linearGradient id="cosmicGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#64748b" stopOpacity="0.3" />
+                      <stop offset="50%" stopColor="#94a3b8" stopOpacity="0.5" />
+                      <stop offset="100%" stopColor="#64748b" stopOpacity="0.3" />
+                    </linearGradient>
+                    <filter id="glow">
+                      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                      <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                  </defs>
+                  
+                  {/* Cosmic Path */}
+                  <path 
+                    d="M 20 60 Q 100 20 180 60 T 360 60" 
+                    stroke="url(#cosmicGradient)" 
+                    strokeWidth="2" 
+                    fill="none"
+                    filter="url(#glow)"
+                  >
+                    <animate 
+                      attributeName="stroke-dasharray" 
+                      values="0,400;400,400;400,0" 
+                      dur="4s" 
+                      repeatCount="indefinite"
+                    />
+                  </path>
+                  
+                  {/* Floating Cosmic Objects */}
+                  <circle cx="60" cy="45" r="3" fill="#94a3b8" opacity="0.6">
+                    <animate attributeName="cy" values="45;35;45" dur="3s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="160" cy="75" r="2" fill="#64748b" opacity="0.4">
+                    <animate attributeName="cy" values="75;65;75" dur="2.5s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.5s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="280" cy="40" r="2.5" fill="#94a3b8" opacity="0.5">
+                    <animate attributeName="cy" values="40;30;40" dur="3.5s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3.5s" repeatCount="indefinite"/>
+                  </circle>
+                  
+                  {/* Cosmic Destination */}
+                  <circle cx="380" cy="60" r="8" fill="none" stroke="#94a3b8" strokeWidth="1" opacity="0.6">
+                    <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="380" cy="60" r="4" fill="#94a3b8" opacity="0.8">
+                    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                </svg>
+              </div>
             </div>
 
             {/* Benefits Grid */}
@@ -277,12 +373,13 @@ const RegistrationPage = () => {
               {benefits.map((benefit, index) => (
                 <div 
                   key={index}
-                  className="cosmic-glass-light p-6 rounded-xl cosmic-hover-lift cosmic-fade-in"
+                  className="cosmic-glass-light p-6 rounded-xl cosmic-hover-lift cosmic-benefit-card"
                   style={{ animationDelay: `${0.4 + index * 0.1}s` }}
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-slate-700/50 rounded-lg flex items-center justify-center">
-                      <benefit.icon className="w-6 h-6 text-slate-300" />
+                    <div className="flex-shrink-0 w-12 h-12 bg-slate-700/50 rounded-lg flex items-center justify-center relative overflow-hidden">
+                      <benefit.icon className="w-6 h-6 text-slate-300 transition-transform duration-300 hover:scale-110" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-400/10 to-transparent transform -translate-x-full transition-transform duration-500 hover:translate-x-full" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-slate-200 mb-1">{benefit.title}</h3>
@@ -337,8 +434,8 @@ const RegistrationPage = () => {
                     <label className="block text-sm font-medium text-slate-300 mb-2">
                       First Name
                     </label>
-                    <div className="relative">
-                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 w-4 h-4" />
+                    <div className="relative cosmic-form-field">
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 w-4 h-4 transition-colors duration-300" />
                       <input
                         type="text"
                         value={formData.firstName}
@@ -517,7 +614,7 @@ const RegistrationPage = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full thorx-btn-primary py-4 px-6 rounded-lg font-semibold text-center transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full thorx-btn-primary cosmic-interactive-btn py-4 px-6 rounded-lg font-semibold text-center transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? (
                     <>
