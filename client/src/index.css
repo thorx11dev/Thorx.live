@@ -3734,3 +3734,209 @@ body {
   backface-visibility: hidden;
   perspective: 1000px;
 }
+
+/* ==================== CELESTIAL REGISTRATION PAGE STYLES ==================== */
+
+/* Fade-in animations */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Twinkling stars */
+.twinkling-star {
+  animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Celestial pattern background */
+.celestial-pattern {
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgb(148, 163, 184), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgb(148, 163, 184), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgb(148, 163, 184), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgb(148, 163, 184), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgb(148, 163, 184), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+}
+
+/* Celestial form elements */
+.celestial-form-group {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.celestial-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+  color: #1e293b;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.dark .celestial-input {
+  border-color: #475569;
+  background: #334155;
+  color: #e2e8f0;
+}
+
+.celestial-input:focus {
+  outline: none;
+  border-color: #64748b;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.1);
+  transform: translateY(-2px);
+}
+
+.dark .celestial-input:focus {
+  border-color: #94a3b8;
+  background: #475569;
+  box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.1);
+}
+
+.celestial-input::placeholder {
+  color: #64748b;
+}
+
+.dark .celestial-input::placeholder {
+  color: #94a3b8;
+}
+
+/* Celestial checkbox */
+.celestial-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.dark .celestial-checkbox {
+  border-color: #475569;
+  background: #334155;
+}
+
+.celestial-checkbox.checked {
+  border-color: #64748b;
+  background: #64748b;
+}
+
+.celestial-checkbox:hover {
+  border-color: #94a3b8;
+  transform: scale(1.05);
+}
+
+/* Celestial button */
+.celestial-button {
+  background: #1e293b;
+  color: #e2e8f0;
+  border: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.celestial-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.celestial-button:hover::before {
+  left: 100%;
+}
+
+.celestial-button:hover {
+  background: #334155;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(30, 41, 59, 0.3);
+}
+
+.celestial-button:active {
+  transform: translateY(0);
+}
+
+/* Celestial strength bar */
+.celestial-strength-bar {
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.celestial-strength-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: strengthSweep 2s infinite;
+}
+
+@keyframes strengthSweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Dark mode adjustments */
+.dark .celestial-button {
+  background: #475569;
+  color: #f1f5f9;
+}
+
+.dark .celestial-button:hover {
+  background: #64748b;
+  box-shadow: 0 8px 16px rgba(71, 85, 105, 0.3);
+}
+
+/* Form field focus lifting effect */
+.celestial-form-group:focus-within {
+  transform: translateY(-2px);
+}
+
+.celestial-form-group:focus-within .celestial-input {
+  box-shadow: 0 4px 12px rgba(100, 116, 139, 0.15);
+}
+
+.dark .celestial-form-group:focus-within .celestial-input {
+  box-shadow: 0 4px 12px rgba(148, 163, 184, 0.15);
+}
+
+/* Subtle hover animations for icons */
+.celestial-form-group:hover .lucide {
+  color: #64748b;
+  transform: scale(1.1);
+}
+
+.dark .celestial-form-group:hover .lucide {
+  color: #94a3b8;
+}
