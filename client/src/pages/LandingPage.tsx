@@ -42,12 +42,9 @@ const LandingPage = () => {
       <div className="relative h-screen bg-slate-900">
         {/* Background Elements */}
         <div className="absolute inset-0 bg-slate-900">
-          {/* Static background gradient */}
+          {/* Static background pattern */}
           <div
-            className="absolute w-96 h-96 rounded-full pointer-events-none opacity-20 top-1/4 left-1/4"
-            style={{
-              background: 'radial-gradient(circle, rgba(100, 116, 139, 0.1) 0%, transparent 70%)',
-            }}
+            className="absolute w-96 h-96 rounded-full pointer-events-none opacity-20 top-1/4 left-1/4 bg-slate-700/5"
           />
           
           {/* Constellation Background */}
@@ -117,7 +114,7 @@ const LandingPage = () => {
             </Link>
             <Link 
               to="/auth" 
-              className="bg-gradient-to-r from-slate-700 to-slate-600 text-slate-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:from-slate-600 hover:to-slate-500 transition-all duration-300 text-sm sm:text-base hover:scale-105 transform active:scale-95"
+              className="bg-slate-700 text-slate-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:bg-slate-600 transition-all duration-300 text-sm sm:text-base hover:scale-105 transform active:scale-95"
             >
               Get Started
             </Link>
@@ -141,7 +138,7 @@ const LandingPage = () => {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Link 
                   to="/auth" 
-                  className="bg-gradient-to-r from-slate-200 to-slate-100 text-slate-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:from-slate-100 hover:to-white transition-all duration-300 inline-flex items-center justify-center gap-2 sm:gap-3 group text-sm sm:text-base hover:scale-105 hover:shadow-2xl hover:shadow-slate-200/20 transform active:scale-95"
+                  className="bg-slate-200 text-slate-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:bg-slate-100 transition-all duration-300 inline-flex items-center justify-center gap-2 sm:gap-3 group text-sm sm:text-base hover:scale-105 hover:shadow-2xl hover:shadow-slate-200/20 transform active:scale-95"
                 >
                   <span>Start Your Journey</span>
                   <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 group-hover:rotate-12 transition-all duration-300" />
@@ -149,7 +146,7 @@ const LandingPage = () => {
                 
                 <Link 
                   to="/auth" 
-                  className="bg-gradient-to-r from-slate-700 to-slate-600 text-slate-200 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:from-slate-600 hover:to-slate-500 transition-all duration-300 text-sm sm:text-base text-center hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 transform active:scale-95"
+                  className="bg-slate-700 text-slate-200 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:bg-slate-600 transition-all duration-300 text-sm sm:text-base text-center hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 transform active:scale-95"
                 >
                   Sign In
                 </Link>
@@ -285,8 +282,8 @@ const LandingPage = () => {
           </div>
           
           {/* Cosmic energy streams */}
-          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-slate-600/30 to-transparent opacity-60"></div>
-          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-slate-500/20 to-transparent opacity-40"></div>
+          <div className="absolute top-0 left-1/4 w-px h-full bg-slate-600/30 opacity-60"></div>
+          <div className="absolute top-0 right-1/3 w-px h-full bg-slate-500/20 opacity-40"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -304,7 +301,7 @@ const LandingPage = () => {
             
             {/* Subtitle accent line */}
             <div className="mt-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]">
-              <div className="w-24 h-px bg-gradient-to-r from-transparent via-slate-500 to-transparent mx-auto"></div>
+              <div className="w-24 h-px bg-slate-500 mx-auto"></div>
             </div>
           </div>
 
@@ -316,8 +313,8 @@ const LandingPage = () => {
                 title: "Task Orchestration",
                 description: "Advanced AI-powered task management with intelligent prioritization and automated workflows",
                 delay: "0.8s",
-                gradient: "from-cyan-500/20 to-blue-500/20",
-                accentColor: "cyan",
+                solidColor: "bg-blue-500/10",
+                accentColor: "blue",
                 badge: "AI-Powered"
               },
               {
@@ -325,8 +322,8 @@ const LandingPage = () => {
                 title: "Global Analytics", 
                 description: "Real-time insights and comprehensive reporting across all your earning channels worldwide",
                 delay: "1s",
-                gradient: "from-emerald-500/20 to-green-500/20",
-                accentColor: "emerald",
+                solidColor: "bg-green-500/10",
+                accentColor: "green",
                 badge: "Real-Time"
               },
               {
@@ -334,7 +331,7 @@ const LandingPage = () => {
                 title: "Quantum Security",
                 description: "Military-grade encryption and quantum-resistant protocols protecting your valuable data",
                 delay: "1.2s",
-                gradient: "from-purple-500/20 to-pink-500/20",
+                solidColor: "bg-purple-500/10",
                 accentColor: "purple",
                 badge: "Enterprise"
               }
@@ -355,13 +352,13 @@ const LandingPage = () => {
                                 group-hover:bg-slate-900/90 group-hover:shadow-2xl 
                                 group-hover:shadow-slate-900/80 min-h-[400px] flex flex-col justify-between">
                     
-                    {/* DYNAMIC GRADIENT OVERLAY */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 
+                    {/* DYNAMIC SOLID COLOR OVERLAY */}
+                    <div className={`absolute inset-0 ${feature.solidColor} opacity-0 
                                    group-hover:opacity-100 transition-opacity duration-1000 rounded-3xl`}></div>
                     
                     {/* QUANTUM FIELD EFFECT */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-1000">
-                      <div className="absolute inset-0 bg-gradient-to-br from-slate-600/10 via-transparent to-slate-700/10"></div>
+                      <div className="absolute inset-0 bg-slate-600/10"></div>
                       <div className="absolute top-0 left-0 w-full h-full">
                         {[...Array(20)].map((_, i) => (
                           <div
@@ -453,12 +450,10 @@ const LandingPage = () => {
                     </div>
                     
                     {/* HOLOGRAPHIC SCAN LINES */}
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r 
-                                  from-transparent via-slate-400/80 to-transparent
+                    <div className="absolute top-0 left-0 w-full h-1 bg-slate-400/80
                                   transform -translate-x-full group-hover:translate-x-full
                                   transition-transform duration-2000 ease-out"></div>
-                    <div className="absolute bottom-0 right-0 w-1 h-full bg-gradient-to-t 
-                                  from-transparent via-slate-400/80 to-transparent
+                    <div className="absolute bottom-0 right-0 w-1 h-full bg-slate-400/80
                                   transform translate-y-full group-hover:-translate-y-full
                                   transition-transform duration-2000 ease-out delay-500"></div>
                     
@@ -507,9 +502,7 @@ const LandingPage = () => {
             <div className="inline-block mb-4 opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-200 relative">
                 Why Choose Thorx?
-                {/* Cosmic glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-400/10 to-transparent 
-                              animate-pulse blur-lg scale-150 opacity-50"></div>
+
               </h2>
             </div>
             <p className="text-xl max-w-2xl mx-auto text-slate-400 opacity-0 animate-[fadeInUp_1s_ease-out_0.4s_forwards]">
@@ -525,7 +518,7 @@ const LandingPage = () => {
                 title: "Lightning Fast",
                 description: "Complete tasks in record time with our optimized workflow",
                 delay: "0.6s",
-                color: "from-yellow-500/20 to-orange-500/20",
+                color: "bg-yellow-500/15",
                 accentColor: "yellow",
                 constellation: "🚀"
               },
@@ -534,7 +527,7 @@ const LandingPage = () => {
                 title: "Premium Quality",
                 description: "Access to high-paying, verified opportunities only",
                 delay: "0.8s",
-                color: "from-blue-500/20 to-purple-500/20",
+                color: "bg-blue-500/15",
                 accentColor: "blue",
                 constellation: "💎"
               },
@@ -543,7 +536,7 @@ const LandingPage = () => {
                 title: "Certified Success",
                 description: "Join thousands of successful earners in our community",
                 delay: "1s",
-                color: "from-green-500/20 to-emerald-500/20",
+                color: "bg-green-500/15",
                 accentColor: "green",
                 constellation: "🏆"
               },
@@ -552,7 +545,7 @@ const LandingPage = () => {
                 title: "24/7 Support",
                 description: "Round-the-clock assistance whenever you need help",
                 delay: "1.2s",
-                color: "from-purple-500/20 to-pink-500/20",
+                color: "bg-purple-500/15",
                 accentColor: "purple",
                 constellation: "🎧"
               }
@@ -594,8 +587,8 @@ const LandingPage = () => {
                       </svg>
                     </div>
                     
-                    {/* DYNAMIC GRADIENT OVERLAY */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-100 
+                    {/* DYNAMIC SOLID COLOR OVERLAY */}
+                    <div className={`absolute inset-0 ${feature.color} opacity-0 group-hover:opacity-100 
                                    transition-opacity duration-1000 rounded-3xl`}></div>
                     
                     {/* FLOATING CONSTELLATION ICON */}
@@ -609,7 +602,7 @@ const LandingPage = () => {
                                     group-hover:border-slate-500/50">
                         
                         {/* COSMIC ENERGY FIELD */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-slate-500/20 via-transparent to-slate-700/20 
+                        <div className="absolute inset-0 bg-slate-500/20 
                                       opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-full"></div>
                         
                         {/* CONSTELLATION ICON */}
