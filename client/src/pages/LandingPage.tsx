@@ -110,10 +110,10 @@ const LandingPage = () => {
           <div className="flex items-center gap-3 sm:gap-6">
             <Link 
               to="/auth" 
-              className="text-white transition-colors relative group text-sm sm:text-base"
+              className="text-white transition-colors relative text-sm sm:text-base"
             >
               Sign In
-              <span className="absolute bottom-0 left-0 h-0.5 bg-slate-400 w-0 group-hover:w-full transition-all duration-300" />
+              <span className="absolute bottom-0 left-0 h-0.5 bg-slate-400 w-0 hover:w-full transition-all duration-300" />
             </Link>
             <Link 
               to="/auth" 
@@ -837,11 +837,11 @@ const LandingPage = () => {
               
               <Link 
                 to="/features" 
-                className="relative border-2 border-slate-600 bg-slate-900/60 backdrop-blur-xl text-slate-200 
+                className="relative border-2 border-slate-600 bg-slate-900/60 backdrop-blur-xl text-white 
                          px-10 py-4 rounded-2xl font-semibold 
                          transition-all duration-500 inline-flex items-center justify-center gap-3
                          group-hover:scale-105 group-hover:-translate-y-1
-                         group-hover:border-slate-400 group-hover:bg-slate-800/80 group-hover:text-white
+                         group-hover:border-slate-400 group-hover:bg-slate-800/80
                          group-hover:shadow-xl group-hover:shadow-slate-700/50
                          transform-gpu perspective-1000
                          before:absolute before:inset-0 before:bg-gradient-to-r before:from-slate-700/20 before:to-slate-600/20 
