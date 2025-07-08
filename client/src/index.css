@@ -607,35 +607,73 @@ div[class*="bg-gradient-to-r"] {
   z-index: 10;
 }
 
-/* Add subtle drop shadow matching logo specification */
+/* Geometric shadow system matching logo drop shadow specification */
 .thorx-hero-title::before {
   content: attr(data-text);
   position: absolute;
   top: 3px;
   left: 3px;
-  z-index: -1;
+  z-index: -2;
   color: rgba(0, 0, 0, 0.3);
   filter: blur(3px);
   -webkit-text-stroke: none;
+  font-family: 'Courier New', monospace, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
 }
 
-/* Enhanced geometric styling for dark grey headers */
-.thorx-hero-title.text-slate-700 {
-  color: #374151 !important;
-  font-weight: 600;
-}
+/* Remove old color styling as it's now handled by geometric patterns above */
 
-/* Enhanced geometric styling for cosmic white headers */
-.thorx-hero-title.text-slate-200 {
-  color: #e2e8f0 !important;
-  font-weight: 600;
-}
-
-/* Make headers more geometric and structured like logo */
+/* Make headers more geometric and structured like logo with custom letter patterns */
 .thorx-hero-title {
   font-variant: small-caps;
   transform: scaleY(0.95);
   letter-spacing: -0.01em;
+  font-family: 'Courier New', monospace, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  position: relative;
+}
+
+/* Custom geometric letter styling to match logo patterns */
+.thorx-hero-title::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(226, 232, 240, 0.05) 0%, rgba(226, 232, 240, 0.02) 100%);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Simulate geometric letter shapes with enhanced styling */
+.thorx-hero-title {
+  background: linear-gradient(135deg, currentColor 0%, currentColor 80%, rgba(0,0,0,0.1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.1), 4px 4px 6px rgba(0,0,0,0.2);
+}
+
+/* Override for specific colors to maintain geometric appearance */
+.thorx-hero-title.text-slate-700 {
+  background: linear-gradient(135deg, #374151 0%, #374151 80%, rgba(0,0,0,0.1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.thorx-hero-title.text-slate-200 {
+  background: linear-gradient(135deg, #e2e8f0 0%, #e2e8f0 80%, rgba(255,255,255,0.1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .cosmic-cloud-veil {
