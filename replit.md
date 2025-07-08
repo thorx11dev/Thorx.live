@@ -256,14 +256,14 @@ Changelog:
 - July 08, 2025. Reduced cloud opacity to 0.6/0.55 for subtler appearance per user request
 - July 08, 2025. Updated all section headers to use thorx-hero-title class with exact logo typography
 - July 08, 2025. Ensured clean, professional text appearance matching SVG logo design without any luminescence
-- July 08, 2025. MULTI-COLORED COSMIC THEME: Implemented alternating sign-in button colors and cosmic white for header text
-- July 08, 2025. Hero: "Explore the" (sign-in gradient), "Digital Universe" (cosmic white)
-- July 08, 2025. Features: "Cosmic Features" (cosmic white)
+- July 08, 2025. UNIFIED SIGN-IN GRADIENT THEME: Applied sign-in button gradient color to all header text
+- July 08, 2025. Hero: "Explore the" (sign-in gradient), "Digital Universe" (sign-in gradient)
+- July 08, 2025. Features: "Cosmic Features" (sign-in gradient)
 - July 08, 2025. Benefits: "Why Choose Thorx?" (sign-in gradient) 
-- July 08, 2025. Stats: "Trusted by Thousands" (cosmic white)
+- July 08, 2025. Stats: "Trusted by Thousands" (sign-in gradient)
 - July 08, 2025. CTA: "Ready to Start Your Journey?" (sign-in gradient)
-- July 08, 2025. SIGN-IN BUTTON COLOR: Replaced grey text with linear gradient from #FADADD to #D6EAF8 matching navigation sign-in button
-- July 08, 2025. Created visual variety with cosmic theme alternating between sign-in gradient and cosmic white
+- July 08, 2025. SIGN-IN BUTTON COLOR: All header text now uses linear gradient from #FADADD to #D6EAF8 matching navigation sign-in button
+- July 08, 2025. REMOVED TEXT SHADOWS: Completely removed drop shadows from all header text for cleaner appearance
 ```
 
 ## User Preferences

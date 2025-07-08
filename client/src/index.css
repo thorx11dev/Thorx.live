@@ -607,17 +607,7 @@ div[class*="bg-gradient-to-r"] {
   z-index: 10;
 }
 
-/* Add subtle drop shadow matching logo specification */
-.thorx-hero-title::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  z-index: -1;
-  color: rgba(0, 0, 0, 0.15);
-  filter: blur(2px);
-  -webkit-text-stroke: none;
-}
+/* Removed drop shadow for cleaner appearance */
 
 /* Enhanced geometric styling for dark grey headers */
 .thorx-hero-title.text-slate-700 {
