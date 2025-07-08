@@ -311,7 +311,7 @@ const LandingPage = () => {
             <div className="inline-block mb-6 cosmic-slide-up">
               <div className="cosmic-header-container">
                 <div className="cosmic-cloud-veil"></div>
-                <h2 className="cosmic-header-text text-5xl md:text-6xl font-bold mb-4 text-white relative cosmic-text-glow">
+                <h2 className="cosmic-header-text text-5xl md:text-6xl mb-4 text-white relative thorx-hero-title">
                   <span className="relative z-10">Cosmic Features</span>
                 </h2>
               </div>
@@ -483,7 +483,7 @@ const LandingPage = () => {
             <div className="inline-block mb-4 cosmic-slide-up">
               <div className="cosmic-header-container">
                 <div className="cosmic-cloud-veil"></div>
-                <h2 className="cosmic-header-text text-4xl md:text-5xl font-bold mb-4 text-white relative cosmic-text-glow">
+                <h2 className="cosmic-header-text text-4xl md:text-5xl mb-4 text-white relative thorx-hero-title">
                   Why Choose Thorx?
                 </h2>
               </div>
@@ -641,7 +641,7 @@ const LandingPage = () => {
             <div className="inline-block mb-4 cosmic-slide-up">
               <div className="cosmic-header-container">
                 <div className="cosmic-cloud-veil"></div>
-                <h2 className="cosmic-header-text text-4xl md:text-5xl font-bold mb-4 text-white relative cosmic-text-glow">
+                <h2 className="cosmic-header-text text-4xl md:text-5xl mb-4 text-white relative thorx-hero-title">
                   Trusted by Thousands
                 </h2>
               </div>
@@ -782,7 +782,7 @@ const LandingPage = () => {
           <div className="mb-6 cosmic-slide-up">
             <div className="cosmic-header-container">
               <div className="cosmic-cloud-veil"></div>
-              <h2 className="cosmic-header-text text-4xl md:text-5xl font-bold text-white relative cosmic-text-glow">
+              <h2 className="cosmic-header-text text-4xl md:text-5xl text-white relative thorx-hero-title">
                 Ready to Start Your Journey?
               </h2>
             </div>
