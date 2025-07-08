@@ -343,7 +343,7 @@ const LandingPage = () => {
                   
                   {/* MAIN CARD STRUCTURE */}
                   <div className="relative p-10 rounded-3xl overflow-hidden
-                                border-2 border-slate-700/40 bg-slate-900/70 backdrop-blur-2xl
+                                border-2 border-slate-700/40 bg-slate-900/40 backdrop-blur-sm
                                 transition-all duration-1000 group-hover:border-slate-500/60 
                                 group-hover:bg-slate-900/90 group-hover:shadow-2xl 
                                 group-hover:shadow-slate-900/80 min-h-[400px] flex flex-col justify-between">
@@ -375,7 +375,7 @@ const LandingPage = () => {
                     <div className="relative mb-8 z-10">
                       <div className="relative mx-auto w-24 h-24">
                         {/* Main icon container */}
-                        <div className="w-24 h-24 bg-slate-800/90 backdrop-blur-sm rounded-full 
+                        <div className="w-24 h-24 bg-slate-800/60 backdrop-blur-sm rounded-full 
                                       flex items-center justify-center 
                                       transition-all duration-1000 group-hover:bg-slate-700/90 
                                       shadow-2xl group-hover:shadow-slate-700/60
@@ -421,7 +421,7 @@ const LandingPage = () => {
                       {/* Feature badge */}
                       <div className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 
                                     transition-all duration-700 delay-500">
-                        <span className="px-3 py-1 bg-slate-700/80 backdrop-blur-sm text-slate-300 
+                        <span className="px-3 py-1 bg-slate-700/50 backdrop-blur-sm text-slate-300 
                                        text-xs font-medium rounded-full border border-slate-600/40">
                           {feature.badge}
                         </span>
@@ -557,8 +557,8 @@ const LandingPage = () => {
                   
                   {/* MAIN CARD CONTAINER */}
                   <div className="p-8 rounded-3xl relative overflow-hidden
-                                border border-slate-700/40 bg-slate-900/60 backdrop-blur-xl
-                                group-hover:border-slate-500/60 group-hover:bg-slate-900/80
+                                border border-slate-700/40 bg-slate-900/30 backdrop-blur-sm
+                                group-hover:border-slate-500/60 group-hover:bg-slate-900/50
                                 transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-slate-900/90
                                 text-center min-h-[280px] flex flex-col justify-center">
                     
@@ -589,9 +589,9 @@ const LandingPage = () => {
                     
                     {/* FLOATING CONSTELLATION ICON */}
                     <div className="relative mb-6 z-10">
-                      <div className="w-20 h-20 bg-slate-800/80 backdrop-blur-sm rounded-full 
+                      <div className="w-20 h-20 bg-slate-800/50 backdrop-blur-sm rounded-full 
                                     flex items-center justify-center mx-auto 
-                                    group-hover:bg-slate-700/80 transition-all duration-700 
+                                    group-hover:bg-slate-700/60 transition-all duration-700 
                                     shadow-lg group-hover:shadow-2xl group-hover:shadow-slate-700/60
                                     transform-gpu group-hover:scale-110 group-hover:rotate-6
                                     relative overflow-hidden border-2 border-slate-600/30 
@@ -781,8 +781,8 @@ const LandingPage = () => {
                   
                   {/* Main card container */}
                   <div className="p-8 rounded-2xl relative overflow-hidden
-                                border border-slate-700/40 bg-slate-900/60 backdrop-blur-xl
-                                group-hover:border-slate-500/60 group-hover:bg-slate-900/80
+                                border border-slate-700/40 bg-slate-900/30 backdrop-blur-sm
+                                group-hover:border-slate-500/60 group-hover:bg-slate-900/50
                                 transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-slate-900/90
                                 before:absolute before:inset-0 before:bg-gradient-to-br before:opacity-0 
                                 before:group-hover:opacity-100 before:transition-opacity before:duration-700 before:rounded-2xl">
@@ -793,9 +793,9 @@ const LandingPage = () => {
                     
                     {/* Animated icon with counter effect */}
                     <div className="relative mb-6">
-                      <div className="w-16 h-16 bg-slate-800/80 backdrop-blur-sm rounded-2xl 
+                      <div className="w-16 h-16 bg-slate-800/50 backdrop-blur-sm rounded-2xl 
                                     flex items-center justify-center mx-auto 
-                                    group-hover:bg-slate-700/80 transition-all duration-500 
+                                    group-hover:bg-slate-700/60 transition-all duration-500 
                                     shadow-lg group-hover:shadow-xl group-hover:shadow-slate-700/60
                                     transform-gpu group-hover:scale-125 group-hover:rotate-12
                                     relative overflow-hidden border border-slate-600/30">
@@ -984,7 +984,7 @@ const LandingPage = () => {
               
               <Link 
                 to="/features" 
-                className="relative border-2 border-slate-600 bg-slate-900/60 backdrop-blur-xl text-slate-200 
+                className="relative border-2 border-slate-600 bg-slate-900/30 backdrop-blur-sm text-slate-200 
                          px-10 py-4 rounded-2xl font-semibold 
                          transition-all duration-500 inline-flex items-center justify-center gap-3
                          group-hover:scale-105 group-hover:-translate-y-1

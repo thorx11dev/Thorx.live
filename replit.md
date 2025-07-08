@@ -200,6 +200,9 @@ Changelog:
 - July 08, 2025. Featured Thorx Mobile App, Telegram Bot, and Giveaway Technologies with interactive cards and hover animations
 - July 08, 2025. Implemented scroll-triggered animations, floating particles, and expandable feature details on hover
 - July 08, 2025. Added status badges, timelines, and call-to-action integration with newsletter signup
+- July 08, 2025. REDUCED GLASS EFFECTS: Significantly lowered backdrop-blur intensity across landing page from backdrop-blur-xl to backdrop-blur-sm
+- July 08, 2025. Updated all glass card backgrounds from high opacity (70-90%) to subtle opacity (30-50%) for better cloud visibility
+- July 08, 2025. Maintained parallax scrolling cloud visibility while preserving modern glass morphism aesthetic
 ```
 
 ## User Preferences
