@@ -602,6 +602,110 @@ div[class*="bg-gradient-to-r"] {
   }
 }
 
+/* NEO-COSMIC FEATURE ICONS - Advanced and futuristic */
+.thorx-neo-icon {
+  display: inline-block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: #94a3b8 !important; /* slate-400 */
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  stroke-width: 2px !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  will-change: transform, color, filter !important;
+}
+
+.group:hover .thorx-neo-icon {
+  color: #e2e8f0 !important; /* slate-200 */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1.1) translateZ(0) !important;
+  filter: drop-shadow(0 6px 20px rgba(148, 163, 184, 0.5)) !important;
+}
+
+/* Neo-cosmic feature container with enhanced isolation */
+.thorx-neo-feature {
+  isolation: isolate !important;
+  perspective: 1500px !important;
+  transform-style: preserve-3d !important;
+}
+
+.thorx-neo-feature:hover .thorx-neo-icon {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1.1) translateZ(0) !important;
+  filter: drop-shadow(0 6px 20px rgba(148, 163, 184, 0.5)) !important;
+}
+
+/* Neo-cosmic floating satellites animation */
+@keyframes neo-satellite-float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg) scale(0.8); 
+    opacity: 0.5; 
+  }
+  50% { 
+    transform: translateY(-12px) rotate(180deg) scale(1.2); 
+    opacity: 0.9; 
+  }
+}
+
+.thorx-neo-feature:hover .neo-satellite {
+  animation: neo-satellite-float 5s ease-in-out infinite;
+}
+
+/* Enhanced cross-browser compatibility for neo-cosmic elements */
+@supports (-webkit-appearance: none) {
+  .thorx-neo-icon {
+    -webkit-text-fill-color: #94a3b8 !important;
+    -webkit-transform: translateZ(0) !important;
+    -webkit-backface-visibility: hidden !important;
+    -webkit-filter: none !important;
+  }
+  
+  .group:hover .thorx-neo-icon {
+    -webkit-text-fill-color: #e2e8f0 !important;
+    -webkit-transform: scale(1.1) translateZ(0) !important;
+    -webkit-filter: drop-shadow(0 6px 20px rgba(148, 163, 184, 0.5)) !important;
+  }
+}
+
+@supports (-moz-appearance: none) {
+  .thorx-neo-icon {
+    -moz-transform: translateZ(0) !important;
+    -moz-backface-visibility: hidden !important;
+  }
+  
+  .group:hover .thorx-neo-icon {
+    -moz-transform: scale(1.1) translateZ(0) !important;
+  }
+}
+
+/* Responsive adjustments for neo-cosmic features */
+@media (max-width: 1024px) {
+  .thorx-neo-feature {
+    perspective: 1000px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .thorx-neo-feature {
+    perspective: 800px !important;
+  }
+  
+  .thorx-neo-icon {
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .thorx-neo-feature {
+    perspective: 600px !important;
+  }
+}
+
 /* CRITICAL: Search and input field styles */
 .thorx-search-input {
   background-color: rgba(30, 41, 59, 0.6) !important;

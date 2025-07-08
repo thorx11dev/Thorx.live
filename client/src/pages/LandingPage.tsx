@@ -231,145 +231,260 @@ const LandingPage = () => {
         </div>
       </div>
 
-      {/* Features Section */}
-      <div className="relative py-24 bg-slate-800 overflow-hidden">
-        {/* Additional clouds for this section */}
-        <AnimatedClouds density="low" scrollFactor={0.2} className="z-0 opacity-60" />
-        {/* Enhanced Background Effects */}
+      {/* RECREATED FEATURES SECTION - Neo-Cosmic Design */}
+      <div className="relative py-32 bg-slate-800 overflow-hidden">
+        {/* Enhanced animated clouds with different density */}
+        <AnimatedClouds density="high" scrollFactor={0.3} className="z-0 opacity-40" />
+        
+        {/* Neo-Cosmic Background Environment */}
         <div className="absolute inset-0">
-          {/* Floating geometric shapes */}
-          <div className="absolute top-20 left-10 w-64 h-64 opacity-5">
-            <svg viewBox="0 0 200 200" className="w-full h-full animate-spin" style={{ animationDuration: '45s' }}>
-              <polygon points="100,20 180,180 20,180" fill="#e2e8f0" />
-            </svg>
+          {/* Quantum field grid */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="grid grid-cols-12 grid-rows-8 h-full w-full">
+              {[...Array(96)].map((_, i) => (
+                <div
+                  key={i}
+                  className="border-r border-b border-slate-600/30 relative"
+                  style={{
+                    animationDelay: `${i * 0.1}s`,
+                  }}
+                >
+                  {Math.random() > 0.85 && (
+                    <div className="absolute inset-0 bg-slate-500/20 animate-pulse"></div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="absolute bottom-20 right-10 w-48 h-48 opacity-5">
-            <svg viewBox="0 0 200 200" className="w-full h-full animate-pulse">
-              <circle cx="100" cy="100" r="80" fill="none" stroke="#64748b" strokeWidth="2" />
-              <circle cx="100" cy="100" r="60" fill="none" stroke="#64748b" strokeWidth="1" opacity="0.6" />
-              <circle cx="100" cy="100" r="40" fill="none" stroke="#64748b" strokeWidth="1" opacity="0.4" />
+          
+          {/* Floating holographic elements */}
+          <div className="absolute top-16 left-20 w-40 h-40 opacity-20">
+            <svg viewBox="0 0 100 100" className="w-full h-full animate-spin" style={{ animationDuration: '30s' }}>
+              <defs>
+                <linearGradient id="holoGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#64748b" />
+                  <stop offset="100%" stopColor="#475569" />
+                </linearGradient>
+              </defs>
+              <polygon points="50,10 90,90 10,90" fill="url(#holoGrad1)" stroke="#64748b" strokeWidth="0.5" />
+              <circle cx="50" cy="50" r="25" fill="none" stroke="#64748b" strokeWidth="0.5" opacity="0.6" />
             </svg>
           </div>
           
-          {/* Animated gradient orbs */}
-          <div className="absolute top-1/4 left-1/3 w-32 h-32 bg-gradient-to-r from-slate-700/20 to-slate-600/20 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-gradient-to-r from-slate-600/15 to-slate-500/15 rounded-full blur-lg animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute bottom-24 right-16 w-32 h-32 opacity-15">
+            <svg viewBox="0 0 100 100" className="w-full h-full animate-pulse">
+              <defs>
+                <radialGradient id="holoGrad2" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#64748b" />
+                  <stop offset="100%" stopColor="transparent" />
+                </radialGradient>
+              </defs>
+              <circle cx="50" cy="50" r="45" fill="url(#holoGrad2)" />
+              <circle cx="50" cy="50" r="30" fill="none" stroke="#64748b" strokeWidth="1" strokeDasharray="5,5" />
+            </svg>
+          </div>
+          
+          {/* Cosmic energy streams */}
+          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-slate-600/30 to-transparent opacity-60"></div>
+          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-slate-500/20 to-transparent opacity-40"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-block mb-4 opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-200 relative">
+          {/* Enhanced Title Section */}
+          <div className="text-center mb-20">
+            <div className="inline-block mb-6 opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]">
+              <h2 className="text-5xl md:text-6xl font-bold mb-4 text-slate-200 relative">
                 <span className="relative z-10">Cosmic Features</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-slate-700/20 via-slate-600/20 to-slate-700/20 blur-xl scale-110 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                {/* Multi-layer glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-600/20 via-slate-500/30 to-slate-600/20 
+                              blur-2xl scale-150 opacity-0 animate-pulse" style={{ animationDuration: '4s' }}></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-400/10 to-transparent 
+                              blur-lg scale-125 opacity-60 animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }}></div>
               </h2>
             </div>
-            <p className="text-xl max-w-2xl mx-auto text-slate-400 opacity-0 animate-[fadeInUp_1s_ease-out_0.4s_forwards]">
-              Discover the tools that make digital earning effortless
+            <p className="text-xl max-w-3xl mx-auto text-slate-400 opacity-0 animate-[fadeInUp_1s_ease-out_0.4s_forwards] leading-relaxed">
+              Discover the next-generation tools that make digital earning effortless and intuitive
             </p>
+            
+            {/* Subtitle accent line */}
+            <div className="mt-8 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]">
+              <div className="w-24 h-px bg-gradient-to-r from-transparent via-slate-500 to-transparent mx-auto"></div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {/* REDESIGNED FEATURES GRID */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             {[
               {
-                icon: Target,
-                title: "Task Management",
-                description: "Organize and track your earning activities with precision",
-                delay: "0.6s"
+                icon: Satellite,
+                title: "Task Orchestration",
+                description: "Advanced AI-powered task management with intelligent prioritization and automated workflows",
+                delay: "0.8s",
+                gradient: "from-cyan-500/20 to-blue-500/20",
+                accentColor: "cyan",
+                badge: "AI-Powered"
               },
               {
-                icon: TrendingUp,
-                title: "Analytics Dashboard", 
-                description: "Monitor your progress with detailed insights and reports",
-                delay: "0.8s"
+                icon: Globe,
+                title: "Global Analytics", 
+                description: "Real-time insights and comprehensive reporting across all your earning channels worldwide",
+                delay: "1s",
+                gradient: "from-emerald-500/20 to-green-500/20",
+                accentColor: "emerald",
+                badge: "Real-Time"
               },
               {
                 icon: Shield,
-                title: "Secure Platform",
-                description: "Your data and earnings are protected with enterprise-grade security",
-                delay: "1s"
+                title: "Quantum Security",
+                description: "Military-grade encryption and quantum-resistant protocols protecting your valuable data",
+                delay: "1.2s",
+                gradient: "from-purple-500/20 to-pink-500/20",
+                accentColor: "purple",
+                badge: "Enterprise"
               }
             ].map((feature, index) => (
               <div
                 key={index}
-                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] relative group"
+                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group thorx-neo-feature"
                 style={{ '--delay': feature.delay } as React.CSSProperties}
               >
-                {/* 3D Card Container */}
-                <div className="relative perspective-1000">
-                  <div className="bg-slate-900/80 backdrop-blur-xl p-8 rounded-2xl border border-slate-700/50 
-                                transition-all duration-500 group-hover:border-slate-500/50 
-                                group-hover:shadow-2xl group-hover:shadow-slate-900/70
-                                transform-gpu group-hover:scale-105 group-hover:-translate-y-2
-                                group-hover:rotate-x-2 group-hover:rotate-y-1
-                                before:absolute before:inset-0 before:bg-gradient-to-br before:from-slate-700/10 before:to-slate-800/10 
-                                before:opacity-0 before:group-hover:opacity-100 before:transition-opacity before:duration-500 before:rounded-2xl">
+                {/* NEO-COSMIC FEATURE CARD */}
+                <div className="relative perspective-1000 transform-gpu transition-all duration-1000 
+                              group-hover:scale-110 group-hover:-translate-y-12 group-hover:rotate-y-6">
+                  
+                  {/* MAIN CARD STRUCTURE */}
+                  <div className="relative p-10 rounded-3xl overflow-hidden
+                                border-2 border-slate-700/40 bg-slate-900/70 backdrop-blur-2xl
+                                transition-all duration-1000 group-hover:border-slate-500/60 
+                                group-hover:bg-slate-900/90 group-hover:shadow-2xl 
+                                group-hover:shadow-slate-900/80 min-h-[400px] flex flex-col justify-between">
                     
-                    {/* Floating Icon Container */}
-                    <div className="relative mb-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl 
-                                    flex items-center justify-center mx-auto 
-                                    group-hover:bg-gradient-to-br group-hover:from-slate-700 group-hover:to-slate-800 
-                                    transition-all duration-500 transform-gpu
-                                    group-hover:scale-110 group-hover:rotate-12
-                                    shadow-lg group-hover:shadow-xl group-hover:shadow-slate-700/50
-                                    relative overflow-hidden">
-                        
-                        {/* Icon glow effect */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-slate-600/20 to-transparent 
-                                      opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
-                        
-                        <feature.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-200 
-                                                transition-all duration-500 relative z-10
-                                                thorx-cosmic-icon" />
-                        
-                        {/* Rotating border effect */}
-                        <div className="absolute inset-0 border-2 border-transparent bg-gradient-to-r from-slate-600/30 via-slate-500/30 to-slate-600/30 
-                                      rounded-2xl opacity-0 group-hover:opacity-100 group-hover:animate-spin 
-                                      transition-opacity duration-500" style={{ animationDuration: '8s' }}></div>
-                      </div>
-                      
-                      {/* Floating particles around icon */}
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
-                        {[...Array(3)].map((_, i) => (
+                    {/* DYNAMIC GRADIENT OVERLAY */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 
+                                   group-hover:opacity-100 transition-opacity duration-1000 rounded-3xl`}></div>
+                    
+                    {/* QUANTUM FIELD EFFECT */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-1000">
+                      <div className="absolute inset-0 bg-gradient-to-br from-slate-600/10 via-transparent to-slate-700/10"></div>
+                      <div className="absolute top-0 left-0 w-full h-full">
+                        {[...Array(20)].map((_, i) => (
                           <div
                             key={i}
-                            className="absolute w-1 h-1 bg-slate-500 rounded-full opacity-0 group-hover:opacity-60 
-                                     group-hover:animate-ping transition-opacity duration-500"
+                            className="absolute w-px h-px bg-slate-400 rounded-full animate-pulse"
                             style={{
-                              left: `${(i - 1) * 20}px`,
-                              top: `${-10 - i * 5}px`,
-                              animationDelay: `${i * 0.5}s`,
-                              animationDuration: '2s'
+                              left: `${Math.random() * 100}%`,
+                              top: `${Math.random() * 100}%`,
+                              animationDelay: `${Math.random() * 2}s`,
+                              animationDuration: '3s'
                             }}
                           ></div>
                         ))}
                       </div>
                     </div>
                     
-                    <h3 className="text-xl font-semibold text-slate-200 mb-4 text-center 
-                                 group-hover:text-white transition-all duration-500
-                                 group-hover:scale-105 group-hover:tracking-wide">
-                      {feature.title}
-                    </h3>
+                    {/* FLOATING ICON CLUSTER */}
+                    <div className="relative mb-8 z-10">
+                      <div className="relative mx-auto w-24 h-24">
+                        {/* Main icon container */}
+                        <div className="w-24 h-24 bg-slate-800/90 backdrop-blur-sm rounded-full 
+                                      flex items-center justify-center 
+                                      transition-all duration-1000 group-hover:bg-slate-700/90 
+                                      shadow-2xl group-hover:shadow-slate-700/60
+                                      transform-gpu group-hover:scale-125 group-hover:rotate-12
+                                      border-2 border-slate-600/40 group-hover:border-slate-500/60
+                                      relative overflow-hidden">
+                          
+                          {/* Icon energy field */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-slate-500/30 via-transparent to-slate-700/30 
+                                        opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-full"></div>
+                          
+                          {/* Main icon */}
+                          <feature.icon className="w-12 h-12 text-slate-400 group-hover:text-slate-200 
+                                                 transition-all duration-1000 relative z-10 thorx-neo-icon
+                                                 group-hover:scale-110 group-hover:drop-shadow-lg" />
+                          
+                          {/* Orbital rings */}
+                          <div className="absolute inset-0 border-2 border-slate-500/30 rounded-full 
+                                        scale-100 group-hover:scale-150 opacity-100 group-hover:opacity-0 
+                                        transition-all duration-1200"></div>
+                          <div className="absolute inset-0 border border-slate-400/20 rounded-full 
+                                        scale-75 opacity-0 group-hover:scale-175 group-hover:opacity-100 
+                                        transition-all duration-1500 delay-300"></div>
+                        </div>
+                        
+                        {/* Floating satellites */}
+                        <div className="absolute top-0 left-0 w-full h-full">
+                          {[...Array(6)].map((_, i) => (
+                            <div
+                              key={i}
+                              className="absolute w-2 h-2 bg-slate-500 rounded-full opacity-0 
+                                       group-hover:opacity-70 transition-all duration-1000"
+                              style={{
+                                left: `${Math.cos((i * Math.PI) / 3) * 50 + 50}%`,
+                                top: `${Math.sin((i * Math.PI) / 3) * 50 + 50}%`,
+                                animationDelay: `${i * 0.2}s`,
+                                transform: `scale(0)`,
+                                transition: 'all 1s ease-out'
+                              }}
+                            ></div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Feature badge */}
+                      <div className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 
+                                    transition-all duration-700 delay-500">
+                        <span className="px-3 py-1 bg-slate-700/80 backdrop-blur-sm text-slate-300 
+                                       text-xs font-medium rounded-full border border-slate-600/40">
+                          {feature.badge}
+                        </span>
+                      </div>
+                    </div>
                     
-                    <p className="text-slate-400 text-center leading-relaxed 
-                                group-hover:text-slate-300 transition-all duration-500
-                                group-hover:scale-105">
-                      {feature.description}
-                    </p>
+                    {/* ENHANCED CONTENT */}
+                    <div className="space-y-6 relative z-10 text-center">
+                      <h3 className="text-2xl font-bold text-slate-200 relative
+                                   transition-all duration-1000 group-hover:text-white
+                                   group-hover:scale-105 group-hover:tracking-wide">
+                        {feature.title}
+                        
+                        {/* Title glow effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-300/20 to-transparent 
+                                      opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-sm"></div>
+                      </h3>
+                      
+                      <p className="text-slate-400 leading-relaxed text-lg
+                                  transition-all duration-1000 group-hover:text-slate-300
+                                  group-hover:scale-105">
+                        {feature.description}
+                      </p>
+                    </div>
                     
-                    {/* Bottom accent line */}
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 
-                                  w-0 h-0.5 bg-gradient-to-r from-slate-600 via-slate-500 to-slate-600 
-                                  group-hover:w-3/4 transition-all duration-700 ease-out"></div>
+                    {/* HOLOGRAPHIC SCAN LINES */}
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r 
+                                  from-transparent via-slate-400/80 to-transparent
+                                  transform -translate-x-full group-hover:translate-x-full
+                                  transition-transform duration-2000 ease-out"></div>
+                    <div className="absolute bottom-0 right-0 w-1 h-full bg-gradient-to-t 
+                                  from-transparent via-slate-400/80 to-transparent
+                                  transform translate-y-full group-hover:-translate-y-full
+                                  transition-transform duration-2000 ease-out delay-500"></div>
+                    
+                    {/* CORNER ACCENTS */}
+                    <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-slate-600/40 
+                                  opacity-0 group-hover:opacity-100 group-hover:border-slate-500/60 
+                                  transition-all duration-1000"></div>
+                    <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-slate-600/40 
+                                  opacity-0 group-hover:opacity-100 group-hover:border-slate-500/60 
+                                  transition-all duration-1000"></div>
                   </div>
+                  
+                  {/* HOLOGRAPHIC REFLECTION */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-700/20 via-transparent to-transparent 
+                                rounded-3xl transform translate-y-full scale-95 opacity-0 
+                                group-hover:opacity-100 group-hover:translate-y-20 group-hover:scale-90 
+                                transition-all duration-1000 blur-lg"></div>
                 </div>
-                
-                {/* Card reflection effect */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-700/10 
-                              opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl 
-                              transform translate-y-full group-hover:translate-y-8 scale-90 blur-sm"></div>
               </div>
             ))}
           </div>
