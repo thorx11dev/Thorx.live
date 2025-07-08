@@ -622,7 +622,6 @@ div[class*="bg-gradient-to-r"] {
   opacity: 1 !important;
   visibility: visible !important;
   transform: scale(1.1) translateZ(0) !important;
-  filter: drop-shadow(0 6px 20px rgba(148, 163, 184, 0.5)) !important;
 }
 
 /* Neo-cosmic feature container with enhanced isolation */
@@ -637,7 +636,6 @@ div[class*="bg-gradient-to-r"] {
   opacity: 1 !important;
   visibility: visible !important;
   transform: scale(1.1) translateZ(0) !important;
-  filter: drop-shadow(0 6px 20px rgba(148, 163, 184, 0.5)) !important;
 }
 
 /* Neo-cosmic floating satellites animation */
@@ -668,7 +666,6 @@ div[class*="bg-gradient-to-r"] {
   .group:hover .thorx-neo-icon {
     -webkit-text-fill-color: #e2e8f0 !important;
     -webkit-transform: scale(1.1) translateZ(0) !important;
-    -webkit-filter: drop-shadow(0 6px 20px rgba(148, 163, 184, 0.5)) !important;
   }
 }
 

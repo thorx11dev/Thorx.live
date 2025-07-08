@@ -183,6 +183,7 @@ Changelog:
 - July 08, 2025. RECREATED FEATURES SECTION: Complete rebuild with neo-cosmic design theme and quantum field effects
 - July 08, 2025. Added quantum field grid, holographic elements, floating satellites, and feature badges
 - July 08, 2025. Implemented thorx-neo-icon class with advanced 3D transforms and holographic scan lines
+- July 08, 2025. REMOVED GLOW EFFECTS: Cleaned up Features section by removing all glowing light effects from cards per user request
 ```
 
 ## User Preferences

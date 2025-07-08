@@ -295,11 +295,7 @@ const LandingPage = () => {
             <div className="inline-block mb-6 opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]">
               <h2 className="text-5xl md:text-6xl font-bold mb-4 text-slate-200 relative">
                 <span className="relative z-10">Cosmic Features</span>
-                {/* Multi-layer glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-slate-600/20 via-slate-500/30 to-slate-600/20 
-                              blur-2xl scale-150 opacity-0 animate-pulse" style={{ animationDuration: '4s' }}></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-400/10 to-transparent 
-                              blur-lg scale-125 opacity-60 animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }}></div>
+
               </h2>
             </div>
             <p className="text-xl max-w-3xl mx-auto text-slate-400 opacity-0 animate-[fadeInUp_1s_ease-out_0.4s_forwards] leading-relaxed">
@@ -394,9 +390,7 @@ const LandingPage = () => {
                                       border-2 border-slate-600/40 group-hover:border-slate-500/60
                                       relative overflow-hidden">
                           
-                          {/* Icon energy field */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-slate-500/30 via-transparent to-slate-700/30 
-                                        opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-full"></div>
+
                           
                           {/* Main icon */}
                           <feature.icon className="w-12 h-12 text-slate-400 group-hover:text-slate-200 
@@ -448,9 +442,7 @@ const LandingPage = () => {
                                    group-hover:scale-105 group-hover:tracking-wide">
                         {feature.title}
                         
-                        {/* Title glow effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-300/20 to-transparent 
-                                      opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-sm"></div>
+
                       </h3>
                       
                       <p className="text-slate-400 leading-relaxed text-lg
@@ -479,11 +471,7 @@ const LandingPage = () => {
                                   transition-all duration-1000"></div>
                   </div>
                   
-                  {/* HOLOGRAPHIC REFLECTION */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-700/20 via-transparent to-transparent 
-                                rounded-3xl transform translate-y-full scale-95 opacity-0 
-                                group-hover:opacity-100 group-hover:translate-y-20 group-hover:scale-90 
-                                transition-all duration-1000 blur-lg"></div>
+
                 </div>
               </div>
             ))}
