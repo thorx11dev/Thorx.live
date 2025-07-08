@@ -251,6 +251,11 @@ Changelog:
 - July 08, 2025. Redesigned hero section with Thorx logo font style and minimalistic slate colors for professional appearance
 - July 08, 2025. Enhanced cloud visual quality with high-fidelity realistic appearance using layered radial gradients and proper blur effects
 - July 08, 2025. Removed hover box outline effect from header text containers for clean aesthetic
+- July 08, 2025. FINAL FONT & EFFECT FIXES: Applied exact Thorx logo font style to all header text sections
+- July 08, 2025. Completely removed all glow effects from header text (text-shadow: none !important)
+- July 08, 2025. Reduced cloud opacity to 0.6/0.55 for subtler appearance per user request
+- July 08, 2025. Updated all section headers to use thorx-hero-title class with exact logo typography
+- July 08, 2025. Ensured clean, professional text appearance matching SVG logo design without any luminescence
 ```
 
 ## User Preferences
