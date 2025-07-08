@@ -414,152 +414,176 @@ const LandingPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {/* NEW COSMIC FEATURES GRID - Inspired by stats section with constellation theme */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
               {
                 icon: Zap,
                 title: "Lightning Fast",
                 description: "Complete tasks in record time with our optimized workflow",
                 delay: "0.6s",
-                gradient: "from-yellow-500/20 to-orange-500/20",
-                particleColor: "bg-yellow-400"
+                color: "from-yellow-500/20 to-orange-500/20",
+                accentColor: "yellow",
+                constellation: "⚡"
               },
               {
                 icon: Star,
                 title: "Premium Quality",
                 description: "Access to high-paying, verified opportunities only",
                 delay: "0.8s",
-                gradient: "from-blue-500/20 to-purple-500/20",
-                particleColor: "bg-blue-400"
+                color: "from-blue-500/20 to-purple-500/20",
+                accentColor: "blue",
+                constellation: "✨"
               },
               {
                 icon: Award,
                 title: "Certified Success",
                 description: "Join thousands of successful earners in our community",
                 delay: "1s",
-                gradient: "from-green-500/20 to-emerald-500/20",
-                particleColor: "bg-green-400"
+                color: "from-green-500/20 to-emerald-500/20",
+                accentColor: "green",
+                constellation: "🏆"
               },
               {
                 icon: Clock,
                 title: "24/7 Support",
                 description: "Round-the-clock assistance whenever you need help",
                 delay: "1.2s",
-                gradient: "from-purple-500/20 to-pink-500/20",
-                particleColor: "bg-purple-400"
+                color: "from-purple-500/20 to-pink-500/20",
+                accentColor: "purple",
+                constellation: "🌙"
               }
-            ].map((benefit, index) => (
+            ].map((feature, index) => (
               <div
                 key={index}
-                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group thorx-enhanced-card"
-                style={{ '--delay': benefit.delay } as React.CSSProperties}
-                onMouseEnter={() => {
-                  // Trigger particle animation
-                  const particles = document.querySelectorAll(`[data-card="${index}"] .thorx-particle`);
-                  particles.forEach((particle, i) => {
-                    setTimeout(() => {
-                      particle.classList.add('animate-pulse');
-                    }, i * 100);
-                  });
-                }}
-                onMouseLeave={() => {
-                  // Reset particle animation
-                  const particles = document.querySelectorAll(`[data-card="${index}"] .thorx-particle`);
-                  particles.forEach(particle => {
-                    particle.classList.remove('animate-pulse');
-                  });
-                }}
+                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group thorx-constellation-card"
+                style={{ '--delay': feature.delay } as React.CSSProperties}
               >
-                {/* DYNAMIC INTERACTIVE CARD */}
-                <div 
-                  data-card={index}
-                  className="text-center p-8 rounded-2xl relative overflow-hidden
-                            border border-slate-700/30 bg-slate-800/30 backdrop-blur-xl
-                            transition-all duration-700 ease-out cursor-pointer
-                            group-hover:border-slate-500/50 group-hover:bg-slate-800/50
-                            group-hover:shadow-2xl group-hover:shadow-slate-900/80
-                            transform group-hover:scale-105 group-hover:-translate-y-3
-                            group-hover:rotate-1 group-active:scale-95 group-active:rotate-0">
+                {/* CONSTELLATION CARD - Inspired by stats section structure */}
+                <div className="relative perspective-1000 transform-gpu transition-all duration-700 
+                              group-hover:scale-105 group-hover:-translate-y-8 group-hover:rotate-2">
                   
-                  {/* MORPHING BACKGROUND GRADIENT */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} 
-                                 opacity-0 group-hover:opacity-100 transition-all duration-1000 
-                                 rounded-2xl scale-95 group-hover:scale-100`}></div>
-                  
-                  {/* FLOATING PARTICLES */}
-                  <div className="absolute inset-0 pointer-events-none">
-                    {[...Array(6)].map((_, i) => (
-                      <div
-                        key={i}
-                        className={`thorx-particle absolute w-1 h-1 ${benefit.particleColor} 
-                                  rounded-full opacity-0 group-hover:opacity-60 
-                                  transition-all duration-1000 ease-out`}
-                        style={{
-                          left: `${20 + (i * 12)}%`,
-                          top: `${15 + (i % 3) * 25}%`,
-                          animationDelay: `${i * 0.2}s`,
-                          transform: `translateY(${Math.random() * 20 - 10}px)`,
-                        }}
-                      ></div>
-                    ))}
-                  </div>
-                  
-                  {/* MAGNETIC ICON WITH ORBITAL ANIMATION */}
-                  <div className="relative mb-6 z-10">
-                    <div className="inline-flex items-center justify-center w-16 h-16 
-                                  rounded-full bg-slate-700/50 border border-slate-600/30
-                                  transition-all duration-700 group-hover:bg-slate-600/50
-                                  group-hover:border-slate-500/50 group-hover:scale-125
-                                  group-hover:rotate-12 group-hover:shadow-lg
-                                  group-hover:shadow-slate-500/30 relative overflow-hidden">
+                  {/* MAIN CARD CONTAINER */}
+                  <div className="p-8 rounded-3xl relative overflow-hidden
+                                border border-slate-700/40 bg-slate-900/60 backdrop-blur-xl
+                                group-hover:border-slate-500/60 group-hover:bg-slate-900/80
+                                transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-slate-900/90
+                                text-center min-h-[280px] flex flex-col justify-center">
+                    
+                    {/* CONSTELLATION BACKGROUND PATTERN */}
+                    <div className="absolute inset-0 overflow-hidden">
+                      {/* Constellation dots */}
+                      <div className="absolute top-4 left-4 w-1 h-1 bg-slate-500 rounded-full opacity-60 
+                                    group-hover:opacity-100 transition-opacity duration-700"></div>
+                      <div className="absolute top-8 right-8 w-1 h-1 bg-slate-500 rounded-full opacity-60 
+                                    group-hover:opacity-100 transition-opacity duration-700"></div>
+                      <div className="absolute bottom-6 left-6 w-1 h-1 bg-slate-500 rounded-full opacity-60 
+                                    group-hover:opacity-100 transition-opacity duration-700"></div>
+                      <div className="absolute bottom-4 right-4 w-1 h-1 bg-slate-500 rounded-full opacity-60 
+                                    group-hover:opacity-100 transition-opacity duration-700"></div>
                       
-                      {/* ENERGY PULSE */}
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-br 
-                                    from-slate-400/20 via-slate-500/10 to-transparent 
-                                    opacity-0 group-hover:opacity-100 transition-all duration-700
-                                    scale-75 group-hover:scale-100"></div>
-                      
-                      {/* ENHANCED ICON */}
-                      <benefit.icon className="w-8 h-8 text-slate-400 relative z-10
-                                            transition-all duration-700 thorx-magnetic-icon
-                                            group-hover:text-slate-200 group-hover:scale-110
-                                            group-hover:drop-shadow-lg" />
-                      
-                      {/* EXPANDING RINGS */}
-                      <div className="absolute inset-0 rounded-full border-2 border-slate-500/30
-                                    scale-100 opacity-100 group-hover:scale-200 group-hover:opacity-0
-                                    transition-all duration-1000 ease-out"></div>
-                      <div className="absolute inset-0 rounded-full border-2 border-slate-400/20
-                                    scale-75 opacity-0 group-hover:scale-175 group-hover:opacity-100
-                                    transition-all duration-1200 ease-out delay-200"></div>
+                      {/* Constellation lines */}
+                      <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                        <line x1="16" y1="16" x2="50" y2="50" stroke="#64748b" strokeWidth="0.5" 
+                              opacity="0.3" className="group-hover:opacity-60 transition-opacity duration-700" />
+                        <line x1="90%" y1="32" x2="70%" y2="70%" stroke="#64748b" strokeWidth="0.5" 
+                              opacity="0.3" className="group-hover:opacity-60 transition-opacity duration-700" />
+                      </svg>
                     </div>
+                    
+                    {/* DYNAMIC GRADIENT OVERLAY */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-100 
+                                   transition-opacity duration-1000 rounded-3xl`}></div>
+                    
+                    {/* FLOATING CONSTELLATION ICON */}
+                    <div className="relative mb-6 z-10">
+                      <div className="w-20 h-20 bg-slate-800/80 backdrop-blur-sm rounded-full 
+                                    flex items-center justify-center mx-auto 
+                                    group-hover:bg-slate-700/80 transition-all duration-700 
+                                    shadow-lg group-hover:shadow-2xl group-hover:shadow-slate-700/60
+                                    transform-gpu group-hover:scale-110 group-hover:rotate-6
+                                    relative overflow-hidden border-2 border-slate-600/30 
+                                    group-hover:border-slate-500/50">
+                        
+                        {/* COSMIC ENERGY FIELD */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-slate-500/20 via-transparent to-slate-700/20 
+                                      opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-full"></div>
+                        
+                        {/* CONSTELLATION ICON */}
+                        <feature.icon className="w-10 h-10 text-slate-400 group-hover:text-slate-200 
+                                             transition-all duration-700 relative z-10 thorx-constellation-icon
+                                             group-hover:scale-105 group-hover:drop-shadow-lg" />
+                        
+                        {/* ORBITAL RINGS */}
+                        <div className="absolute inset-0 border-2 border-slate-500/30 rounded-full 
+                                      scale-100 group-hover:scale-125 opacity-100 group-hover:opacity-0 
+                                      transition-all duration-1000"></div>
+                        <div className="absolute inset-0 border border-slate-400/20 rounded-full 
+                                      scale-90 opacity-0 group-hover:scale-140 group-hover:opacity-100 
+                                      transition-all duration-1200 delay-200"></div>
+                        
+                        {/* CONSTELLATION PARTICLES */}
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                          {[...Array(8)].map((_, i) => (
+                            <div
+                              key={i}
+                              className="absolute w-0.5 h-0.5 bg-slate-300 rounded-full opacity-0 
+                                       group-hover:opacity-80 group-hover:animate-pulse"
+                              style={{
+                                left: `${Math.cos((i * Math.PI) / 4) * 35}px`,
+                                top: `${Math.sin((i * Math.PI) / 4) * 35}px`,
+                                animationDelay: `${i * 0.1}s`,
+                                animationDuration: '2s'
+                              }}
+                            ></div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* ENHANCED TYPOGRAPHY */}
+                    <div className="space-y-4 relative z-10">
+                      <h3 className="text-xl font-bold text-slate-200 mb-4 relative
+                                   transition-all duration-700 group-hover:text-white
+                                   group-hover:scale-105 group-hover:tracking-wide
+                                   group-hover:drop-shadow-sm">
+                        {feature.title}
+                        
+                        {/* Title enhancement glow */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-300/10 to-transparent 
+                                      opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-lg"></div>
+                      </h3>
+                      
+                      <p className="text-slate-400 text-sm leading-relaxed
+                                  transition-all duration-700 group-hover:text-slate-300
+                                  group-hover:scale-102">
+                        {feature.description}
+                      </p>
+                    </div>
+                    
+                    {/* INTERACTIVE CONSTELLATION SYMBOL */}
+                    <div className="absolute top-4 right-4 text-2xl opacity-20 
+                                  group-hover:opacity-60 group-hover:scale-125 group-hover:rotate-12
+                                  transition-all duration-700 filter blur-sm group-hover:blur-none">
+                      {feature.constellation}
+                    </div>
+                    
+                    {/* COSMIC SCANNING LINES */}
+                    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r 
+                                  from-transparent via-slate-400/60 to-transparent
+                                  transform -translate-x-full group-hover:translate-x-full
+                                  transition-transform duration-1500 ease-out"></div>
+                    <div className="absolute bottom-0 right-0 w-0.5 h-full bg-gradient-to-t 
+                                  from-transparent via-slate-400/60 to-transparent
+                                  transform translate-y-full group-hover:-translate-y-full
+                                  transition-transform duration-1500 ease-out delay-300"></div>
                   </div>
                   
-                  {/* ANIMATED TEXT WITH TYPEWRITER EFFECT */}
-                  <h3 className="text-lg font-semibold text-slate-200 mb-3 relative z-10
-                               transition-all duration-700 group-hover:text-white
-                               group-hover:scale-105 group-hover:tracking-wider
-                               group-hover:drop-shadow-sm">
-                    {benefit.title}
-                  </h3>
-                  
-                  <p className="text-slate-400 text-sm leading-relaxed relative z-10
-                              transition-all duration-700 group-hover:text-slate-300
-                              group-hover:scale-102">
-                    {benefit.description}
-                  </p>
-                  
-                  {/* PROGRESSIVE REVEAL BORDER */}
-                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent
-                                bg-gradient-to-r from-slate-600/30 via-slate-500/30 to-slate-600/30
-                                opacity-0 group-hover:opacity-100 group-hover:animate-pulse
-                                transition-all duration-1000"></div>
-                  
-                  {/* SWEEP LIGHT EFFECT */}
-                  <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r 
-                                from-transparent via-slate-300 to-transparent
-                                transform -translate-x-full group-hover:translate-x-full
-                                transition-transform duration-1200 ease-out delay-300"></div>
+                  {/* HOLOGRAPHIC REFLECTION */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-700/10 to-transparent 
+                                rounded-3xl transform translate-y-8 scale-95 opacity-0 
+                                group-hover:opacity-100 group-hover:translate-y-12 group-hover:scale-90 
+                                transition-all duration-700 blur-sm"></div>
                 </div>
               </div>
             ))}

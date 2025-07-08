@@ -498,8 +498,8 @@ div[class*="bg-gradient-to-r"] {
   z-index: 20 !important;
 }
 
-/* ENHANCED MAGNETIC ICONS - Dynamic and engaging */
-.thorx-magnetic-icon {
+/* CONSTELLATION ICONS - Cosmic and refined */
+.thorx-constellation-icon {
   display: inline-block !important;
   opacity: 1 !important;
   visibility: visible !important;
@@ -513,79 +513,92 @@ div[class*="bg-gradient-to-r"] {
   will-change: transform, color, filter !important;
 }
 
-.group:hover .thorx-magnetic-icon {
+.group:hover .thorx-constellation-icon {
   color: #e2e8f0 !important; /* slate-200 */
   opacity: 1 !important;
   visibility: visible !important;
-  transform: scale(1.1) translateZ(0) !important;
-  filter: drop-shadow(0 4px 12px rgba(148, 163, 184, 0.3)) !important;
+  transform: scale(1.05) translateZ(0) !important;
+  filter: drop-shadow(0 4px 16px rgba(148, 163, 184, 0.4)) !important;
 }
 
-/* Enhanced card container with isolation */
-.thorx-enhanced-card {
+/* Constellation card container with enhanced isolation */
+.thorx-constellation-card {
   isolation: isolate !important;
-  perspective: 1000px !important;
+  perspective: 1200px !important;
+  transform-style: preserve-3d !important;
 }
 
-.thorx-enhanced-card:hover .thorx-magnetic-icon {
+.thorx-constellation-card:hover .thorx-constellation-icon {
   color: #e2e8f0 !important;
   opacity: 1 !important;
   visibility: visible !important;
-  transform: scale(1.1) translateZ(0) !important;
-  filter: drop-shadow(0 4px 12px rgba(148, 163, 184, 0.3)) !important;
+  transform: scale(1.05) translateZ(0) !important;
+  filter: drop-shadow(0 4px 16px rgba(148, 163, 184, 0.4)) !important;
 }
 
-/* Floating particles animation */
-.thorx-particle {
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
+/* Constellation particle animations */
+@keyframes constellation-float {
   0%, 100% { 
-    transform: translateY(0px) rotate(0deg); 
-    opacity: 0.3; 
+    transform: translateY(0px) rotate(0deg) scale(1); 
+    opacity: 0.4; 
   }
   50% { 
-    transform: translateY(-10px) rotate(180deg); 
+    transform: translateY(-8px) rotate(180deg) scale(1.2); 
     opacity: 0.8; 
   }
 }
 
-/* Enhanced cross-browser compatibility */
+.thorx-constellation-card .constellation-particle {
+  animation: constellation-float 4s ease-in-out infinite;
+}
+
+/* Enhanced cross-browser compatibility for constellation elements */
 @supports (-webkit-appearance: none) {
-  .thorx-magnetic-icon {
+  .thorx-constellation-icon {
     -webkit-text-fill-color: #94a3b8 !important;
     -webkit-transform: translateZ(0) !important;
     -webkit-backface-visibility: hidden !important;
     -webkit-filter: none !important;
   }
   
-  .group:hover .thorx-magnetic-icon {
+  .group:hover .thorx-constellation-icon {
     -webkit-text-fill-color: #e2e8f0 !important;
-    -webkit-transform: scale(1.1) translateZ(0) !important;
-    -webkit-filter: drop-shadow(0 4px 12px rgba(148, 163, 184, 0.3)) !important;
+    -webkit-transform: scale(1.05) translateZ(0) !important;
+    -webkit-filter: drop-shadow(0 4px 16px rgba(148, 163, 184, 0.4)) !important;
   }
 }
 
 @supports (-moz-appearance: none) {
-  .thorx-magnetic-icon {
+  .thorx-constellation-icon {
     -moz-transform: translateZ(0) !important;
     -moz-backface-visibility: hidden !important;
   }
   
-  .group:hover .thorx-magnetic-icon {
-    -moz-transform: scale(1.1) translateZ(0) !important;
+  .group:hover .thorx-constellation-icon {
+    -moz-transform: scale(1.05) translateZ(0) !important;
   }
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for constellation cards */
+@media (max-width: 1024px) {
+  .thorx-constellation-card {
+    perspective: 800px !important;
+  }
+}
+
 @media (max-width: 768px) {
-  .thorx-enhanced-card {
-    perspective: 500px !important;
+  .thorx-constellation-card {
+    perspective: 600px !important;
   }
   
-  .thorx-magnetic-icon {
+  .thorx-constellation-icon {
     transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .thorx-constellation-card {
+    perspective: 400px !important;
   }
 }
 
