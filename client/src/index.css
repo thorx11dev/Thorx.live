@@ -61,6 +61,15 @@
   color: #0f172a !important;
   font-weight: 700 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 0.75rem !important;
+  padding: 0.75rem 2rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  text-decoration: none !important;
+  border: none !important;
+  cursor: pointer !important;
 }
 
 .thorx-btn-primary:hover {
@@ -75,12 +84,111 @@
   color: #ffffff !important;
   font-weight: 600 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 0.75rem !important;
+  padding: 0.75rem 2rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  text-decoration: none !important;
+  border: none !important;
+  cursor: pointer !important;
 }
 
 .thorx-btn-secondary:hover {
   background: linear-gradient(to right, #64748b, #94a3b8) !important;
   color: #ffffff !important;
   transform: scale(1.05) !important;
+  border-color: #94a3b8 !important;
+}
+
+/* CRITICAL: Enhanced button styles for consistent appearance */
+.thorx-btn-cta-primary {
+  background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 1rem !important;
+  padding: 1rem 2.5rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.75rem !important;
+  text-decoration: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transform: translateZ(0) !important;
+}
+
+.thorx-btn-cta-primary:hover {
+  background: linear-gradient(to right, #f1f5f9, #ffffff) !important;
+  color: #0f172a !important;
+  transform: scale(1.1) translateY(-2px) !important;
+  box-shadow: 0 25px 50px rgba(226, 232, 240, 0.3) !important;
+}
+
+.thorx-btn-cta-secondary {
+  background: linear-gradient(to right, #475569, #64748b) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 1rem !important;
+  padding: 1rem 2.5rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.75rem !important;
+  text-decoration: none !important;
+  border: 2px solid #475569 !important;
+  cursor: pointer !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transform: translateZ(0) !important;
+}
+
+.thorx-btn-cta-secondary:hover {
+  background: linear-gradient(to right, #64748b, #94a3b8) !important;
+  color: #ffffff !important;
+  transform: scale(1.05) translateY(-1px) !important;
+  box-shadow: 0 15px 30px rgba(71, 85, 105, 0.4) !important;
+  border-color: #94a3b8 !important;
+}
+
+/* CRITICAL: Prevent any CSS conflicts with theme switching */
+.thorx-btn-primary,
+.thorx-btn-secondary,
+.thorx-btn-cta-primary,
+.thorx-btn-cta-secondary {
+  background-color: initial !important;
+  color: initial !important;
+}
+
+/* CRITICAL: Ensure all buttons are immune to theme changes */
+html[data-theme="dark"] .thorx-btn-primary,
+html[data-theme="dark"] .thorx-btn-secondary,
+html[data-theme="dark"] .thorx-btn-cta-primary,
+html[data-theme="dark"] .thorx-btn-cta-secondary,
+html.dark .thorx-btn-primary,
+html.dark .thorx-btn-secondary,
+html.dark .thorx-btn-cta-primary,
+html.dark .thorx-btn-cta-secondary {
+  background: inherit !important;
+  color: inherit !important;
+}
+
+/* CRITICAL: Light theme button overrides */
+html[data-theme="light"] .thorx-btn-primary,
+html[data-theme="light"] .thorx-btn-secondary,
+html[data-theme="light"] .thorx-btn-cta-primary,
+html[data-theme="light"] .thorx-btn-cta-secondary,
+html.light .thorx-btn-primary,
+html.light .thorx-btn-secondary,
+html.light .thorx-btn-cta-primary,
+html.light .thorx-btn-cta-secondary {
+  background: inherit !important;
+  color: inherit !important;
 }
 
 /* CRITICAL: Search and input field styles */

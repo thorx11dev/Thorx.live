@@ -97,11 +97,19 @@ export const useThemeState = () => {
       document.body.style.setProperty('background-color', '#ffffff', 'important');
     }
     
-    // Prevent any interference from other sources
+    // Additional protection: force theme stability after brief delay
     requestAnimationFrame(() => {
       root.classList.remove('light', 'dark', 'system');
       root.classList.add(theme);
+      root.setAttribute('data-theme', theme);
     });
+    
+    // Final protection: ensure theme stays stable after potential conflicts
+    setTimeout(() => {
+      root.classList.remove('light', 'dark', 'system');
+      root.classList.add(theme);
+      root.setAttribute('data-theme', theme);
+    }, 100);
   }, [theme]);
 
   // Listen for system theme changes but respect user preference
