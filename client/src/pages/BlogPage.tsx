@@ -256,9 +256,9 @@ const BlogPage = () => {
   });
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-primary">
+    <div className="relative min-h-screen overflow-hidden bg-slate-900">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-primary">
+      <div className="absolute inset-0 bg-slate-900">
         <div
           className="absolute w-96 h-96 rounded-full pointer-events-none opacity-10 top-1/3 left-1/2"
           style={{
@@ -299,16 +299,16 @@ const BlogPage = () => {
       <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
         <div className="flex items-center space-x-2 sm:space-x-3">
           <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group">
-            <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-secondary rounded-xl border border-primary group-hover:bg-tertiary transition-colors">
+            <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-slate-800 rounded-xl border border-slate-700 group-hover:bg-slate-700 transition-colors">
               <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-slate-300" />
             </div>
-            <span className="text-xl sm:text-2xl font-bold text-primary group-hover:text-white transition-colors">Thorx</span>
+            <span className="text-xl sm:text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">Thorx</span>
           </Link>
         </div>
         <div className="flex items-center gap-3 sm:gap-6">
           <Link 
             to="/" 
-            className="text-secondary hover:text-primary transition-colors inline-flex items-center gap-2 text-sm sm:text-base"
+            className="text-slate-400 hover:text-slate-200 transition-colors inline-flex items-center gap-2 text-sm sm:text-base"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
@@ -319,12 +319,12 @@ const BlogPage = () => {
       {/* Hero Section */}
       <div className="relative z-10 py-16 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 leading-tight">
-            <span className="block text-secondary">Thorx</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-200 mb-6 leading-tight">
+            <span className="block text-slate-400">Thorx</span>
             <span>Blog</span>
           </h1>
           
-          <p className="text-lg sm:text-xl text-secondary mb-8 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
             Insights, strategies, and stories from the cosmic frontier of digital earning. Stay informed with expert guidance and industry trends.
           </p>
           
@@ -341,7 +341,7 @@ const BlogPage = () => {
                   placeholder="Search articles, topics, and insights..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-6 py-4 bg-secondary/60 border-2 border-primary rounded-xl text-primary placeholder-secondary focus:outline-none focus:border-secondary focus:bg-secondary/80 transition-all duration-300 hover:border-secondary backdrop-blur-sm shadow-lg"
+                  className="w-full pl-12 pr-6 py-4 bg-slate-800/60 border-2 border-slate-700 rounded-xl text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:bg-slate-800/80 transition-all duration-300 hover:border-slate-600 backdrop-blur-sm shadow-lg"
                 />
               </div>
               
@@ -351,7 +351,7 @@ const BlogPage = () => {
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="px-6 py-4 bg-secondary/60 border-2 border-primary rounded-xl text-primary focus:outline-none focus:border-secondary focus:bg-secondary/80 transition-all duration-300 hover:border-secondary backdrop-blur-sm shadow-lg"
+                  className="px-6 py-4 bg-slate-800/60 border-2 border-slate-700 rounded-xl text-slate-200 focus:outline-none focus:border-slate-500 focus:bg-slate-800/80 transition-all duration-300 hover:border-slate-600 backdrop-blur-sm shadow-lg"
                 >
                   {categories.map(category => (
                     <option key={category} value={category} className="bg-slate-800 text-slate-200">
@@ -518,7 +518,7 @@ const BlogPage = () => {
                 </div>
                 
                 <Link to={`/blog/${post.id}`}>
-                  <button className="w-full bg-gradient-to-r from-slate-700 to-slate-600 text-white px-6 py-3 rounded-xl font-bold hover:from-slate-600 hover:to-slate-500 transition-all duration-300 inline-flex items-center justify-center gap-2 group/btn hover:scale-105 hover:shadow-xl hover:shadow-slate-700/20 transform active:scale-95">
+                  <button className="w-full bg-gradient-to-r from-slate-200 to-slate-100 text-slate-900 px-6 py-3 rounded-xl font-bold hover:from-slate-100 hover:to-white transition-all duration-300 inline-flex items-center justify-center gap-2 group/btn hover:scale-105 hover:shadow-xl hover:shadow-slate-200/20 transform active:scale-95">
                     <span>Read More</span>
                     <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:rotate-12 transition-all duration-300" />
                   </button>

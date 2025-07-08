@@ -5,24 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CRITICAL: Override any Tailwind utilities that might interfere with text-white */
-@layer utilities {
-  .text-white {
-    color: #ffffff !important;
-    text-shadow: none !important;
-    filter: none !important;
-  }
-  
-  .text-white:hover,
-  .text-white:focus,
-  .text-white:active,
-  .text-white:visited {
-    color: #ffffff !important;
-    text-shadow: none !important;
-    filter: none !important;
-  }
-}
-
 /* Base styles */
 @layer base {
   body {
@@ -76,7 +58,7 @@
 /* CRITICAL: Stable button styles that cannot be overridden */
 .thorx-btn-primary {
   background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
-  color: #ffffff !important;
+  color: #0f172a !important;
   font-weight: 700 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
@@ -144,7 +126,7 @@
 
 .thorx-filter-btn.active {
   background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
-  color: #ffffff !important;
+  color: #0f172a !important;
   border-color: #e2e8f0 !important;
   box-shadow: 0 8px 25px rgba(226, 232, 240, 0.15) !important;
 }
@@ -152,14 +134,14 @@
 /* CRITICAL: Newsletter and form buttons */
 .thorx-newsletter-btn {
   background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
-  color: #ffffff !important;
+  color: #0f172a !important;
   font-weight: 700 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .thorx-newsletter-btn:hover {
   background: linear-gradient(to right, #f1f5f9, #ffffff) !important;
-  color: #ffffff !important;
+  color: #0f172a !important;
   transform: scale(1.05) !important;
   box-shadow: 0 20px 40px rgba(226, 232, 240, 0.2) !important;
 }
@@ -219,72 +201,44 @@
    ENHANCED THEME STABILITY - CRITICAL SECTION
    ======================================== */
 
-/* Base theme stability with controlled transitions */
-html {
-  transition: background-color 0.3s ease, color 0.3s ease !important;
-}
-
-/* Root theme setup with stronger specificity */
-:root {
-  --theme-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --theme-bg-light: #ffffff;
-  --theme-bg-dark: #0f172a;
-  --theme-text-light: #0f172a;
-  --theme-text-dark: #ffffff;
-}
-
-/* Light theme defaults - stable inheritance */
-html:not(.dark) {
-  color-scheme: light !important;
-  background-color: var(--theme-bg-light) !important;
-}
-
-/* Dark theme with controlled inheritance */
-html.dark {
+/* Force theme stability with highest specificity */
+html[data-theme="dark"] {
   color-scheme: dark !important;
-  background-color: var(--theme-bg-dark) !important;
 }
 
-/* Body transition control */
+html[data-theme="light"] {
+  color-scheme: light !important;
+}
+
+/* Prevent theme conflicts with absolute priority */
+html.dark {
+  background-color: #0f172a !important;
+}
+
+html.light {
+  background-color: #ffffff !important;
+}
+
 body {
-  transition: var(--theme-transition) !important;
+  transition: background-color 0.3s ease !important;
 }
 
-/* CRITICAL OVERRIDE: Ensure text-white is always white with no effects */
-body *[class*="text-white"],
-html *[class*="text-white"],
-.text-white,
-.text-white:hover,
-.text-white:focus,
-.text-white:active,
-.text-white:visited {
-  color: #ffffff !important;
-  text-shadow: none !important;
-  filter: none !important;
-  text-decoration: none !important;
-}
-
-/* Button stability with theme-aware colors */
+/* Force button colors with absolute priority to prevent instability */
 .thorx-btn-primary {
   background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  transition: var(--theme-transition) !important;
+  color: #0f172a !important;
   border: 2px solid transparent !important;
 }
 
 .thorx-btn-primary:hover {
   background: linear-gradient(to right, #f1f5f9, #ffffff) !important;
-  color: #ffffff !important;
+  color: #0f172a !important;
   transform: scale(1.05) !important;
-  box-shadow: 0 20px 40px rgba(226, 232, 240, 0.2) !important;
 }
 
 .thorx-btn-secondary {
   background: transparent !important;
   color: #e2e8f0 !important;
-  font-weight: 600 !important;
-  transition: var(--theme-transition) !important;
   border: 2px solid #64748b !important;
 }
 
@@ -292,241 +246,6 @@ html *[class*="text-white"],
   background: #1e293b !important;
   color: #f8fafc !important;
   border-color: #94a3b8 !important;
-}
-
-/* ========================================
-   BUTTON TEXT COLOR OVERRIDES - CRITICAL SECTION
-   ======================================== */
-
-/* Force white text on all buttons regardless of background - MAXIMUM SPECIFICITY */
-.bg-gradient-to-r.text-white,
-button.text-white,
-a.text-white,
-link.text-white,
-[class*="bg-gradient-to-r"][class*="text-white"],
-.text-white.bg-gradient-to-r,
-*[class*="text-white"] {
-  color: #ffffff !important;
-  text-shadow: none !important;
-  filter: none !important;
-}
-
-.bg-gradient-to-r.text-white:hover,
-button.text-white:hover,
-a.text-white:hover,
-link.text-white:hover,
-[class*="bg-gradient-to-r"][class*="text-white"]:hover,
-.text-white.bg-gradient-to-r:hover,
-*[class*="text-white"]:hover,
-.bg-gradient-to-r.text-white:focus,
-button.text-white:focus,
-a.text-white:focus,
-link.text-white:focus,
-[class*="bg-gradient-to-r"][class*="text-white"]:focus,
-.text-white.bg-gradient-to-r:focus,
-*[class*="text-white"]:focus,
-.bg-gradient-to-r.text-white:active,
-button.text-white:active,
-a.text-white:active,
-link.text-white:active,
-[class*="bg-gradient-to-r"][class*="text-white"]:active,
-.text-white.bg-gradient-to-r:active,
-*[class*="text-white"]:active {
-  color: #ffffff !important;
-  text-shadow: none !important;
-  filter: none !important;
-}
-
-/* Specific overrides for button combinations with maximum specificity */
-.bg-gradient-to-r.from-slate-700.to-slate-600.text-white,
-.bg-gradient-to-r.from-slate-600.to-slate-500.text-white,
-a.bg-gradient-to-r.from-slate-700.to-slate-600.text-white,
-a.bg-gradient-to-r.from-slate-600.to-slate-500.text-white,
-button.bg-gradient-to-r.from-slate-700.to-slate-600.text-white,
-button.bg-gradient-to-r.from-slate-600.to-slate-500.text-white {
-  color: #ffffff !important;
-}
-
-/* Override any inherited theme text colors for white text elements */
-html.dark .text-white,
-html:not(.dark) .text-white,
-body .text-white,
-* .text-white {
-  color: #ffffff !important;
-}
-
-/* CRITICAL: Override specific hover classes that change text color */
-.text-white.hover\:text-slate-200:hover,
-.text-white.hover\:text-slate-300:hover,
-.text-white.hover\:text-slate-400:hover,
-.text-white.hover\:text-primary:hover,
-.text-white.hover\:text-secondary:hover,
-.text-white.hover\:text-tertiary:hover {
-  color: #ffffff !important;
-  text-shadow: none !important;
-  filter: none !important;
-}
-
-/* CRITICAL: Override all slate text color hover states */
-.text-slate-200.group-hover\:text-white:hover,
-.text-slate-300.group-hover\:text-white:hover,
-.text-slate-400.group-hover\:text-white:hover,
-.text-slate-400.group-hover\:text-slate-300:hover,
-.text-slate-300.group-hover\:text-slate-200:hover,
-.text-slate-200.group-hover\:text-slate-100:hover,
-.text-primary.group-hover\:text-white:hover,
-.text-secondary.group-hover\:text-tertiary:hover,
-.text-secondary.group-hover\:text-white:hover {
-  color: inherit !important;
-  text-shadow: none !important;
-  filter: none !important;
-}
-
-/* CRITICAL: Prevent group hover color changes */
-.group:hover .group-hover\:text-white,
-.group:hover .group-hover\:text-slate-200,
-.group:hover .group-hover\:text-slate-300,
-.group:hover .group-hover\:text-tertiary {
-  color: inherit !important;
-  text-shadow: none !important;
-  filter: none !important;
-}
-
-/* CRITICAL: Comprehensive hover state overrides for all text elements */
-.text-slate-200:hover,
-.text-slate-300:hover,
-.text-slate-400:hover,
-.text-slate-500:hover,
-.text-slate-600:hover,
-.text-slate-700:hover,
-.text-slate-800:hover,
-.text-slate-900:hover {
-  color: var(--text-primary) !important;
-  text-shadow: none !important;
-  filter: none !important;
-}
-
-/* CRITICAL: Icon hover state overrides */
-.text-slate-300.group-hover\:text-white,
-.text-slate-400.group-hover\:text-slate-300,
-.text-slate-500.group-hover\:text-slate-400,
-svg.text-slate-300.group-hover\:text-white,
-svg.text-slate-400.group-hover\:text-slate-300 {
-  color: var(--text-secondary) !important;
-  fill: var(--text-secondary) !important;
-}
-
-/* CRITICAL: Button text stability overrides */
-button .text-slate-200,
-button .text-slate-300,
-button .text-slate-400,
-a .text-slate-200,
-a .text-slate-300,
-a .text-slate-400 {
-  color: var(--text-primary) !important;
-}
-
-button:hover .text-slate-200,
-button:hover .text-slate-300,
-button:hover .text-slate-400,
-a:hover .text-slate-200,
-a:hover .text-slate-300,
-a:hover .text-slate-400 {
-  color: var(--text-primary) !important;
-}
-
-/* CRITICAL: Disable transition-colors on hover to prevent color changes */
-.transition-colors:hover,
-.transition-all:hover {
-  transition: none !important;
-}
-
-/* CRITICAL: Group hover overrides for all elements */
-.group:hover .group-hover\:text-white .text-slate-200,
-.group:hover .group-hover\:text-white .text-slate-300,
-.group:hover .group-hover\:text-white .text-slate-400,
-.group:hover .group-hover\:text-slate-300 .text-slate-400,
-.group:hover .group-hover\:text-slate-200 .text-slate-300,
-.group:hover .text-slate-200.group-hover\:text-white,
-.group:hover .text-slate-300.group-hover\:text-white,
-.group:hover .text-slate-400.group-hover\:text-white,
-.group:hover .text-slate-400.group-hover\:text-slate-300,
-.group:hover .text-slate-500.group-hover\:text-slate-400,
-.group:hover .text-primary.group-hover\:text-white,
-.group:hover .text-secondary.group-hover\:text-tertiary,
-.group:hover .text-secondary.group-hover\:text-white {
-  color: var(--text-primary) !important;
-  text-shadow: none !important;
-  filter: none !important;
-}
-
-/* CRITICAL: Prevent SVG icon color changes on hover */
-.group:hover svg.text-slate-300.group-hover\:text-white,
-.group:hover svg.text-slate-400.group-hover\:text-slate-300,
-.group:hover svg.text-slate-500.group-hover\:text-slate-400,
-.group:hover svg.group-hover\:text-white,
-.group:hover svg.group-hover\:text-slate-200,
-.group:hover svg.group-hover\:text-slate-300,
-.group:hover svg.group-hover\:rotate-12 {
-  color: var(--text-secondary) !important;
-  fill: var(--text-secondary) !important;
-  transform: none !important;
-}
-
-/* CRITICAL: Force stable text colors across all states */
-h1, h2, h3, h4, h5, h6, p, span, div, a, button {
-  color: var(--text-primary) !important;
-}
-
-h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, 
-p:hover, span:hover, div:hover, a:hover, button:hover {
-  color: var(--text-primary) !important;
-}
-
-/* CRITICAL: Override for secondary text elements */
-.text-slate-400,
-.text-slate-500,
-.text-slate-600,
-.text-secondary {
-  color: var(--text-secondary) !important;
-}
-
-.text-slate-400:hover,
-.text-slate-500:hover,
-.text-slate-600:hover,
-.text-secondary:hover {
-  color: var(--text-secondary) !important;
-}
-
-/* CRITICAL: Remove any global text effects that might affect white text */
-button, a, span, div, p, h1, h2, h3, h4, h5, h6 {
-  filter: none !important;
-}
-
-button.text-white, a.text-white, span.text-white {
-  text-shadow: none !important;
-  filter: none !important;
-  color: #ffffff !important;
-}
-
-/* CRITICAL: Override group-hover effects that change text color */
-.group:hover .group-hover\:text-white,
-.group:hover .group-hover\:text-slate-200,
-.group:hover .group-hover\:text-slate-300,
-.group:hover .group-hover\:text-slate-400,
-.group:hover .group-hover\:text-primary,
-.group:hover .group-hover\:text-secondary,
-.group:hover .group-hover\:text-tertiary {
-  color: inherit !important;
-}
-
-/* CRITICAL: Force text-white elements to stay white even with group-hover */
-.group:hover .text-white,
-.group:focus .text-white,
-.group:active .text-white {
-  color: #ffffff !important;
-  text-shadow: none !important;
-  filter: none !important;
 }
 
 /* ========================================
@@ -2079,11 +1798,12 @@ button.text-white, a.text-white, span.text-white {
 
 /* Remove conflicting hover states that cause animation issues */
 .dark .hover\:bg-pale-blue\/10:hover,
-.dark .hover\:border-pale-blue\/20:hover {
+.dark .hover\:border-pale-blue\/20:hover,
+.dark [style*="backgroundColor"]:hover {
   /* Reset conflicting styles */
-  background-color: transparent !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
-  transition: var(--theme-transition) !important;
+  background-color: unset !important;
+  border-color: unset !important;
+  transform: unset !important;
 }
 
 /* Enhanced dark theme specific styles */
@@ -2116,14 +1836,14 @@ button.text-white, a.text-white, span.text-white {
   border-color: var(--border-secondary);
 }
 
-/* BUTTON TEXT FIXES - Controlled gradient button text */
-.dark .bg-gradient-to-r:not(.thorx-btn-primary):not(.thorx-btn-secondary) {
+/* CRITICAL BUTTON TEXT FIXES - Black text on gradient buttons in dark mode */
+.dark .bg-gradient-to-r {
   color: #000000 !important;
   font-weight: 800 !important;
   text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9) !important;
 }
 
-.dark .bg-gradient-to-r:not(.thorx-btn-primary):not(.thorx-btn-secondary):hover {
+.dark .bg-gradient-to-r:hover {
   color: #000000 !important;
   font-weight: 900 !important;
   text-shadow: 0 2px 4px rgba(255, 255, 255, 1) !important;
@@ -2756,24 +2476,6 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   transition: var(--transition-theme);
-}
-
-/* Critical override: Ensure text-white elements are always white regardless of theme */
-body .text-white,
-html .text-white,
-* .text-white,
-body .text-white:hover,
-html .text-white:hover,
-* .text-white:hover,
-body .text-white:focus,
-html .text-white:focus,
-* .text-white:focus,
-body .text-white:active,
-html .text-white:active,
-* .text-white:active {
-  color: #ffffff !important;
-  text-shadow: none !important;
-  filter: none !important;
 }
 
 /* ENSURE PROPER CONTRAST RATIOS */

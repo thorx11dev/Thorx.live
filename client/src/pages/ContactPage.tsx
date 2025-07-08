@@ -67,9 +67,9 @@ const ContactPage = () => {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-primary">
+    <div className="relative min-h-screen overflow-hidden bg-slate-900">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-primary">
+      <div className="absolute inset-0 bg-slate-900">
         <div
           className="absolute w-96 h-96 rounded-full pointer-events-none opacity-10 top-1/4 left-1/2"
           style={{
@@ -152,15 +152,15 @@ const ContactPage = () => {
                 key={index}
                 className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-slate-600 transition-all duration-300 group hover:shadow-2xl hover:shadow-slate-900/50 backdrop-blur-sm hover:scale-105 hover:-translate-y-1 text-center"
               >
-                <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-tertiary transition-colors shadow-lg">
-                  <info.icon className="w-8 h-8 text-secondary group-hover:text-tertiary transition-colors" />
+                <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-700 transition-colors shadow-lg">
+                  <info.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-300 transition-colors" />
                 </div>
                 
-                <h3 className="text-lg font-bold text-primary mb-2 group-hover:text-white transition-colors">
+                <h3 className="text-lg font-bold text-slate-200 mb-2 group-hover:text-white transition-colors">
                   {info.title}
                 </h3>
                 
-                <p className="text-primary font-semibold mb-3">
+                <p className="text-slate-300 font-semibold mb-3">
                   {info.details}
                 </p>
                 
@@ -272,7 +272,7 @@ const ContactPage = () => {
                 >
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center group-hover:bg-tertiary transition-colors shadow-lg">
+                      <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center group-hover:bg-slate-700 transition-colors shadow-lg">
                         <dept.icon className="w-6 h-6 text-slate-400 group-hover:text-slate-300 transition-colors" />
                       </div>
                     </div>
