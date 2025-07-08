@@ -5,47 +5,50 @@ import ThorxLogo from './ThorxLogo';
 export const ThorxBrandVariants = {
   // Navigation brand
   NavBrand: () => (
-    <ThorxLogo size="sm" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+    <ThorxLogo size="sm" logoColor="#e2e8f0" />
   ),
   
   // Footer brand
   FooterBrand: () => (
-    <ThorxLogo size="md" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+    <ThorxLogo size="md" logoColor="#e2e8f0" />
   ),
   
   // Hero brand (large)
   HeroBrand: () => (
-    <ThorxLogo size="xl" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+    <ThorxLogo size="xl" logoColor="#e2e8f0" />
   ),
   
   // Authentication page brand
   AuthBrand: () => (
-    <ThorxLogo size="lg" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+    <ThorxLogo size="lg" logoColor="#e2e8f0" />
   ),
   
   // Dashboard brand
   DashboardBrand: () => (
-    <ThorxLogo size="sm" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+    <ThorxLogo size="sm" logoColor="#e2e8f0" />
   ),
   
-  // Icon only variants
-  IconOnly: {
-    small: () => <ThorxLogo size="xs" showText={false} logoColor="#e2e8f0" />,
-    medium: () => <ThorxLogo size="sm" showText={false} logoColor="#e2e8f0" />,
-    large: () => <ThorxLogo size="md" showText={false} logoColor="#e2e8f0" />
+  // Size variants (logo only)
+  Sizes: {
+    xs: () => <ThorxLogo size="xs" logoColor="#e2e8f0" />,
+    sm: () => <ThorxLogo size="sm" logoColor="#e2e8f0" />,
+    md: () => <ThorxLogo size="md" logoColor="#e2e8f0" />,
+    lg: () => <ThorxLogo size="lg" logoColor="#e2e8f0" />,
+    xl: () => <ThorxLogo size="xl" logoColor="#e2e8f0" />,
+    '2xl': () => <ThorxLogo size="2xl" logoColor="#e2e8f0" />
   },
   
   // Themed variants
   Light: {
-    nav: () => <ThorxLogo size="sm" showText={true} textColor="text-slate-800" logoColor="#1e293b" />,
-    footer: () => <ThorxLogo size="md" showText={true} textColor="text-slate-800" logoColor="#1e293b" />,
-    hero: () => <ThorxLogo size="xl" showText={true} textColor="text-slate-800" logoColor="#1e293b" />
+    nav: () => <ThorxLogo size="sm" logoColor="#1e293b" />,
+    footer: () => <ThorxLogo size="md" logoColor="#1e293b" />,
+    hero: () => <ThorxLogo size="xl" logoColor="#1e293b" />
   },
   
   Dark: {
-    nav: () => <ThorxLogo size="sm" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />,
-    footer: () => <ThorxLogo size="md" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />,
-    hero: () => <ThorxLogo size="xl" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+    nav: () => <ThorxLogo size="sm" logoColor="#e2e8f0" />,
+    footer: () => <ThorxLogo size="md" logoColor="#e2e8f0" />,
+    hero: () => <ThorxLogo size="xl" logoColor="#e2e8f0" />
   }
 };
 

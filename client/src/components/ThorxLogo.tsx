@@ -2,32 +2,28 @@ import React from 'react';
 
 interface ThorxLogoProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-  showText?: boolean;
   className?: string;
-  textColor?: string;
   logoColor?: string;
 }
 
 const sizeMap = {
-  xs: { width: 60, height: 24, textSize: 'text-sm' },
-  sm: { width: 80, height: 32, textSize: 'text-base' },
-  md: { width: 120, height: 48, textSize: 'text-lg' },
-  lg: { width: 160, height: 64, textSize: 'text-xl' },
-  xl: { width: 200, height: 80, textSize: 'text-2xl' },
-  '2xl': { width: 280, height: 112, textSize: 'text-4xl' }
+  xs: { width: 60, height: 24 },
+  sm: { width: 80, height: 32 },
+  md: { width: 120, height: 48 },
+  lg: { width: 160, height: 64 },
+  xl: { width: 200, height: 80 },
+  '2xl': { width: 280, height: 112 }
 };
 
 export const ThorxLogo: React.FC<ThorxLogoProps> = ({ 
   size = 'md', 
-  showText = true, 
   className = '',
-  textColor = 'text-slate-200',
   logoColor = '#e2e8f0'
 }) => {
   const dimensions = sizeMap[size];
   
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
+    <div className={`flex items-center ${className}`}>
       {/* Thorx Logo SVG */}
       <svg 
         width={dimensions.width} 
@@ -119,19 +115,6 @@ export const ThorxLogo: React.FC<ThorxLogoProps> = ({
           <line x1="135" y1="12" x2="133" y2="2" stroke={logoColor} strokeWidth="0.5"/>
         </g>
       </svg>
-      
-      {showText && (
-        <div className="flex flex-col">
-          <span className={`font-bold ${dimensions.textSize} ${textColor} tracking-wide`}>
-            Thorx
-          </span>
-          {size !== 'xs' && size !== 'sm' && (
-            <span className={`text-xs ${textColor} opacity-70 -mt-1`}>
-              Navigate the digital universe
-            </span>
-          )}
-        </div>
-      )}
     </div>
   );
 };

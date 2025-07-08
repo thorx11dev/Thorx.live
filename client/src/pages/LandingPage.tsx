@@ -99,7 +99,7 @@ const LandingPage = () => {
 
         {/* Navigation */}
         <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
-          <ThorxLogo size="sm" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+          <ThorxLogo size="sm" logoColor="#e2e8f0" />
           <div className="flex items-center gap-3 sm:gap-6">
             <Link 
               to="/auth" 
@@ -124,7 +124,7 @@ const LandingPage = () => {
             <div className="text-center lg:text-left px-2 sm:px-0">
               {/* Hero Logo */}
               <div className="flex justify-center lg:justify-start mb-6 sm:mb-8">
-                <ThorxLogo size="xl" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+                <ThorxLogo size="xl" logoColor="#e2e8f0" />
               </div>
               
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-200 mb-4 sm:mb-6 leading-tight">
@@ -1055,10 +1055,10 @@ const LandingPage = () => {
             <div>
               <Link to="/" className="inline-block group">
                 <div className="mb-4 group-hover:scale-105 transition-transform duration-300">
-                  <ThorxLogo size="md" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+                  <ThorxLogo size="md" logoColor="#e2e8f0" />
                 </div>
               </Link>
-              <p className="text-slate-400">
+              <p className="text-slate-400 text-sm">
                 Navigate the digital universe with confidence
               </p>
             </div>

@@ -299,7 +299,7 @@ const AuthPage = () => {
           className="text-center mb-8"
         >
           <Link to="/">
-            <ThorxLogo size="lg" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+            <ThorxLogo size="lg" logoColor="#e2e8f0" />
           </Link>
           <p className="text-slate-400 mt-2">
             {isLogin ? 'Welcome back to the cosmic earning platform' : 'Join the cosmic earning revolution'}

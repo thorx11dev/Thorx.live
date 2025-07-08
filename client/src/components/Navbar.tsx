@@ -65,7 +65,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo - Enhanced for Dark Mode */}
           <Link to="/">
-            <ThorxLogo size="sm" showText={true} textColor="text-slate-200" logoColor="#e2e8f0" />
+            <ThorxLogo size="sm" logoColor="#e2e8f0" />
           </Link>
 
           {/* Desktop Navigation - Enhanced for Dark Mode */}
