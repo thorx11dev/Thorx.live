@@ -1,5 +1,5 @@
 import { Link } from 'wouter';
-import { ArrowRight, Globe, Shield, Users, TrendingUp, DollarSign, Activity, ChevronDown, Satellite, Rocket, Target, Star, Zap, Award, Clock } from 'lucide-react';
+import { ArrowRight, Globe, Shield, Users, TrendingUp, DollarSign, Activity, ChevronDown, Satellite, Rocket, Target, Star, Gem, Headphones, Sparkles, Trophy } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import AnimatedClouds from '../components/3d/AnimatedClouds';
 import EnhancedAnimatedClouds from '../components/3d/EnhancedAnimatedClouds';
@@ -418,25 +418,25 @@ const LandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
               {
-                icon: Zap,
+                icon: Rocket,
                 title: "Lightning Fast",
                 description: "Complete tasks in record time with our optimized workflow",
                 delay: "0.6s",
                 color: "from-yellow-500/20 to-orange-500/20",
                 accentColor: "yellow",
-                constellation: "⚡"
+                constellation: "🚀"
               },
               {
-                icon: Star,
+                icon: Gem,
                 title: "Premium Quality",
                 description: "Access to high-paying, verified opportunities only",
                 delay: "0.8s",
                 color: "from-blue-500/20 to-purple-500/20",
                 accentColor: "blue",
-                constellation: "✨"
+                constellation: "💎"
               },
               {
-                icon: Award,
+                icon: Trophy,
                 title: "Certified Success",
                 description: "Join thousands of successful earners in our community",
                 delay: "1s",
@@ -445,13 +445,13 @@ const LandingPage = () => {
                 constellation: "🏆"
               },
               {
-                icon: Clock,
+                icon: Headphones,
                 title: "24/7 Support",
                 description: "Round-the-clock assistance whenever you need help",
                 delay: "1.2s",
                 color: "from-purple-500/20 to-pink-500/20",
                 accentColor: "purple",
-                constellation: "🌙"
+                constellation: "🎧"
               }
             ].map((feature, index) => (
               <div
@@ -939,7 +939,7 @@ const LandingPage = () => {
                 <span>100% Secure</span>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
+                <Shield className="w-4 h-4" />
                 <span>Start in 2 Minutes</span>
               </div>
               <div className="flex items-center gap-2">
