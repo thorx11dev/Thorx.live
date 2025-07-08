@@ -142,10 +142,13 @@ const LandingPage = () => {
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left side - Content */}
             <div className="text-center lg:text-left px-2 sm:px-0">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight cosmic-slide-up cosmic-text-glow">
-                <span>Explore the</span>
-                <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Digital Universe</span>
-              </h1>
+              <div className="cosmic-header-container mb-4 sm:mb-6">
+                <div className="cosmic-cloud-veil"></div>
+                <h1 className="cosmic-header-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight cosmic-slide-up cosmic-text-glow">
+                  <span>Explore the</span>
+                  <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Digital Universe</span>
+                </h1>
+              </div>
               
               <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-6 sm:mb-8 max-w-lg mx-auto lg:mx-0 cosmic-slide-up" style={{animationDelay: '0.3s'}}>
                 Navigate through cosmic earning opportunities with Thorx. A professional platform designed for the modern digital explorer.
@@ -306,9 +309,12 @@ const LandingPage = () => {
           {/* Professional Title Section */}
           <div className="text-center mb-20">
             <div className="inline-block mb-6 cosmic-slide-up">
-              <h2 className="text-5xl md:text-6xl font-bold mb-4 text-white relative cosmic-text-glow">
-                <span className="relative z-10">Cosmic Features</span>
-              </h2>
+              <div className="cosmic-header-container">
+                <div className="cosmic-cloud-veil"></div>
+                <h2 className="cosmic-header-text text-5xl md:text-6xl font-bold mb-4 text-white relative cosmic-text-glow">
+                  <span className="relative z-10">Cosmic Features</span>
+                </h2>
+              </div>
             </div>
             <p className="text-xl max-w-3xl mx-auto text-slate-300 cosmic-slide-up leading-relaxed" style={{animationDelay: '0.2s'}}>
               Discover the next-generation tools that make digital earning effortless and intuitive
@@ -475,9 +481,12 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-block mb-4 cosmic-slide-up">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white relative cosmic-text-glow">
-                Why Choose Thorx?
-              </h2>
+              <div className="cosmic-header-container">
+                <div className="cosmic-cloud-veil"></div>
+                <h2 className="cosmic-header-text text-4xl md:text-5xl font-bold mb-4 text-white relative cosmic-text-glow">
+                  Why Choose Thorx?
+                </h2>
+              </div>
             </div>
             <p className="text-xl max-w-2xl mx-auto text-slate-300 cosmic-slide-up" style={{animationDelay: '0.2s'}}>
               Experience the advantages that set us apart
@@ -630,9 +639,12 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-block mb-4 cosmic-slide-up">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white relative cosmic-text-glow">
-                Trusted by Thousands
-              </h2>
+              <div className="cosmic-header-container">
+                <div className="cosmic-cloud-veil"></div>
+                <h2 className="cosmic-header-text text-4xl md:text-5xl font-bold mb-4 text-white relative cosmic-text-glow">
+                  Trusted by Thousands
+                </h2>
+              </div>
             </div>
             <p className="text-xl max-w-2xl mx-auto text-slate-300 cosmic-slide-up" style={{animationDelay: '0.2s'}}>
               Join our growing community of successful earners
@@ -768,9 +780,12 @@ const LandingPage = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           {/* Professional heading */}
           <div className="mb-6 cosmic-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-white relative cosmic-text-glow">
-              Ready to Start Your Journey?
-            </h2>
+            <div className="cosmic-header-container">
+              <div className="cosmic-cloud-veil"></div>
+              <h2 className="cosmic-header-text text-4xl md:text-5xl font-bold text-white relative cosmic-text-glow">
+                Ready to Start Your Journey?
+              </h2>
+            </div>
           </div>
           
           <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto cosmic-slide-up" style={{animationDelay: '0.2s'}}>
