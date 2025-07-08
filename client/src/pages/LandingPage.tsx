@@ -110,14 +110,14 @@ const LandingPage = () => {
           <div className="flex items-center gap-3 sm:gap-6">
             <Link 
               to="/auth" 
-              className="text-slate-400 hover:text-slate-200 transition-colors relative group text-sm sm:text-base"
+              className="text-white hover:text-slate-200 transition-colors relative group text-sm sm:text-base"
             >
               Sign In
               <span className="absolute bottom-0 left-0 h-0.5 bg-slate-400 w-0 group-hover:w-full transition-all duration-300" />
             </Link>
             <Link 
               to="/auth" 
-              className="bg-gradient-to-r from-slate-700 to-slate-600 text-slate-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:from-slate-600 hover:to-slate-500 transition-all duration-300 text-sm sm:text-base hover:scale-105 transform active:scale-95"
+              className="bg-gradient-to-r from-slate-700 to-slate-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:from-slate-600 hover:to-slate-500 transition-all duration-300 text-sm sm:text-base hover:scale-105 transform active:scale-95"
             >
               Get Started
             </Link>
@@ -149,7 +149,7 @@ const LandingPage = () => {
                 
                 <Link 
                   to="/auth" 
-                  className="bg-gradient-to-r from-slate-700 to-slate-600 text-slate-200 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:from-slate-600 hover:to-slate-500 transition-all duration-300 text-sm sm:text-base text-center hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 transform active:scale-95"
+                  className="bg-gradient-to-r from-slate-700 to-slate-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:from-slate-600 hover:to-slate-500 transition-all duration-300 text-sm sm:text-base text-center hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 transform active:scale-95"
                 >
                   Sign In
                 </Link>

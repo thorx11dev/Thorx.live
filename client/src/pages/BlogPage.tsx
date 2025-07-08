@@ -518,7 +518,7 @@ const BlogPage = () => {
                 </div>
                 
                 <Link to={`/blog/${post.id}`}>
-                  <button className="w-full bg-gradient-to-r from-slate-200 to-slate-100 text-slate-900 px-6 py-3 rounded-xl font-bold hover:from-slate-100 hover:to-white transition-all duration-300 inline-flex items-center justify-center gap-2 group/btn hover:scale-105 hover:shadow-xl hover:shadow-slate-200/20 transform active:scale-95">
+                  <button className="w-full bg-gradient-to-r from-slate-700 to-slate-600 text-white px-6 py-3 rounded-xl font-bold hover:from-slate-600 hover:to-slate-500 transition-all duration-300 inline-flex items-center justify-center gap-2 group/btn hover:scale-105 hover:shadow-xl hover:shadow-slate-700/20 transform active:scale-95">
                     <span>Read More</span>
                     <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:rotate-12 transition-all duration-300" />
                   </button>

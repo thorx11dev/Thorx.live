@@ -199,7 +199,7 @@ const FeaturesPage = () => {
             
             <Link 
               to="/" 
-              className="bg-gradient-to-r from-slate-700 to-slate-600 text-slate-200 px-8 py-4 rounded-xl font-bold hover:from-slate-600 hover:to-slate-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 transform active:scale-95"
+              className="bg-gradient-to-r from-slate-700 to-slate-600 text-white px-8 py-4 rounded-xl font-bold hover:from-slate-600 hover:to-slate-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 transform active:scale-95"
             >
               Learn More
             </Link>
