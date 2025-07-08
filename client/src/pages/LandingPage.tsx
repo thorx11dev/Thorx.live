@@ -420,112 +420,61 @@ const LandingPage = () => {
                 icon: Zap,
                 title: "Lightning Fast",
                 description: "Complete tasks in record time with our optimized workflow",
-                delay: "0.6s",
-                color: "from-yellow-500/20 to-orange-500/20"
+                delay: "0.6s"
               },
               {
                 icon: Star,
                 title: "Premium Quality",
                 description: "Access to high-paying, verified opportunities only",
-                delay: "0.8s",
-                color: "from-blue-500/20 to-purple-500/20"
+                delay: "0.8s"
               },
               {
                 icon: Award,
                 title: "Certified Success",
                 description: "Join thousands of successful earners in our community",
-                delay: "1s",
-                color: "from-green-500/20 to-emerald-500/20"
+                delay: "1s"
               },
               {
                 icon: Clock,
                 title: "24/7 Support",
                 description: "Round-the-clock assistance whenever you need help",
-                delay: "1.2s",
-                color: "from-purple-500/20 to-pink-500/20"
+                delay: "1.2s"
               }
             ].map((benefit, index) => (
               <div
                 key={index}
-                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group thorx-cosmic-feature-card"
+                className="opacity-0 animate-[fadeInUp_1s_ease-out_var(--delay)_forwards] group"
                 style={{ '--delay': benefit.delay } as React.CSSProperties}
               >
-                {/* Simplified hover container */}
-                <div className="relative transform transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-4">
+                {/* CLEAN SIMPLE CARD - No complex animations */}
+                <div className="text-center p-8 rounded-2xl
+                              border border-slate-700/30 bg-slate-800/30 backdrop-blur-xl
+                              group-hover:border-slate-500/50 group-hover:bg-slate-800/50
+                              transition-all duration-300 group-hover:shadow-lg
+                              transform group-hover:scale-105 group-hover:-translate-y-2">
                   
-                  {/* Main card */}
-                  <div className="text-center p-8 rounded-2xl relative overflow-hidden
-                                border border-slate-700/30 bg-slate-800/30 backdrop-blur-xl
-                                group-hover:border-slate-500/50 group-hover:bg-slate-800/50
-                                transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-slate-900/80">
-                    
-                    {/* Dynamic gradient overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-100 
-                                   transition-opacity duration-700 rounded-2xl`}></div>
-                    
-                    {/* BULLETPROOF ICON CONTAINER - Isolated for perfect visibility */}
-                    <div className="relative mb-6 thorx-icon-container">
-                      {/* Background circle */}
-                      <div className="inline-block p-6 rounded-full bg-slate-800/80 backdrop-blur-sm
-                                    group-hover:bg-slate-700/80 transition-all duration-500 
-                                    shadow-lg group-hover:shadow-xl group-hover:shadow-slate-700/50
-                                    transform group-hover:scale-125 group-hover:rotate-12
-                                    relative border border-slate-600/30">
-                        
-                        {/* Background glow - positioned behind icon */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-slate-500/20 via-transparent to-slate-700/20 
-                                      opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full -z-10"></div>
-                        
-                        {/* Pulsing ring - positioned behind icon */}
-                        <div className="absolute inset-0 border-2 border-slate-500/30 rounded-full 
-                                      scale-100 group-hover:scale-150 opacity-100 group-hover:opacity-0 
-                                      transition-all duration-1000 -z-10"></div>
-                      </div>
+                  {/* SIMPLE ICON CONTAINER - Minimal design */}
+                  <div className="mb-6">
+                    <div className="inline-flex items-center justify-center w-16 h-16 
+                                  rounded-full bg-slate-700/50 border border-slate-600/30
+                                  group-hover:bg-slate-600/50 transition-colors duration-300">
                       
-                      {/* ISOLATED ICON - Positioned absolutely on top */}
-                      <div className="absolute inset-0 flex items-center justify-center z-50">
-                        <benefit.icon className="w-8 h-8 thorx-bulletproof-icon" />
-                      </div>
-                      
-                      {/* Orbital particles - positioned behind icon */}
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10">
-                        {[...Array(4)].map((_, i) => (
-                          <div
-                            key={i}
-                            className="absolute w-1 h-1 bg-slate-400 rounded-full opacity-0 
-                                     group-hover:opacity-60 group-hover:animate-ping"
-                            style={{
-                              left: `${Math.cos((i * Math.PI) / 2) * 40}px`,
-                              top: `${Math.sin((i * Math.PI) / 2) * 40}px`,
-                              animationDelay: `${i * 0.3}s`,
-                              animationDuration: '2s'
-                            }}
-                          ></div>
-                        ))}
-                      </div>
+                      {/* CLEAN ICON - No filters or complex effects */}
+                      <benefit.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-200 
+                                            transition-colors duration-300 thorx-clean-icon" />
                     </div>
-                    
-                    <h3 className="text-lg font-semibold text-slate-200 mb-3 relative z-10
-                                 group-hover:text-white transition-all duration-500
-                                 group-hover:scale-105 group-hover:tracking-wide">
-                      {benefit.title}
-                    </h3>
-                    
-                    <p className="text-slate-400 text-sm leading-relaxed relative z-10
-                                group-hover:text-slate-300 transition-all duration-500">
-                      {benefit.description}
-                    </p>
-                    
-                    {/* Scanning line effect */}
-                    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-slate-400 to-transparent 
-                                  transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
                   </div>
                   
-                  {/* Shadow reflection */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-700/20 
-                                rounded-2xl transform translate-y-8 scale-95 opacity-0 
-                                group-hover:opacity-100 group-hover:translate-y-12 group-hover:scale-90 
-                                transition-all duration-700 blur-sm"></div>
+                  {/* SIMPLE TEXT */}
+                  <h3 className="text-lg font-semibold text-slate-200 mb-3
+                               group-hover:text-white transition-colors duration-300">
+                    {benefit.title}
+                  </h3>
+                  
+                  <p className="text-slate-400 text-sm leading-relaxed
+                              group-hover:text-slate-300 transition-colors duration-300">
+                    {benefit.description}
+                  </p>
                 </div>
               </div>
             ))}

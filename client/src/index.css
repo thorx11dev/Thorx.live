@@ -498,76 +498,32 @@ div[class*="bg-gradient-to-r"] {
   z-index: 20 !important;
 }
 
-/* BULLETPROOF: Feature icons with absolute visibility guarantee */
-.thorx-bulletproof-icon {
-  /* Base properties */
+/* CLEAN SIMPLE ICONS - No complex effects */
+.thorx-clean-icon {
   display: inline-block !important;
   opacity: 1 !important;
   visibility: visible !important;
   color: #94a3b8 !important; /* slate-400 */
-  
-  /* Positioning and layering */
-  position: relative !important;
-  z-index: 100 !important;
-  
-  /* Animations and transitions */
-  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  transform: translateZ(0) !important;
-  will-change: color !important;
-  backface-visibility: hidden !important;
-  
-  /* SVG properties */
+  transition: color 0.3s ease !important;
   stroke-width: 2px !important;
   fill: currentColor !important;
   stroke: currentColor !important;
-  
-  /* Pointer events */
-  pointer-events: none !important;
 }
 
-/* Hover state with absolute priority */
-.group:hover .thorx-bulletproof-icon {
+.group:hover .thorx-clean-icon {
   color: #e2e8f0 !important; /* slate-200 */
   opacity: 1 !important;
   visibility: visible !important;
-  z-index: 101 !important;
 }
 
-/* Icon container optimizations */
-.thorx-icon-container {
-  isolation: isolate !important;
-  position: relative !important;
-  z-index: 10 !important;
-}
-
-/* Feature card optimizations */
-.thorx-cosmic-feature-card {
-  isolation: isolate !important;
-}
-
-.thorx-cosmic-feature-card:hover .thorx-bulletproof-icon {
-  color: #e2e8f0 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* Cross-browser compatibility with absolute color values */
+/* Cross-browser compatibility */
 @supports (-webkit-appearance: none) {
-  .thorx-bulletproof-icon {
-    -webkit-transform: translateZ(0) !important;
-    -webkit-backface-visibility: hidden !important;
+  .thorx-clean-icon {
     -webkit-text-fill-color: #94a3b8 !important;
   }
   
-  .group:hover .thorx-bulletproof-icon {
+  .group:hover .thorx-clean-icon {
     -webkit-text-fill-color: #e2e8f0 !important;
-  }
-}
-
-@supports (-moz-appearance: none) {
-  .thorx-bulletproof-icon {
-    -moz-transform: translateZ(0) !important;
-    -moz-backface-visibility: hidden !important;
   }
 }
 
