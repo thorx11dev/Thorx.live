@@ -102,6 +102,57 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* Enhanced text readability against cloud backgrounds */
+.cosmic-text-readable {
+  text-shadow: 
+    0 0 10px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(0, 0, 0, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.4);
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  backdrop-filter: blur(1px);
+  position: relative;
+  z-index: 100;
+}
+
+.cosmic-text-readable::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -16px;
+  right: -16px;
+  bottom: -8px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.4), rgba(30, 41, 59, 0.3));
+  border-radius: 8px;
+  z-index: -1;
+  backdrop-filter: blur(2px);
+}
+
+.cosmic-header-readable {
+  color: #ffffff !important;
+  text-shadow: 
+    0 0 15px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(0, 0, 0, 0.7),
+    0 4px 8px rgba(0, 0, 0, 0.5);
+  font-weight: 800 !important;
+  letter-spacing: 0.025em;
+  position: relative;
+  z-index: 100;
+}
+
+.cosmic-header-readable::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -24px;
+  right: -24px;
+  bottom: -12px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(30, 41, 59, 0.4));
+  border-radius: 12px;
+  z-index: -1;
+  backdrop-filter: blur(3px);
+}
+
 /* Smooth animations */
 .cosmic-fade-in {
   opacity: 0;
