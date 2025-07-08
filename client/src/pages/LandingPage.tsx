@@ -144,9 +144,9 @@ const LandingPage = () => {
             <div className="text-center lg:text-left px-2 sm:px-0">
               <div className="cosmic-header-container mb-4 sm:mb-6">
                 <div className="cosmic-cloud-veil"></div>
-                <h1 className="cosmic-header-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight cosmic-slide-up cosmic-text-glow">
-                  <span>Explore the</span>
-                  <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Digital Universe</span>
+                <h1 className="cosmic-header-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight cosmic-slide-up thorx-hero-title">
+                  <span className="text-slate-200">Explore the</span>
+                  <span className="block text-slate-100 font-medium">Digital Universe</span>
                 </h1>
               </div>
               
