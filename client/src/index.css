@@ -58,7 +58,7 @@
 /* CRITICAL: Stable button styles that cannot be overridden */
 .thorx-btn-primary {
   background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
-  color: #0f172a !important;
+  color: #ffffff !important;
   font-weight: 700 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
@@ -126,7 +126,7 @@
 
 .thorx-filter-btn.active {
   background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
-  color: #0f172a !important;
+  color: #ffffff !important;
   border-color: #e2e8f0 !important;
   box-shadow: 0 8px 25px rgba(226, 232, 240, 0.15) !important;
 }
@@ -134,14 +134,14 @@
 /* CRITICAL: Newsletter and form buttons */
 .thorx-newsletter-btn {
   background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
-  color: #0f172a !important;
+  color: #ffffff !important;
   font-weight: 700 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .thorx-newsletter-btn:hover {
   background: linear-gradient(to right, #f1f5f9, #ffffff) !important;
-  color: #0f172a !important;
+  color: #ffffff !important;
   transform: scale(1.05) !important;
   box-shadow: 0 20px 40px rgba(226, 232, 240, 0.2) !important;
 }
@@ -235,7 +235,7 @@ body {
 /* Button stability with theme-aware colors */
 .thorx-btn-primary {
   background: linear-gradient(to right, #e2e8f0, #f1f5f9) !important;
-  color: #0f172a !important;
+  color: #ffffff !important;
   font-weight: 700 !important;
   transition: var(--theme-transition) !important;
   border: 2px solid transparent !important;
@@ -243,7 +243,7 @@ body {
 
 .thorx-btn-primary:hover {
   background: linear-gradient(to right, #f1f5f9, #ffffff) !important;
-  color: #0f172a !important;
+  color: #ffffff !important;
   transform: scale(1.05) !important;
   box-shadow: 0 20px 40px rgba(226, 232, 240, 0.2) !important;
 }
@@ -260,6 +260,31 @@ body {
   background: #1e293b !important;
   color: #f8fafc !important;
   border-color: #94a3b8 !important;
+}
+
+/* ========================================
+   BUTTON TEXT COLOR OVERRIDES - CRITICAL SECTION
+   ======================================== */
+
+/* Force white text on all buttons regardless of background */
+.bg-gradient-to-r.text-white,
+button.text-white,
+a.text-white,
+[class*="bg-gradient-to-r"][class*="text-white"] {
+  color: #ffffff !important;
+}
+
+.bg-gradient-to-r.text-white:hover,
+button.text-white:hover,
+a.text-white:hover,
+[class*="bg-gradient-to-r"][class*="text-white"]:hover {
+  color: #ffffff !important;
+}
+
+/* Specific overrides for button combinations */
+.bg-gradient-to-r.from-slate-700.to-slate-600.text-white,
+.bg-gradient-to-r.from-slate-600.to-slate-500.text-white {
+  color: #ffffff !important;
 }
 
 /* ========================================
