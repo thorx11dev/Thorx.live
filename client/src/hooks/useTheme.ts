@@ -82,17 +82,34 @@ export const useThemeState = () => {
       root.style.setProperty('color-scheme', 'dark');
       document.body.style.setProperty('background-color', '#0f172a', 'important');
     } else {
-      // Light theme variables
+      // Enhanced Light theme variables with better contrast and accessibility
       root.style.setProperty('--bg-primary', '#ffffff', 'important');
       root.style.setProperty('--bg-secondary', '#f8fafc', 'important');
       root.style.setProperty('--bg-tertiary', '#f1f5f9', 'important');
-      root.style.setProperty('--text-primary', '#0f172a', 'important');
-      root.style.setProperty('--text-secondary', '#334155', 'important');
+      root.style.setProperty('--text-primary', '#1e293b', 'important');
+      root.style.setProperty('--text-secondary', '#475569', 'important');
       root.style.setProperty('--text-tertiary', '#64748b', 'important');
       root.style.setProperty('--border-primary', '#e2e8f0', 'important');
-      root.style.setProperty('--border-secondary', '#f1f5f9', 'important');
-      root.style.setProperty('--shadow-primary', 'rgba(15, 23, 42, 0.1)', 'important');
-      root.style.setProperty('--shadow-secondary', 'rgba(15, 23, 42, 0.05)', 'important');
+      root.style.setProperty('--border-secondary', '#cbd5e1', 'important');
+      root.style.setProperty('--shadow-primary', 'rgba(30, 41, 59, 0.08)', 'important');
+      root.style.setProperty('--shadow-secondary', 'rgba(30, 41, 59, 0.04)', 'important');
+      
+      // Accent colors for light mode
+      root.style.setProperty('--accent-soft-pink', '#fce7f3', 'important');
+      root.style.setProperty('--accent-pale-blue', '#dbeafe', 'important');
+      root.style.setProperty('--accent-light-teal', '#ccfbf1', 'important');
+      root.style.setProperty('--accent-muted-yellow', '#fef3c7', 'important');
+      root.style.setProperty('--accent-soft-purple', '#f3e8ff', 'important');
+      root.style.setProperty('--accent-light-green', '#dcfce7', 'important');
+      
+      // Chart colors for light mode
+      root.style.setProperty('--chart-pink', '#ec4899', 'important');
+      root.style.setProperty('--chart-blue', '#3b82f6', 'important');
+      root.style.setProperty('--chart-teal', '#14b8a6', 'important');
+      root.style.setProperty('--chart-purple', '#8b5cf6', 'important');
+      root.style.setProperty('--chart-green', '#22c55e', 'important');
+      root.style.setProperty('--chart-orange', '#f59e0b', 'important');
+      
       root.style.setProperty('color-scheme', 'light');
       document.body.style.setProperty('background-color', '#ffffff', 'important');
     }
