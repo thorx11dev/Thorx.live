@@ -142,8 +142,8 @@ const LandingPage = () => {
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left side - Content */}
             <div className="text-center lg:text-left px-2 sm:px-0">
-              <div className="cosmic-header-container mb-4 sm:mb-6">
-                <h1 className="cosmic-header-text thorx-spooky-header text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight cosmic-slide-up">
+              <div className="mb-4 sm:mb-6">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight cosmic-slide-up text-white font-semibold">
                   <span className="block">Explore the</span>
                   <span className="block font-medium">Digital Universe</span>
                 </h1>
@@ -308,11 +308,9 @@ const LandingPage = () => {
           {/* Professional Title Section */}
           <div className="text-center mb-20">
             <div className="inline-block mb-6 cosmic-slide-up">
-              <div className="cosmic-header-container">
-                <h2 className="cosmic-header-text thorx-spooky-header text-5xl md:text-6xl mb-4 relative">
-                  Cosmic Features
-                </h2>
-              </div>
+              <h2 className="text-5xl md:text-6xl mb-4 relative text-white font-semibold">
+                Cosmic Features
+              </h2>
             </div>
             <p className="text-xl max-w-3xl mx-auto text-slate-300 cosmic-slide-up leading-relaxed" style={{animationDelay: '0.2s'}}>
               Discover the next-generation tools that make digital earning effortless and intuitive
@@ -479,11 +477,9 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-block mb-4 cosmic-slide-up">
-              <div className="cosmic-header-container">
-                <h2 className="cosmic-header-text thorx-spooky-header text-4xl md:text-5xl mb-4 relative">
-                  Why Choose Thorx?
-                </h2>
-              </div>
+              <h2 className="text-4xl md:text-5xl mb-4 relative text-white font-semibold">
+                Why Choose Thorx?
+              </h2>
             </div>
             <p className="text-xl max-w-2xl mx-auto text-slate-300 cosmic-slide-up" style={{animationDelay: '0.2s'}}>
               Experience the advantages that set us apart
@@ -636,11 +632,9 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-block mb-4 cosmic-slide-up">
-              <div className="cosmic-header-container">
-                <h2 className="cosmic-header-text thorx-spooky-header text-4xl md:text-5xl mb-4 relative">
-                  Trusted by Thousands
-                </h2>
-              </div>
+              <h2 className="text-4xl md:text-5xl mb-4 relative text-white font-semibold">
+                Trusted by Thousands
+              </h2>
             </div>
             <p className="text-xl max-w-2xl mx-auto text-slate-300 cosmic-slide-up" style={{animationDelay: '0.2s'}}>
               Join our growing community of successful earners
@@ -776,11 +770,9 @@ const LandingPage = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           {/* Professional heading */}
           <div className="mb-6 cosmic-slide-up">
-            <div className="cosmic-header-container">
-              <h2 className="cosmic-header-text thorx-spooky-header text-4xl md:text-5xl relative">
-                Ready to Start Your Journey?
-              </h2>
-            </div>
+            <h2 className="text-4xl md:text-5xl relative text-white font-semibold">
+              Ready to Start Your Journey?
+            </h2>
           </div>
           
           <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto cosmic-slide-up" style={{animationDelay: '0.2s'}}>
