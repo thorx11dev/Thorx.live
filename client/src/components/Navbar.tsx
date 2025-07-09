@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, User, LogOut, Settings, Home, BarChart3, DollarSign, Briefcase, CreditCard } from 'lucide-react';
+import { Menu, X, User, LogOut, Settings, Home, BarChart3, DollarSign, Briefcase, CreditCard, Bell, Shield, Palette, HelpCircle, Star, Crown } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { ThorxLogo } from './ThorxLogo';
 
@@ -14,10 +14,10 @@ const Navbar = () => {
 
   const navItems = [
     { path: '/dashboard', label: 'Dashboard', icon: Home },
-    { path: '/analytics', label: 'Analytics', icon: BarChart3 },
+    { path: '/performance', label: 'Analytics', icon: BarChart3 },
     { path: '/earnings', label: 'Earnings', icon: DollarSign },
     { path: '/work', label: 'Work', icon: Briefcase },
-    { path: '/payouts', label: 'Payouts', icon: CreditCard },
+    { path: '/payout', label: 'Payouts', icon: CreditCard },
   ];
 
   const isActive = (path: string) => location === path;
@@ -41,29 +41,55 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 hover:opacity-75 transition-opacity">
+          <Link to="/" className="flex items-center hover:scale-105 transition-transform duration-200">
             <ThorxLogo size="md" className="text-slate-900 dark:text-slate-100" />
-            <span className="text-xl font-bold text-slate-900 dark:text-slate-100">Thorx</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            {navItems.map((item) => {
+            {navItems.map((item, index) => {
               const Icon = item.icon;
               const active = isActive(item.path);
               return (
-                <Link
+                <motion.div
                   key={item.path}
-                  to={item.path}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    active
-                      ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800/50'
-                  }`}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.3 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <Icon className="w-4 h-4" />
-                  <span>{item.label}</span>
-                </Link>
+                  <Link
+                    to={item.path}
+                    className={`relative flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
+                      active
+                        ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-md'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                    }`}
+                  >
+                    <motion.div
+                      animate={active ? { rotate: [0, 10, -10, 0] } : {}}
+                      transition={{ duration: 0.6, repeat: active ? Infinity : 0, repeatDelay: 3 }}
+                    >
+                      <Icon className="w-4 h-4" />
+                    </motion.div>
+                    <span>{item.label}</span>
+                    {active && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg -z-10"
+                        initial={false}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                      />
+                    )}
+                    <motion.div
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-0 group-hover:opacity-100"
+                      initial={{ scaleX: 0 }}
+                      whileHover={{ scaleX: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </Link>
+                </motion.div>
               );
             })}
           </div>
@@ -72,15 +98,39 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             {user ? (
               <div className="relative">
-                <button
+                <motion.button
                   onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 group"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <div className="w-8 h-8 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center">
-                    <User className="w-4 h-4" />
+                  <div className="relative">
+                    <motion.div 
+                      className="w-9 h-9 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg"
+                      animate={{
+                        boxShadow: showUserMenu 
+                          ? "0 0 20px rgba(59, 130, 246, 0.4)" 
+                          : "0 4px 15px rgba(0, 0, 0, 0.2)"
+                      }}
+                    >
+                      <User className="w-5 h-5 text-white" />
+                    </motion.div>
+                    <motion.div 
+                      className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-800 flex items-center justify-center"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </motion.div>
                   </div>
-                  <span className="hidden sm:block">{user.firstName}</span>
-                </button>
+                  <div className="hidden sm:block text-left">
+                    <div className="font-semibold text-slate-900 dark:text-slate-100">{user.firstName}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center space-x-1">
+                      <Crown className="w-3 h-3" />
+                      <span>Premium</span>
+                    </div>
+                  </div>
+                </motion.button>
 
                 <AnimatePresence>
                   {showUserMenu && (
@@ -89,49 +139,149 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 py-1"
+                      className="absolute right-0 mt-2 w-72 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 py-2 z-50"
+                      style={{
+                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)"
+                      }}
                     >
-                      <div className="px-4 py-2 border-b border-slate-200 dark:border-slate-700">
-                        <p className="text-sm font-medium text-slate-900 dark:text-slate-100">{user.firstName} {user.lastName}</p>
-                        <p className="text-xs text-slate-500 dark:text-slate-400">{user.email}</p>
+                      {/* User Profile Header */}
+                      <div className="px-4 py-3 border-b border-slate-200 dark:border-slate-700">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg">
+                            <User className="w-6 h-6 text-white" />
+                          </div>
+                          <div>
+                            <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">{user.firstName} {user.lastName}</p>
+                            <p className="text-xs text-slate-500 dark:text-slate-400">{user.email}</p>
+                            <div className="flex items-center space-x-1 mt-1">
+                              <Star className="w-3 h-3 text-yellow-500 fill-current" />
+                              <span className="text-xs text-slate-600 dark:text-slate-400">Premium Member</span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      
-                      <Link
-                        to="/settings"
-                        className="flex items-center space-x-2 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
-                        onClick={() => setShowUserMenu(false)}
-                      >
-                        <Settings className="w-4 h-4" />
-                        <span>Settings</span>
-                      </Link>
-                      
-                      <button
-                        onClick={handleSignOut}
-                        className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-700"
-                      >
-                        <LogOut className="w-4 h-4" />
-                        <span>Sign Out</span>
-                      </button>
+
+                      {/* Quick Stats */}
+                      <div className="px-4 py-3 border-b border-slate-200 dark:border-slate-700">
+                        <div className="grid grid-cols-3 gap-4 text-center">
+                          <div>
+                            <div className="text-lg font-bold text-slate-900 dark:text-slate-100">$1,234</div>
+                            <div className="text-xs text-slate-500 dark:text-slate-400">Earnings</div>
+                          </div>
+                          <div>
+                            <div className="text-lg font-bold text-slate-900 dark:text-slate-100">89</div>
+                            <div className="text-xs text-slate-500 dark:text-slate-400">Tasks</div>
+                          </div>
+                          <div>
+                            <div className="text-lg font-bold text-slate-900 dark:text-slate-100">42</div>
+                            <div className="text-xs text-slate-500 dark:text-slate-400">Streak</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Menu Items */}
+                      <div className="py-1">
+                        <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                          <Link
+                            to="/settings"
+                            className="flex items-center space-x-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                            onClick={() => setShowUserMenu(false)}
+                          >
+                            <Settings className="w-4 h-4" />
+                            <span>Account Settings</span>
+                          </Link>
+                        </motion.div>
+                        
+                        <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                          <Link
+                            to="/notifications"
+                            className="flex items-center space-x-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                            onClick={() => setShowUserMenu(false)}
+                          >
+                            <Bell className="w-4 h-4" />
+                            <span>Notifications</span>
+                            <div className="ml-auto w-2 h-2 bg-red-500 rounded-full"></div>
+                          </Link>
+                        </motion.div>
+                        
+                        <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                          <Link
+                            to="/security"
+                            className="flex items-center space-x-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                            onClick={() => setShowUserMenu(false)}
+                          >
+                            <Shield className="w-4 h-4" />
+                            <span>Security & Privacy</span>
+                          </Link>
+                        </motion.div>
+                        
+                        <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                          <Link
+                            to="/appearance"
+                            className="flex items-center space-x-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                            onClick={() => setShowUserMenu(false)}
+                          >
+                            <Palette className="w-4 h-4" />
+                            <span>Appearance</span>
+                          </Link>
+                        </motion.div>
+                        
+                        <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                          <Link
+                            to="/help"
+                            className="flex items-center space-x-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                            onClick={() => setShowUserMenu(false)}
+                          >
+                            <HelpCircle className="w-4 h-4" />
+                            <span>Help & Support</span>
+                          </Link>
+                        </motion.div>
+                      </div>
+
+                      {/* Sign Out */}
+                      <div className="border-t border-slate-200 dark:border-slate-700 pt-1">
+                        <motion.button
+                          onClick={handleSignOut}
+                          className="flex items-center space-x-3 w-full px-4 py-3 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                          whileHover={{ x: 4 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <LogOut className="w-4 h-4" />
+                          <span>Sign Out</span>
+                        </motion.button>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
             ) : (
-              <Link
-                to="/auth"
-                className="px-4 py-2 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-lg text-sm font-medium hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Sign In
-              </Link>
+                <Link
+                  to="/auth"
+                  className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+                >
+                  Sign In
+                </Link>
+              </motion.div>
             )}
 
             {/* Mobile Menu Button */}
-            <button
+            <motion.button
               onClick={() => setShowMobileMenu(!showMobileMenu)}
               className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
-              {showMobileMenu ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+              <motion.div
+                animate={{ rotate: showMobileMenu ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {showMobileMenu ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </motion.div>
+            </motion.button>
           </div>
         </div>
 
@@ -146,23 +296,36 @@ const Navbar = () => {
               className="md:hidden border-t border-slate-200 dark:border-slate-700 py-2"
             >
               <div className="space-y-1">
-                {navItems.map((item) => {
+                {navItems.map((item, index) => {
                   const Icon = item.icon;
                   const active = isActive(item.path);
                   return (
-                    <Link
+                    <motion.div
                       key={item.path}
-                      to={item.path}
-                      className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                        active
-                          ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100'
-                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800/50'
-                      }`}
-                      onClick={() => setShowMobileMenu(false)}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1, duration: 0.3 }}
+                      whileHover={{ x: 4 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      <Icon className="w-5 h-5" />
-                      <span>{item.label}</span>
-                    </Link>
+                      <Link
+                        to={item.path}
+                        className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                          active
+                            ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-sm'
+                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                        }`}
+                        onClick={() => setShowMobileMenu(false)}
+                      >
+                        <motion.div
+                          animate={active ? { scale: [1, 1.1, 1] } : {}}
+                          transition={{ duration: 0.5, repeat: active ? Infinity : 0, repeatDelay: 2 }}
+                        >
+                          <Icon className="w-5 h-5" />
+                        </motion.div>
+                        <span>{item.label}</span>
+                      </Link>
+                    </motion.div>
                   );
                 })}
               </div>

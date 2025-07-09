@@ -93,6 +93,41 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
+/* Enhanced Navigation Animations */
+.nav-item-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item-hover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-item-hover:hover::after {
+  transform: scaleX(1);
+}
+
+.user-menu-gradient {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+}
+
+.notification-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
 /* Elegant text shadows - REMOVED GLOW EFFECT */
 .cosmic-text-glow {
   text-shadow: none;
