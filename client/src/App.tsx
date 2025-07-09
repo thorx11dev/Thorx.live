@@ -17,6 +17,9 @@ import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
+import NotificationsPage from './pages/NotificationsPage';
+import SecurityPage from './pages/SecurityPage';
+import AppearancePage from './pages/AppearancePage';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -68,6 +71,30 @@ function App() {
                   <>
                     <Navbar />
                     <SettingsHub />
+                  </>
+                </ProtectedRoute>
+              </Route>
+              <Route path="/notifications">
+                <ProtectedRoute>
+                  <>
+                    <Navbar />
+                    <NotificationsPage />
+                  </>
+                </ProtectedRoute>
+              </Route>
+              <Route path="/security">
+                <ProtectedRoute>
+                  <>
+                    <Navbar />
+                    <SecurityPage />
+                  </>
+                </ProtectedRoute>
+              </Route>
+              <Route path="/appearance">
+                <ProtectedRoute>
+                  <>
+                    <Navbar />
+                    <AppearancePage />
                   </>
                 </ProtectedRoute>
               </Route>
