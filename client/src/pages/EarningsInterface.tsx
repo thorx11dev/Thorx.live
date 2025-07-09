@@ -31,12 +31,12 @@ const EarningsInterface = () => {
     { date: '2024-01-21', amount: 93.50, tasks: 27, type: 'mixed', ads: 42.50, social: 33.25, sites: 17.75 }
   ];
 
-  // IMPROVED: High-contrast colors for better visibility
+  // COSMIC LIGHT MODE: High-contrast colors for optimal visibility
   const chartColors = {
-    ads: '#E91E63',      // Material Pink - 4.52:1 contrast
-    social: '#2196F3',   // Material Blue - 4.59:1 contrast
-    sites: '#009688',    // Material Teal - 4.54:1 contrast
-    total: '#9C27B0'     // Material Purple - 4.61:1 contrast
+    ads: '#5A67D8',      // Nebula Blue - Primary accent
+    social: '#805AD5',   // Galactic Purple - Secondary accent  
+    sites: '#38B2AC',    // Aurora Teal - Success accent
+    total: '#F56565'     // Comet Red - Warning accent
   };
 
   const pieData = [
@@ -175,11 +175,11 @@ const EarningsInterface = () => {
                   scale: 1.02,
                   boxShadow: "0 20px 40px rgba(45, 58, 74, 0.15)"
                 }}
-                className="bg-secondary rounded-xl p-4 md:p-6 border border-primary transition-all duration-300 shadow-primary min-h-[100px]"
+                className="cosmic-card p-4 md:p-6 min-h-[100px]"
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg bg-soft-pink mb-2 md:mb-4">
-                    <DollarSign className="w-5 h-5 md:w-6 md:h-6 text-[#2D2D2D]" />
+                  <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg bg-accent-primary mb-2 md:mb-4">
+                    <DollarSign className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
                   <div className="text-lg md:text-2xl font-bold text-primary mb-1">
                     ${performanceMetrics.totalEarnings.toFixed(2)}
@@ -199,11 +199,11 @@ const EarningsInterface = () => {
                   scale: 1.02,
                   boxShadow: "0 20px 40px rgba(45, 58, 74, 0.15)"
                 }}
-                className="bg-secondary rounded-xl p-4 md:p-6 border border-primary transition-all duration-300 shadow-primary min-h-[100px]"
+                className="cosmic-card p-4 md:p-6 min-h-[100px]"
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg bg-pale-blue mb-2 md:mb-4">
-                    <TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-[#2D2D2D]" />
+                  <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg bg-accent-secondary mb-2 md:mb-4">
+                    <TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
                   <div className="text-lg md:text-2xl font-bold text-primary mb-1">
                     ${performanceMetrics.weeklyEarnings.toFixed(2)}
@@ -223,11 +223,11 @@ const EarningsInterface = () => {
                   scale: 1.02,
                   boxShadow: "0 20px 40px rgba(45, 58, 74, 0.15)"
                 }}
-                className="bg-secondary rounded-xl p-4 md:p-6 border border-primary transition-all duration-300 shadow-primary min-h-[100px]"
+                className="cosmic-card p-4 md:p-6 min-h-[100px]"
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg bg-light-teal mb-2 md:mb-4">
-                    <Target className="w-5 h-5 md:w-6 md:h-6 text-[#2D2D2D]" />
+                  <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg bg-accent-success mb-2 md:mb-4">
+                    <Target className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
                   <div className="text-lg md:text-2xl font-bold text-primary mb-1">
                     {performanceMetrics.tasksCompleted}
@@ -247,11 +247,11 @@ const EarningsInterface = () => {
                   scale: 1.02,
                   boxShadow: "0 20px 40px rgba(45, 58, 74, 0.15)"
                 }}
-                className="bg-secondary rounded-xl p-4 md:p-6 border border-primary transition-all duration-300 shadow-primary min-h-[100px]"
+                className="cosmic-card p-4 md:p-6 min-h-[100px]"
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg bg-muted-yellow mb-2 md:mb-4">
-                    <Award className="w-5 h-5 md:w-6 md:h-6 text-[#2D2D2D]" />
+                  <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg bg-accent-warning mb-2 md:mb-4">
+                    <Award className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
                   <div className="text-lg md:text-2xl font-bold text-primary mb-1">
                     {performanceMetrics.completionRate}%
@@ -273,7 +273,7 @@ const EarningsInterface = () => {
                 whileHover={{ 
                   boxShadow: "0 20px 40px rgba(45, 58, 74, 0.12)"
                 }}
-                className="lg:col-span-2 bg-secondary rounded-xl p-4 md:p-6 border border-primary transition-all duration-300 shadow-primary"
+                className="lg:col-span-2 cosmic-card p-4 md:p-6"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 md:mb-6">
                   <h3 className="text-lg md:text-xl font-bold text-primary mb-2 sm:mb-0">Cosmic Earnings Trend</h3>
@@ -299,10 +299,10 @@ const EarningsInterface = () => {
                         <stop offset="95%" stopColor={chartColors.sites} stopOpacity={0.05}/>
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" />
                     <XAxis 
                       dataKey="date" 
-                      stroke="#6B7280"
+                      stroke="var(--text-secondary)"
                       fontSize={12}
                       fontWeight={500}
                       tickFormatter={(value) => new Date(value).toLocaleDateString()}
@@ -310,7 +310,7 @@ const EarningsInterface = () => {
                       tickLine={false}
                     />
                     <YAxis 
-                      stroke="#6B7280" 
+                      stroke="var(--text-secondary)" 
                       fontSize={11}
                       fontWeight={500}
                       axisLine={false}

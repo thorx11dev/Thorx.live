@@ -1,0 +1,59 @@
+Replit Agent Prompt:
+
+Please implement a completely redesigned light mode theme for Thorx, applying it only to the following pages:
+
+1. Dashboard page
+
+2. Earnings page
+
+3. Work page
+
+4. Payout page
+
+5. Settings page
+
+Requirements:
+
+Use exclusively the provided color scheme below for all UI elements, backgrounds, text, borders, buttons, charts, tooltips, icons, and illustrations:
+
+Background (main): #F7FAFC (Cosmic Mist)
+
+Section/Card Background: #FFFFFF (Pure White)
+
+Primary Text: #1A202C (Deep Space Charcoal)
+
+Secondary Text: #2D3748 (Meteorite Gray)
+
+Borders/Dividers: #E2E8F0 (Light Orbit Gray)
+
+Primary Accent (buttons, links, highlights): #5A67D8 (Nebula Blue)
+
+Secondary Accent (icons, hover states): #805AD5 (Galactic Purple)
+
+Success Accent: #38B2AC (Aurora Teal)
+
+Warning/Error Accent: #F56565 (Comet Red)
+
+Highlight Sparkles (micro-interactions): #F6E05E (Starlight Yellow)
+
+* Do not use any previous or old light mode theme colors anywhere.
+
+* Ensure excellent visibility and accessibility throughout the light mode UI, with sufficient contrast for all text, icons, buttons, charts, tooltips, and interactive elements, meeting or exceeding WCAG AA standards.
+
+* Update all charts and tooltip colors on these pages to maintain clarity and visibility against the new light backgrounds, using the accent colors appropriately.
+
+* The dark/light mode toggle switch must be fully functional and visually consistent, correctly activating this new light mode theme when toggled.
+
+* Use the exact same Thorx logo as in dark mode, but adapt it for better visibility and appearance in light mode within the navigation bar.
+
+* The navigation bar must be redesigned for better aesthetics and visibility in light mode, including background, text, icons, and hover states.
+
+* The drop-down menu in the navigation bar must fully comply with the new light mode styling and color scheme.
+
+* Apply the new light mode theme consistently and comprehensively across the entire UI of the five specified pages only. Do not alter any other pages or components outside this scope.
+
+* Use modern, minimalistic, and cosmic-inspired styling consistent with the color palette and professional UI principles.
+
+* Include subtle shadows, rounded corners, and smooth transitions for interactive elements to enhance depth and usability without compromising the light mode’s airy feel.
+
+* Ensure all form inputs, buttons, toggles, tables, badges, and status indicators on these pages reflect the new color scheme and maintain clear visual hierarchy.

@@ -21,12 +21,12 @@ const Dashboard = () => {
     successRate: 96.8
   });
 
-  // IMPROVED: High-contrast colors for better visibility
+  // COSMIC LIGHT MODE: High-contrast colors for optimal visibility
   const chartColors = {
-    ads: '#E91E63',      // Material Pink - 4.52:1 contrast
-    social: '#2196F3',   // Material Blue - 4.59:1 contrast
-    sites: '#009688',    // Material Teal - 4.54:1 contrast
-    total: '#9C27B0'     // Material Purple - 4.61:1 contrast
+    ads: '#5A67D8',      // Nebula Blue - Primary accent
+    social: '#805AD5',   // Galactic Purple - Secondary accent  
+    sites: '#38B2AC',    // Aurora Teal - Success accent
+    total: '#F56565'     // Comet Red - Warning accent
   };
 
   // Synchronized with Work page data
@@ -65,28 +65,32 @@ const Dashboard = () => {
       title: "Total Earnings",
       value: `$${stats.totalEarnings.toFixed(2)}`,
       icon: CosmicDollarSign,
-      bgColor: "bg-soft-pink",
+      bgColor: "bg-accent-primary",
+      iconColor: "#ffffff",
       trend: "+15.2%"
     },
     {
       title: "Today's Earnings",
       value: `$${stats.todayEarnings.toFixed(2)}`,
       icon: TrendingUp,
-      bgColor: "bg-pale-blue",
+      bgColor: "bg-accent-secondary",
+      iconColor: "#ffffff",
       trend: "+12.8%"
     },
     {
       title: "Completed Tasks",
       value: stats.completedTasks.toLocaleString(),
       icon: Target,
-      bgColor: "bg-light-teal",
+      bgColor: "bg-accent-success",
+      iconColor: "#ffffff",
       trend: "+8.7%"
     },
     {
       title: "Success Rate",
       value: `${stats.successRate}%`,
       icon: Award,
-      bgColor: "bg-muted-yellow",
+      bgColor: "bg-accent-warning",
+      iconColor: "#ffffff",
       trend: "+3.1%"
     }
   ];
@@ -167,13 +171,13 @@ const Dashboard = () => {
                 y: -5,
                 boxShadow: "0 20px 40px rgba(45, 58, 74, 0.15)"
               }}
-              className="bg-secondary rounded-xl p-4 md:p-6 border border-primary hover:border-soft-pink/30 transition-all duration-300 shadow-primary min-h-[80px] md:min-h-[120px]"
+              className="cosmic-card p-4 md:p-6 min-h-[80px] md:min-h-[120px]"
             >
               <div className="flex items-center justify-between mb-3 md:mb-4">
                 <div className={`inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg ${card.bgColor}`}>
-                  <card.icon className="w-5 h-5 md:w-6 md:h-6 text-[#2D2D2D]" color="#2D2D2D" />
+                  <card.icon className="w-5 h-5 md:w-6 md:h-6" color={card.iconColor} />
                 </div>
-                <span className="text-xs md:text-sm font-medium text-green-600 bg-green-50 px-2 md:px-3 py-1 rounded-full border border-green-100">
+                <span className="text-xs md:text-sm font-medium text-accent-success bg-green-50 px-2 md:px-3 py-1 rounded-full border border-green-100">
                   {card.trend}
                 </span>
               </div>
@@ -193,7 +197,7 @@ const Dashboard = () => {
             whileHover={{ 
               boxShadow: "0 20px 40px rgba(45, 58, 74, 0.12)"
             }}
-            className="bg-secondary rounded-xl p-4 md:p-6 border border-primary transition-all duration-300 shadow-primary"
+            className="cosmic-card p-4 md:p-6"
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 md:mb-6">
               <h3 className="text-lg md:text-xl font-bold text-primary mb-2 sm:mb-0">Weekly Cosmic Earnings</h3>
@@ -210,17 +214,17 @@ const Dashboard = () => {
                     <stop offset="95%" stopColor={chartColors.social} stopOpacity={0.05}/>
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" />
                 <XAxis 
                   dataKey="name" 
-                  stroke="#6B7280" 
+                  stroke="var(--text-secondary)" 
                   fontSize={12}
                   fontWeight={500}
                   axisLine={false}
                   tickLine={false}
                 />
                 <YAxis 
-                  stroke="#6B7280" 
+                  stroke="var(--text-secondary)" 
                   fontSize={11}
                   fontWeight={500}
                   axisLine={false}
@@ -247,7 +251,7 @@ const Dashboard = () => {
             whileHover={{ 
               boxShadow: "0 20px 40px rgba(45, 58, 74, 0.12)"
             }}
-            className="bg-secondary rounded-xl p-4 md:p-6 border border-primary transition-all duration-300 shadow-primary"
+            className="cosmic-card p-4 md:p-6"
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 md:mb-6">
               <h3 className="text-lg md:text-xl font-bold text-primary mb-2 sm:mb-0">Cosmic Task Completion</h3>
@@ -258,17 +262,17 @@ const Dashboard = () => {
             </div>
             <ResponsiveContainer width="100%" height={200} className="md:!h-[250px]">
               <BarChart data={taskData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" />
                 <XAxis 
                   dataKey="name" 
-                  stroke="#6B7280" 
+                  stroke="var(--text-secondary)" 
                   fontSize={12}
                   fontWeight={500}
                   axisLine={false}
                   tickLine={false}
                 />
                 <YAxis 
-                  stroke="#6B7280" 
+                  stroke="var(--text-secondary)" 
                   fontSize={11}
                   fontWeight={500}
                   axisLine={false}
@@ -291,7 +295,7 @@ const Dashboard = () => {
           whileHover={{ 
             boxShadow: "0 20px 40px rgba(45, 58, 74, 0.12)"
           }}
-          className="bg-secondary rounded-xl p-4 md:p-6 border border-primary transition-all duration-300 shadow-primary"
+          className="cosmic-card p-4 md:p-6"
         >
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 md:mb-6">
             <h3 className="text-lg md:text-xl font-bold text-primary mb-2 sm:mb-0">Recent Cosmic Activity</h3>

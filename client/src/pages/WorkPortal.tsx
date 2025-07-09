@@ -55,12 +55,12 @@ const WorkPortal = () => {
   const [completedSites, setCompletedSites] = useState<number[]>([]);
   const [socialTaskProgress, setSocialTaskProgress] = useState<{[key: number]: number}>({});
 
-  // IMPROVED: High-contrast colors for better visibility
+  // COSMIC LIGHT MODE: High-contrast colors for optimal visibility
   const chartColors = {
-    ads: '#E91E63',      // Material Pink - 4.52:1 contrast
-    social: '#2196F3',   // Material Blue - 4.59:1 contrast
-    sites: '#009688',    // Material Teal - 4.54:1 contrast
-    total: '#9C27B0'     // Material Purple - 4.61:1 contrast
+    ads: '#5A67D8',      // Nebula Blue - Primary accent
+    social: '#805AD5',   // Galactic Purple - Secondary accent  
+    sites: '#38B2AC',    // Aurora Teal - Success accent
+    total: '#F56565'     // Comet Red - Warning accent
   };
 
   // Enhanced analytics data

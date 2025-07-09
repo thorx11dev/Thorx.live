@@ -196,7 +196,7 @@ const SettingsHub = () => {
                   type="text"
                   value={profileData.firstName}
                   onChange={(e) => setProfileData({...profileData, firstName: e.target.value})}
-                  className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-soft-pink/50 text-primary bg-secondary"
+                  className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-primary/50 text-primary bg-secondary"
                 />
               </div>
               <div>
@@ -205,7 +205,7 @@ const SettingsHub = () => {
                   type="text"
                   value={profileData.lastName}
                   onChange={(e) => setProfileData({...profileData, lastName: e.target.value})}
-                  className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-soft-pink/50 text-primary bg-secondary"
+                  className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-primary/50 text-primary bg-secondary"
                 />
               </div>
               <div>
@@ -214,7 +214,7 @@ const SettingsHub = () => {
                   type="email"
                   value={profileData.email}
                   onChange={(e) => setProfileData({...profileData, email: e.target.value})}
-                  className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-soft-pink/50 text-primary bg-secondary"
+                  className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-primary/50 text-primary bg-secondary"
                 />
               </div>
               <div>
@@ -223,7 +223,7 @@ const SettingsHub = () => {
                   type="tel"
                   value={profileData.phone}
                   onChange={(e) => setProfileData({...profileData, phone: e.target.value})}
-                  className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-soft-pink/50 text-primary bg-secondary"
+                  className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-primary/50 text-primary bg-secondary"
                 />
               </div>
             </div>
@@ -233,7 +233,7 @@ const SettingsHub = () => {
                 value={profileData.bio}
                 onChange={(e) => setProfileData({...profileData, bio: e.target.value})}
                 rows={3}
-                className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-soft-pink/50 text-primary bg-secondary"
+                className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-primary/50 text-primary bg-secondary"
                 placeholder="Tell us about yourself..."
               />
             </div>
@@ -242,10 +242,9 @@ const SettingsHub = () => {
               whileTap={{ scale: 0.98 }}
               onClick={handleProfileUpdate}
               disabled={isLoading}
-              className="bg-soft-pink hover:bg-soft-pink/80 font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center space-x-2 disabled:opacity-50 border border-soft-pink/20"
-              style={{ color: '#2D2D2D' }}
+              className="bg-accent-primary hover:bg-accent-primary/80 font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center space-x-2 disabled:opacity-50 border border-accent-primary/20 text-white"
             >
-              <Save className="w-4 h-4" style={{ color: '#2D2D2D' }} />
+              <Save className="w-4 h-4" color="#ffffff" />
               <span>{isLoading ? 'Saving...' : 'Save Changes'}</span>
             </motion.button>
           </div>
@@ -260,7 +259,7 @@ const SettingsHub = () => {
             <div className="space-y-4">
               <motion.div 
                 whileHover={{ scale: 1.01 }}
-                className="flex items-center justify-between p-4 bg-tertiary rounded-lg border border-primary hover:border-soft-pink/30 transition-all duration-200"
+                className="flex items-center justify-between p-4 bg-tertiary rounded-lg border border-primary hover:border-accent-primary/30 transition-all duration-200"
               >
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-secondary" />
@@ -279,13 +278,13 @@ const SettingsHub = () => {
                     })}
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-soft-pink/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-soft-pink"></div>
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-primary"></div>
                 </label>
               </motion.div>
 
               <motion.div 
                 whileHover={{ scale: 1.01 }}
-                className="flex items-center justify-between p-4 bg-tertiary rounded-lg border border-primary hover:border-soft-pink/30 transition-all duration-200"
+                className="flex items-center justify-between p-4 bg-tertiary rounded-lg border border-primary hover:border-accent-primary/30 transition-all duration-200"
               >
                 <div className="flex items-center space-x-3">
                   <Smartphone className="w-5 h-5 text-secondary" />
@@ -304,7 +303,7 @@ const SettingsHub = () => {
                     })}
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-soft-pink/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-soft-pink"></div>
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-primary"></div>
                 </label>
               </motion.div>
 
@@ -317,7 +316,7 @@ const SettingsHub = () => {
                 <motion.div 
                   key={key} 
                   whileHover={{ scale: 1.01 }}
-                  className="flex items-center justify-between p-4 bg-tertiary rounded-lg border border-primary hover:border-soft-pink/30 transition-all duration-200"
+                  className="flex items-center justify-between p-4 bg-tertiary rounded-lg border border-primary hover:border-accent-primary/30 transition-all duration-200"
                 >
                   <div>
                     <div className="font-medium text-primary capitalize">{key} Notifications</div>
@@ -343,7 +342,7 @@ const SettingsHub = () => {
                       })}
                       className="sr-only peer"
                     />
-                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-soft-pink/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-soft-pink"></div>
+                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-primary"></div>
                   </label>
                 </motion.div>
               ))}
