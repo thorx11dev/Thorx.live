@@ -14,7 +14,6 @@ const Navbar = () => {
 
   const navItems = [
     { path: '/dashboard', label: 'Dashboard', icon: Home },
-    { path: '/performance', label: 'Analytics', icon: BarChart3 },
     { path: '/earnings', label: 'Earnings', icon: DollarSign },
     { path: '/work', label: 'Work', icon: Briefcase },
     { path: '/payout', label: 'Payouts', icon: CreditCard },
@@ -139,9 +138,13 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute right-0 mt-2 w-72 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 py-2 z-50"
+                      className="dropdown-menu py-2"
                       style={{
-                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)"
+                        zIndex: 9999,
+                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)",
+                        position: "absolute",
+                        top: "100%",
+                        right: "0"
                       }}
                     >
                       {/* User Profile Header */}
@@ -184,7 +187,7 @@ const Navbar = () => {
                         <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                           <Link
                             to="/settings"
-                            className="flex items-center space-x-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                            className="dropdown-menu-item flex items-center space-x-3 px-4 py-3 text-sm"
                             onClick={() => setShowUserMenu(false)}
                           >
                             <Settings className="w-4 h-4" />
@@ -195,19 +198,19 @@ const Navbar = () => {
                         <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                           <Link
                             to="/notifications"
-                            className="flex items-center space-x-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                            className="dropdown-menu-item flex items-center space-x-3 px-4 py-3 text-sm"
                             onClick={() => setShowUserMenu(false)}
                           >
                             <Bell className="w-4 h-4" />
                             <span>Notifications</span>
-                            <div className="ml-auto w-2 h-2 bg-red-500 rounded-full"></div>
+                            <div className="ml-auto w-2 h-2 bg-red-500 rounded-full notification-pulse"></div>
                           </Link>
                         </motion.div>
                         
                         <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                           <Link
                             to="/security"
-                            className="flex items-center space-x-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                            className="dropdown-menu-item flex items-center space-x-3 px-4 py-3 text-sm"
                             onClick={() => setShowUserMenu(false)}
                           >
                             <Shield className="w-4 h-4" />
@@ -218,7 +221,7 @@ const Navbar = () => {
                         <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                           <Link
                             to="/appearance"
-                            className="flex items-center space-x-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                            className="dropdown-menu-item flex items-center space-x-3 px-4 py-3 text-sm"
                             onClick={() => setShowUserMenu(false)}
                           >
                             <Palette className="w-4 h-4" />
@@ -229,7 +232,7 @@ const Navbar = () => {
                         <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                           <Link
                             to="/help"
-                            className="flex items-center space-x-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                            className="dropdown-menu-item flex items-center space-x-3 px-4 py-3 text-sm"
                             onClick={() => setShowUserMenu(false)}
                           >
                             <HelpCircle className="w-4 h-4" />
