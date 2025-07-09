@@ -197,7 +197,7 @@ const Navbar = () => {
                         
                         <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                           <Link
-                            to="/notifications"
+                            to="/settings#notifications"
                             className="dropdown-menu-item flex items-center space-x-3 px-4 py-3 text-sm"
                             onClick={() => setShowUserMenu(false)}
                           >
@@ -209,7 +209,7 @@ const Navbar = () => {
                         
                         <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                           <Link
-                            to="/security"
+                            to="/settings#security"
                             className="dropdown-menu-item flex items-center space-x-3 px-4 py-3 text-sm"
                             onClick={() => setShowUserMenu(false)}
                           >
@@ -220,7 +220,7 @@ const Navbar = () => {
                         
                         <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                           <Link
-                            to="/appearance"
+                            to="/settings#appearance"
                             className="dropdown-menu-item flex items-center space-x-3 px-4 py-3 text-sm"
                             onClick={() => setShowUserMenu(false)}
                           >

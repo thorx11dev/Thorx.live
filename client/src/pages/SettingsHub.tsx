@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLocation } from 'wouter';
 import { 
   User, 
   Mail,
@@ -28,6 +29,7 @@ import {
 import ThemeSwitcher from '../components/ThemeSwitcher';
 
 const SettingsHub = () => {
+  const [location] = useLocation();
   const [activeTab, setActiveTab] = useState('profile');
   const [showPassword, setShowPassword] = useState(false);
   const [notification, setNotification] = useState<{type: 'success' | 'error', message: string} | null>(null);
@@ -87,6 +89,14 @@ const SettingsHub = () => {
     { id: 'appearance', label: 'Appearance', icon: CosmicPalette },
     { id: 'preferences', label: 'Preferences', icon: CosmicGlobe }
   ];
+
+  // Handle hash-based navigation
+  useEffect(() => {
+    const hash = window.location.hash.substring(1);
+    if (hash && tabs.find(tab => tab.id === hash)) {
+      setActiveTab(hash);
+    }
+  }, [location]);
 
   const showNotification = (type: 'success' | 'error', message: string) => {
     setNotification({ type, message });
