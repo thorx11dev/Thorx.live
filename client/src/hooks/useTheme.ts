@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 
-export type Theme = 'light' | 'dark';
+export type Theme = 'dark';
 
 interface ThemeContextType {
   theme: Theme;
@@ -20,104 +20,68 @@ export const useTheme = () => {
 
 export const useThemeState = () => {
   const [theme, setThemeState] = useState<Theme>(() => {
-    // For Thorx cosmic theme, default to dark mode for the best experience
-    const savedTheme = localStorage.getItem('thorx_theme') as Theme;
-    if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
-      return savedTheme;
-    }
-    
-    // Default to dark mode for cosmic theme consistency
+    // Thorx now uses only dark mode for the best cosmic experience
     return 'dark';
   });
 
   const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-    localStorage.setItem('thorx_theme', newTheme);
+    // Thorx is now locked to dark mode only
+    setThemeState('dark');
+    localStorage.setItem('thorx_theme', 'dark');
     
-    // Apply theme to document with proper cleanup and immediate effect
+    // Apply dark theme to document
     const root = document.documentElement;
     root.classList.remove('light', 'dark');
-    root.classList.add(newTheme);
+    root.classList.add('dark');
     
-    // Force immediate theme application with stronger CSS properties
-    root.setAttribute('data-theme', newTheme);
+    // Force dark theme application
+    root.setAttribute('data-theme', 'dark');
     
-    // Ensure body background is consistent with !important override
-    if (newTheme === 'dark') {
-      document.body.style.setProperty('background-color', '#0f172a', 'important');
-      root.style.setProperty('color-scheme', 'dark');
-    } else {
-      document.body.style.setProperty('background-color', '#ffffff', 'important');
-      root.style.setProperty('color-scheme', 'light');
-    }
+    // Ensure body background is dark
+    document.body.style.setProperty('background-color', '#0f172a', 'important');
+    root.style.setProperty('color-scheme', 'dark');
   };
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    // Theme toggle disabled - Thorx uses only dark mode
+    setTheme('dark');
   };
 
-  // Apply theme on mount and prevent conflicts with enhanced stability
+  // Apply dark theme on mount
   useEffect(() => {
-    // Force initial application with stronger overrides to prevent conflicts
+    // Force dark theme application
     const root = document.documentElement;
     
     // Clear all possible conflicting classes first
     root.classList.remove('light', 'dark', 'system');
-    root.classList.add(theme);
-    root.setAttribute('data-theme', theme);
+    root.classList.add('dark');
+    root.setAttribute('data-theme', 'dark');
     
-    // Set CSS custom properties immediately with enhanced stability
-    if (theme === 'dark') {
-      // Dark theme variables
-      root.style.setProperty('--bg-primary', '#0f172a', 'important');
-      root.style.setProperty('--bg-secondary', '#1e293b', 'important');
-      root.style.setProperty('--bg-tertiary', '#334155', 'important');
-      root.style.setProperty('--text-primary', '#f8fafc', 'important');
-      root.style.setProperty('--text-secondary', '#e2e8f0', 'important');
-      root.style.setProperty('--text-tertiary', '#cbd5e1', 'important');
-      root.style.setProperty('--border-primary', '#475569', 'important');
-      root.style.setProperty('--border-secondary', '#334155', 'important');
-      root.style.setProperty('--shadow-primary', 'rgba(0, 0, 0, 0.4)', 'important');
-      root.style.setProperty('--shadow-secondary', 'rgba(0, 0, 0, 0.25)', 'important');
-      root.style.setProperty('color-scheme', 'dark');
-      document.body.style.setProperty('background-color', '#0f172a', 'important');
-    } else {
-      // Light theme variables
-      root.style.setProperty('--bg-primary', '#ffffff', 'important');
-      root.style.setProperty('--bg-secondary', '#f8fafc', 'important');
-      root.style.setProperty('--bg-tertiary', '#f1f5f9', 'important');
-      root.style.setProperty('--text-primary', '#0f172a', 'important');
-      root.style.setProperty('--text-secondary', '#334155', 'important');
-      root.style.setProperty('--text-tertiary', '#64748b', 'important');
-      root.style.setProperty('--border-primary', '#e2e8f0', 'important');
-      root.style.setProperty('--border-secondary', '#f1f5f9', 'important');
-      root.style.setProperty('--shadow-primary', 'rgba(15, 23, 42, 0.1)', 'important');
-      root.style.setProperty('--shadow-secondary', 'rgba(15, 23, 42, 0.05)', 'important');
-      root.style.setProperty('color-scheme', 'light');
-      document.body.style.setProperty('background-color', '#ffffff', 'important');
-    }
+    // Set dark theme CSS custom properties
+    root.style.setProperty('--bg-primary', '#0f172a', 'important');
+    root.style.setProperty('--bg-secondary', '#1e293b', 'important');
+    root.style.setProperty('--bg-tertiary', '#334155', 'important');
+    root.style.setProperty('--text-primary', '#f8fafc', 'important');
+    root.style.setProperty('--text-secondary', '#e2e8f0', 'important');
+    root.style.setProperty('--text-tertiary', '#cbd5e1', 'important');
+    root.style.setProperty('--border-primary', '#475569', 'important');
+    root.style.setProperty('--border-secondary', '#334155', 'important');
+    root.style.setProperty('--shadow-primary', 'rgba(0, 0, 0, 0.4)', 'important');
+    root.style.setProperty('--shadow-secondary', 'rgba(0, 0, 0, 0.25)', 'important');
+    root.style.setProperty('color-scheme', 'dark');
+    document.body.style.setProperty('background-color', '#0f172a', 'important');
     
     // Prevent any interference from other sources
     requestAnimationFrame(() => {
       root.classList.remove('light', 'dark', 'system');
-      root.classList.add(theme);
+      root.classList.add('dark');
     });
-  }, [theme]);
+  }, []);
 
-  // Listen for system theme changes but respect user preference
+  // System theme changes are ignored - Thorx uses only dark mode
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (e: MediaQueryListEvent) => {
-      const savedTheme = localStorage.getItem('thorx_theme');
-      // Only update if user hasn't set a preference
-      if (!savedTheme) {
-        setTheme(e.matches ? 'dark' : 'light');
-      }
-    };
-
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, [setTheme]);
+    // No-op: Thorx is locked to dark mode regardless of system preference
+  }, []);
 
   return {
     theme,

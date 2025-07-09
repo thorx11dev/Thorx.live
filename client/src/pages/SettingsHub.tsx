@@ -23,10 +23,8 @@ import { useAuth } from '../hooks/useAuth';
 import { 
   CosmicBell, 
   CosmicShield, 
-  CosmicPalette, 
   CosmicGlobe 
 } from '../components/icons/CosmicIcons';
-import ThemeSwitcher from '../components/ThemeSwitcher';
 
 const SettingsHub = () => {
   const [location] = useLocation();
@@ -54,7 +52,6 @@ const SettingsHub = () => {
   });
 
   const [preferences, setPreferences] = useState(user?.preferences || {
-    theme: 'light',
     language: 'en',
     timezone: 'UTC-5',
     notifications: {
@@ -75,8 +72,7 @@ const SettingsHub = () => {
   const tabs = [
     { id: 'profile', label: 'Profile', icon: User },
     { id: 'notifications', label: 'Notifications', icon: CosmicBell },
-    { id: 'security', label: 'Security', icon: CosmicShield },
-    { id: 'appearance', label: 'Appearance', icon: CosmicPalette }
+    { id: 'security', label: 'Security', icon: CosmicShield }
   ];
 
   // Handle hash-based navigation
@@ -524,7 +520,7 @@ const SettingsHub = () => {
           </div>
         );
 
-      case 'appearance':
+      case 'appearance_removed':
         return (
           <div className="space-y-6">
             <h3 className="text-lg font-semibold text-primary mb-4">Appearance Settings</h3>
@@ -547,7 +543,7 @@ const SettingsHub = () => {
               style={{ color: '#2D2D2D' }}
             >
               <Save className="w-4 h-4" style={{ color: '#2D2D2D' }} />
-              <span>{isLoading ? 'Saving...' : 'Save Appearance'}</span>
+              <span>{isLoading ? 'Saving...' : 'Save Removed'}</span>
             </motion.button>
           </div>
         );

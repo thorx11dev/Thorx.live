@@ -349,6 +349,12 @@ Changelog:
 - July 09, 2025. Updated tooltip text colors from hardcoded gray colors to theme-aware colors (text-primary) for proper contrast
 - July 09, 2025. Fixed CustomTooltip, CustomBarTooltip, and CustomPieTooltip components across Dashboard, EarningsInterface, and WorkPortal pages
 - July 09, 2025. Chart tooltips now properly display with excellent visibility in both light and dark modes
+- July 09, 2025. REMOVED LIGHT MODE COMPLETELY: Eliminated light mode functionality and appearance tab from settings page
+- July 09, 2025. Updated useTheme hook to only support dark mode with Theme type changed from 'light' | 'dark' to 'dark'
+- July 09, 2025. Removed appearance tab from SettingsHub.tsx tabs array and eliminated appearance case from renderTabContent
+- July 09, 2025. Removed appearance link from Navbar.tsx user dropdown menu and cleaned up unused imports
+- July 09, 2025. Updated ThemeSwitcher component to show only dark mode preview with cosmic-themed messaging
+- July 09, 2025. Thorx now uses exclusively dark mode for optimal cosmic experience with no theme switching capability
 ```
 
 ## User Preferences

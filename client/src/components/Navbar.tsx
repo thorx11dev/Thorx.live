@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, User, LogOut, Settings, Home, BarChart3, DollarSign, Briefcase, CreditCard, Bell, Shield, Palette, HelpCircle, Star, Crown } from 'lucide-react';
+import { Menu, X, User, LogOut, Settings, Home, BarChart3, DollarSign, Briefcase, CreditCard, Bell, Shield, HelpCircle, Star, Crown } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { ThorxLogo } from './ThorxLogo';
 
@@ -234,24 +234,7 @@ const Navbar = () => {
                           </a>
                         </motion.div>
                         
-                        <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                          <a
-                            href="/settings#appearance"
-                            className="dropdown-menu-item flex items-center space-x-3 px-4 py-3 text-sm"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              setShowUserMenu(false);
-                              if (window.location.pathname === '/settings') {
-                                window.location.hash = 'appearance';
-                              } else {
-                                window.location.href = '/settings#appearance';
-                              }
-                            }}
-                          >
-                            <Palette className="w-4 h-4" />
-                            <span>Appearance</span>
-                          </a>
-                        </motion.div>
+
                         
                         <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                           <Link
