@@ -4,7 +4,6 @@ import ThemeProvider from './components/ThemeProvider';
 import ProtectedRoute from './components/ProtectedRoute';
 import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
-import RegistrationPage from './pages/RegistrationPage';
 import Dashboard from './pages/Dashboard';
 import EarningsInterface from './pages/EarningsInterface';
 import WorkPortal from './pages/WorkPortal';
@@ -30,7 +29,7 @@ function App() {
               <Route path="/" component={LandingPage} />
               <Route path="/auth" component={AuthPage} />
               <Route path="/login" component={AuthPage} />
-              <Route path="/register" component={RegistrationPage} />
+              <Route path="/register" component={AuthPage} />
               <Route path="/performance" component={PerformancePage} />
               <Route path="/dashboard">
                 <ProtectedRoute>
