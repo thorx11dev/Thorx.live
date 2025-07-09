@@ -20,6 +20,9 @@ export const useTheme = () => {
 
 export const useThemeState = () => {
   const [theme, setThemeState] = useState<Theme>(() => {
+    // Clear any existing theme to force refresh
+    localStorage.removeItem('thorx_theme');
+    
     // For Thorx cosmic theme, default to dark mode for the best experience
     const savedTheme = localStorage.getItem('thorx_theme') as Theme;
     if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {

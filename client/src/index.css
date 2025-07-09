@@ -2437,7 +2437,7 @@ body {
 
 /* CRITICAL: User Name Text - High Contrast */
 .navbar-user-name {
-  color: #2D3A4A;
+  color: #1e293b;
   font-weight: 600;
 }
 
@@ -2461,7 +2461,7 @@ body {
 
 /* CRITICAL: Dropdown Items - High Contrast */
 .navbar-dropdown-item {
-  color: #2D3A4A;
+  color: #1e293b;
 }
 
 .navbar-dropdown-item:hover {
@@ -2511,7 +2511,7 @@ body {
 }
 
 .navbar-modal-title {
-  color: #2D3A4A;
+  color: #1e293b;
 }
 
 .dark .navbar-modal-title {
@@ -2520,7 +2520,7 @@ body {
 }
 
 .navbar-modal-text {
-  color: rgba(45, 58, 74, 0.7);
+  color: #475569;
 }
 
 .dark .navbar-modal-text {
@@ -2530,7 +2530,7 @@ body {
 
 .navbar-modal-cancel {
   background-color: rgba(214, 234, 248, 0.2);
-  color: #2D3A4A;
+  color: #1e293b;
   border: 1px solid rgba(214, 234, 248, 0.3);
 }
 
@@ -2582,7 +2582,7 @@ body {
 
 /* CRITICAL: Mobile Menu Toggle - Enhanced Dark Mode */
 .navbar-mobile-toggle {
-  color: #2D3A4A;
+  color: #1e293b;
 }
 
 .navbar-mobile-toggle:hover {
@@ -2622,17 +2622,17 @@ body {
 
 .navbar-mobile-item-active {
   background-color: rgba(250, 173, 221, 0.2);
-  color: #2D3A4A;
+  color: #1e293b;
   border: 1px solid rgba(250, 173, 221, 0.3);
 }
 
 .navbar-mobile-item-inactive {
-  color: rgba(45, 58, 74, 0.7);
+  color: #475569;
   border: 1px solid transparent;
 }
 
 .navbar-mobile-item-inactive:hover {
-  color: #2D3A4A;
+  color: #1e293b;
   background-color: rgba(214, 234, 248, 0.1);
 }
 
