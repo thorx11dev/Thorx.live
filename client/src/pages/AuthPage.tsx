@@ -731,9 +731,10 @@ const AuthPage = () => {
                   </label>
                   <button
                     type="button"
-                    className="text-sm text-slate-400 hover:text-slate-200 transition-colors focus:outline-none"
+                    className="group relative px-4 py-2 bg-gradient-to-r from-amber-600/10 to-orange-600/10 border border-amber-500/30 rounded-lg text-amber-400 hover:text-amber-300 hover:border-amber-400/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-500/50 inline-flex items-center gap-2 text-sm font-medium backdrop-blur-sm"
                   >
-                    Forgot password?
+                    <span>Forgot password?</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-amber-600/5 to-orange-600/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 </div>
               )}
@@ -758,43 +759,57 @@ const AuthPage = () => {
 
           {/* Footer */}
           <div className="text-center mt-8">
-            <p className="text-slate-400">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               {isLogin ? (
                 <>
                   <button
                     onClick={() => setShowTeamVerification(true)}
-                    className="text-slate-300 hover:text-slate-100 font-medium underline focus:outline-none inline-flex items-center gap-2"
+                    className="group relative px-6 py-3 bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-500/30 rounded-lg text-blue-400 hover:text-blue-300 hover:border-blue-400/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50 inline-flex items-center gap-3 text-sm font-medium backdrop-blur-sm"
                   >
-                    <UserCheck className="w-4 h-4" />
-                    Are You a Team Member?
+                    <UserCheck className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                    <span>Are You a Team Member?</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
-                  {' or '}
+                  <div className="flex items-center gap-2 text-slate-500">
+                    <div className="w-1 h-1 bg-slate-500 rounded-full"></div>
+                    <span className="text-xs">or</span>
+                    <div className="w-1 h-1 bg-slate-500 rounded-full"></div>
+                  </div>
                   <button
                     onClick={() => setIsLogin(!isLogin)}
-                    className="text-slate-300 hover:text-slate-100 font-medium underline focus:outline-none"
+                    className="group relative px-6 py-3 bg-gradient-to-r from-emerald-600/10 to-teal-600/10 border border-emerald-500/30 rounded-lg text-emerald-400 hover:text-emerald-300 hover:border-emerald-400/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 inline-flex items-center gap-3 text-sm font-medium backdrop-blur-sm"
                   >
-                    Sign up
+                    <span>Sign up</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/5 to-teal-600/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 </>
               ) : (
                 <>
                   <button
                     onClick={() => setShowTeamVerification(true)}
-                    className="text-slate-300 hover:text-slate-100 font-medium underline focus:outline-none inline-flex items-center gap-2"
+                    className="group relative px-6 py-3 bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-500/30 rounded-lg text-blue-400 hover:text-blue-300 hover:border-blue-400/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50 inline-flex items-center gap-3 text-sm font-medium backdrop-blur-sm"
                   >
-                    <UserCheck className="w-4 h-4" />
-                    Are You a Team Member?
+                    <UserCheck className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                    <span>Are You a Team Member?</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
-                  {' or '}
+                  <div className="flex items-center gap-2 text-slate-500">
+                    <div className="w-1 h-1 bg-slate-500 rounded-full"></div>
+                    <span className="text-xs">or</span>
+                    <div className="w-1 h-1 bg-slate-500 rounded-full"></div>
+                  </div>
                   <button
                     onClick={() => setIsLogin(!isLogin)}
-                    className="text-slate-300 hover:text-slate-100 font-medium underline focus:outline-none"
+                    className="group relative px-6 py-3 bg-gradient-to-r from-pink-600/10 to-rose-600/10 border border-pink-500/30 rounded-lg text-pink-400 hover:text-pink-300 hover:border-pink-400/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pink-500/50 inline-flex items-center gap-3 text-sm font-medium backdrop-blur-sm"
                   >
-                    Sign in
+                    <span>Sign in</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-600/5 to-rose-600/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 </>
               )}
-            </p>
+            </div>
             
             {/* Trust Indicators */}
             <div className="flex items-center justify-center space-x-6 mt-6">
