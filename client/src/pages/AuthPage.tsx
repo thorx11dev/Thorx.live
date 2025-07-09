@@ -15,7 +15,6 @@ import {
 import { Link, useLocation } from 'wouter';
 import { useAuth } from '../hooks/useAuth';
 import { ThorxLogo } from '../components/ThorxLogo';
-import EnhancedAnimatedClouds from '../components/3d/EnhancedAnimatedClouds';
 
 interface FormData {
   email: string;
@@ -188,25 +187,133 @@ const AuthPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-900 relative overflow-hidden">
-      {/* Enhanced Animated Clouds Background */}
-      <EnhancedAnimatedClouds density="high" scrollFactor={0.8} className="absolute inset-0 z-0" />
-      
-      {/* Background Elements */}
+      {/* Interactive Cosmic Illustration Background */}
       <div className="absolute inset-0 z-0">
-        {/* Subtle constellation pattern */}
-        <div className="absolute inset-0 opacity-20">
+        
+        {/* Geometric Satellite Network */}
+        <div className="absolute inset-0 opacity-15">
           <svg width="100%" height="100%" className="absolute inset-0">
             <defs>
-              <pattern id="constellation" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-                <circle cx="50" cy="50" r="1" fill="#64748b" opacity="0.5" />
-                <circle cx="150" cy="100" r="1" fill="#64748b" opacity="0.3" />
-                <circle cx="100" cy="150" r="1" fill="#64748b" opacity="0.4" />
-                <line x1="50" y1="50" x2="150" y2="100" stroke="#64748b" strokeWidth="0.5" opacity="0.2" />
-                <line x1="150" y1="100" x2="100" y2="150" stroke="#64748b" strokeWidth="0.5" opacity="0.2" />
+              <pattern id="satelliteGrid" x="0" y="0" width="160" height="160" patternUnits="userSpaceOnUse">
+                {/* Satellite nodes */}
+                <circle cx="80" cy="80" r="2" fill="#e2e8f0" opacity="0.8">
+                  <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="40" cy="40" r="1.5" fill="#cbd5e1" opacity="0.6">
+                  <animate attributeName="opacity" values="0.6;0.9;0.6" dur="2.5s" repeatCount="indefinite" begin="0.5s" />
+                </circle>
+                <circle cx="120" cy="120" r="1.5" fill="#cbd5e1" opacity="0.6">
+                  <animate attributeName="opacity" values="0.6;0.9;0.6" dur="2.5s" repeatCount="indefinite" begin="1s" />
+                </circle>
+                
+                {/* Connection lines */}
+                <line x1="40" y1="40" x2="80" y2="80" stroke="#e2e8f0" strokeWidth="0.5" opacity="0.3" />
+                <line x1="80" y1="80" x2="120" y2="120" stroke="#e2e8f0" strokeWidth="0.5" opacity="0.3" />
+                <line x1="40" y1="40" x2="120" y2="120" stroke="#e2e8f0" strokeWidth="0.5" opacity="0.2" />
+                
+                {/* Orbital paths */}
+                <circle cx="80" cy="80" r="25" fill="none" stroke="#e2e8f0" strokeWidth="0.5" opacity="0.15" strokeDasharray="2,2" />
+                <circle cx="80" cy="80" r="35" fill="none" stroke="#e2e8f0" strokeWidth="0.5" opacity="0.1" strokeDasharray="3,3" />
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#constellation)"/>
+            <rect width="100%" height="100%" fill="url(#satelliteGrid)"/>
           </svg>
+        </div>
+
+        {/* Floating Geometric Elements */}
+        <div className="absolute inset-0">
+          {/* Interactive hexagons */}
+          <div className="absolute top-1/4 left-1/4 opacity-20 hover:opacity-40 transition-opacity duration-300 cursor-pointer">
+            <svg width="60" height="60" viewBox="0 0 60 60">
+              <polygon points="30,5 50,15 50,35 30,45 10,35 10,15" fill="none" stroke="#e2e8f0" strokeWidth="1" />
+              <polygon points="30,15 40,20 40,30 30,35 20,30 20,20" fill="none" stroke="#cbd5e1" strokeWidth="1" opacity="0.5" />
+              <circle cx="30" cy="25" r="2" fill="#e2e8f0" opacity="0.6">
+                <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" />
+              </circle>
+            </svg>
+          </div>
+
+          <div className="absolute top-2/3 right-1/4 opacity-15 hover:opacity-30 transition-opacity duration-300 cursor-pointer">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <polygon points="40,10 60,25 60,45 40,60 20,45 20,25" fill="none" stroke="#e2e8f0" strokeWidth="1" />
+              <polygon points="40,20 50,27 50,37 40,44 30,37 30,27" fill="none" stroke="#cbd5e1" strokeWidth="1" opacity="0.5" />
+              <circle cx="40" cy="32" r="3" fill="#e2e8f0" opacity="0.4">
+                <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.5s" repeatCount="indefinite" />
+              </circle>
+            </svg>
+          </div>
+
+          <div className="absolute bottom-1/3 left-1/2 opacity-20 hover:opacity-40 transition-opacity duration-300 cursor-pointer">
+            <svg width="50" height="50" viewBox="0 0 50 50">
+              <polygon points="25,5 40,15 40,30 25,40 10,30 10,15" fill="none" stroke="#e2e8f0" strokeWidth="1" />
+              <circle cx="25" cy="22" r="2" fill="#e2e8f0" opacity="0.5">
+                <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite" />
+              </circle>
+            </svg>
+          </div>
+
+          {/* Minimalistic orbital rings */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-10">
+            <div className="w-96 h-96 rounded-full border border-slate-400 animate-pulse" style={{animationDuration: '4s'}} />
+            <div className="absolute inset-8 rounded-full border border-slate-500 animate-pulse" style={{animationDuration: '6s', animationDelay: '1s'}} />
+            <div className="absolute inset-16 rounded-full border border-slate-600 animate-pulse" style={{animationDuration: '8s', animationDelay: '2s'}} />
+          </div>
+
+          {/* Scattered minimal dots */}
+          <div className="absolute top-1/5 left-1/5 w-2 h-2 bg-slate-400 rounded-full opacity-30 animate-pulse" style={{animationDelay: '0.5s'}} />
+          <div className="absolute top-1/3 right-1/5 w-1.5 h-1.5 bg-slate-500 rounded-full opacity-25 animate-pulse" style={{animationDelay: '1.5s'}} />
+          <div className="absolute bottom-1/4 left-1/3 w-1 h-1 bg-slate-400 rounded-full opacity-30 animate-pulse" style={{animationDelay: '2.5s'}} />
+          <div className="absolute bottom-1/5 right-1/3 w-1.5 h-1.5 bg-slate-500 rounded-full opacity-25 animate-pulse" style={{animationDelay: '3s'}} />
+          <div className="absolute top-2/5 right-2/5 w-2 h-2 bg-slate-400 rounded-full opacity-20 animate-pulse" style={{animationDelay: '4s'}} />
+
+          {/* Interactive line connections */}
+          <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none">
+            <line x1="20%" y1="20%" x2="80%" y2="80%" stroke="#e2e8f0" strokeWidth="0.5" strokeDasharray="5,5">
+              <animate attributeName="stroke-dashoffset" values="0;10" dur="2s" repeatCount="indefinite" />
+            </line>
+            <line x1="80%" y1="30%" x2="20%" y2="70%" stroke="#e2e8f0" strokeWidth="0.5" strokeDasharray="3,3">
+              <animate attributeName="stroke-dashoffset" values="0;6" dur="3s" repeatCount="indefinite" />
+            </line>
+            <line x1="50%" y1="10%" x2="50%" y2="90%" stroke="#e2e8f0" strokeWidth="0.5" strokeDasharray="4,4">
+              <animate attributeName="stroke-dashoffset" values="0;8" dur="4s" repeatCount="indefinite" />
+            </line>
+          </svg>
+
+          {/* Subtle data visualization elements */}
+          <div className="absolute top-1/4 right-1/5 opacity-15">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+              <rect x="5" y="25" width="3" height="10" fill="#e2e8f0" opacity="0.6">
+                <animate attributeName="height" values="10;15;10" dur="2s" repeatCount="indefinite" />
+              </rect>
+              <rect x="12" y="20" width="3" height="15" fill="#e2e8f0" opacity="0.5">
+                <animate attributeName="height" values="15;20;15" dur="2.5s" repeatCount="indefinite" begin="0.5s" />
+              </rect>
+              <rect x="19" y="15" width="3" height="20" fill="#e2e8f0" opacity="0.6">
+                <animate attributeName="height" values="20;25;20" dur="3s" repeatCount="indefinite" begin="1s" />
+              </rect>
+              <rect x="26" y="22" width="3" height="13" fill="#e2e8f0" opacity="0.5">
+                <animate attributeName="height" values="13;18;13" dur="2.2s" repeatCount="indefinite" begin="1.5s" />
+              </rect>
+            </svg>
+          </div>
+
+          <div className="absolute bottom-1/4 left-1/5 opacity-15">
+            <svg width="35" height="35" viewBox="0 0 35 35">
+              <path d="M5 25 L15 15 L25 20 L30 10" fill="none" stroke="#e2e8f0" strokeWidth="1.5" opacity="0.6" />
+              <circle cx="5" cy="25" r="2" fill="#e2e8f0" opacity="0.5">
+                <animate attributeName="opacity" values="0.5;0.8;0.5" dur="2s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="15" cy="15" r="2" fill="#e2e8f0" opacity="0.5">
+                <animate attributeName="opacity" values="0.5;0.8;0.5" dur="2s" repeatCount="indefinite" begin="0.5s" />
+              </circle>
+              <circle cx="25" cy="20" r="2" fill="#e2e8f0" opacity="0.5">
+                <animate attributeName="opacity" values="0.5;0.8;0.5" dur="2s" repeatCount="indefinite" begin="1s" />
+              </circle>
+              <circle cx="30" cy="10" r="2" fill="#e2e8f0" opacity="0.5">
+                <animate attributeName="opacity" values="0.5;0.8;0.5" dur="2s" repeatCount="indefinite" begin="1.5s" />
+              </circle>
+            </svg>
+          </div>
         </div>
       </div>
 
