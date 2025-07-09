@@ -328,6 +328,10 @@ Changelog:
 - July 09, 2025. Enhanced dark mode activity row styling with rgba colors and improved visibility for status badges and text
 - July 09, 2025. Fixed activity type icon backgrounds (soft-pink, pale-blue, light-teal) for better contrast in dark mode on mobile devices
 - July 09, 2025. Added enhanced text visibility with proper font weights and opacity levels for optimal readability on mobile screens
+- July 09, 2025. FIXED LAYOUT ALIGNMENT ISSUE: Resolved price tag and status badge overflow problem in Recently Cosmic Activity section
+- July 09, 2025. Restructured dashboard activity row layout with proper flex positioning to prevent price/status overflow outside container boundaries
+- July 09, 2025. Added overflow-hidden, proper spacing, and mobile-specific width constraints for price and status elements
+- July 09, 2025. Enhanced mobile responsiveness with smaller font sizes and reduced padding for status badges on screens under 640px
 ```
 
 ## User Preferences

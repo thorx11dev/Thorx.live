@@ -4071,6 +4071,43 @@ body {
   .dashboard-activity-row .font-bold {
     font-weight: 700 !important;
   }
+  
+  /* Fix alignment and prevent overflow for price and status */
+  .dashboard-activity-row {
+    overflow: hidden !important;
+  }
+  
+  .dashboard-activity-row .text-right {
+    max-width: 80px !important;
+    min-width: 60px !important;
+  }
+  
+  .dashboard-activity-row .text-right .font-bold {
+    margin-bottom: 4px !important;
+    line-height: 1.2 !important;
+  }
+  
+  /* Mobile-specific layout fixes */
+  @media (max-width: 640px) {
+    .dashboard-activity-row {
+      padding: 12px 16px !important;
+    }
+    
+    .dashboard-activity-row .text-right {
+      max-width: 70px !important;
+      min-width: 50px !important;
+    }
+    
+    .dashboard-activity-row .text-right .font-bold {
+      font-size: 13px !important;
+      margin-bottom: 2px !important;
+    }
+    
+    .dashboard-activity-row .text-right div[class*="rounded-full"] {
+      font-size: 10px !important;
+      padding: 2px 6px !important;
+    }
+  }
 }
 
 /* Apply dashboard activity row styling to all screen sizes */

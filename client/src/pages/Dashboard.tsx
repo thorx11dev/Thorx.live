@@ -337,9 +337,9 @@ const Dashboard = () => {
                   scale: 1.01,
                   y: -2
                 }}
-                className="dashboard-activity-row flex items-center justify-between p-3 md:p-4 rounded-lg cursor-pointer min-h-[72px]"
+                className="dashboard-activity-row flex items-center justify-between p-3 md:p-4 rounded-lg cursor-pointer min-h-[72px] overflow-hidden"
               >
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-3 flex-1 min-w-0">
                   <div className={`w-2 h-2 md:w-3 md:h-3 rounded-full ${
                     activity.status === 'completed' ? 'bg-green-500' : 'bg-yellow-500'
                   }`} />
@@ -353,14 +353,14 @@ const Dashboard = () => {
                        activity.type === 'social' ? '❤️' : '🌐'}
                     </span>
                   </div>
-                  <div className="flex-1 min-w-0">
+                  <div className="flex-1 min-w-0 pr-2">
                     <div className="font-medium text-primary text-sm md:text-base truncate">{activity.action}</div>
                     <div className="text-xs md:text-sm text-secondary">{activity.time}</div>
                   </div>
                 </div>
-                <div className="text-right flex-shrink-0">
-                  <div className="font-bold text-primary text-sm md:text-base">{activity.amount}</div>
-                  <div className={`text-xs px-2 py-1 rounded-full border ${
+                <div className="text-right flex-shrink-0 ml-2 min-w-0">
+                  <div className="font-bold text-primary text-sm md:text-base mb-1">{activity.amount}</div>
+                  <div className={`text-xs px-2 py-1 rounded-full border whitespace-nowrap ${
                     activity.status === 'completed' 
                       ? 'bg-green-50 text-green-800 border-green-200' 
                       : 'bg-yellow-50 text-yellow-800 border-yellow-200'
