@@ -725,43 +725,201 @@ div[class*="bg-gradient-to-r"] {
   backface-visibility: hidden !important;
 }
 
-/* Interactive Cosmic Header Text Effect */
+/* ========================================
+   SPOOKY THORX HEADER STYLE
+   ======================================== */
+
+/* Spooky Header Container with Hexagonal Theme */
 .cosmic-header-container {
   position: relative;
   display: inline-block;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+.cosmic-header-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(100, 116, 139, 0.4) 25%, 
+    rgba(148, 163, 184, 0.3) 50%, 
+    rgba(100, 116, 139, 0.4) 75%, 
+    transparent 100%
+  );
+  border-radius: 10px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.cosmic-header-container:hover::before {
+  opacity: 1;
+  animation: spookyBorderPulse 2s ease-in-out infinite;
+}
+
+/* Spooky Header Text with Geometric Effects */
 .cosmic-header-text {
   position: relative;
   z-index: 10;
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  filter: brightness(0.8) contrast(0.9) blur(0.3px);
-  opacity: 0.7;
-  transform: translateY(2px);
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #94a3b8;
+  text-shadow: 0 0 10px rgba(148, 163, 184, 0.3);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: brightness(0.9) contrast(1.1);
+  transform: translateY(0);
   background: none !important;
-  text-shadow: none !important;
+  
+  /* Geometric hexagonal text effect */
+  text-transform: uppercase;
+  font-variant: small-caps;
+  -webkit-text-stroke: 0.5px rgba(148, 163, 184, 0.2);
 }
 
-.cosmic-header-container .cosmic-header-text.cosmic-text-glow {
-  background: none !important;
-  filter: brightness(0.6) contrast(0.8) blur(0.5px) !important;
-  opacity: 0.5 !important;
-  text-shadow: none !important;
-}
-
+/* Spooky Hover Effects */
 .cosmic-header-container:hover .cosmic-header-text,
-.cosmic-header-container:focus .cosmic-header-text,
-.cosmic-header-container:hover .cosmic-header-text.cosmic-text-glow,
-.cosmic-header-container:focus .cosmic-header-text.cosmic-text-glow {
-  filter: brightness(1.3) contrast(1.4) blur(0px) !important;
-  opacity: 1 !important;
-  transform: translateY(-8px) scale(1.08) !important;
-  text-shadow: none !important;
-  animation: headerHoverFloat 1.5s ease-in-out infinite !important;
-  background: none !important;
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+.cosmic-header-container:focus .cosmic-header-text {
+  color: #e2e8f0;
+  text-shadow: 
+    0 0 20px rgba(226, 232, 240, 0.6),
+    0 0 40px rgba(148, 163, 184, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.6);
+  filter: brightness(1.2) contrast(1.3);
+  transform: translateY(-4px) scale(1.05);
+  animation: spookyTextFloat 2s ease-in-out infinite;
+  -webkit-text-stroke: 0.8px rgba(226, 232, 240, 0.3);
+}
+
+.cosmic-header-container:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(100, 116, 139, 0.3);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.8) 100%);
+}
+
+/* Spooky Hexagonal Pattern Overlay */
+.cosmic-header-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(148, 163, 184, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(100, 116, 139, 0.1) 0%, transparent 50%);
+  background-size: 20px 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 8px;
+  z-index: 2;
+}
+
+.cosmic-header-container:hover::after {
+  opacity: 1;
+  animation: spookyHexPattern 3s ease-in-out infinite;
+}
+
+/* Remove old cloud veil styles */
+.cosmic-cloud-veil {
+  display: none;
+}
+
+/* ========================================
+   SPOOKY ANIMATION KEYFRAMES
+   ======================================== */
+
+@keyframes spookyBorderPulse {
+  0%, 100% { 
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes spookyTextFloat {
+  0%, 100% { 
+    transform: translateY(-4px) scale(1.05) rotateX(0deg);
+    text-shadow: 
+      0 0 20px rgba(226, 232, 240, 0.6),
+      0 0 40px rgba(148, 163, 184, 0.4),
+      0 2px 8px rgba(0, 0, 0, 0.6);
+  }
+  50% { 
+    transform: translateY(-6px) scale(1.08) rotateX(2deg);
+    text-shadow: 
+      0 0 25px rgba(226, 232, 240, 0.8),
+      0 0 50px rgba(148, 163, 184, 0.6),
+      0 4px 12px rgba(0, 0, 0, 0.8);
+  }
+}
+
+@keyframes spookyHexPattern {
+  0%, 100% { 
+    background-position: 0% 0%, 100% 100%;
+    opacity: 0.6;
+  }
+  50% { 
+    background-position: 100% 100%, 0% 0%;
+    opacity: 1;
+  }
+}
+
+/* Spooky Thorx Logo Font Style for Headers */
+.thorx-spooky-header {
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-transform: uppercase;
+  font-variant: small-caps;
+  color: #94a3b8;
+  text-shadow: 0 0 10px rgba(148, 163, 184, 0.3);
+  -webkit-text-stroke: 0.5px rgba(148, 163, 184, 0.2);
+}
+
+/* Geometric section dividers */
+.spooky-section-divider {
+  position: relative;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(100, 116, 139, 0.6) 50%, transparent 100%);
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+.spooky-section-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(226, 232, 240, 0.8) 50%, transparent 100%);
+  animation: spookySweep 3s ease-in-out infinite;
+}
+
+@keyframes spookySweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
 /* Thorx Header Text - Exact same font style as SVG logo with geometric visual effects */

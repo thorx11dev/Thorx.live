@@ -143,10 +143,9 @@ const LandingPage = () => {
             {/* Left side - Content */}
             <div className="text-center lg:text-left px-2 sm:px-0">
               <div className="cosmic-header-container mb-4 sm:mb-6">
-                <div className="cosmic-cloud-veil"></div>
-                <h1 className="cosmic-header-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight cosmic-slide-up thorx-hero-title">
-                  <span className="thorx-signin-color thorx-hero-title" data-text="Explore the">Explore the</span>
-                  <span className="block thorx-signin-color font-medium thorx-hero-title" data-text="Digital Universe">Digital Universe</span>
+                <h1 className="cosmic-header-text thorx-spooky-header text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight cosmic-slide-up">
+                  <span className="block">Explore the</span>
+                  <span className="block font-medium">Digital Universe</span>
                 </h1>
               </div>
               
@@ -310,9 +309,8 @@ const LandingPage = () => {
           <div className="text-center mb-20">
             <div className="inline-block mb-6 cosmic-slide-up">
               <div className="cosmic-header-container">
-                <div className="cosmic-cloud-veil"></div>
-                <h2 className="cosmic-header-text text-5xl md:text-6xl mb-4 relative thorx-hero-title" data-text="Cosmic Features">
-                  <span className="relative z-10 thorx-signin-color">Cosmic Features</span>
+                <h2 className="cosmic-header-text thorx-spooky-header text-5xl md:text-6xl mb-4 relative">
+                  Cosmic Features
                 </h2>
               </div>
             </div>
@@ -482,9 +480,8 @@ const LandingPage = () => {
           <div className="text-center mb-16">
             <div className="inline-block mb-4 cosmic-slide-up">
               <div className="cosmic-header-container">
-                <div className="cosmic-cloud-veil"></div>
-                <h2 className="cosmic-header-text text-4xl md:text-5xl mb-4 relative thorx-hero-title" data-text="Why Choose Thorx?">
-                  <span className="thorx-signin-color">Why Choose Thorx?</span>
+                <h2 className="cosmic-header-text thorx-spooky-header text-4xl md:text-5xl mb-4 relative">
+                  Why Choose Thorx?
                 </h2>
               </div>
             </div>
@@ -640,9 +637,8 @@ const LandingPage = () => {
           <div className="text-center mb-16">
             <div className="inline-block mb-4 cosmic-slide-up">
               <div className="cosmic-header-container">
-                <div className="cosmic-cloud-veil"></div>
-                <h2 className="cosmic-header-text text-4xl md:text-5xl mb-4 relative thorx-hero-title" data-text="Trusted by Thousands">
-                  <span className="thorx-signin-color">Trusted by Thousands</span>
+                <h2 className="cosmic-header-text thorx-spooky-header text-4xl md:text-5xl mb-4 relative">
+                  Trusted by Thousands
                 </h2>
               </div>
             </div>
@@ -781,9 +777,8 @@ const LandingPage = () => {
           {/* Professional heading */}
           <div className="mb-6 cosmic-slide-up">
             <div className="cosmic-header-container">
-              <div className="cosmic-cloud-veil"></div>
-              <h2 className="cosmic-header-text text-4xl md:text-5xl relative thorx-hero-title" data-text="Ready to Start Your Journey?">
-                <span className="thorx-signin-color">Ready to Start Your Journey?</span>
+              <h2 className="cosmic-header-text thorx-spooky-header text-4xl md:text-5xl relative">
+                Ready to Start Your Journey?
               </h2>
             </div>
           </div>
