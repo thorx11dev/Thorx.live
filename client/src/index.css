@@ -49,39 +49,6 @@
   .border-secondary {
     border-color: var(--border-secondary);
   }
-  
-  .shadow-primary {
-    box-shadow: 0 4px 6px -1px var(--shadow-primary), 0 2px 4px -1px var(--shadow-secondary);
-  }
-  
-  .shadow-secondary {
-    box-shadow: 0 1px 3px 0 var(--shadow-primary), 0 1px 2px 0 var(--shadow-secondary);
-  }
-  
-  /* Enhanced accent colors for light mode */
-  .bg-soft-pink {
-    background-color: var(--accent-soft-pink, #fce7f3);
-  }
-  
-  .bg-pale-blue {
-    background-color: var(--accent-pale-blue, #dbeafe);
-  }
-  
-  .bg-light-teal {
-    background-color: var(--accent-light-teal, #ccfbf1);
-  }
-  
-  .bg-muted-yellow {
-    background-color: var(--accent-muted-yellow, #fef3c7);
-  }
-  
-  .bg-soft-purple {
-    background-color: var(--accent-soft-purple, #f3e8ff);
-  }
-  
-  .bg-light-green {
-    background-color: var(--accent-light-green, #dcfce7);
-  }
 }
 
 /* ========================================
@@ -155,7 +122,7 @@
   }
 }
 
-/* Enhanced Navigation Animations - Light Mode Optimized */
+/* Enhanced Navigation Animations */
 .nav-item-hover {
   position: relative;
   overflow: hidden;
@@ -168,7 +135,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--chart-blue, #3b82f6);
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -178,7 +145,7 @@
 }
 
 .user-menu-gradient {
-  background: var(--chart-blue, #3b82f6);
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
 }
 
 .notification-pulse {
@@ -188,26 +155,6 @@
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
-}
-
-/* Light mode navigation enhancements */
-.light .nav-item-hover {
-  color: var(--text-primary);
-  transition: all 0.3s ease;
-}
-
-.light .nav-item-hover:hover {
-  color: var(--chart-blue);
-  background-color: var(--accent-pale-blue);
-}
-
-.light .user-menu-gradient {
-  background: var(--chart-blue);
-  color: white;
-}
-
-.light .notification-pulse {
-  background-color: var(--chart-pink);
 }
 
 /* Enhanced Dropdown Visibility */
@@ -294,124 +241,34 @@
   }
 }
 
-/* Professional button styles - Theme-aware with minimal colors */
+/* Professional button styles with minimal colors */
 .cosmic-btn-primary {
-  background: var(--chart-blue, #3b82f6);
-  color: white;
+  background: #e2e8f0;
+  color: #0f172a;
   font-weight: 700;
   border: 2px solid transparent;
-  box-shadow: 0 4px 15px var(--shadow-primary);
+  box-shadow: 0 4px 15px rgba(226, 232, 240, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cosmic-btn-primary:hover {
-  background: var(--chart-purple, #8b5cf6);
+  background: #f1f5f9;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px var(--shadow-primary);
+  box-shadow: 0 8px 25px rgba(226, 232, 240, 0.3);
 }
 
 .cosmic-btn-secondary {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
+  background: #475569;
+  color: #ffffff;
   font-weight: 600;
-  border: 2px solid var(--border-primary);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cosmic-btn-secondary:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--chart-blue);
+  background: #64748b;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px var(--shadow-primary);
-}
-
-/* Light mode specific button enhancements */
-.light .cosmic-btn-primary {
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
-}
-
-.light .cosmic-btn-primary:hover {
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
-}
-
-.light .cosmic-btn-secondary {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  border-color: var(--border-primary);
-}
-
-.light .cosmic-btn-secondary:hover {
-  background: var(--accent-pale-blue);
-  border-color: var(--chart-blue);
-  color: var(--chart-blue);
-}
-
-/* ========================================
-   DASHBOARD ACTIVITY SECTION ENHANCEMENTS
-   ======================================== */
-
-/* Mobile-optimized dashboard activity rows */
-.dashboard-activity-row {
-  transition: all 0.3s ease;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 12px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-primary);
-  box-shadow: var(--shadow-secondary);
-}
-
-.dashboard-activity-row:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--chart-blue);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-primary);
-}
-
-/* Light mode specific dashboard activity styling */
-.light .dashboard-activity-row {
-  background: var(--bg-secondary);
-  border-color: var(--border-primary);
-}
-
-.light .dashboard-activity-row:hover {
-  background: var(--accent-pale-blue);
-  border-color: var(--chart-blue);
-}
-
-/* Mobile-specific dashboard activity styling */
-@media (max-width: 640px) {
-  .dashboard-activity-row {
-    padding: 12px;
-    margin-bottom: 8px;
-  }
-  
-  .dashboard-activity-row .price-tag {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--chart-green);
-  }
-  
-  .dashboard-activity-row .status-badge {
-    font-size: 12px;
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 80px;
-  }
-  
-  .light .dashboard-activity-row .price-tag {
-    color: var(--chart-green);
-  }
-  
-  .light .dashboard-activity-row .status-badge {
-    background: var(--accent-light-green);
-    color: var(--text-primary);
-    border: 1px solid var(--chart-green);
-  }
+  box-shadow: 0 8px 25px rgba(100, 116, 139, 0.3);
 }
 
 /* ========================================

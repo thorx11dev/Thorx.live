@@ -36,12 +36,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-md border-b border-primary shadow-primary">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center hover:scale-105 transition-transform duration-200">
-            <ThorxLogo size="md" className="text-primary" />
+            <ThorxLogo size="md" className="text-slate-900 dark:text-slate-100" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -60,10 +60,10 @@ const Navbar = () => {
                 >
                   <Link
                     to={item.path}
-                    className={`relative flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group nav-item-hover ${
+                    className={`relative flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
                       active
-                        ? 'bg-tertiary text-primary shadow-secondary'
-                        : 'text-secondary hover:text-primary hover:bg-tertiary'
+                        ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-md'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800/50'
                     }`}
                   >
                     <motion.div
@@ -99,13 +99,13 @@ const Navbar = () => {
               <div className="relative">
                 <motion.button
                   onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium text-secondary hover:text-primary hover:bg-tertiary transition-all duration-200 group"
+                  className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 group"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <div className="relative">
                     <motion.div 
-                      className="w-9 h-9 user-menu-gradient rounded-full flex items-center justify-center shadow-lg"
+                      className="w-9 h-9 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg"
                       animate={{
                         boxShadow: showUserMenu 
                           ? "0 0 20px rgba(59, 130, 246, 0.4)" 
@@ -123,8 +123,8 @@ const Navbar = () => {
                     </motion.div>
                   </div>
                   <div className="hidden sm:block text-left">
-                    <div className="font-semibold text-primary">{user.firstName}</div>
-                    <div className="text-xs text-secondary flex items-center space-x-1">
+                    <div className="font-semibold text-slate-900 dark:text-slate-100">{user.firstName}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center space-x-1">
                       <Crown className="w-3 h-3" />
                       <span>Premium</span>
                     </div>
@@ -288,7 +288,7 @@ const Navbar = () => {
               >
                 <Link
                   to="/auth"
-                  className="px-6 py-2 cosmic-btn-primary rounded-lg text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+                  className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
                   Sign In
                 </Link>
@@ -298,7 +298,7 @@ const Navbar = () => {
             {/* Mobile Menu Button */}
             <motion.button
               onClick={() => setShowMobileMenu(!showMobileMenu)}
-              className="md:hidden p-2 rounded-lg text-secondary hover:text-primary hover:bg-tertiary transition-colors"
+              className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -320,7 +320,7 @@ const Navbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden border-t border-primary py-2"
+              className="md:hidden border-t border-slate-200 dark:border-slate-700 py-2"
             >
               <div className="space-y-1">
                 {navItems.map((item, index) => {
@@ -339,8 +339,8 @@ const Navbar = () => {
                         to={item.path}
                         className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                           active
-                            ? 'bg-tertiary text-primary shadow-secondary'
-                            : 'text-secondary hover:text-primary hover:bg-tertiary'
+                            ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-sm'
+                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800/50'
                         }`}
                         onClick={() => setShowMobileMenu(false)}
                       >
@@ -358,10 +358,10 @@ const Navbar = () => {
               </div>
               
               {!user && (
-                <div className="pt-2 mt-2 border-t border-primary">
+                <div className="pt-2 mt-2 border-t border-slate-200 dark:border-slate-700">
                   <Link
                     to="/auth"
-                    className="block px-4 py-3 text-sm font-medium cosmic-btn-primary rounded-lg transition-colors"
+                    className="block px-4 py-3 text-sm font-medium text-slate-900 dark:text-slate-100 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
                     onClick={() => setShowMobileMenu(false)}
                   >
                     Sign In
