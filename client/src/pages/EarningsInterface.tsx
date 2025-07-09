@@ -77,11 +77,11 @@ const EarningsInterface = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-white border-2 border-gray-200 rounded-lg p-4 shadow-lg"
+          className="bg-secondary border-2 border-primary rounded-lg p-4 shadow-lg"
         >
-          <p className="text-gray-800 font-semibold mb-2">{new Date(label).toLocaleDateString()}</p>
+          <p className="text-primary font-semibold mb-2">{new Date(label).toLocaleDateString()}</p>
           {payload.map((entry: any, index: number) => (
-            <p key={index} className="text-gray-700 font-medium">
+            <p key={index} className="text-primary font-medium">
               <span 
                 className="inline-block w-3 h-3 rounded-full mr-2"
                 style={{ backgroundColor: entry.color }}
@@ -101,10 +101,10 @@ const EarningsInterface = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-white border-2 border-gray-200 rounded-lg p-3 shadow-lg"
+          className="bg-secondary border-2 border-primary rounded-lg p-3 shadow-lg"
         >
-          <p className="text-gray-800 font-semibold">{payload[0].name}</p>
-          <p className="text-gray-700 font-medium">{`${payload[0].value}% - $${payload[0].payload.earnings}`}</p>
+          <p className="text-primary font-semibold">{payload[0].name}</p>
+          <p className="text-primary font-medium">{`${payload[0].value}% - $${payload[0].payload.earnings}`}</p>
         </motion.div>
       );
     }

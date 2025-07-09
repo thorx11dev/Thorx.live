@@ -344,6 +344,11 @@ Changelog:
 - July 09, 2025. FIXED WORK PORTAL CHARTS: Extended mobile chart optimization to WorkPortal.tsx for complete mobile experience
 - July 09, 2025. Fixed Cosmic Earnings Breakdown area chart and Cosmic Distribution pie chart spacing issues on mobile devices
 - July 09, 2025. Applied consistent margin controls, YAxis width reduction, and axis line removal across all chart components
+- July 09, 2025. FIXED CHART TOOLTIP VISIBILITY: Resolved dark mode tooltip visibility issues across all chart components
+- July 09, 2025. Replaced hardcoded white backgrounds (bg-white) with theme-aware backgrounds (bg-secondary) for all tooltip components
+- July 09, 2025. Updated tooltip text colors from hardcoded gray colors to theme-aware colors (text-primary) for proper contrast
+- July 09, 2025. Fixed CustomTooltip, CustomBarTooltip, and CustomPieTooltip components across Dashboard, EarningsInterface, and WorkPortal pages
+- July 09, 2025. Chart tooltips now properly display with excellent visibility in both light and dark modes
 ```
 
 ## User Preferences
