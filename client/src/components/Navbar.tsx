@@ -36,12 +36,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-secondary/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-primary dark:border-slate-700 shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center hover:scale-105 transition-transform duration-200">
-            <ThorxLogo size="md" className="text-primary dark:text-slate-100" />
+            <ThorxLogo size="md" className="text-slate-900 dark:text-slate-100" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -62,8 +62,8 @@ const Navbar = () => {
                     to={item.path}
                     className={`relative flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
                       active
-                        ? 'bg-accent-primary/10 dark:bg-slate-800 text-accent-primary dark:text-slate-100 shadow-md border border-accent-primary/20'
-                        : 'text-secondary dark:text-slate-400 hover:text-accent-primary dark:hover:text-slate-100 hover:bg-accent-primary/5 dark:hover:bg-slate-800/50'
+                        ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-md'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800/50'
                     }`}
                   >
                     <motion.div
@@ -76,13 +76,13 @@ const Navbar = () => {
                     {active && (
                       <motion.div
                         layoutId="activeTab"
-                        className="absolute inset-0 bg-gradient-to-r from-accent-primary/10 to-accent-secondary/10 rounded-lg -z-10"
+                        className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg -z-10"
                         initial={false}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                       />
                     )}
                     <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-accent-primary to-accent-secondary rounded-full opacity-0 group-hover:opacity-100"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-0 group-hover:opacity-100"
                       initial={{ scaleX: 0 }}
                       whileHover={{ scaleX: 1 }}
                       transition={{ duration: 0.3 }}

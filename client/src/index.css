@@ -49,51 +49,6 @@
   .border-secondary {
     border-color: var(--border-secondary);
   }
-  
-  /* NEW COSMIC LIGHT MODE ACCENT UTILITIES */
-  .text-accent-primary {
-    color: var(--accent-primary);
-  }
-  
-  .text-accent-secondary {
-    color: var(--accent-secondary);
-  }
-  
-  .text-accent-success {
-    color: var(--accent-success);
-  }
-  
-  .text-accent-warning {
-    color: var(--accent-warning);
-  }
-  
-  .bg-accent-primary {
-    background-color: var(--accent-primary);
-  }
-  
-  .bg-accent-secondary {
-    background-color: var(--accent-secondary);
-  }
-  
-  .bg-accent-success {
-    background-color: var(--accent-success);
-  }
-  
-  .bg-accent-warning {
-    background-color: var(--accent-warning);
-  }
-  
-  .border-accent-primary {
-    border-color: var(--accent-primary);
-  }
-  
-  .shadow-primary {
-    box-shadow: 0 2px 8px var(--shadow-primary);
-  }
-  
-  .shadow-secondary {
-    box-shadow: 0 1px 4px var(--shadow-secondary);
-  }
 }
 
 /* ========================================
@@ -286,101 +241,14 @@
   }
 }
 
-/* NEW COSMIC LIGHT MODE BUTTON STYLES */
+/* Professional button styles with minimal colors */
 .cosmic-btn-primary {
-  background: var(--accent-primary);
-  color: #ffffff;
-  font-weight: 600;
+  background: #e2e8f0;
+  color: #0f172a;
+  font-weight: 700;
   border: 2px solid transparent;
-  box-shadow: 0 4px 15px rgba(90, 103, 216, 0.2);
+  box-shadow: 0 4px 15px rgba(226, 232, 240, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.cosmic-btn-primary:hover {
-  background: #4C51BF;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(90, 103, 216, 0.3);
-}
-
-.cosmic-btn-secondary {
-  background: var(--accent-secondary);
-  color: #ffffff;
-  font-weight: 600;
-  border: 2px solid transparent;
-  box-shadow: 0 4px 15px rgba(128, 90, 213, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.cosmic-btn-secondary:hover {
-  background: #6B46C1;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(128, 90, 213, 0.3);
-}
-
-.cosmic-btn-success {
-  background: var(--accent-success);
-  color: #ffffff;
-  font-weight: 600;
-  border: 2px solid transparent;
-  box-shadow: 0 4px 15px rgba(56, 178, 172, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.cosmic-btn-success:hover {
-  background: #319795;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(56, 178, 172, 0.3);
-}
-
-.cosmic-btn-outline {
-  background: transparent;
-  color: var(--accent-primary);
-  font-weight: 600;
-  border: 2px solid var(--accent-primary);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.cosmic-btn-outline:hover {
-  background: var(--accent-primary);
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(90, 103, 216, 0.3);
-}
-
-/* COSMIC CARD STYLES */
-.cosmic-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-primary);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px var(--shadow-primary);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.cosmic-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px var(--shadow-primary);
-  border-color: var(--accent-primary);
-}
-
-/* COSMIC FORM STYLES */
-.cosmic-input {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-primary);
-  color: var(--text-primary);
-  border-radius: 8px;
-  padding: 12px 16px;
-  font-size: 14px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.cosmic-input:focus {
-  outline: none;
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.1);
-}
-
-.cosmic-input::placeholder {
-  color: var(--text-tertiary);
 }
 
 .cosmic-btn-primary:hover {
@@ -2390,24 +2258,17 @@ body {
 
 /* CSS Custom Properties for Theme System */
 :root {
-  /* NEW COSMIC LIGHT MODE THEME - Premium Professional Design */
-  --bg-primary: #F7FAFC; /* Cosmic Mist */
-  --bg-secondary: #FFFFFF; /* Pure White */
-  --bg-tertiary: #F7FAFC; /* Cosmic Mist */
-  --text-primary: #1A202C; /* Deep Space Charcoal */
-  --text-secondary: #2D3748; /* Meteorite Gray */
-  --text-tertiary: #4A5568; /* Muted Meteorite */
-  --border-primary: #E2E8F0; /* Light Orbit Gray */
-  --border-secondary: #EDF2F7; /* Subtle Orbit Gray */
-  --shadow-primary: rgba(26, 32, 44, 0.08);
-  --shadow-secondary: rgba(26, 32, 44, 0.05);
-  
-  /* COSMIC ACCENT COLORS */
-  --accent-primary: #5A67D8; /* Nebula Blue */
-  --accent-secondary: #805AD5; /* Galactic Purple */
-  --accent-success: #38B2AC; /* Aurora Teal */
-  --accent-warning: #F56565; /* Comet Red */
-  --accent-highlight: #F6E05E; /* Starlight Yellow */
+  /* Light theme variables - Updated with reference image background */
+  --bg-primary: #F7F7E7;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f8f9fa;
+  --text-primary: #2D3A4A;
+  --text-secondary: rgba(45, 58, 74, 0.7);
+  --text-tertiary: rgba(45, 58, 74, 0.5);
+  --border-primary: rgba(214, 234, 248, 0.2);
+  --border-secondary: rgba(214, 234, 248, 0.1);
+  --shadow-primary: rgba(45, 58, 74, 0.08);
+  --shadow-secondary: rgba(45, 58, 74, 0.05);
   
   /* Error message theme variables - Light Mode */
   --error-bg: #FFF8F8;
