@@ -3957,38 +3957,56 @@ body {
     margin-bottom: 8px !important;
     border-radius: 12px !important;
     min-height: 64px !important;
-    background: var(--bg-tertiary) !important;
-    border: 1px solid var(--border-primary) !important;
+    background: #f8f9fa !important;
+    border: 1px solid #e2e8f0 !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
   }
   
   .dashboard-activity-row:hover {
     transform: translateY(-1px) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-    background: var(--hover-bg-secondary) !important;
-    border-color: var(--hover-border-primary) !important;
+    background: #f1f5f9 !important;
+    border-color: #cbd5e1 !important;
   }
   
   .dark .dashboard-activity-row {
-    background: rgba(30, 41, 59, 0.8) !important;
-    border: 1px solid rgba(71, 85, 105, 0.6) !important;
+    background: #1e293b !important;
+    border: 1px solid #475569 !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
   }
   
   .dark .dashboard-activity-row:hover {
-    background: rgba(51, 65, 85, 0.9) !important;
-    border-color: rgba(100, 116, 139, 0.8) !important;
+    background: #334155 !important;
+    border-color: #64748b !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
   }
   
-  /* Mobile status badge fixes for dark mode */
+  /* Mobile status badge fixes for both light and dark modes */
+  .dashboard-activity-row .bg-green-50 {
+    background: #dcfce7 !important;
+    border-color: #bbf7d0 !important;
+  }
+  
+  .dashboard-activity-row .text-green-800 {
+    color: #166534 !important;
+  }
+  
+  .dashboard-activity-row .bg-yellow-50 {
+    background: #fefce8 !important;
+    border-color: #fef3c7 !important;
+  }
+  
+  .dashboard-activity-row .text-yellow-800 {
+    color: #a16207 !important;
+  }
+  
   .dark .dashboard-activity-row .bg-green-50 {
     background: rgba(34, 197, 94, 0.2) !important;
     border-color: rgba(34, 197, 94, 0.4) !important;
   }
   
   .dark .dashboard-activity-row .text-green-800 {
-    color: rgb(34, 197, 94) !important;
+    color: #22c55e !important;
   }
   
   .dark .dashboard-activity-row .bg-yellow-50 {
@@ -3997,10 +4015,22 @@ body {
   }
   
   .dark .dashboard-activity-row .text-yellow-800 {
-    color: rgb(234, 179, 8) !important;
+    color: #eab308 !important;
   }
   
-  /* Enhanced activity type icon backgrounds for dark mode */
+  /* Enhanced activity type icon backgrounds for both modes */
+  .dashboard-activity-row .bg-soft-pink {
+    background: #fce7f3 !important;
+  }
+  
+  .dashboard-activity-row .bg-pale-blue {
+    background: #dbeafe !important;
+  }
+  
+  .dashboard-activity-row .bg-light-teal {
+    background: #ccfbf1 !important;
+  }
+  
   .dark .dashboard-activity-row .bg-soft-pink {
     background: rgba(255, 218, 221, 0.9) !important;
   }
@@ -4013,23 +4043,62 @@ body {
     background: rgba(153, 246, 228, 0.9) !important;
   }
   
-  /* Enhanced text visibility for dark mode activity rows */
+  /* Enhanced text visibility for both modes */
+  .dashboard-activity-row .text-primary {
+    color: #1f2937 !important;
+    font-weight: 500 !important;
+  }
+  
+  .dashboard-activity-row .text-secondary {
+    color: #6b7280 !important;
+    font-weight: 400 !important;
+  }
+  
   .dark .dashboard-activity-row .text-primary {
-    color: rgba(255, 255, 255, 0.95) !important;
+    color: #f9fafb !important;
     font-weight: 500 !important;
   }
   
   .dark .dashboard-activity-row .text-secondary {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: #d1d5db !important;
     font-weight: 400 !important;
   }
   
-  .dark .dashboard-activity-row .font-medium {
+  .dashboard-activity-row .font-medium {
     font-weight: 600 !important;
   }
   
-  .dark .dashboard-activity-row .font-bold {
+  .dashboard-activity-row .font-bold {
     font-weight: 700 !important;
+  }
+}
+
+/* Apply dashboard activity row styling to all screen sizes */
+@media (max-width: 1024px) {
+  .dashboard-activity-row {
+    background: #f8f9fa !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
+    margin-bottom: 8px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+  }
+  
+  .dark .dashboard-activity-row {
+    background: #1e293b !important;
+    border: 1px solid #475569 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  .dashboard-activity-row:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .dark .dashboard-activity-row:hover {
+    background: #334155 !important;
+    border-color: #64748b !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
   }
 }
 
