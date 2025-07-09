@@ -92,11 +92,23 @@ const SettingsHub = () => {
 
   // Handle hash-based navigation
   useEffect(() => {
-    const hash = window.location.hash.substring(1);
-    if (hash && tabs.find(tab => tab.id === hash)) {
-      setActiveTab(hash);
-    }
-  }, [location]);
+    const handleHashChange = () => {
+      const hash = window.location.hash.substring(1);
+      if (hash && tabs.find(tab => tab.id === hash)) {
+        setActiveTab(hash);
+      }
+    };
+
+    // Check hash on mount
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
 
   const showNotification = (type: 'success' | 'error', message: string) => {
     setNotification({ type, message });
@@ -804,7 +816,10 @@ const SettingsHub = () => {
                 {tabs.map((tab) => (
                   <motion.button
                     key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
+                    onClick={() => {
+                      setActiveTab(tab.id);
+                      window.location.hash = tab.id;
+                    }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-all duration-200 border ${
