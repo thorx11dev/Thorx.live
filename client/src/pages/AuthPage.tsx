@@ -338,6 +338,24 @@ const AuthPage = () => {
         </div>
       )}
 
+      {/* Navigation */}
+      <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
+        <div className="flex items-center space-x-2 sm:space-x-3">
+          <Link href="/" className="flex items-center space-x-2 sm:space-x-3 group">
+            <ThorxLogo size="md" className="text-slate-200 group-hover:text-white transition-colors" />
+          </Link>
+        </div>
+        <div className="flex items-center gap-3 sm:gap-6">
+          <Link 
+            href="/" 
+            className="text-slate-400 hover:text-slate-200 transition-colors inline-flex items-center gap-2 text-sm sm:text-base focus:outline-none"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Home
+          </Link>
+        </div>
+      </nav>
+
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-8">
         <div className="w-full max-w-6xl mx-auto">
@@ -351,12 +369,6 @@ const AuthPage = () => {
                 {/* Logo and Title */}
                 <div className="text-center mb-8">
                   <div className="flex justify-center items-center mb-6">
-                    <Link 
-                      href="/"
-                      className="absolute left-0 text-slate-400 hover:text-slate-200 transition-colors focus:outline-none"
-                    >
-                      <ArrowLeft className="w-6 h-6" />
-                    </Link>
                     <ThorxLogo size="2xl" className="text-slate-200" />
                   </div>
                   <h1 className="text-4xl font-bold text-slate-200 mb-4">
@@ -419,16 +431,6 @@ const AuthPage = () => {
               
               {/* Mobile Header */}
               <div className="lg:hidden text-center mb-8">
-                <div className="flex justify-between items-center mb-6">
-                  <Link 
-                    href="/"
-                    className="text-slate-400 hover:text-slate-200 transition-colors focus:outline-none"
-                  >
-                    <ArrowLeft className="w-5 h-5" />
-                  </Link>
-                  <ThorxLogo size="xl" className="text-slate-200" />
-                  <div className="w-5 h-5"></div> {/* Spacer for balance */}
-                </div>
                 <h1 className="text-3xl font-bold text-slate-200 mb-2">
                   {isLogin ? 'Welcome Back' : 'Join the Journey'}
                 </h1>
