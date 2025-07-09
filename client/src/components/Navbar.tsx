@@ -196,37 +196,61 @@ const Navbar = () => {
                         </motion.div>
                         
                         <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                          <Link
-                            to="/settings#notifications"
+                          <a
+                            href="/settings#notifications"
                             className="dropdown-menu-item flex items-center space-x-3 px-4 py-3 text-sm"
-                            onClick={() => setShowUserMenu(false)}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setShowUserMenu(false);
+                              if (window.location.pathname === '/settings') {
+                                window.location.hash = 'notifications';
+                              } else {
+                                window.location.href = '/settings#notifications';
+                              }
+                            }}
                           >
                             <Bell className="w-4 h-4" />
                             <span>Notifications</span>
                             <div className="ml-auto w-2 h-2 bg-red-500 rounded-full notification-pulse"></div>
-                          </Link>
+                          </a>
                         </motion.div>
                         
                         <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                          <Link
-                            to="/settings#security"
+                          <a
+                            href="/settings#security"
                             className="dropdown-menu-item flex items-center space-x-3 px-4 py-3 text-sm"
-                            onClick={() => setShowUserMenu(false)}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setShowUserMenu(false);
+                              if (window.location.pathname === '/settings') {
+                                window.location.hash = 'security';
+                              } else {
+                                window.location.href = '/settings#security';
+                              }
+                            }}
                           >
                             <Shield className="w-4 h-4" />
                             <span>Security & Privacy</span>
-                          </Link>
+                          </a>
                         </motion.div>
                         
                         <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                          <Link
-                            to="/settings#appearance"
+                          <a
+                            href="/settings#appearance"
                             className="dropdown-menu-item flex items-center space-x-3 px-4 py-3 text-sm"
-                            onClick={() => setShowUserMenu(false)}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setShowUserMenu(false);
+                              if (window.location.pathname === '/settings') {
+                                window.location.hash = 'appearance';
+                              } else {
+                                window.location.href = '/settings#appearance';
+                              }
+                            }}
                           >
                             <Palette className="w-4 h-4" />
                             <span>Appearance</span>
-                          </Link>
+                          </a>
                         </motion.div>
                         
                         <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>

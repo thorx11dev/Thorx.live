@@ -99,7 +99,7 @@ const SettingsHub = () => {
       }
     };
 
-    // Check hash on mount
+    // Check hash on mount and location changes
     handleHashChange();
 
     // Listen for hash changes
@@ -108,7 +108,7 @@ const SettingsHub = () => {
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
     };
-  }, []);
+  }, [location]);
 
   const showNotification = (type: 'success' | 'error', message: string) => {
     setNotification({ type, message });
