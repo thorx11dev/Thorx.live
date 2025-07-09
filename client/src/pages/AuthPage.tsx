@@ -761,7 +761,14 @@ const AuthPage = () => {
             <p className="text-slate-400">
               {isLogin ? (
                 <>
-                  Don't have an account?{' '}
+                  <button
+                    onClick={() => setShowTeamVerification(true)}
+                    className="text-slate-300 hover:text-slate-100 font-medium underline focus:outline-none inline-flex items-center gap-2"
+                  >
+                    <UserCheck className="w-4 h-4" />
+                    Are You a Team Member?
+                  </button>
+                  {' or '}
                   <button
                     onClick={() => setIsLogin(!isLogin)}
                     className="text-slate-300 hover:text-slate-100 font-medium underline focus:outline-none"
