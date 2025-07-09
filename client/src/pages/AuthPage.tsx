@@ -759,13 +759,34 @@ const AuthPage = () => {
           {/* Footer */}
           <div className="text-center mt-8">
             <p className="text-slate-400">
-              {isLogin ? "Don't have an account?" : "Already have an account?"}{' '}
-              <button
-                onClick={() => setIsLogin(!isLogin)}
-                className="text-slate-300 hover:text-slate-100 font-medium underline focus:outline-none"
-              >
-                {isLogin ? 'Sign up' : 'Sign in'}
-              </button>
+              {isLogin ? (
+                <>
+                  Don't have an account?{' '}
+                  <button
+                    onClick={() => setIsLogin(!isLogin)}
+                    className="text-slate-300 hover:text-slate-100 font-medium underline focus:outline-none"
+                  >
+                    Sign up
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    onClick={() => setShowTeamVerification(true)}
+                    className="text-slate-300 hover:text-slate-100 font-medium underline focus:outline-none inline-flex items-center gap-2"
+                  >
+                    <UserCheck className="w-4 h-4" />
+                    Are You a Team Member?
+                  </button>
+                  {' or '}
+                  <button
+                    onClick={() => setIsLogin(!isLogin)}
+                    className="text-slate-300 hover:text-slate-100 font-medium underline focus:outline-none"
+                  >
+                    Sign in
+                  </button>
+                </>
+              )}
             </p>
             
             {/* Trust Indicators */}
@@ -783,19 +804,6 @@ const AuthPage = () => {
                 <span className="text-xs">Cosmic</span>
               </div>
             </div>
-
-            {/* Team Member Verification Prompt - Only show on registration */}
-            {!isLogin && (
-              <div className="text-center mt-6 pt-6 border-t border-slate-700">
-                <button
-                  onClick={() => setShowTeamVerification(true)}
-                  className="text-slate-400 hover:text-slate-200 transition-colors inline-flex items-center gap-2 text-sm underline focus:outline-none"
-                >
-                  <UserCheck className="w-4 h-4" />
-                  Are You a Team Member?
-                </button>
-              </div>
-            )}
           </div>
             </div>
           </div>
