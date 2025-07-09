@@ -731,10 +731,10 @@ const AuthPage = () => {
                   </label>
                   <button
                     type="button"
-                    className="group relative px-4 py-2 bg-gradient-to-r from-amber-600/10 to-orange-600/10 border border-amber-500/30 rounded-lg text-amber-400 hover:text-amber-300 hover:border-amber-400/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-500/50 inline-flex items-center gap-2 text-sm font-medium backdrop-blur-sm"
+                    className="group relative px-6 py-3 bg-gradient-to-r from-amber-600/20 to-orange-600/20 border-2 border-amber-400/60 rounded-xl text-amber-300 hover:text-white hover:border-amber-300 hover:bg-gradient-to-r hover:from-amber-600/30 hover:to-orange-600/30 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-amber-400/30 inline-flex items-center gap-2 text-sm font-semibold backdrop-blur-sm shadow-lg hover:shadow-amber-500/25"
                   >
                     <span>Forgot password?</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-amber-600/5 to-orange-600/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-amber-600/10 to-orange-600/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 </div>
               )}
@@ -759,53 +759,53 @@ const AuthPage = () => {
 
           {/* Footer */}
           <div className="text-center mt-8">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
               {isLogin ? (
                 <>
                   <button
                     onClick={() => setShowTeamVerification(true)}
-                    className="group relative px-6 py-3 bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-500/30 rounded-lg text-blue-400 hover:text-blue-300 hover:border-blue-400/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50 inline-flex items-center gap-3 text-sm font-medium backdrop-blur-sm"
+                    className="group relative px-8 py-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-2 border-blue-400/60 rounded-xl text-blue-300 hover:text-white hover:border-blue-300 hover:bg-gradient-to-r hover:from-blue-600/30 hover:to-purple-600/30 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-400/30 inline-flex items-center gap-3 text-base font-semibold backdrop-blur-sm shadow-lg hover:shadow-blue-500/25"
                   >
-                    <UserCheck className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                    <UserCheck className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
                     <span>Are You a Team Member?</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
-                  <div className="flex items-center gap-2 text-slate-500">
-                    <div className="w-1 h-1 bg-slate-500 rounded-full"></div>
-                    <span className="text-xs">or</span>
-                    <div className="w-1 h-1 bg-slate-500 rounded-full"></div>
+                  <div className="flex items-center gap-3 text-slate-400">
+                    <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
+                    <span className="text-sm font-medium">or</span>
+                    <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
                   </div>
                   <button
                     onClick={() => setIsLogin(!isLogin)}
-                    className="group relative px-6 py-3 bg-gradient-to-r from-emerald-600/10 to-teal-600/10 border border-emerald-500/30 rounded-lg text-emerald-400 hover:text-emerald-300 hover:border-emerald-400/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 inline-flex items-center gap-3 text-sm font-medium backdrop-blur-sm"
+                    className="group relative px-8 py-4 bg-gradient-to-r from-emerald-600/20 to-teal-600/20 border-2 border-emerald-400/60 rounded-xl text-emerald-300 hover:text-white hover:border-emerald-300 hover:bg-gradient-to-r hover:from-emerald-600/30 hover:to-teal-600/30 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-emerald-400/30 inline-flex items-center gap-3 text-base font-semibold backdrop-blur-sm shadow-lg hover:shadow-emerald-500/25"
                   >
                     <span>Sign up</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/5 to-teal-600/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 to-teal-600/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 </>
               ) : (
                 <>
                   <button
                     onClick={() => setShowTeamVerification(true)}
-                    className="group relative px-6 py-3 bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-500/30 rounded-lg text-blue-400 hover:text-blue-300 hover:border-blue-400/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50 inline-flex items-center gap-3 text-sm font-medium backdrop-blur-sm"
+                    className="group relative px-8 py-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-2 border-blue-400/60 rounded-xl text-blue-300 hover:text-white hover:border-blue-300 hover:bg-gradient-to-r hover:from-blue-600/30 hover:to-purple-600/30 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-400/30 inline-flex items-center gap-3 text-base font-semibold backdrop-blur-sm shadow-lg hover:shadow-blue-500/25"
                   >
-                    <UserCheck className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                    <UserCheck className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
                     <span>Are You a Team Member?</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
-                  <div className="flex items-center gap-2 text-slate-500">
-                    <div className="w-1 h-1 bg-slate-500 rounded-full"></div>
-                    <span className="text-xs">or</span>
-                    <div className="w-1 h-1 bg-slate-500 rounded-full"></div>
+                  <div className="flex items-center gap-3 text-slate-400">
+                    <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
+                    <span className="text-sm font-medium">or</span>
+                    <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
                   </div>
                   <button
                     onClick={() => setIsLogin(!isLogin)}
-                    className="group relative px-6 py-3 bg-gradient-to-r from-pink-600/10 to-rose-600/10 border border-pink-500/30 rounded-lg text-pink-400 hover:text-pink-300 hover:border-pink-400/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pink-500/50 inline-flex items-center gap-3 text-sm font-medium backdrop-blur-sm"
+                    className="group relative px-8 py-4 bg-gradient-to-r from-pink-600/20 to-rose-600/20 border-2 border-pink-400/60 rounded-xl text-pink-300 hover:text-white hover:border-pink-300 hover:bg-gradient-to-r hover:from-pink-600/30 hover:to-rose-600/30 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-pink-400/30 inline-flex items-center gap-3 text-base font-semibold backdrop-blur-sm shadow-lg hover:shadow-pink-500/25"
                   >
                     <span>Sign in</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-pink-600/5 to-rose-600/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-600/10 to-rose-600/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 </>
               )}
