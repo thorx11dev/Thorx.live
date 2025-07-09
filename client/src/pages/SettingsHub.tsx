@@ -55,15 +55,12 @@ const SettingsHub = () => {
 
   const [preferences, setPreferences] = useState(user?.preferences || {
     theme: 'light',
-    fontSize: 'medium',
     language: 'en',
     timezone: 'UTC-5',
     notifications: {
       email: true,
       push: true,
       sms: false,
-      sound: true,
-      frequency: 'immediate',
       types: {
         earnings: true,
         tasks: true,
@@ -72,13 +69,6 @@ const SettingsHub = () => {
         updates: false,
         security: true
       }
-    },
-    privacy: {
-      profileVisibility: 'public',
-      showEarnings: true,
-      showActivity: true,
-      allowMessages: true,
-      contentFiltering: false
     }
   });
 
@@ -86,8 +76,7 @@ const SettingsHub = () => {
     { id: 'profile', label: 'Profile', icon: User },
     { id: 'notifications', label: 'Notifications', icon: CosmicBell },
     { id: 'security', label: 'Security', icon: CosmicShield },
-    { id: 'appearance', label: 'Appearance', icon: CosmicPalette },
-    { id: 'preferences', label: 'Preferences', icon: CosmicGlobe }
+    { id: 'appearance', label: 'Appearance', icon: CosmicPalette }
   ];
 
   // Handle hash-based navigation
@@ -319,47 +308,6 @@ const SettingsHub = () => {
                 </label>
               </motion.div>
 
-              <motion.div 
-                whileHover={{ scale: 1.01 }}
-                className="flex items-center justify-between p-4 bg-tertiary rounded-lg border border-primary hover:border-soft-pink/30 transition-all duration-200"
-              >
-                <div className="flex items-center space-x-3">
-                  {preferences.notifications.sound ? <Volume2 className="w-5 h-5 text-secondary" /> : <VolumeX className="w-5 h-5 text-secondary" />}
-                  <div>
-                    <div className="font-medium text-primary">Sound Notifications</div>
-                    <div className="text-sm text-secondary">Play sounds for notifications</div>
-                  </div>
-                </div>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={preferences.notifications.sound}
-                    onChange={(e) => setPreferences({
-                      ...preferences,
-                      notifications: { ...preferences.notifications, sound: e.target.checked }
-                    })}
-                    className="sr-only peer"
-                  />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-soft-pink/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-soft-pink"></div>
-                </label>
-              </motion.div>
-            </div>
-
-            {/* Notification Frequency */}
-            <div className="p-4 bg-tertiary rounded-lg border border-primary">
-              <h4 className="font-medium text-primary mb-3">Notification Frequency</h4>
-              <select
-                value={preferences.notifications.frequency}
-                onChange={(e) => setPreferences({
-                  ...preferences,
-                  notifications: { ...preferences.notifications, frequency: e.target.value as any }
-                })}
-                className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-soft-pink/50 text-primary bg-secondary"
-              >
-                <option value="immediate">Immediate</option>
-                <option value="hourly">Hourly Digest</option>
-                <option value="daily">Daily Digest</option>
-              </select>
             </div>
 
             {/* Notification Types */}
@@ -586,52 +534,9 @@ const SettingsHub = () => {
               <ThemeSwitcher />
             </div>
 
-            {/* Font Size */}
-            <div className="p-4 bg-tertiary rounded-lg border border-primary">
-              <h4 className="font-medium text-primary mb-3">Font Size</h4>
-              <div className="space-y-3">
-                {[
-                  { id: 'small', name: 'Small', size: 'text-sm' },
-                  { id: 'medium', name: 'Medium', size: 'text-base' },
-                  { id: 'large', name: 'Large', size: 'text-lg' }
-                ].map((size) => (
-                  <label key={size.id} className="flex items-center space-x-3 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="fontSize"
-                      value={size.id}
-                      checked={preferences.fontSize === size.id}
-                      onChange={(e) => setPreferences({...preferences, fontSize: e.target.value as any})}
-                      className="text-soft-pink focus:ring-soft-pink/50"
-                    />
-                    <span className={`${size.size} text-primary`}>{size.name} - Sample text</span>
-                  </label>
-                ))}
-              </div>
-            </div>
 
-            {/* Color Customization */}
-            <div className="p-4 bg-tertiary rounded-lg border border-primary">
-              <h4 className="font-medium text-primary mb-3">Accent Colors</h4>
-              <div className="grid grid-cols-6 gap-3">
-                {[
-                  { name: 'Soft Pink', color: 'bg-soft-pink' },
-                  { name: 'Pale Blue', color: 'bg-pale-blue' },
-                  { name: 'Light Teal', color: 'bg-light-teal' },
-                  { name: 'Muted Yellow', color: 'bg-muted-yellow' },
-                  { name: 'Peach Coral', color: 'bg-peach-coral' },
-                  { name: 'Deep Navy', color: 'bg-deep-navy' }
-                ].map((colorOption) => (
-                  <motion.div
-                    key={colorOption.name}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className={`w-12 h-12 ${colorOption.color} rounded-lg cursor-pointer hover:shadow-lg transition-all duration-200`}
-                    title={colorOption.name}
-                  />
-                ))}
-              </div>
-            </div>
+
+
 
             <motion.button
               whileHover={{ scale: 1.02 }}
@@ -647,113 +552,7 @@ const SettingsHub = () => {
           </div>
         );
 
-      case 'preferences':
-        return (
-          <div className="space-y-6">
-            <h3 className="text-lg font-semibold text-primary mb-4">General Preferences</h3>
-            
-            {/* Language & Region */}
-            <div className="p-4 bg-tertiary rounded-lg border border-primary">
-              <h4 className="font-medium text-primary mb-3">Language & Region</h4>
-              <div className="space-y-3">
-                <div>
-                  <label className="block text-sm font-medium text-primary mb-1">Language</label>
-                  <select 
-                    value={preferences.language}
-                    onChange={(e) => setPreferences({...preferences, language: e.target.value})}
-                    className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-soft-pink/50 text-primary bg-secondary"
-                  >
-                    <option value="en">English</option>
-                    <option value="es">Spanish</option>
-                    <option value="fr">French</option>
-                    <option value="de">German</option>
-                    <option value="ja">Japanese</option>
-                    <option value="ko">Korean</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-primary mb-1">Time Zone</label>
-                  <select 
-                    value={preferences.timezone}
-                    onChange={(e) => setPreferences({...preferences, timezone: e.target.value})}
-                    className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-soft-pink/50 text-primary bg-secondary"
-                  >
-                    <option value="UTC-12">UTC-12 (Baker Island)</option>
-                    <option value="UTC-8">UTC-8 (Pacific Time)</option>
-                    <option value="UTC-5">UTC-5 (Eastern Time)</option>
-                    <option value="UTC+0">UTC+0 (GMT)</option>
-                    <option value="UTC+1">UTC+1 (CET)</option>
-                    <option value="UTC+9">UTC+9 (JST)</option>
-                  </select>
-                </div>
-              </div>
-            </div>
 
-            {/* Privacy Settings */}
-            <div className="p-4 bg-tertiary rounded-lg border border-primary">
-              <h4 className="font-medium text-primary mb-3">Privacy Controls</h4>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-primary mb-2">Profile Visibility</label>
-                  <select 
-                    value={preferences.privacy.profileVisibility}
-                    onChange={(e) => setPreferences({
-                      ...preferences,
-                      privacy: { ...preferences.privacy, profileVisibility: e.target.value as any }
-                    })}
-                    className="w-full px-4 py-3 border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-soft-pink/50 text-primary bg-secondary"
-                  >
-                    <option value="public">Public</option>
-                    <option value="friends">Friends Only</option>
-                    <option value="private">Private</option>
-                  </select>
-                </div>
-
-                {[
-                  { key: 'showEarnings', label: 'Show Earnings', desc: 'Display your earnings on your profile' },
-                  { key: 'showActivity', label: 'Show Activity', desc: 'Display your recent activity' },
-                  { key: 'allowMessages', label: 'Allow Messages', desc: 'Allow other users to message you' },
-                  { key: 'contentFiltering', label: 'Content Filtering', desc: 'Filter inappropriate content' }
-                ].map((setting) => (
-                  <motion.div 
-                    key={setting.key} 
-                    whileHover={{ scale: 1.01 }}
-                    className="flex items-center justify-between p-3 bg-secondary rounded border border-primary hover:border-soft-pink/30 transition-all duration-200"
-                  >
-                    <div>
-                      <div className="font-medium text-primary">{setting.label}</div>
-                      <div className="text-sm text-secondary">{setting.desc}</div>
-                    </div>
-                    <label className="relative inline-flex items-center cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={preferences.privacy[setting.key as keyof typeof preferences.privacy] as boolean}
-                        onChange={(e) => setPreferences({
-                          ...preferences,
-                          privacy: { ...preferences.privacy, [setting.key]: e.target.checked }
-                        })}
-                        className="sr-only peer"
-                      />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-soft-pink/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-soft-pink"></div>
-                    </label>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={handlePreferencesUpdate}
-              disabled={isLoading}
-              className="bg-soft-pink hover:bg-soft-pink/80 font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center space-x-2 disabled:opacity-50 border border-soft-pink/20"
-              style={{ color: '#2D2D2D' }}
-            >
-              <Save className="w-4 h-4" style={{ color: '#2D2D2D' }} />
-              <span>{isLoading ? 'Saving...' : 'Save Preferences'}</span>
-            </motion.button>
-          </div>
-        );
 
       default:
         return null;
