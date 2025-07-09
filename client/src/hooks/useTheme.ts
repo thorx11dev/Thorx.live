@@ -42,49 +42,14 @@ export const useThemeState = () => {
     // Force immediate theme application with stronger CSS properties
     root.setAttribute('data-theme', newTheme);
     
-    // Force CSS variables with maximum priority overrides
+    // Ensure body background is consistent with !important override
     if (newTheme === 'dark') {
-      // Dark theme - force override
-      root.style.setProperty('--bg-primary', '#0f172a', 'important');
-      root.style.setProperty('--bg-secondary', '#1e293b', 'important');
-      root.style.setProperty('--bg-tertiary', '#334155', 'important');
-      root.style.setProperty('--text-primary', '#f8fafc', 'important');
-      root.style.setProperty('--text-secondary', '#e2e8f0', 'important');
-      root.style.setProperty('--text-tertiary', '#cbd5e1', 'important');
-      root.style.setProperty('--border-primary', '#475569', 'important');
-      root.style.setProperty('--border-secondary', '#334155', 'important');
-      root.style.setProperty('--shadow-primary', 'rgba(0, 0, 0, 0.4)', 'important');
-      root.style.setProperty('--shadow-secondary', 'rgba(0, 0, 0, 0.25)', 'important');
-      root.style.setProperty('color-scheme', 'dark');
       document.body.style.setProperty('background-color', '#0f172a', 'important');
-      document.body.style.setProperty('color', '#f8fafc', 'important');
+      root.style.setProperty('color-scheme', 'dark');
     } else {
-      // Light theme - force clean white override
-      root.style.setProperty('--bg-primary', '#ffffff', 'important');
-      root.style.setProperty('--bg-secondary', '#f8fafc', 'important');
-      root.style.setProperty('--bg-tertiary', '#f1f5f9', 'important');
-      root.style.setProperty('--text-primary', '#1e293b', 'important');
-      root.style.setProperty('--text-secondary', '#475569', 'important');
-      root.style.setProperty('--text-tertiary', '#64748b', 'important');
-      root.style.setProperty('--border-primary', '#e2e8f0', 'important');
-      root.style.setProperty('--border-secondary', '#f1f5f9', 'important');
-      root.style.setProperty('--shadow-primary', 'rgba(30, 41, 59, 0.08)', 'important');
-      root.style.setProperty('--shadow-secondary', 'rgba(30, 41, 59, 0.04)', 'important');
-      root.style.setProperty('color-scheme', 'light');
       document.body.style.setProperty('background-color', '#ffffff', 'important');
-      document.body.style.setProperty('color', '#1e293b', 'important');
+      root.style.setProperty('color-scheme', 'light');
     }
-    
-    // Force refresh of all elements
-    const allElements = document.querySelectorAll('*');
-    allElements.forEach(el => {
-      if (el instanceof HTMLElement) {
-        el.style.setProperty('transition', 'none', 'important');
-        setTimeout(() => {
-          el.style.removeProperty('transition');
-        }, 1);
-      }
-    });
   };
 
   const toggleTheme = () => {
@@ -117,17 +82,17 @@ export const useThemeState = () => {
       root.style.setProperty('color-scheme', 'dark');
       document.body.style.setProperty('background-color', '#0f172a', 'important');
     } else {
-      // Light theme variables - Updated to match new minimal design
+      // Light theme variables
       root.style.setProperty('--bg-primary', '#ffffff', 'important');
       root.style.setProperty('--bg-secondary', '#f8fafc', 'important');
       root.style.setProperty('--bg-tertiary', '#f1f5f9', 'important');
-      root.style.setProperty('--text-primary', '#1e293b', 'important');
-      root.style.setProperty('--text-secondary', '#475569', 'important');
+      root.style.setProperty('--text-primary', '#0f172a', 'important');
+      root.style.setProperty('--text-secondary', '#334155', 'important');
       root.style.setProperty('--text-tertiary', '#64748b', 'important');
       root.style.setProperty('--border-primary', '#e2e8f0', 'important');
       root.style.setProperty('--border-secondary', '#f1f5f9', 'important');
-      root.style.setProperty('--shadow-primary', 'rgba(30, 41, 59, 0.08)', 'important');
-      root.style.setProperty('--shadow-secondary', 'rgba(30, 41, 59, 0.04)', 'important');
+      root.style.setProperty('--shadow-primary', 'rgba(15, 23, 42, 0.1)', 'important');
+      root.style.setProperty('--shadow-secondary', 'rgba(15, 23, 42, 0.05)', 'important');
       root.style.setProperty('color-scheme', 'light');
       document.body.style.setProperty('background-color', '#ffffff', 'important');
     }

@@ -24,7 +24,7 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <Router>
-          <div className="min-h-screen bg-primary font-cosmic transition-all duration-300">
+          <div className="min-h-screen bg-slate-900 dark:bg-slate-900 font-cosmic transition-all duration-300">
             <Switch>
               <Route path="/" component={LandingPage} />
               <Route path="/auth" component={AuthPage} />

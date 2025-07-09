@@ -49,23 +49,6 @@
   .border-secondary {
     border-color: var(--border-secondary);
   }
-  
-  /* Accent colors for light mode */
-  .bg-soft-pink {
-    background-color: #fce7f3;
-  }
-  
-  .bg-pale-blue {
-    background-color: #dbeafe;
-  }
-  
-  .bg-light-teal {
-    background-color: #ccfbf1;
-  }
-  
-  .bg-muted-yellow {
-    background-color: #fef3c7;
-  }
 }
 
 /* ========================================
@@ -2275,17 +2258,17 @@ body {
 
 /* CSS Custom Properties for Theme System */
 :root {
-  /* Light theme variables - Clean minimal design with excellent contrast */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
-  --text-primary: #1e293b;
-  --text-secondary: #475569;
-  --text-tertiary: #64748b;
-  --border-primary: #e2e8f0;
-  --border-secondary: #f1f5f9;
-  --shadow-primary: rgba(30, 41, 59, 0.08);
-  --shadow-secondary: rgba(30, 41, 59, 0.04);
+  /* Light theme variables - Updated with reference image background */
+  --bg-primary: #F7F7E7;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f8f9fa;
+  --text-primary: #2D3A4A;
+  --text-secondary: rgba(45, 58, 74, 0.7);
+  --text-tertiary: rgba(45, 58, 74, 0.5);
+  --border-primary: rgba(214, 234, 248, 0.2);
+  --border-secondary: rgba(214, 234, 248, 0.1);
+  --shadow-primary: rgba(45, 58, 74, 0.08);
+  --shadow-secondary: rgba(45, 58, 74, 0.05);
   
   /* Error message theme variables - Light Mode */
   --error-bg: #FFF8F8;
@@ -2339,11 +2322,10 @@ body {
 
 /* CRITICAL: Navigation Bar Container - Enhanced Dark Mode Support */
 .navbar-container {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid #e2e8f0;
-  box-shadow: 0 2px 10px rgba(30, 41, 59, 0.08);
+  border-bottom: 1px solid rgba(214, 234, 248, 0.2);
   transition: all var(--animation-normal) var(--animation-easing);
 }
 
@@ -2357,7 +2339,7 @@ body {
 
 /* CRITICAL: Logo Text - High Contrast Dark Mode */
 .navbar-logo-text {
-  color: #1e293b;
+  color: #2D3A4A;
   font-weight: 700;
   text-shadow: none;
   transition: color var(--animation-normal) var(--animation-easing);
@@ -2376,21 +2358,19 @@ body {
 }
 
 .navbar-desktop-item-active {
-  background-color: #f1f5f9;
-  color: #1e293b;
-  border: 1px solid #e2e8f0;
-  font-weight: 600;
+  background-color: rgba(250, 173, 221, 0.2);
+  color: #2D3A4A;
+  border: 1px solid rgba(250, 173, 221, 0.3);
 }
 
 .navbar-desktop-item-inactive {
-  color: #64748b;
+  color: rgba(45, 58, 74, 0.7);
   border: 1px solid transparent;
 }
 
 .navbar-desktop-item-inactive:hover {
-  color: #1e293b;
-  background-color: #f8fafc;
-  border: 1px solid #f1f5f9;
+  color: #2D3A4A;
+  background-color: rgba(214, 234, 248, 0.1);
 }
 
 /* Dark Mode Desktop Navigation */
@@ -2437,7 +2417,7 @@ body {
 
 /* CRITICAL: User Name Text - High Contrast */
 .navbar-user-name {
-  color: #1e293b;
+  color: #2D3A4A;
   font-weight: 600;
 }
 
@@ -2461,7 +2441,7 @@ body {
 
 /* CRITICAL: Dropdown Items - High Contrast */
 .navbar-dropdown-item {
-  color: #1e293b;
+  color: #2D3A4A;
 }
 
 .navbar-dropdown-item:hover {
@@ -2511,7 +2491,7 @@ body {
 }
 
 .navbar-modal-title {
-  color: #1e293b;
+  color: #2D3A4A;
 }
 
 .dark .navbar-modal-title {
@@ -2520,7 +2500,7 @@ body {
 }
 
 .navbar-modal-text {
-  color: #475569;
+  color: rgba(45, 58, 74, 0.7);
 }
 
 .dark .navbar-modal-text {
@@ -2530,7 +2510,7 @@ body {
 
 .navbar-modal-cancel {
   background-color: rgba(214, 234, 248, 0.2);
-  color: #1e293b;
+  color: #2D3A4A;
   border: 1px solid rgba(214, 234, 248, 0.3);
 }
 
@@ -2582,7 +2562,7 @@ body {
 
 /* CRITICAL: Mobile Menu Toggle - Enhanced Dark Mode */
 .navbar-mobile-toggle {
-  color: #1e293b;
+  color: #2D3A4A;
 }
 
 .navbar-mobile-toggle:hover {
@@ -2622,17 +2602,17 @@ body {
 
 .navbar-mobile-item-active {
   background-color: rgba(250, 173, 221, 0.2);
-  color: #1e293b;
+  color: #2D3A4A;
   border: 1px solid rgba(250, 173, 221, 0.3);
 }
 
 .navbar-mobile-item-inactive {
-  color: #475569;
+  color: rgba(45, 58, 74, 0.7);
   border: 1px solid transparent;
 }
 
 .navbar-mobile-item-inactive:hover {
-  color: #1e293b;
+  color: #2D3A4A;
   background-color: rgba(214, 234, 248, 0.1);
 }
 
@@ -4424,85 +4404,4 @@ body {
 
 .dark .celestial-form-group:hover .lucide {
   color: #94a3b8;
-}/* Cache bust: 1752084177 */
-
-/* FORCE LIGHT MODE THEME - MAXIMUM PRIORITY OVERRIDE */
-html:not(.dark) {
-  --bg-primary: #ffffff !important;
-  --bg-secondary: #f8fafc !important;
-  --bg-tertiary: #f1f5f9 !important;
-  --text-primary: #1e293b !important;
-  --text-secondary: #475569 !important;
-  --text-tertiary: #64748b !important;
-  --border-primary: #e2e8f0 !important;
-  --border-secondary: #f1f5f9 !important;
-  --shadow-primary: rgba(30, 41, 59, 0.08) !important;
-  --shadow-secondary: rgba(30, 41, 59, 0.04) !important;
-  background-color: #ffffff !important;
-  color: #1e293b !important;
-}
-
-html:not(.dark) body {
-  background-color: #ffffff !important;
-  color: #1e293b !important;
-}
-
-html:not(.dark) .bg-primary {
-  background-color: #ffffff !important;
-}
-
-html:not(.dark) .bg-secondary {
-  background-color: #f8fafc !important;
-}
-
-html:not(.dark) .bg-tertiary {
-  background-color: #f1f5f9 !important;
-}
-
-html:not(.dark) .text-primary {
-  color: #1e293b !important;
-}
-
-html:not(.dark) .text-secondary {
-  color: #475569 !important;
-}
-
-html:not(.dark) .text-tertiary {
-  color: #64748b !important;
-}
-
-/* Force clean dashboard cards in light mode */
-html:not(.dark) .dashboard-card,
-html:not(.dark) [class*="card"],
-html:not(.dark) [class*="dashboard"],
-html:not(.dark) .bg-slate-800,
-html:not(.dark) .bg-slate-700,
-html:not(.dark) .bg-slate-600,
-html:not(.dark) .bg-slate-500,
-html:not(.dark) .bg-gray-800,
-html:not(.dark) .bg-gray-700,
-html:not(.dark) .bg-gray-600 {
-  background-color: #f8fafc !important;
-  color: #1e293b !important;
-  border-color: #e2e8f0 !important;
-}
-
-/* Force clean navigation in light mode */
-html:not(.dark) nav,
-html:not(.dark) .navbar,
-html:not(.dark) [class*="nav"] {
-  background-color: #ffffff !important;
-  color: #1e293b !important;
-  border-color: #e2e8f0 !important;
-}
-
-/* Force clean text colors in light mode */
-html:not(.dark) .text-slate-100,
-html:not(.dark) .text-slate-200,
-html:not(.dark) .text-slate-300,
-html:not(.dark) .text-white,
-html:not(.dark) .text-gray-100,
-html:not(.dark) .text-gray-200,
-html:not(.dark) .text-gray-300 {
-  color: #1e293b !important;
 }
