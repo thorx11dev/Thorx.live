@@ -488,7 +488,7 @@ const WorkPortal = () => {
               </div>
             </div>
             <ResponsiveContainer width="100%" height={250}>
-              <AreaChart data={earningsData}>
+              <AreaChart data={earningsData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
                 <defs>
                   <linearGradient id="adsGradient" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor={chartColors.ads} stopOpacity={0.3}/>
@@ -509,11 +509,16 @@ const WorkPortal = () => {
                   stroke="#6B7280" 
                   fontSize={12}
                   fontWeight={500}
+                  axisLine={false}
+                  tickLine={false}
                 />
                 <YAxis 
                   stroke="#6B7280" 
-                  fontSize={12}
+                  fontSize={11}
                   fontWeight={500}
+                  axisLine={false}
+                  tickLine={false}
+                  width={35}
                 />
                 <Tooltip content={<CustomTooltip />} />
                 <Area 
@@ -564,7 +569,7 @@ const WorkPortal = () => {
           <div className="bg-secondary rounded-xl p-4 md:p-6 border border-primary shadow-primary">
             <h3 className="text-lg md:text-xl font-bold text-primary mb-4 md:mb-6">Cosmic Distribution</h3>
             <ResponsiveContainer width="100%" height={250}>
-              <PieChart>
+              <PieChart margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
                 <Pie
                   data={categoryData}
                   cx="50%"
