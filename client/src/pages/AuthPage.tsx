@@ -339,12 +339,7 @@ const AuthPage = () => {
       )}
 
       {/* Navigation */}
-      <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
-        <div className="flex items-center space-x-2 sm:space-x-3">
-          <Link href="/" className="flex items-center space-x-2 sm:space-x-3 group">
-            <ThorxLogo size="md" className="text-slate-200 group-hover:text-white transition-colors" />
-          </Link>
-        </div>
+      <nav className="relative z-50 flex justify-end items-center px-4 sm:px-6 py-4 sm:py-6">
         <div className="flex items-center gap-3 sm:gap-6">
           <Link 
             href="/" 
