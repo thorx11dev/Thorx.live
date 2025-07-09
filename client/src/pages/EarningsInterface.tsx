@@ -5,7 +5,6 @@ import {
   DollarSign, 
   Calendar, 
   Filter,
-  Download,
   Eye,
   BarChart3,
   PieChart,
@@ -18,7 +17,6 @@ import {
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart as RechartsPieChart, Cell, AreaChart, Area, BarChart, Bar } from 'recharts';
 
 const EarningsInterface = () => {
-  const [timeframe, setTimeframe] = useState('7d');
   const [viewType, setViewType] = useState('chart');
   const [activeTab, setActiveTab] = useState('overview');
 
@@ -126,31 +124,11 @@ const EarningsInterface = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8"
+          className="mb-8"
         >
           <div>
             <h1 className="text-4xl font-bold text-primary mb-2">Cosmic Earnings Analytics</h1>
             <p className="text-secondary">Track your performance across all cosmic universes</p>
-          </div>
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-4 sm:mt-0">
-            <select
-              value={timeframe}
-              onChange={(e) => setTimeframe(e.target.value)}
-              className="bg-secondary border border-primary rounded-lg px-4 py-2 text-primary focus:outline-none focus:ring-2 focus:ring-soft-pink/50"
-            >
-              <option value="7d">Last 7 days</option>
-              <option value="30d">Last 30 days</option>
-              <option value="90d">Last 90 days</option>
-              <option value="1y">Last year</option>
-            </select>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-soft-pink text-deep-navy px-4 py-2 rounded-lg font-medium flex items-center justify-center space-x-2 border border-soft-pink/20 hover:bg-soft-pink/80 transition-all duration-200"
-            >
-              <Download className="w-4 h-4" />
-              <span>Export</span>
-            </motion.button>
           </div>
         </motion.div>
 

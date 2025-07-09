@@ -332,6 +332,9 @@ Changelog:
 - July 09, 2025. Restructured dashboard activity row layout with proper flex positioning to prevent price/status overflow outside container boundaries
 - July 09, 2025. Added overflow-hidden, proper spacing, and mobile-specific width constraints for price and status elements
 - July 09, 2025. Enhanced mobile responsiveness with smaller font sizes and reduced padding for status badges on screens under 640px
+- July 09, 2025. SIMPLIFIED EARNINGS PAGE UI: Removed Export button and "Last 7 days" dropdown menu from upper right corner per user request
+- July 09, 2025. Cleaned up unused imports (Download icon) and state variables (timeframe) to maintain clean codebase
+- July 09, 2025. Streamlined earnings page header layout by removing complex control elements for simplified user interface
 ```
 
 ## User Preferences
