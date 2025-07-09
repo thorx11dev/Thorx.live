@@ -6,6 +6,7 @@ import {
   Eye, 
   EyeOff, 
   ArrowRight,
+  ArrowLeft,
   CheckCircle,
   AlertCircle,
   Shield,
@@ -349,7 +350,13 @@ const AuthPage = () => {
               <div className="max-w-lg mx-auto">
                 {/* Logo and Title */}
                 <div className="text-center mb-8">
-                  <div className="flex justify-center mb-6">
+                  <div className="flex justify-center items-center mb-6">
+                    <Link 
+                      href="/"
+                      className="absolute left-0 text-slate-400 hover:text-slate-200 transition-colors focus:outline-none"
+                    >
+                      <ArrowLeft className="w-6 h-6" />
+                    </Link>
                     <ThorxLogo size="2xl" className="text-slate-200" />
                   </div>
                   <h1 className="text-4xl font-bold text-slate-200 mb-4">
@@ -412,8 +419,15 @@ const AuthPage = () => {
               
               {/* Mobile Header */}
               <div className="lg:hidden text-center mb-8">
-                <div className="flex justify-center mb-6">
+                <div className="flex justify-between items-center mb-6">
+                  <Link 
+                    href="/"
+                    className="text-slate-400 hover:text-slate-200 transition-colors focus:outline-none"
+                  >
+                    <ArrowLeft className="w-5 h-5" />
+                  </Link>
                   <ThorxLogo size="xl" className="text-slate-200" />
+                  <div className="w-5 h-5"></div> {/* Spacer for balance */}
                 </div>
                 <h1 className="text-3xl font-bold text-slate-200 mb-2">
                   {isLogin ? 'Welcome Back' : 'Join the Journey'}
@@ -434,7 +448,7 @@ const AuthPage = () => {
               <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl p-6 lg:p-8 border border-slate-700/50">
             
             {/* Form Toggle */}
-            <div className="flex bg-slate-800/50 rounded-lg p-1 mb-8">
+            <div className="flex bg-slate-800/50 rounded-lg p-1 mb-8 gap-2">
               <button
                 onClick={() => setIsLogin(true)}
                 className={`flex-1 py-3 px-4 rounded-md font-medium transition-all duration-300 ${
@@ -635,7 +649,7 @@ const AuthPage = () => {
                   </label>
                   <button
                     type="button"
-                    className="text-sm text-slate-400 hover:text-slate-200 transition-colors"
+                    className="text-sm text-slate-400 hover:text-slate-200 transition-colors focus:outline-none"
                   >
                     Forgot password?
                   </button>
@@ -666,7 +680,7 @@ const AuthPage = () => {
               {isLogin ? "Don't have an account?" : "Already have an account?"}{' '}
               <button
                 onClick={() => setIsLogin(!isLogin)}
-                className="text-slate-300 hover:text-slate-100 font-medium underline"
+                className="text-slate-300 hover:text-slate-100 font-medium underline focus:outline-none"
               >
                 {isLogin ? 'Sign up' : 'Sign in'}
               </button>
