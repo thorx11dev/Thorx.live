@@ -3126,6 +3126,25 @@ body {
 }
 
 /* DASHBOARD - Recent Activity Table Fixes */
+.dashboard-activity-row {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-primary);
+  transition: all var(--animation-normal) var(--animation-easing);
+  will-change: background-color, border-color, box-shadow;
+}
+
+.dashboard-activity-row:hover {
+  background-color: var(--hover-bg-secondary) !important;
+  border-color: var(--hover-border-primary) !important;
+  box-shadow: var(--hover-shadow) !important;
+  /* Remove conflicting transform - let Framer Motion handle it */
+}
+
+.dashboard-activity-row:hover * {
+  color: var(--text-primary) !important;
+  transition: color var(--animation-fast) var(--animation-easing);
+}
+
 .dark .dashboard-activity-row {
   background-color: var(--bg-tertiary);
   border: 1px solid var(--border-primary);
@@ -3930,6 +3949,23 @@ body {
   .dark .text-secondary,
   .dark .text-deep-navy\/70 {
     font-weight: 500;
+  }
+  
+  /* Mobile-specific dashboard activity row fixes */
+  .dashboard-activity-row {
+    padding: 12px !important;
+    margin-bottom: 8px;
+    border-radius: 12px !important;
+    min-height: 64px !important;
+  }
+  
+  .dashboard-activity-row:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .dark .dashboard-activity-row:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
   }
 }
 
