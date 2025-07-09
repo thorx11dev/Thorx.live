@@ -339,30 +339,99 @@ const AuthPage = () => {
 
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-8">
-        <div className="w-full max-w-md">
+        <div className="w-full max-w-6xl mx-auto">
           
-          {/* Header */}
-          <div className="text-center mb-8">
-            <div className="flex justify-center mb-6">
-              <ThorxLogo size="xl" className="text-slate-200" />
-            </div>
-            <h1 className="text-3xl font-bold text-slate-200 mb-2">
-              {isLogin ? 'Welcome Back' : 'Join the Journey'}
-            </h1>
-            <p className="text-slate-400 mb-6">
-              {isLogin ? 'Sign in to your cosmic account' : 'Create your account and explore the digital universe'}
-            </p>
+          {/* Two-column layout for larger screens */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             
-            {/* Elegant Divider */}
-            <div className="flex items-center justify-center space-x-2 mb-8">
-              <div className="h-px w-12 bg-slate-600"></div>
-              <Star className="w-4 h-4 text-slate-500" />
-              <div className="h-px w-12 bg-slate-600"></div>
-            </div>
-          </div>
+            {/* Left Column - Branding & Features */}
+            <div className="hidden lg:block">
+              <div className="max-w-lg mx-auto">
+                {/* Logo and Title */}
+                <div className="text-center mb-8">
+                  <div className="flex justify-center mb-6">
+                    <ThorxLogo size="2xl" className="text-slate-200" />
+                  </div>
+                  <h1 className="text-4xl font-bold text-slate-200 mb-4">
+                    {isLogin ? 'Welcome Back' : 'Join the Cosmic Revolution'}
+                  </h1>
+                  <p className="text-lg text-slate-400">
+                    {isLogin ? 'Continue your journey through the digital universe' : 'Start your journey in the digital earning ecosystem'}
+                  </p>
+                </div>
 
-          {/* Form Container */}
-          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl p-8 border border-slate-700/50">
+                {/* Features List */}
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-slate-800/50 rounded-lg flex items-center justify-center">
+                      <Shield className="w-5 h-5 text-slate-300" />
+                    </div>
+                    <div>
+                      <h3 className="text-slate-200 font-medium">Secure Platform</h3>
+                      <p className="text-slate-400 text-sm">Bank-level encryption and security</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-slate-800/50 rounded-lg flex items-center justify-center">
+                      <Star className="w-5 h-5 text-slate-300" />
+                    </div>
+                    <div>
+                      <h3 className="text-slate-200 font-medium">Trusted Community</h3>
+                      <p className="text-slate-400 text-sm">Join thousands of active users</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-slate-800/50 rounded-lg flex items-center justify-center">
+                      <Sparkles className="w-5 h-5 text-slate-300" />
+                    </div>
+                    <div>
+                      <h3 className="text-slate-200 font-medium">Cosmic Experience</h3>
+                      <p className="text-slate-400 text-sm">Immersive digital earning journey</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Stats */}
+                <div className="grid grid-cols-2 gap-4 text-center">
+                  <div className="bg-slate-800/30 rounded-lg p-4">
+                    <div className="text-2xl font-bold text-slate-200">10K+</div>
+                    <div className="text-sm text-slate-400">Active Users</div>
+                  </div>
+                  <div className="bg-slate-800/30 rounded-lg p-4">
+                    <div className="text-2xl font-bold text-slate-200">$50K+</div>
+                    <div className="text-sm text-slate-400">Total Earnings</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Form */}
+            <div className="w-full max-w-md mx-auto lg:mx-0">
+              
+              {/* Mobile Header */}
+              <div className="lg:hidden text-center mb-8">
+                <div className="flex justify-center mb-6">
+                  <ThorxLogo size="xl" className="text-slate-200" />
+                </div>
+                <h1 className="text-3xl font-bold text-slate-200 mb-2">
+                  {isLogin ? 'Welcome Back' : 'Join the Journey'}
+                </h1>
+                <p className="text-slate-400 mb-6">
+                  {isLogin ? 'Sign in to your cosmic account' : 'Create your account and explore the digital universe'}
+                </p>
+                
+                {/* Elegant Divider */}
+                <div className="flex items-center justify-center space-x-2 mb-8">
+                  <div className="h-px w-12 bg-slate-600"></div>
+                  <Star className="w-4 h-4 text-slate-500" />
+                  <div className="h-px w-12 bg-slate-600"></div>
+                </div>
+              </div>
+
+              {/* Form Container */}
+              <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl p-6 lg:p-8 border border-slate-700/50">
             
             {/* Form Toggle */}
             <div className="flex bg-slate-800/50 rounded-lg p-1 mb-8">
@@ -617,6 +686,8 @@ const AuthPage = () => {
                 <Sparkles className="w-4 h-4" />
                 <span className="text-xs">Cosmic</span>
               </div>
+            </div>
+          </div>
             </div>
           </div>
         </div>
