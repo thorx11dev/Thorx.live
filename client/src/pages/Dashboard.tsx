@@ -203,7 +203,7 @@ const Dashboard = () => {
               </div>
             </div>
             <ResponsiveContainer width="100%" height={200} className="md:!h-[250px]">
-              <AreaChart data={earningsData}>
+              <AreaChart data={earningsData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
                 <defs>
                   <linearGradient id="earningsGradient" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor={chartColors.ads} stopOpacity={0.3}/>
@@ -216,11 +216,16 @@ const Dashboard = () => {
                   stroke="#6B7280" 
                   fontSize={12}
                   fontWeight={500}
+                  axisLine={false}
+                  tickLine={false}
                 />
                 <YAxis 
                   stroke="#6B7280" 
-                  fontSize={12}
+                  fontSize={11}
                   fontWeight={500}
+                  axisLine={false}
+                  tickLine={false}
+                  width={35}
                 />
                 <Tooltip content={<CustomTooltip />} />
                 <Area 
@@ -252,18 +257,23 @@ const Dashboard = () => {
               </div>
             </div>
             <ResponsiveContainer width="100%" height={200} className="md:!h-[250px]">
-              <BarChart data={taskData}>
+              <BarChart data={taskData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                 <XAxis 
                   dataKey="name" 
                   stroke="#6B7280" 
                   fontSize={12}
                   fontWeight={500}
+                  axisLine={false}
+                  tickLine={false}
                 />
                 <YAxis 
                   stroke="#6B7280" 
-                  fontSize={12}
+                  fontSize={11}
                   fontWeight={500}
+                  axisLine={false}
+                  tickLine={false}
+                  width={35}
                 />
                 <Tooltip content={<CustomBarTooltip />} />
                 <Bar dataKey="completed" fill={chartColors.sites} radius={[4, 4, 0, 0]} />

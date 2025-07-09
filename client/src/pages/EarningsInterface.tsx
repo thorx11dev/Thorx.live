@@ -284,7 +284,7 @@ const EarningsInterface = () => {
                 </div>
                 
                 <ResponsiveContainer width="100%" height={220} className="md:!h-[300px]">
-                  <AreaChart data={earningsData}>
+                  <AreaChart data={earningsData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
                     <defs>
                       <linearGradient id="adsGradient" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor={chartColors.ads} stopOpacity={0.3}/>
@@ -306,11 +306,16 @@ const EarningsInterface = () => {
                       fontSize={12}
                       fontWeight={500}
                       tickFormatter={(value) => new Date(value).toLocaleDateString()}
+                      axisLine={false}
+                      tickLine={false}
                     />
                     <YAxis 
                       stroke="#6B7280" 
-                      fontSize={12}
+                      fontSize={11}
                       fontWeight={500}
+                      axisLine={false}
+                      tickLine={false}
+                      width={35}
                     />
                     <Tooltip content={<CustomTooltip />} />
                     <Area 
@@ -431,18 +436,23 @@ const EarningsInterface = () => {
                 </div>
               </div>
               <ResponsiveContainer width="100%" height={220} className="md:!h-[300px]">
-                <BarChart data={monthlyData}>
+                <BarChart data={monthlyData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                   <XAxis 
                     dataKey="month" 
                     stroke="#6B7280" 
                     fontSize={12}
                     fontWeight={500}
+                    axisLine={false}
+                    tickLine={false}
                   />
                   <YAxis 
                     stroke="#6B7280" 
-                    fontSize={12}
+                    fontSize={11}
                     fontWeight={500}
+                    axisLine={false}
+                    tickLine={false}
+                    width={35}
                   />
                   <Tooltip content={<CustomTooltip />} />
                   <Bar dataKey="ads" fill={chartColors.ads} radius={[2, 2, 0, 0]} />

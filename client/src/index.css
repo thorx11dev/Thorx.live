@@ -93,6 +93,35 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
+/* MOBILE CHART OPTIMIZATION */
+@media (max-width: 640px) {
+  .recharts-responsive-container {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+  
+  .recharts-cartesian-grid {
+    stroke-width: 0.5;
+  }
+  
+  .recharts-yAxis {
+    width: 30px !important;
+  }
+  
+  .recharts-yAxis .recharts-text {
+    font-size: 10px !important;
+  }
+  
+  .recharts-xAxis .recharts-text {
+    font-size: 10px !important;
+  }
+  
+  .recharts-wrapper {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
 /* Enhanced Navigation Animations */
 .nav-item-hover {
   position: relative;
