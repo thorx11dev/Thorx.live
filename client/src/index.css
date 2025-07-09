@@ -3954,18 +3954,82 @@ body {
   /* Mobile-specific dashboard activity row fixes */
   .dashboard-activity-row {
     padding: 12px !important;
-    margin-bottom: 8px;
+    margin-bottom: 8px !important;
     border-radius: 12px !important;
     min-height: 64px !important;
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-primary) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
   }
   
   .dashboard-activity-row:hover {
     transform: translateY(-1px) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    background: var(--hover-bg-secondary) !important;
+    border-color: var(--hover-border-primary) !important;
+  }
+  
+  .dark .dashboard-activity-row {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border: 1px solid rgba(71, 85, 105, 0.6) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
   }
   
   .dark .dashboard-activity-row:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    background: rgba(51, 65, 85, 0.9) !important;
+    border-color: rgba(100, 116, 139, 0.8) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+  }
+  
+  /* Mobile status badge fixes for dark mode */
+  .dark .dashboard-activity-row .bg-green-50 {
+    background: rgba(34, 197, 94, 0.2) !important;
+    border-color: rgba(34, 197, 94, 0.4) !important;
+  }
+  
+  .dark .dashboard-activity-row .text-green-800 {
+    color: rgb(34, 197, 94) !important;
+  }
+  
+  .dark .dashboard-activity-row .bg-yellow-50 {
+    background: rgba(234, 179, 8, 0.2) !important;
+    border-color: rgba(234, 179, 8, 0.4) !important;
+  }
+  
+  .dark .dashboard-activity-row .text-yellow-800 {
+    color: rgb(234, 179, 8) !important;
+  }
+  
+  /* Enhanced activity type icon backgrounds for dark mode */
+  .dark .dashboard-activity-row .bg-soft-pink {
+    background: rgba(255, 218, 221, 0.9) !important;
+  }
+  
+  .dark .dashboard-activity-row .bg-pale-blue {
+    background: rgba(214, 234, 248, 0.9) !important;
+  }
+  
+  .dark .dashboard-activity-row .bg-light-teal {
+    background: rgba(153, 246, 228, 0.9) !important;
+  }
+  
+  /* Enhanced text visibility for dark mode activity rows */
+  .dark .dashboard-activity-row .text-primary {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 500 !important;
+  }
+  
+  .dark .dashboard-activity-row .text-secondary {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-weight: 400 !important;
+  }
+  
+  .dark .dashboard-activity-row .font-medium {
+    font-weight: 600 !important;
+  }
+  
+  .dark .dashboard-activity-row .font-bold {
+    font-weight: 700 !important;
   }
 }
 

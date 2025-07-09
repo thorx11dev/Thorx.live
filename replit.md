@@ -323,6 +323,11 @@ Changelog:
 - July 09, 2025. Removed all complex animations, color transitions, and visibility issues for simple, corporate-style appearance
 - July 09, 2025. Made "Forgot password?" link a simple underlined text link with consistent hover states
 - July 09, 2025. Applied clean button styling with subtle borders and professional gray color scheme throughout
+- July 09, 2025. FIXED MOBILE INTERFACE GLITCH: Resolved Recently Cosmic Activity section styling issues for both light and dark modes
+- July 09, 2025. Added comprehensive mobile-specific CSS styling for dashboard-activity-row with proper backgrounds, borders, and hover effects
+- July 09, 2025. Enhanced dark mode activity row styling with rgba colors and improved visibility for status badges and text
+- July 09, 2025. Fixed activity type icon backgrounds (soft-pink, pale-blue, light-teal) for better contrast in dark mode on mobile devices
+- July 09, 2025. Added enhanced text visibility with proper font weights and opacity levels for optimal readability on mobile screens
 ```
 
 ## User Preferences
