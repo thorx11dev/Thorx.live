@@ -551,6 +551,6 @@ const EarningsInterface = memo(() => {
       </div>
     </Suspense>
   );
-};
+});
 
 export default EarningsInterface;

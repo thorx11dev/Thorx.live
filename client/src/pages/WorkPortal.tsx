@@ -1060,6 +1060,6 @@ const WorkPortal = memo(() => {
       </div>
     </Suspense>
   );
-};
+});
 
 export default WorkPortal;

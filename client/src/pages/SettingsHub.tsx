@@ -660,6 +660,6 @@ const SettingsHub = memo(() => {
       </div>
     </Suspense>
   );
-};
+});
 
 export default SettingsHub;

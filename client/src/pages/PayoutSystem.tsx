@@ -637,6 +637,6 @@ const PayoutSystem = memo(() => {
       </div>
     </Suspense>
   );
-};
+});
 
 export default PayoutSystem;
