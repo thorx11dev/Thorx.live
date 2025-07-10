@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, memo, useCallback, useMemo } from 'react';
+import { useOptimizedScroll, useMemoryOptimization } from '../../hooks/usePerformance';
 
 interface CloudProps {
   size: number;
@@ -16,7 +17,7 @@ interface AnimatedCloudsProps {
   className?: string;
 }
 
-const AnimatedClouds: React.FC<AnimatedCloudsProps> = ({ 
+const AnimatedClouds: React.FC<AnimatedCloudsProps> = memo(({ 
   density = 'medium', 
   scrollFactor = 0.5,
   className = '' 
@@ -45,15 +46,12 @@ const AnimatedClouds: React.FC<AnimatedCloudsProps> = ({
     setClouds(newClouds);
   };
 
-  // Handle scroll for parallax effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Optimized scroll handling with performance hook
+  const { addCleanup } = useMemoryOptimization();
+  
+  useOptimizedScroll(useCallback((newScrollY) => {
+    setScrollY(newScrollY);
+  }, []));
 
   // Generate clouds on mount
   useEffect(() => {
@@ -116,6 +114,6 @@ const AnimatedClouds: React.FC<AnimatedCloudsProps> = ({
       ))}
     </div>
   );
-};
+});
 
 export default AnimatedClouds;

@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useRef, useState, useMemo, memo, useCallback } from 'react';
+import { useOptimizedScroll, useMemoryOptimization } from '../../hooks/usePerformance';
 
 interface Cloud {
   id: number;
@@ -21,7 +22,7 @@ interface EnhancedAnimatedCloudsProps {
   enableInteraction?: boolean;
 }
 
-const EnhancedAnimatedClouds: React.FC<EnhancedAnimatedCloudsProps> = ({ 
+const EnhancedAnimatedClouds: React.FC<EnhancedAnimatedCloudsProps> = memo(({ 
   density = 'medium', 
   scrollFactor = 0.4,
   className = '',
@@ -56,15 +57,12 @@ const EnhancedAnimatedClouds: React.FC<EnhancedAnimatedCloudsProps> = ({
     return newClouds;
   }, [density]);
 
-  // Enhanced scroll handling for more dynamic parallax
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Optimized scroll handling with performance hook
+  const { addCleanup } = useMemoryOptimization();
+  
+  useOptimizedScroll(useCallback((newScrollY) => {
+    setScrollY(newScrollY);
+  }, []));
 
   // Mouse interaction for subtle cloud response
   useEffect(() => {
@@ -190,6 +188,6 @@ const EnhancedAnimatedClouds: React.FC<EnhancedAnimatedCloudsProps> = ({
       ))}
     </div>
   );
-};
+});
 
 export default EnhancedAnimatedClouds;

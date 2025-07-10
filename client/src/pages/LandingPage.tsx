@@ -1,43 +1,43 @@
 import { Link } from 'wouter';
 import { ArrowRight, Globe, Shield, Users, TrendingUp, DollarSign, Activity, ChevronDown, Satellite, Rocket, Target, Star, Gem, Headphones, Sparkles, Trophy } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import AnimatedClouds from '../components/3d/AnimatedClouds';
-import EnhancedAnimatedClouds from '../components/3d/EnhancedAnimatedClouds';
+import { useEffect, useState, lazy, Suspense, memo } from 'react';
 import ThorxLogo from '../components/ThorxLogo';
+import { useAdvancedPerformance } from '../hooks/useAdvancedPerformance';
+import PerformanceOptimizer from '../performance/PerformanceOptimizer';
 
-const LandingPage = () => {
+// Lazy load heavy components for better performance
+const EnhancedAnimatedClouds = lazy(() => import('../components/3d/EnhancedAnimatedClouds'));
+const AnimatedClouds = lazy(() => import('../components/3d/AnimatedClouds'));
+
+const LandingPage = memo(() => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const { performanceScore, enableGPUAcceleration } = useAdvancedPerformance();
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 100);
+    // Immediate loading for better performance
+    setIsLoaded(true);
     window.scrollTo(0, 0);
     
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
-
-  if (!isLoaded) {
-    return (
-      <div className="fixed inset-0 z-50 bg-slate-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-slate-700 border-t-slate-400 rounded-full mx-auto mb-4 animate-spin" />
-          <h2 className="text-2xl font-bold text-slate-200 mb-2">Thorx</h2>
-          <p className="text-slate-400">Loading cosmic experience...</p>
-        </div>
-      </div>
-    );
-  }
+    // Enable GPU acceleration for smooth animations
+    enableGPUAcceleration();
+    
+    // Add performance optimization classes
+    document.body.classList.add('thorx-performance-optimized');
+  }, [enableGPUAcceleration]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-900">
-      {/* 3D Animated Clouds with Parallax Effect */}
-      <EnhancedAnimatedClouds 
-        density="medium" 
-        scrollFactor={0.4} 
-        className="z-5" 
-        enableInteraction={true} 
-      />
+    <div className="relative min-h-screen overflow-hidden bg-slate-900 thorx-performance-optimized">
+      {/* Background Performance Optimizer */}
+      <PerformanceOptimizer />
+      {/* 3D Animated Clouds with Parallax Effect - Lazy loaded for performance */}
+      <Suspense fallback={<div className="absolute inset-0 z-5" />}>
+        <EnhancedAnimatedClouds 
+          density="low" 
+          scrollFactor={0.4} 
+          className="z-5" 
+          enableInteraction={false} 
+        />
+      </Suspense>
       
       {/* Hero Section */}
       <div className="relative h-screen cosmic-gradient-primary">
@@ -249,7 +249,9 @@ const LandingPage = () => {
       {/* RECREATED FEATURES SECTION - Neo-Cosmic Design */}
       <div className="relative py-32 bg-slate-800 overflow-hidden">
         {/* Enhanced animated clouds with different density */}
-        <AnimatedClouds density="high" scrollFactor={0.3} className="z-0 opacity-40" />
+        <Suspense fallback={<div className="absolute inset-0 z-0" />}>
+          <AnimatedClouds density="medium" scrollFactor={0.3} className="z-0 opacity-40" />
+        </Suspense>
         
         {/* Neo-Cosmic Background Environment */}
         <div className="absolute inset-0">
@@ -915,6 +917,6 @@ const LandingPage = () => {
       </footer>
     </div>
   );
-};
+});
 
 export default LandingPage;
