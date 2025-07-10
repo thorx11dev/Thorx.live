@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo, useMemo, useCallback, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from 'wouter';
 import { 
@@ -25,8 +25,12 @@ import {
   CosmicShield, 
   CosmicGlobe 
 } from '../components/icons/CosmicIcons';
+import { useAdvancedPerformance } from '../hooks/useAdvancedPerformance';
 
-const SettingsHub = () => {
+const PerformanceOptimizer = React.lazy(() => import('../performance/PerformanceOptimizer'));
+
+const SettingsHub = memo(() => {
+  const { enableGPUAcceleration } = useAdvancedPerformance();
   const [location] = useLocation();
   const [activeTab, setActiveTab] = useState('profile');
   const [showPassword, setShowPassword] = useState(false);
@@ -34,6 +38,11 @@ const SettingsHub = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [show2FASetup, setShow2FASetup] = useState(false);
   const [twoFactorData, setTwoFactorData] = useState<{qrCode: string; backupCodes: string[]} | null>(null);
+
+  // Enable GPU acceleration on mount
+  useEffect(() => {
+    enableGPUAcceleration();
+  }, [enableGPUAcceleration]);
   
   const { user, updateProfile, updatePreferences, changePassword, enableTwoFactor, verifyTwoFactor } = useAuth();
   
@@ -556,8 +565,12 @@ const SettingsHub = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary transition-all duration-300">
-      <div className="max-w-7xl mx-auto">
+    <Suspense fallback={<div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary flex items-center justify-center">
+      <div className="text-primary text-xl font-semibold">Loading optimized interface...</div>
+    </div>}>
+      <PerformanceOptimizer />
+      <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary transition-all duration-300 thorx-performance-optimized">
+        <div className="max-w-7xl mx-auto">
         {/* Notification */}
         {notification && (
           <motion.div
@@ -643,8 +656,9 @@ const SettingsHub = () => {
             </div>
           </motion.div>
         </div>
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 };
 

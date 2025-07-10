@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, memo, useMemo, useCallback, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Smartphone, 
@@ -15,13 +15,22 @@ import {
   Info
 } from 'lucide-react';
 import TransactionError from '../components/TransactionError';
+import { useAdvancedPerformance } from '../hooks/useAdvancedPerformance';
 
-const PayoutSystem = () => {
+const PerformanceOptimizer = React.lazy(() => import('../performance/PerformanceOptimizer'));
+
+const PayoutSystem = memo(() => {
+  const { enableGPUAcceleration } = useAdvancedPerformance();
   const [amount, setAmount] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [feeAcknowledged, setFeeAcknowledged] = useState(false);
   const [showError, setShowError] = useState(false);
   const [errorType, setErrorType] = useState<'insufficient_balance' | 'invalid_amount' | 'invalid_characters' | 'minimum_amount' | 'maximum_amount'>('invalid_amount');
+
+  useEffect(() => {
+    // Enable GPU acceleration for smooth performance
+    enableGPUAcceleration();
+  }, [enableGPUAcceleration]);
 
   const balance = 1247.50;
   const minimumPayout = 10.00;
@@ -202,8 +211,12 @@ const PayoutSystem = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary">
-      <div className="max-w-7xl mx-auto">
+    <Suspense fallback={<div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary flex items-center justify-center">
+      <div className="text-primary text-xl font-semibold">Loading optimized interface...</div>
+    </div>}>
+      <PerformanceOptimizer />
+      <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary thorx-performance-optimized">
+        <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -620,8 +633,9 @@ const PayoutSystem = () => {
             </div>
           </div>
         </motion.div>
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 };
 

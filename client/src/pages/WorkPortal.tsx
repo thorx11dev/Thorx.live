@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo, useMemo, useCallback, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Play, 
@@ -42,8 +42,12 @@ import {
   Smartphone
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
+import { useAdvancedPerformance } from '../hooks/useAdvancedPerformance';
 
-const WorkPortal = () => {
+const PerformanceOptimizer = React.lazy(() => import('../performance/PerformanceOptimizer'));
+
+const WorkPortal = memo(() => {
+  const { enableGPUAcceleration } = useAdvancedPerformance();
   const [activeSection, setActiveSection] = useState('ads');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -54,6 +58,11 @@ const WorkPortal = () => {
   const [siteVisitTimer, setSiteVisitTimer] = useState<{[key: number]: number}>({});
   const [completedSites, setCompletedSites] = useState<number[]>([]);
   const [socialTaskProgress, setSocialTaskProgress] = useState<{[key: number]: number}>({});
+
+  // Enable GPU acceleration on mount
+  useEffect(() => {
+    enableGPUAcceleration();
+  }, [enableGPUAcceleration]);
 
   // IMPROVED: High-contrast colors for better visibility
   const chartColors = {
@@ -383,8 +392,12 @@ const WorkPortal = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary">
-      <div className="max-w-7xl mx-auto">
+    <Suspense fallback={<div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary flex items-center justify-center">
+      <div className="text-primary text-xl font-semibold">Loading optimized interface...</div>
+    </div>}>
+      <PerformanceOptimizer />
+      <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary thorx-performance-optimized">
+        <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1043,8 +1056,9 @@ const WorkPortal = () => {
             </motion.div>
           )}
         </AnimatePresence>
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 };
 

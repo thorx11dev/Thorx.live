@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo, lazy, Suspense, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { 
   TrendingUp, 
@@ -10,8 +10,14 @@ import {
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
 import { CosmicDollarSign } from '../components/icons/CosmicIcons';
+import { useAdvancedPerformance } from '../hooks/useAdvancedPerformance';
 
-const Dashboard = () => {
+// Lazy load heavy components for better performance
+const PerformanceOptimizer = lazy(() => import('../performance/PerformanceOptimizer'));
+
+const Dashboard = memo(() => {
+  const { enableGPUAcceleration } = useAdvancedPerformance();
+  
   const [stats, setStats] = useState({
     totalEarnings: 1547.50,
     todayEarnings: 102.21,
@@ -48,6 +54,9 @@ const Dashboard = () => {
   ]);
 
   useEffect(() => {
+    // Enable GPU acceleration for smooth performance
+    enableGPUAcceleration();
+    
     // Simulate real-time updates
     const interval = setInterval(() => {
       setStats(prev => ({
@@ -58,9 +67,9 @@ const Dashboard = () => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [enableGPUAcceleration]);
 
-  const statCards = [
+  const statCards = useMemo(() => [
     {
       title: "Total Earnings",
       value: `$${stats.totalEarnings.toFixed(2)}`,
@@ -89,7 +98,7 @@ const Dashboard = () => {
       bgColor: "bg-muted-yellow",
       trend: "+3.1%"
     }
-  ];
+  ], [stats]);
 
   // Enhanced tooltip component with better styling
   const CustomTooltip = ({ active, payload, label }: any) => {
@@ -141,7 +150,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary">
+    <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary thorx-performance-optimized">
+      <Suspense fallback={<div>Loading...</div>}>
+        <PerformanceOptimizer />
+      </Suspense>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -385,6 +397,6 @@ const Dashboard = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Dashboard;
