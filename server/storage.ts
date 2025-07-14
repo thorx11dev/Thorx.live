@@ -1,20 +1,50 @@
-import { users, tasks, payouts, type User, type InsertUser, type Task, type InsertTask, type Payout, type InsertPayout } from "@shared/schema";
+import { 
+  users, tasks, payouts, teamMembers, contactMessages, teamChats, banReports,
+  type User, type InsertUser, type Task, type InsertTask, type Payout, type InsertPayout,
+  type TeamMember, type InsertTeamMember, type ContactMessage, type InsertContactMessage,
+  type TeamChat, type InsertTeamChat, type BanReport, type InsertBanReport
+} from "@shared/schema";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 
 export interface IStorage {
+  // User methods
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  getAllUsers(): Promise<User[]>;
+  updateUserBanStatus(userId: number, isBanned: boolean, reason?: string): Promise<User | undefined>;
   
+  // Task methods
   getUserTasks(userId: number): Promise<Task[]>;
   createTask(task: InsertTask): Promise<Task>;
   updateTaskStatus(taskId: number, status: string): Promise<Task | undefined>;
   
+  // Payout methods
   getUserPayouts(userId: number): Promise<Payout[]>;
   createPayout(payout: InsertPayout): Promise<Payout>;
   updatePayoutStatus(payoutId: number, status: string, reference?: string): Promise<Payout | undefined>;
+  
+  // Team member methods
+  getTeamMember(id: number): Promise<TeamMember | undefined>;
+  getTeamMemberByName(name: string): Promise<TeamMember | undefined>;
+  createTeamMember(member: InsertTeamMember): Promise<TeamMember>;
+  getAllTeamMembers(): Promise<TeamMember[]>;
+  updateTeamMemberPassword(id: number, password: string): Promise<TeamMember | undefined>;
+  
+  // Contact message methods
+  getAllContactMessages(): Promise<ContactMessage[]>;
+  createContactMessage(message: InsertContactMessage): Promise<ContactMessage>;
+  markMessageAsRead(messageId: number): Promise<ContactMessage | undefined>;
+  
+  // Team chat methods
+  getAllTeamChats(): Promise<TeamChat[]>;
+  createTeamChat(chat: InsertTeamChat): Promise<TeamChat>;
+  
+  // Ban report methods
+  createBanReport(report: InsertBanReport): Promise<BanReport>;
+  getBanReportsByUser(userId: number): Promise<BanReport[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -39,6 +69,10 @@ export class DatabaseStorage implements IStorage {
       .values(insertUser)
       .returning();
     return user;
+  }
+
+  async getAllUsers(): Promise<User[]> {
+    return db.select().from(users);
   }
 
   async getUserTasks(userId: number): Promise<Task[]> {
@@ -88,6 +122,99 @@ export class DatabaseStorage implements IStorage {
       .where(eq(payouts.id, payoutId))
       .returning();
     return payout || undefined;
+  }
+
+  async updateUserBanStatus(userId: number, isBanned: boolean, reason?: string): Promise<User | undefined> {
+    const [user] = await db
+      .update(users)
+      .set({ 
+        isBanned,
+        banReason: reason || null,
+        bannedAt: isBanned ? new Date() : null
+      })
+      .where(eq(users.id, userId))
+      .returning();
+    return user || undefined;
+  }
+
+  // Team member methods
+  async getTeamMember(id: number): Promise<TeamMember | undefined> {
+    const [member] = await db.select().from(teamMembers).where(eq(teamMembers.id, id));
+    return member || undefined;
+  }
+
+  async getTeamMemberByName(name: string): Promise<TeamMember | undefined> {
+    const [member] = await db.select().from(teamMembers).where(eq(teamMembers.name, name));
+    return member || undefined;
+  }
+
+  async createTeamMember(member: InsertTeamMember): Promise<TeamMember> {
+    const [newMember] = await db
+      .insert(teamMembers)
+      .values(member)
+      .returning();
+    return newMember;
+  }
+
+  async getAllTeamMembers(): Promise<TeamMember[]> {
+    return db.select().from(teamMembers);
+  }
+
+  async updateTeamMemberPassword(id: number, password: string): Promise<TeamMember | undefined> {
+    const [member] = await db
+      .update(teamMembers)
+      .set({ password })
+      .where(eq(teamMembers.id, id))
+      .returning();
+    return member || undefined;
+  }
+
+  // Contact message methods
+  async getAllContactMessages(): Promise<ContactMessage[]> {
+    return db.select().from(contactMessages).orderBy(desc(contactMessages.createdAt));
+  }
+
+  async createContactMessage(message: InsertContactMessage): Promise<ContactMessage> {
+    const [newMessage] = await db
+      .insert(contactMessages)
+      .values(message)
+      .returning();
+    return newMessage;
+  }
+
+  async markMessageAsRead(messageId: number): Promise<ContactMessage | undefined> {
+    const [message] = await db
+      .update(contactMessages)
+      .set({ isRead: true })
+      .where(eq(contactMessages.id, messageId))
+      .returning();
+    return message || undefined;
+  }
+
+  // Team chat methods
+  async getAllTeamChats(): Promise<TeamChat[]> {
+    return db.select().from(teamChats).orderBy(desc(teamChats.createdAt));
+  }
+
+  async createTeamChat(chat: InsertTeamChat): Promise<TeamChat> {
+    const [newChat] = await db
+      .insert(teamChats)
+      .values(chat)
+      .returning();
+    return newChat;
+  }
+
+  // Ban report methods
+  async createBanReport(report: InsertBanReport): Promise<BanReport> {
+    const [newReport] = await db
+      .insert(banReports)
+      .values(report)
+      .returning();
+    return newReport;
+  }
+
+  async getBanReportsByUser(userId: number): Promise<BanReport[]> {
+    return db.select().from(banReports).where(eq(banReports.userId, userId));
   }
 }
 

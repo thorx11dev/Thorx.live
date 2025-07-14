@@ -12,8 +12,48 @@ export const users = pgTable("users", {
   lastName: text("last_name").notNull(),
   totalEarnings: decimal("total_earnings", { precision: 10, scale: 2 }).default("0.00"),
   isActive: boolean("is_active").default(true),
+  isBanned: boolean("is_banned").default(false),
+  banReason: text("ban_reason"),
+  bannedAt: timestamp("banned_at"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const teamMembers = pgTable("team_members", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull().unique(),
+  password: text("password").notNull(),
+  role: text("role").notNull(), // 'ceo', 'marketing', 'social_media', 'admin'
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const contactMessages = pgTable("contact_messages", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  subject: text("subject").notNull(),
+  message: text("message").notNull(),
+  isRead: boolean("is_read").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const teamChats = pgTable("team_chats", {
+  id: serial("id").primaryKey(),
+  senderId: integer("sender_id").references(() => teamMembers.id),
+  message: text("message").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const banReports = pgTable("ban_reports", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  teamMemberId: integer("team_member_id").references(() => teamMembers.id),
+  reason: text("reason").notNull(),
+  action: text("action").notNull(), // 'ban', 'unban'
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const tasks = pgTable("tasks", {
@@ -46,6 +86,12 @@ export const payouts = pgTable("payouts", {
 export const usersRelations = relations(users, ({ many }) => ({
   tasks: many(tasks),
   payouts: many(payouts),
+  banReports: many(banReports),
+}));
+
+export const teamMembersRelations = relations(teamMembers, ({ many }) => ({
+  chats: many(teamChats),
+  banReports: many(banReports),
 }));
 
 export const tasksRelations = relations(tasks, ({ one }) => ({
@@ -59,6 +105,24 @@ export const payoutsRelations = relations(payouts, ({ one }) => ({
   user: one(users, {
     fields: [payouts.userId],
     references: [users.id],
+  }),
+}));
+
+export const teamChatsRelations = relations(teamChats, ({ one }) => ({
+  sender: one(teamMembers, {
+    fields: [teamChats.senderId],
+    references: [teamMembers.id],
+  }),
+}));
+
+export const banReportsRelations = relations(banReports, ({ one }) => ({
+  user: one(users, {
+    fields: [banReports.userId],
+    references: [users.id],
+  }),
+  teamMember: one(teamMembers, {
+    fields: [banReports.teamMemberId],
+    references: [teamMembers.id],
   }),
 }));
 
@@ -86,9 +150,43 @@ export const insertPayoutSchema = createInsertSchema(payouts).pick({
   phoneNumber: true,
 });
 
+export const insertTeamMemberSchema = createInsertSchema(teamMembers).pick({
+  name: true,
+  email: true,
+  password: true,
+  role: true,
+});
+
+export const insertContactMessageSchema = createInsertSchema(contactMessages).pick({
+  name: true,
+  email: true,
+  subject: true,
+  message: true,
+});
+
+export const insertTeamChatSchema = createInsertSchema(teamChats).pick({
+  senderId: true,
+  message: true,
+});
+
+export const insertBanReportSchema = createInsertSchema(banReports).pick({
+  userId: true,
+  teamMemberId: true,
+  reason: true,
+  action: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertTask = z.infer<typeof insertTaskSchema>;
 export type Task = typeof tasks.$inferSelect;
 export type InsertPayout = z.infer<typeof insertPayoutSchema>;
 export type Payout = typeof payouts.$inferSelect;
+export type InsertTeamMember = z.infer<typeof insertTeamMemberSchema>;
+export type TeamMember = typeof teamMembers.$inferSelect;
+export type InsertContactMessage = z.infer<typeof insertContactMessageSchema>;
+export type ContactMessage = typeof contactMessages.$inferSelect;
+export type InsertTeamChat = z.infer<typeof insertTeamChatSchema>;
+export type TeamChat = typeof teamChats.$inferSelect;
+export type InsertBanReport = z.infer<typeof insertBanReportSchema>;
+export type BanReport = typeof banReports.$inferSelect;
