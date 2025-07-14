@@ -380,6 +380,14 @@ Changelog:
 - July 14, 2025. TEAM MEMBER UPDATE: Replaced Prof. Muhammad Awais with Prof. Muhammad Jahangeer in both AboutPage.tsx and AuthPage.tsx
 - July 14, 2025. Updated team member authentication credentials and profile information across all relevant components
 - July 14, 2025. Team now consists of: Aon Imran (CEO), Zohaib Nadeem (Social Media), Zain Abbas (Marketing), Prof. Muhammad Jahangeer (Admin)
+- July 14, 2025. CUSTOMER SUPPORT STREAMLINING: Removed Phone Support option from ContactPage.tsx and HelpCenterPage.tsx
+- July 14, 2025. Customer care now exclusively uses Email Support (support@thorx.live) for all customer inquiries
+- July 14, 2025. Updated contact grids to single-column layout on HelpCenterPage and maintained Office Location on ContactPage
+- July 14, 2025. ENHANCED EMAIL CONTACT CARDS: Completely redesigned email contact cards with premium interactive design
+- July 14, 2025. Added advanced visual effects: gradient backgrounds, animated border glows, pulse rings, floating particles, and enhanced hover states
+- July 14, 2025. Implemented clickable email addresses, enhanced availability badges, and professional call-to-action buttons
+- July 14, 2025. Enhanced ContactPage.tsx with special treatment for Email Support cards including pulse effects and direct mailto links
+- July 14, 2025. Upgraded HelpCenterPage.tsx email card with larger design, enhanced animations, and comprehensive interactive elements
 ```
 
 ## User Preferences

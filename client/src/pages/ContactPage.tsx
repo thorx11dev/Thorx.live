@@ -1,5 +1,5 @@
 import { Link } from 'wouter';
-import { ArrowLeft, Mail, Phone, MapPin, Clock, Send, Rocket, Satellite, Globe, MessageCircle, Users, Shield, Star } from 'lucide-react';
+import { ArrowLeft, Mail, MapPin, Clock, Send, Rocket, Satellite, Globe, MessageCircle, Users, Shield, Star } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ThorxLogo from '../components/ThorxLogo';
 
@@ -35,13 +35,6 @@ const ContactPage = () => {
       details: "support@thorx.live",
       description: "Get detailed assistance via email",
       availability: "24/7 Response"
-    },
-    {
-      icon: Phone,
-      title: "Phone Support",
-      details: "+923254029852",
-      description: "Speak directly with our experts",
-      availability: "Available Daily"
     },
     {
       icon: MapPin,
@@ -148,28 +141,67 @@ const ContactPage = () => {
             {contactInfo.map((info, index) => (
               <div
                 key={index}
-                className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-slate-600 transition-all duration-300 group hover:shadow-2xl hover:shadow-slate-900/50 backdrop-blur-sm hover:scale-105 hover:-translate-y-1 text-center"
+                className="relative bg-slate-800/60 p-8 rounded-3xl border border-slate-700/50 hover:border-slate-500/50 transition-all duration-500 group hover:shadow-2xl hover:shadow-slate-900/50 backdrop-blur-lg hover:scale-105 hover:-translate-y-2 text-center overflow-hidden"
               >
-                <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-700 transition-colors shadow-lg">
-                  <info.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-300 transition-colors" />
+                {/* Background gradient effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-700/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Animated border glow */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-slate-600/20 via-slate-500/20 to-slate-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
+                
+                {/* Icon container with enhanced design */}
+                <div className="relative w-20 h-20 bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:from-slate-700 group-hover:to-slate-800 transition-all duration-500 shadow-2xl group-hover:shadow-slate-600/20 group-hover:scale-110">
+                  <info.icon className="w-10 h-10 text-slate-400 group-hover:text-slate-200 transition-all duration-500 group-hover:scale-110" />
+                  
+                  {/* Pulse effect for email card */}
+                  {info.title === "Email Support" && (
+                    <div className="absolute inset-0 rounded-3xl bg-slate-500/20 animate-ping opacity-0 group-hover:opacity-100" />
+                  )}
                 </div>
                 
-                <h3 className="text-lg font-bold text-slate-200 mb-2 group-hover:text-white transition-colors">
+                <h3 className="text-xl font-bold text-slate-200 mb-3 group-hover:text-white transition-colors duration-300">
                   {info.title}
                 </h3>
                 
-                <p className="text-slate-300 font-semibold mb-3">
-                  {info.details}
-                </p>
+                {/* Enhanced email display for Email Support */}
+                {info.title === "Email Support" ? (
+                  <div className="mb-4">
+                    <a 
+                      href={`mailto:${info.details}`}
+                      className="inline-flex items-center gap-2 text-slate-300 hover:text-white font-semibold text-lg bg-slate-700/50 px-4 py-2 rounded-xl hover:bg-slate-600/50 transition-all duration-300 group-hover:scale-105"
+                    >
+                      <Mail className="w-4 h-4" />
+                      {info.details}
+                    </a>
+                  </div>
+                ) : (
+                  <p className="text-slate-300 font-semibold mb-4 text-lg">
+                    {info.details}
+                  </p>
+                )}
                 
-                <p className="text-slate-400 text-sm mb-3 group-hover:text-slate-300 transition-colors">
+                <p className="text-slate-400 text-sm mb-4 group-hover:text-slate-300 transition-colors duration-300 leading-relaxed">
                   {info.description}
                 </p>
                 
-                <div className="flex items-center justify-center text-slate-500 text-xs">
-                  <Clock className="w-3 h-3 mr-1" />
-                  {info.availability}
+                {/* Enhanced availability display */}
+                <div className="flex items-center justify-center text-slate-500 text-xs mb-4">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span className="bg-slate-700/50 px-3 py-1 rounded-full">{info.availability}</span>
                 </div>
+                
+                {/* Call-to-action button for Email Support */}
+                {info.title === "Email Support" && (
+                  <button 
+                    onClick={() => window.location.href = `mailto:${info.details}`}
+                    className="w-full bg-gradient-to-r from-slate-700 to-slate-600 text-slate-200 px-6 py-3 rounded-xl font-semibold hover:from-slate-600 hover:to-slate-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 transform active:scale-95 group-hover:shadow-xl"
+                  >
+                    <span className="flex items-center justify-center gap-2">
+                      <Send className="w-4 h-4" />
+                      Send Email
+                    </span>
+                  </button>
+                )}
               </div>
             ))}
           </div>
