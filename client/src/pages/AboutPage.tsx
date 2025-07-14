@@ -51,10 +51,10 @@ const AboutPage = () => {
       image: "ZA"
     },
     {
-      name: "Prof. Muhammad Awais",
+      name: "Prof. Muhammad Jahangeer",
       role: "Admin of Thorx",
       description: "Administrative leader ensuring smooth operations and platform excellence. Academic background with extensive management experience.",
-      image: "MA"
+      image: "MJ"
     }
   ];
 

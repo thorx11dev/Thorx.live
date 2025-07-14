@@ -77,7 +77,7 @@ const AuthPage = () => {
     { id: 'aon-imran', name: 'Aon Imran', password: 'ThorxAonImran!9426' },
     { id: 'zohaib-nadeem', name: 'Zohaib Nadeem', password: 'ThorxZohaibNadeem@7777' },
     { id: 'zain-abbas', name: 'Zain Abbas', password: 'ThorxZainAbbas#0000' },
-    { id: 'muhammad-awais', name: 'Prof. Muhammad Awais', password: 'ThorxMuhammadAwais$1111' }
+    { id: 'muhammad-jahangeer', name: 'Prof. Muhammad Jahangeer', password: 'ThorxMuhammadJahangeer$1111' }
   ];
 
   // Update form mode based on route

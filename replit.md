@@ -377,6 +377,9 @@ Changelog:
 - July 14, 2025. Added mobile-card-container, mobile-card-content, mobile-card-icon CSS classes for consistent mobile behavior
 - July 14, 2025. All sections now match "Trusted by Thousands" mobile layout pattern with no clipping or horizontal scrolling
 - July 14, 2025. Ready for deployment to thorx.live domain with complete mobile optimization
+- July 14, 2025. TEAM MEMBER UPDATE: Replaced Prof. Muhammad Awais with Prof. Muhammad Jahangeer in both AboutPage.tsx and AuthPage.tsx
+- July 14, 2025. Updated team member authentication credentials and profile information across all relevant components
+- July 14, 2025. Team now consists of: Aon Imran (CEO), Zohaib Nadeem (Social Media), Zain Abbas (Marketing), Prof. Muhammad Jahangeer (Admin)
 ```
 
 ## User Preferences
