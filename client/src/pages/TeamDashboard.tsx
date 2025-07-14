@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { useTeamAuth } from '@/hooks/useTeamAuth';
 import { ThorxLogo } from '@/components/ThorxLogo';
+import UserCarePage from './UserCarePage';
+import InboxPage from './InboxPage';
+import LinkagePage from './LinkagePage';
+import TeamHubPage from './TeamHubPage';
+import DigitalMarketPage from './DigitalMarketPage';
 import { 
   BarChart3, 
   Users, 
@@ -10,7 +15,9 @@ import {
   Shield,
   Globe,
   Briefcase,
-  Activity
+  Activity,
+  Link2,
+  ShoppingCart
 } from 'lucide-react';
 
 const TeamDashboard = () => {
@@ -28,9 +35,9 @@ const TeamDashboard = () => {
       { id: 'overview', label: 'Overview', icon: BarChart3, page: 'dashboard' },
       { id: 'user-care', label: 'User Care', icon: Users, page: 'user-care' },
       { id: 'inbox', label: 'Inbox', icon: MessageCircle, page: 'inbox' },
-      { id: 'linkage', label: 'Linkage', icon: Activity, page: 'linkage' },
+      { id: 'linkage', label: 'Linkage', icon: Link2, page: 'linkage' },
       { id: 'team-hub', label: 'Team Hub', icon: Shield, page: 'team-hub' },
-      { id: 'digital-market', label: 'Digital Market', icon: Globe, page: 'digital-market' },
+      { id: 'digital-market', label: 'Digital Market', icon: ShoppingCart, page: 'digital-market' },
       { id: 'work', label: 'Work', icon: Briefcase, page: 'work' },
       { id: 'settings', label: 'Settings', icon: Settings, page: 'settings' }
     ];
@@ -141,9 +148,9 @@ const TeamDashboard = () => {
         </header>
 
         {/* Content Area */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 bg-slate-900">
           {activeTab === 'overview' && (
-            <div className="space-y-6">
+            <div className="p-6 space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
                   <div className="flex items-center justify-between">
@@ -207,14 +214,23 @@ const TeamDashboard = () => {
             </div>
           )}
 
-          {activeTab !== 'overview' && (
-            <div className="bg-slate-800 rounded-lg p-8 border border-slate-700 text-center">
-              <h3 className="text-lg font-semibold text-slate-200 mb-2">
-                {getNavigationItems().find(item => item.id === activeTab)?.label}
-              </h3>
-              <p className="text-slate-400">
-                This section is under development. Full functionality coming soon.
-              </p>
+          {activeTab === 'user-care' && <UserCarePage />}
+          {activeTab === 'inbox' && <InboxPage />}
+          {activeTab === 'linkage' && <LinkagePage />}
+          {activeTab === 'team-hub' && <TeamHubPage />}
+          {activeTab === 'digital-market' && <DigitalMarketPage />}
+          
+          {activeTab !== 'overview' && activeTab !== 'user-care' && activeTab !== 'inbox' && 
+           activeTab !== 'linkage' && activeTab !== 'team-hub' && activeTab !== 'digital-market' && (
+            <div className="p-6">
+              <div className="bg-slate-800 rounded-lg p-8 border border-slate-700 text-center">
+                <h3 className="text-lg font-semibold text-slate-200 mb-2">
+                  {getNavigationItems().find(item => item.id === activeTab)?.label}
+                </h3>
+                <p className="text-slate-400">
+                  This section is under development. Full functionality coming soon.
+                </p>
+              </div>
             </div>
           )}
         </main>

@@ -321,8 +321,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Team chat routes (for Linkage page)
-  app.get("/api/team/chats", authenticateTeamMember, async (req: any, res) => {
+  // Team chat routes (for Team Hub page)
+  app.get("/api/team/chat", authenticateTeamMember, async (req: any, res) => {
     try {
       const chats = await storage.getAllTeamChats();
       res.json(chats);
@@ -332,7 +332,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/team/chats", authenticateTeamMember, async (req: any, res) => {
+  app.post("/api/team/chat", authenticateTeamMember, async (req: any, res) => {
     try {
       const { message } = req.body;
       
