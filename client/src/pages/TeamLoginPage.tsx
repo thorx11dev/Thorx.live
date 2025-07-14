@@ -31,11 +31,15 @@ const TeamLoginPage = () => {
       return;
     }
 
+    console.log('Attempting login with:', { name: formData.name, passwordLength: formData.password.length });
     const success = await login(formData.name, formData.password);
+    console.log('Login result:', success);
     
     if (success) {
+      console.log('Login successful, redirecting to dashboard');
       setLocation('/team/dashboard');
     } else {
+      console.log('Login failed, showing error');
       setError('Invalid credentials. Please check your password.');
     }
   };

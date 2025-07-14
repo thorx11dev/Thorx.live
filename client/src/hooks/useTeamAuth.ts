@@ -56,7 +56,7 @@ export const useTeamAuthState = () => {
     setIsLoading(true);
     
     try {
-      const response = await apiRequest('/api/team/login', {
+      const response = await fetch('/api/team/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ export const useTeamAuthState = () => {
         return false;
       }
     } catch (error) {
-      console.error('Team login error:', error);
+      console.error('Team login network error:', error);
       return false;
     } finally {
       setIsLoading(false);
