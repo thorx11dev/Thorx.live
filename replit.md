@@ -388,6 +388,12 @@ Changelog:
 - July 14, 2025. Implemented clickable email addresses, enhanced availability badges, and professional call-to-action buttons
 - July 14, 2025. Enhanced ContactPage.tsx with special treatment for Email Support cards including pulse effects and direct mailto links
 - July 14, 2025. Upgraded HelpCenterPage.tsx email card with larger design, enhanced animations, and comprehensive interactive elements
+- July 14, 2025. REMOVED LIGHT GLOWING EFFECTS: Disabled all light glowing, pulse, and animation effects from email contact cards per user request
+- July 14, 2025. Restored clean, simple card design with basic hover effects while maintaining email functionality
+- July 14, 2025. ADDED WHATSAPP COMMUNITY CARD: Added WhatsApp Community card to HelpCenterPage.tsx contact section
+- July 14, 2025. Implemented 2-column responsive layout (1 column on mobile, 2 columns on desktop) for optimal viewing on all devices
+- July 14, 2025. Added WhatsApp Community card with MessageCircle icon linking to https://chat.whatsapp.com/J7Jvr6XBYs82rlF9RGGlTa
+- July 14, 2025. Enhanced card rendering with dynamic type handling for email and WhatsApp contact methods
 ```
 
 ## User Preferences
