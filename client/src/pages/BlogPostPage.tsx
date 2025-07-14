@@ -1,14 +1,48 @@
 import { Link, useParams } from 'wouter';
-import { ArrowLeft, Calendar, Clock, User, Tag, Share2, Rocket, Satellite, Globe, TrendingUp, Star, Shield, Zap, Target, Award, Briefcase, Calculator, Users } from 'lucide-react';
-import { useEffect } from 'react';
+import { ArrowLeft, Calendar, Clock, User, Tag, Share2, Rocket, Satellite, Globe, TrendingUp, Star, Shield, Zap, Target, Award, Briefcase, Calculator, Users, X, MessageCircle, Facebook, Instagram, Twitter, Send } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import ThorxLogo from '../components/ThorxLogo';
 
 const BlogPostPage = () => {
   const params = useParams();
+  const [showSocialModal, setShowSocialModal] = useState(false);
   
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [params.id]); // Re-run when the article ID changes
+
+  const handleSocialShare = (platform: string, post: any) => {
+    const postUrl = `${window.location.origin}/blog/${post.id}`;
+    const shareText = `Check out this article: ${post.title}`;
+    
+    const shareUrls = {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`,
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(postUrl)}`,
+      instagram: `https://www.instagram.com/`, // Note: Instagram doesn't support direct URL sharing
+      whatsapp: `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + postUrl)}`,
+      tiktok: `https://www.tiktok.com/`, // Note: TikTok doesn't support direct URL sharing
+      telegram: `https://t.me/share/url?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(shareText)}`
+    };
+    
+    if (platform === 'copy') {
+      navigator.clipboard.writeText(postUrl);
+      setShowSocialModal(false);
+      return;
+    }
+    
+    const url = shareUrls[platform as keyof typeof shareUrls];
+    if (url) {
+      window.open(url, '_blank', 'width=600,height=400');
+    }
+  };
+
+  const handleContactRedirect = () => {
+    window.location.href = '/contact#contact-form';
+  };
+
+  const handleEmailRedirect = () => {
+    window.location.href = '/contact#contact-form';
+  };
 
   const blogPosts = {
     "1": {
@@ -421,7 +455,10 @@ const BlogPostPage = () => {
               ))}
             </div>
             
-            <button className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-slate-700 to-slate-600 border border-slate-600 rounded-xl text-white hover:from-slate-600 hover:to-slate-500 transition-all duration-300 hover:scale-105 font-semibold">
+            <button 
+              onClick={() => setShowSocialModal(true)}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-slate-700 to-slate-600 border border-slate-600 rounded-xl text-white hover:from-slate-600 hover:to-slate-500 transition-all duration-300 hover:scale-105 font-semibold"
+            >
               <Share2 className="w-4 h-4" />
               Share Article
             </button>
@@ -484,6 +521,82 @@ const BlogPostPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Social Sharing Modal */}
+      {showSocialModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 max-w-md w-full mx-4 relative">
+            <button 
+              onClick={() => setShowSocialModal(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            
+            <h3 className="text-2xl font-bold text-slate-200 mb-6">Share Article</h3>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <button 
+                onClick={() => handleSocialShare('facebook', post)}
+                className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-600/50 transition-all duration-300 hover:scale-105"
+              >
+                <Facebook className="w-6 h-6 text-blue-400" />
+                <span className="text-slate-200 font-medium">Facebook</span>
+              </button>
+              
+              <button 
+                onClick={() => handleSocialShare('twitter', post)}
+                className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-600/50 transition-all duration-300 hover:scale-105"
+              >
+                <Twitter className="w-6 h-6 text-blue-400" />
+                <span className="text-slate-200 font-medium">Twitter</span>
+              </button>
+              
+              <button 
+                onClick={() => handleSocialShare('whatsapp', post)}
+                className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-600/50 transition-all duration-300 hover:scale-105"
+              >
+                <MessageCircle className="w-6 h-6 text-green-400" />
+                <span className="text-slate-200 font-medium">WhatsApp</span>
+              </button>
+              
+              <button 
+                onClick={() => handleSocialShare('telegram', post)}
+                className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-600/50 transition-all duration-300 hover:scale-105"
+              >
+                <Send className="w-6 h-6 text-blue-400" />
+                <span className="text-slate-200 font-medium">Telegram</span>
+              </button>
+              
+              <button 
+                onClick={() => handleSocialShare('instagram', post)}
+                className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-600/50 transition-all duration-300 hover:scale-105"
+              >
+                <Instagram className="w-6 h-6 text-pink-400" />
+                <span className="text-slate-200 font-medium">Instagram</span>
+              </button>
+              
+              <button 
+                onClick={() => handleSocialShare('tiktok', post)}
+                className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-600/50 transition-all duration-300 hover:scale-105"
+              >
+                <Star className="w-6 h-6 text-red-400" />
+                <span className="text-slate-200 font-medium">TikTok</span>
+              </button>
+            </div>
+            
+            <div className="mt-6 pt-6 border-t border-slate-700">
+              <button 
+                onClick={() => handleSocialShare('copy', post)}
+                className="w-full flex items-center justify-center gap-2 p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all duration-300 hover:scale-105"
+              >
+                <Share2 className="w-5 h-5 text-slate-300" />
+                <span className="text-slate-200 font-medium">Copy Link</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Footer */}
       <footer className="relative z-10 bg-slate-800/50 py-12 border-t border-slate-700">

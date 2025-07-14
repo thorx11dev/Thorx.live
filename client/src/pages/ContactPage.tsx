@@ -232,7 +232,7 @@ const ContactPage = () => {
       <div className="relative z-10 py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 backdrop-blur-sm">
+          <div id="contact-form" className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 backdrop-blur-sm">
             <h3 className="text-2xl font-bold text-slate-200 mb-6">Send us a Message</h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">

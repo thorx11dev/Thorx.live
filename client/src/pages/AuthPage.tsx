@@ -61,6 +61,10 @@ const AuthPage = () => {
   const [, setLocation] = useLocation();
   const { login, register } = useAuth();
 
+  // Get email from URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const emailParam = urlParams.get('email');
+
   // Team member verification states
   const [showTeamVerification, setShowTeamVerification] = useState(false);
   const [teamVerificationData, setTeamVerificationData] = useState<TeamVerificationData>({
@@ -90,7 +94,7 @@ const AuthPage = () => {
   }, [location]);
 
   const [formData, setFormData] = useState<FormData>({
-    email: '',
+    email: emailParam || '',
     password: '',
     confirmPassword: '',
     firstName: '',

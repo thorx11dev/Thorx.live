@@ -6,6 +6,7 @@ import ThorxLogo from '../components/ThorxLogo';
 const UpdatesPage = () => {
   const [isUpcomingVisible, setIsUpcomingVisible] = useState(false);
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
+  const [email, setEmail] = useState('');
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,6 +34,11 @@ const UpdatesPage = () => {
       }
     };
   }, []);
+
+  const handleNewsletterSubscribe = () => {
+    // Navigate to auth page with email pre-filled
+    window.location.href = `/auth?email=${encodeURIComponent(email)}`;
+  };
 
   const upcomingFeatures = [
     {
@@ -428,13 +434,9 @@ const UpdatesPage = () => {
             <p className="text-slate-400 mb-6">
               Want to be the first to know when these features launch?
             </p>
-            <Link
-              to="#newsletter"
-              className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-700 to-slate-600 text-slate-200 px-6 py-3 rounded-xl font-medium hover:from-slate-600 hover:to-slate-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 group"
-            >
-              <span>Get Notified</span>
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-            </Link>
+            <div className="text-slate-300">
+              Subscribe to our newsletter below to stay updated!
+            </div>
           </div>
         </div>
       </div>
@@ -454,9 +456,15 @@ const UpdatesPage = () => {
             <input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="flex-1 px-6 py-4 bg-slate-800/60 border-2 border-slate-700 rounded-xl text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:bg-slate-800/80 transition-all duration-300 hover:border-slate-600 backdrop-blur-sm shadow-lg"
             />
-            <button className="bg-gradient-to-r from-slate-200 to-slate-100 text-slate-900 px-8 py-4 rounded-xl font-bold hover:from-slate-100 hover:to-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-slate-200/20 transform active:scale-95">
+            <button 
+              onClick={handleNewsletterSubscribe}
+              disabled={!email}
+              className="bg-gradient-to-r from-slate-200 to-slate-100 text-slate-900 px-8 py-4 rounded-xl font-bold hover:from-slate-100 hover:to-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-slate-200/20 transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            >
               Subscribe
             </button>
           </div>
