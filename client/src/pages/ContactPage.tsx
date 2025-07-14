@@ -42,6 +42,13 @@ const ContactPage = () => {
       details: "Tahir Street, just off Gojra Road, in the heart of Jhang, Pakistan",
       description: "Visit us for in-person meetings",
       availability: "By Appointment"
+    },
+    {
+      icon: MessageCircle,
+      title: "WhatsApp Community",
+      details: "https://chat.whatsapp.com/J7Jvr6XBYs82rlF9RGGlTa",
+      description: "Join our vibrant WhatsApp community for updates and support",
+      availability: "Active Community"
     }
   ];
 
@@ -152,7 +159,7 @@ const ContactPage = () => {
                   {info.title}
                 </h3>
                 
-                {/* Email display for Email Support */}
+                {/* Dynamic display based on card type */}
                 {info.title === "Email Support" ? (
                   <div className="mb-3">
                     <a 
@@ -161,6 +168,18 @@ const ContactPage = () => {
                     >
                       <Mail className="w-4 h-4" />
                       {info.details}
+                    </a>
+                  </div>
+                ) : info.title === "WhatsApp Community" ? (
+                  <div className="mb-3">
+                    <a 
+                      href={info.details}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-slate-300 hover:text-white font-semibold bg-slate-700/50 px-4 py-2 rounded-xl hover:bg-slate-600/50 transition-all duration-300"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                      WhatsApp Community
                     </a>
                   </div>
                 ) : (
@@ -179,7 +198,7 @@ const ContactPage = () => {
                   <span>{info.availability}</span>
                 </div>
                 
-                {/* Call-to-action button for Email Support */}
+                {/* Call-to-action buttons */}
                 {info.title === "Email Support" && (
                   <button 
                     onClick={() => window.location.href = `mailto:${info.details}`}
@@ -188,6 +207,18 @@ const ContactPage = () => {
                     <span className="flex items-center justify-center gap-2">
                       <Send className="w-4 h-4" />
                       Send Email
+                    </span>
+                  </button>
+                )}
+                
+                {info.title === "WhatsApp Community" && (
+                  <button 
+                    onClick={() => window.open(info.details, '_blank')}
+                    className="w-full bg-slate-700 text-slate-200 px-6 py-3 rounded-xl font-semibold hover:bg-slate-600 transition-all duration-300 hover:scale-105 transform active:scale-95"
+                  >
+                    <span className="flex items-center justify-center gap-2">
+                      <MessageCircle className="w-4 h-4" />
+                      Join Community
                     </span>
                   </button>
                 )}
