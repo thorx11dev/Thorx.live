@@ -67,11 +67,18 @@ export const useTeamAuthState = () => {
       if (response.ok) {
         const data = await response.json();
         
-        localStorage.setItem('thorx_team_auth_token', data.token);
-        localStorage.setItem('thorx_team_member_data', JSON.stringify(data.teamMember));
+        console.log('Team login response:', data);
         
-        setTeamMember(data.teamMember);
-        return true;
+        if (data.token && data.teamMember) {
+          localStorage.setItem('thorx_team_auth_token', data.token);
+          localStorage.setItem('thorx_team_member_data', JSON.stringify(data.teamMember));
+          
+          setTeamMember(data.teamMember);
+          return true;
+        } else {
+          console.error('Missing token or teamMember in response:', data);
+          return false;
+        }
       } else {
         const error = await response.json();
         console.error('Team login error:', error);

@@ -120,10 +120,23 @@ const TeamLoginPage = () => {
               </button>
             </div>
             {formData.name && (
-              <div className="mt-2 p-2 bg-blue-900/20 border border-blue-500/20 rounded-lg">
+              <div className="mt-2 p-2 bg-blue-900/20 border border-blue-500/20 rounded-lg flex items-center justify-between">
                 <p className="text-blue-300 text-xs">
                   <strong>Password:</strong> {teamMembers.find(m => m.name === formData.name)?.passwordHint}
                 </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const password = teamMembers.find(m => m.name === formData.name)?.passwordHint;
+                    if (password) {
+                      navigator.clipboard.writeText(password);
+                      setFormData(prev => ({ ...prev, password }));
+                    }
+                  }}
+                  className="px-2 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs rounded"
+                >
+                  Copy & Fill
+                </button>
               </div>
             )}
           </div>
