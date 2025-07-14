@@ -12,8 +12,6 @@ import {
   Shield,
   Star,
   Sparkles,
-  X,
-  ChevronDown,
   UserCheck
 } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
@@ -38,17 +36,7 @@ interface ValidationErrors {
   general?: string;
 }
 
-interface TeamMember {
-  id: string;
-  name: string;
-  password: string;
-}
-
-interface TeamVerificationData {
-  selectedMember: string;
-  password: string;
-  confirmPassword: string;
-}
+// Team member interfaces removed - now using dedicated team login page
 
 const AuthPage = () => {
   const [location] = useLocation();
@@ -65,24 +53,7 @@ const AuthPage = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const emailParam = urlParams.get('email');
 
-  // Team member verification states
-  const [showTeamVerification, setShowTeamVerification] = useState(false);
-  const [teamVerificationData, setTeamVerificationData] = useState<TeamVerificationData>({
-    selectedMember: '',
-    password: '',
-    confirmPassword: ''
-  });
-  const [teamVerificationError, setTeamVerificationError] = useState<string | null>(null);
-  const [showTeamPassword, setShowTeamPassword] = useState(false);
-  const [showTeamConfirmPassword, setShowTeamConfirmPassword] = useState(false);
-
-  // Team members data
-  const teamMembers: TeamMember[] = [
-    { id: 'aon-imran', name: 'Aon Imran', password: 'ThorxAonImran!9426' },
-    { id: 'zohaib-nadeem', name: 'Zohaib Nadeem', password: 'ThorxZohaibNadeem@7777' },
-    { id: 'zain-abbas', name: 'Zain Abbas', password: 'ThorxZainAbbas#0000' },
-    { id: 'muhammad-jahangeer', name: 'Prof. Muhammad Jahangeer', password: 'ThorxMuhammadJahangeer$1111' }
-  ];
+  // Team member verification removed - now using dedicated team login page
 
   // Update form mode based on route
   useEffect(() => {
@@ -224,56 +195,7 @@ const AuthPage = () => {
     return 'Strong';
   };
 
-  const handleTeamVerification = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setTeamVerificationError(null);
-
-    // Validate team member selection
-    if (!teamVerificationData.selectedMember) {
-      setTeamVerificationError('Please select a team member');
-      return;
-    }
-
-    // Validate password fields
-    if (!teamVerificationData.password || !teamVerificationData.confirmPassword) {
-      setTeamVerificationError('Please enter password in both fields');
-      return;
-    }
-
-    if (teamVerificationData.password !== teamVerificationData.confirmPassword) {
-      setTeamVerificationError('Passwords do not match');
-      return;
-    }
-
-    // Find the selected team member
-    const selectedMember = teamMembers.find(member => member.id === teamVerificationData.selectedMember);
-    if (!selectedMember) {
-      setTeamVerificationError('Invalid team member selection');
-      return;
-    }
-
-    // Verify password
-    if (teamVerificationData.password !== selectedMember.password) {
-      setTeamVerificationError('Invalid password for selected team member');
-      return;
-    }
-
-    // Successful verification - redirect to dashboard
-    setNotification({ type: 'success', message: `Welcome back, ${selectedMember.name}!` });
-    setTimeout(() => setLocation('/dashboard'), 1000);
-    setShowTeamVerification(false);
-  };
-
-  const resetTeamVerification = () => {
-    setTeamVerificationData({
-      selectedMember: '',
-      password: '',
-      confirmPassword: ''
-    });
-    setTeamVerificationError(null);
-    setShowTeamPassword(false);
-    setShowTeamConfirmPassword(false);
-  };
+  // Team verification functions removed - now using dedicated team login page
 
   return (
     <div className="min-h-screen bg-slate-900 relative overflow-hidden">
@@ -765,13 +687,13 @@ const AuthPage = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               {isLogin ? (
                 <>
-                  <button
-                    onClick={() => setShowTeamVerification(true)}
+                  <Link
+                    href="/team/login"
                     className="px-6 py-3 bg-slate-700 hover:bg-slate-600 border border-slate-600 rounded-lg text-slate-200 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 inline-flex items-center gap-3 text-sm font-medium"
                   >
                     <UserCheck className="w-5 h-5" />
                     <span>Are You a Team Member?</span>
-                  </button>
+                  </Link>
                   <span className="text-slate-400 text-sm">or</span>
                   <button
                     onClick={() => setIsLogin(!isLogin)}
@@ -783,13 +705,13 @@ const AuthPage = () => {
                 </>
               ) : (
                 <>
-                  <button
-                    onClick={() => setShowTeamVerification(true)}
+                  <Link
+                    href="/team/login"
                     className="px-6 py-3 bg-slate-700 hover:bg-slate-600 border border-slate-600 rounded-lg text-slate-200 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 inline-flex items-center gap-3 text-sm font-medium"
                   >
                     <UserCheck className="w-5 h-5" />
                     <span>Are You a Team Member?</span>
-                  </button>
+                  </Link>
                   <span className="text-slate-400 text-sm">or</span>
                   <button
                     onClick={() => setIsLogin(!isLogin)}
@@ -823,135 +745,7 @@ const AuthPage = () => {
         </div>
       </div>
 
-      {/* Team Member Verification Modal */}
-      {showTeamVerification && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-md border border-slate-700 shadow-2xl">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-slate-200 flex items-center gap-2">
-                <UserCheck className="w-6 h-6 text-blue-400" />
-                Team Member Verification
-              </h2>
-              <button
-                onClick={() => {
-                  setShowTeamVerification(false);
-                  resetTeamVerification();
-                }}
-                className="text-slate-400 hover:text-slate-200 transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <form onSubmit={handleTeamVerification} className="space-y-4">
-              {/* Team Member Selection */}
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Select Team Member
-                </label>
-                <div className="relative">
-                  <select
-                    value={teamVerificationData.selectedMember}
-                    onChange={(e) => setTeamVerificationData({
-                      ...teamVerificationData,
-                      selectedMember: e.target.value
-                    })}
-                    className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-slate-200 appearance-none"
-                  >
-                    <option value="">Select a team member</option>
-                    {teamMembers.map(member => (
-                      <option key={member.id} value={member.id}>
-                        {member.name}
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4 pointer-events-none" />
-                </div>
-              </div>
-
-              {/* Password Field */}
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Password
-                </label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 w-4 h-4" />
-                  <input
-                    type={showTeamPassword ? 'text' : 'password'}
-                    value={teamVerificationData.password}
-                    onChange={(e) => setTeamVerificationData({
-                      ...teamVerificationData,
-                      password: e.target.value
-                    })}
-                    className="w-full pl-10 pr-12 py-3 bg-slate-700/50 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-slate-200 placeholder-slate-500"
-                    placeholder="Enter your password"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowTeamPassword(!showTeamPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
-                  >
-                    {showTeamPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </button>
-                </div>
-              </div>
-
-              {/* Confirm Password Field */}
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Confirm Password
-                </label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 w-4 h-4" />
-                  <input
-                    type={showTeamConfirmPassword ? 'text' : 'password'}
-                    value={teamVerificationData.confirmPassword}
-                    onChange={(e) => setTeamVerificationData({
-                      ...teamVerificationData,
-                      confirmPassword: e.target.value
-                    })}
-                    className="w-full pl-10 pr-12 py-3 bg-slate-700/50 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-slate-200 placeholder-slate-500"
-                    placeholder="Confirm your password"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowTeamConfirmPassword(!showTeamConfirmPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
-                  >
-                    {showTeamConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </button>
-                </div>
-              </div>
-
-              {/* Error Message */}
-              {teamVerificationError && (
-                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
-                  <div className="flex items-center space-x-2">
-                    <AlertCircle className="w-4 h-4 text-red-400" />
-                    <p className="text-red-400 text-sm">{teamVerificationError}</p>
-                  </div>
-                </div>
-              )}
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
-              >
-                <span>Verify Access</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </form>
-
-            {/* Info Note */}
-            <div className="mt-4 p-3 bg-slate-700/50 rounded-lg">
-              <p className="text-slate-400 text-xs text-center">
-                This verification is exclusively for team members listed on the About page.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Team Member Verification Modal removed - now using dedicated team login page */}
     </div>
   );
 };
