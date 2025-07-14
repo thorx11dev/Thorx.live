@@ -1,5 +1,5 @@
 import { Link } from 'wouter';
-import { ArrowRight, Globe, Shield, Users, TrendingUp, DollarSign, Activity, ChevronDown, Satellite, Rocket, Target, Star, Gem, Headphones, Sparkles, Trophy } from 'lucide-react';
+import { ArrowRight, Globe, Shield, Users, TrendingUp, DollarSign, Activity, ChevronDown, Satellite, Rocket, Target, Star, Gem, Headphones, Sparkles, Trophy, Zap } from 'lucide-react';
 import { useEffect, useState, lazy, Suspense, memo } from 'react';
 import ThorxLogo from '../components/ThorxLogo';
 import { useAdvancedPerformance } from '../hooks/useAdvancedPerformance';
@@ -329,7 +329,7 @@ const LandingPage = memo(() => {
           </div>
 
           {/* Professional Features Grid - Mobile Layout Matched to Stats Section */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-16">
             {[
               {
                 icon: Satellite,
@@ -351,6 +351,13 @@ const LandingPage = memo(() => {
                 description: "Military-grade encryption and quantum-resistant protocols protecting your valuable data",
                 delay: "1.2s",
                 badge: "Enterprise"
+              },
+              {
+                icon: Zap,
+                title: "Instant Rewards",
+                description: "Get paid instantly upon task completion with our lightning-fast payment processing system",
+                delay: "1.4s",
+                badge: "Fast Pay"
               }
             ].map((feature, index) => (
               <div
