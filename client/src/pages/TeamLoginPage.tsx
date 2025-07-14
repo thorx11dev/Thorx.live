@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLocation } from 'wouter';
 import { useTeamAuth } from '@/hooks/useTeamAuth';
 import { ThorxLogo } from '@/components/ThorxLogo';
-import { Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { Eye, EyeOff, AlertCircle, ChevronDown, Users } from 'lucide-react';
 
 const TeamLoginPage = () => {
   const [_, setLocation] = useLocation();
@@ -14,12 +14,20 @@ const TeamLoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
+  // Team members data from database
+  const teamMembers = [
+    { id: 1, name: 'Aon Imran', role: 'CEO' },
+    { id: 2, name: 'Zain Abbas', role: 'Marketing' },
+    { id: 3, name: 'Zohaib Nadeem', role: 'Social Media' },
+    { id: 4, name: 'Prof. Muhammad Jahangeer', role: 'Admin' }
+  ];
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     
     if (!formData.name || !formData.password) {
-      setError('Please enter both name and password');
+      setError('Please select your name and enter password');
       return;
     }
 
@@ -28,11 +36,11 @@ const TeamLoginPage = () => {
     if (success) {
       setLocation('/team/dashboard');
     } else {
-      setError('Invalid credentials. Please check your name and password.');
+      setError('Invalid credentials. Please check your password.');
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -65,18 +73,27 @@ const TeamLoginPage = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
-              Team Member Name
+              Select Team Member
             </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="Enter your full name"
-              required
-            />
+            <div className="relative">
+              <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5 pointer-events-none" />
+              <select
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className="w-full pl-12 pr-10 py-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
+                required
+              >
+                <option value="">Choose your name...</option>
+                {teamMembers.map(member => (
+                  <option key={member.id} value={member.name}>
+                    {member.name} ({member.role})
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5 pointer-events-none" />
+            </div>
           </div>
 
           <div>
