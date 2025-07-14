@@ -1,5 +1,5 @@
 import { Link } from 'wouter';
-import { ArrowLeft, Search, HelpCircle, Book, Mail, Rocket, Satellite, Globe, ChevronRight, Star, Shield, Clock } from 'lucide-react';
+import { ArrowLeft, Search, HelpCircle, Book, Mail, MessageSquare, Rocket, Satellite, Globe, ChevronRight, Star, Shield, Clock } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ThorxLogo from '../components/ThorxLogo';
 
@@ -236,7 +236,7 @@ const HelpCenterPage = () => {
             Our support team is here to help you 24/7. Choose your preferred way to get in touch.
           </p>
           
-          <div className="grid grid-cols-1 gap-8 max-w-md mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {[
               { 
                 icon: Mail, 
@@ -244,7 +244,17 @@ const HelpCenterPage = () => {
                 description: "Get detailed assistance from our support team", 
                 action: "Send Email",
                 email: "support@thorx.live",
-                availability: "24/7 Response"
+                availability: "24/7 Response",
+                type: "email"
+              },
+              { 
+                icon: MessageSquare, 
+                title: "WhatsApp Community", 
+                description: "Join our active community for instant help and updates", 
+                action: "Join Community",
+                link: "https://chat.whatsapp.com/J7Jvr6XBYs82rlF9RGGlTa",
+                availability: "Active 24/7",
+                type: "whatsapp"
               }
             ].map((contact, index) => (
               <div
@@ -264,15 +274,27 @@ const HelpCenterPage = () => {
                   {contact.description}
                 </p>
                 
-                {/* Email display */}
+                {/* Contact display */}
                 <div className="mb-6">
-                  <a 
-                    href={`mailto:${contact.email}`}
-                    className="inline-flex items-center gap-2 text-slate-300 hover:text-white font-semibold bg-slate-700/50 px-4 py-2 rounded-xl hover:bg-slate-600/50 transition-all duration-300"
-                  >
-                    <Mail className="w-4 h-4" />
-                    {contact.email}
-                  </a>
+                  {contact.type === "email" ? (
+                    <a 
+                      href={`mailto:${contact.email}`}
+                      className="inline-flex items-center gap-2 text-slate-300 hover:text-white font-semibold bg-slate-700/50 px-4 py-2 rounded-xl hover:bg-slate-600/50 transition-all duration-300"
+                    >
+                      <Mail className="w-4 h-4" />
+                      {contact.email}
+                    </a>
+                  ) : (
+                    <a 
+                      href={contact.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-slate-300 hover:text-white font-semibold bg-slate-700/50 px-4 py-2 rounded-xl hover:bg-slate-600/50 transition-all duration-300"
+                    >
+                      <MessageSquare className="w-4 h-4" />
+                      WhatsApp Group
+                    </a>
+                  )}
                 </div>
                 
                 {/* Availability */}
@@ -283,11 +305,17 @@ const HelpCenterPage = () => {
                 
                 {/* Call-to-action button */}
                 <button 
-                  onClick={() => window.location.href = `mailto:${contact.email}`}
+                  onClick={() => {
+                    if (contact.type === "email") {
+                      window.location.href = `mailto:${contact.email}`;
+                    } else {
+                      window.open(contact.link, '_blank');
+                    }
+                  }}
                   className="w-full bg-slate-700 text-slate-200 px-8 py-3 rounded-xl font-bold hover:bg-slate-600 transition-all duration-300 hover:scale-105 transform active:scale-95"
                 >
                   <span className="flex items-center justify-center gap-2">
-                    <Mail className="w-4 h-4" />
+                    <contact.icon className="w-4 h-4" />
                     {contact.action}
                   </span>
                 </button>
