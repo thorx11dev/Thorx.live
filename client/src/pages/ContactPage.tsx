@@ -162,13 +162,13 @@ const ContactPage = () => {
                 {/* Dynamic display based on card type */}
                 {info.title === "Email Support" ? (
                   <div className="mb-3">
-                    <a 
-                      href={`mailto:${info.details}`}
+                    <button 
+                      onClick={() => window.location.href = '#contact-form'}
                       className="inline-flex items-center gap-2 text-slate-300 hover:text-white font-semibold bg-slate-700/50 px-4 py-2 rounded-xl hover:bg-slate-600/50 transition-all duration-300"
                     >
                       <Mail className="w-4 h-4" />
                       {info.details}
-                    </a>
+                    </button>
                   </div>
                 ) : info.title === "WhatsApp Community" ? (
                   <div className="mb-3">
@@ -201,12 +201,12 @@ const ContactPage = () => {
                 {/* Call-to-action buttons */}
                 {info.title === "Email Support" && (
                   <button 
-                    onClick={() => window.location.href = `mailto:${info.details}`}
+                    onClick={() => window.location.href = '#contact-form'}
                     className="w-full bg-slate-700 text-slate-200 px-6 py-3 rounded-xl font-semibold hover:bg-slate-600 transition-all duration-300 hover:scale-105 transform active:scale-95"
                   >
                     <span className="flex items-center justify-center gap-2">
                       <Send className="w-4 h-4" />
-                      Send Email
+                      Send Message
                     </span>
                   </button>
                 )}

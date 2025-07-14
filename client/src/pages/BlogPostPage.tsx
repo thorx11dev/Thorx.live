@@ -11,9 +11,12 @@ const BlogPostPage = () => {
     window.scrollTo(0, 0);
   }, [params.id]); // Re-run when the article ID changes
 
-  const handleSocialShare = (platform: string, post: any) => {
-    const postUrl = `${window.location.origin}/blog/${post.id}`;
-    const shareText = `Check out this article: ${post.title}`;
+  const handleSocialShare = (platform: string) => {
+    const currentPost = blogPosts[params.id as keyof typeof blogPosts];
+    if (!currentPost) return;
+    
+    const postUrl = `${window.location.origin}/blog/${currentPost.id}`;
+    const shareText = `Check out this article: ${currentPost.title}`;
     
     const shareUrls = {
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`,
@@ -537,7 +540,7 @@ const BlogPostPage = () => {
             
             <div className="grid grid-cols-2 gap-4">
               <button 
-                onClick={() => handleSocialShare('facebook', post)}
+                onClick={() => handleSocialShare('facebook')}
                 className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-600/50 transition-all duration-300 hover:scale-105"
               >
                 <Facebook className="w-6 h-6 text-blue-400" />
@@ -545,7 +548,7 @@ const BlogPostPage = () => {
               </button>
               
               <button 
-                onClick={() => handleSocialShare('twitter', post)}
+                onClick={() => handleSocialShare('twitter')}
                 className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-600/50 transition-all duration-300 hover:scale-105"
               >
                 <Twitter className="w-6 h-6 text-blue-400" />
@@ -553,7 +556,7 @@ const BlogPostPage = () => {
               </button>
               
               <button 
-                onClick={() => handleSocialShare('whatsapp', post)}
+                onClick={() => handleSocialShare('whatsapp')}
                 className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-600/50 transition-all duration-300 hover:scale-105"
               >
                 <MessageCircle className="w-6 h-6 text-green-400" />
@@ -561,7 +564,7 @@ const BlogPostPage = () => {
               </button>
               
               <button 
-                onClick={() => handleSocialShare('telegram', post)}
+                onClick={() => handleSocialShare('telegram')}
                 className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-600/50 transition-all duration-300 hover:scale-105"
               >
                 <Send className="w-6 h-6 text-blue-400" />
@@ -569,7 +572,7 @@ const BlogPostPage = () => {
               </button>
               
               <button 
-                onClick={() => handleSocialShare('instagram', post)}
+                onClick={() => handleSocialShare('instagram')}
                 className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-600/50 transition-all duration-300 hover:scale-105"
               >
                 <Instagram className="w-6 h-6 text-pink-400" />
@@ -577,7 +580,7 @@ const BlogPostPage = () => {
               </button>
               
               <button 
-                onClick={() => handleSocialShare('tiktok', post)}
+                onClick={() => handleSocialShare('tiktok')}
                 className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-600/50 transition-all duration-300 hover:scale-105"
               >
                 <Star className="w-6 h-6 text-red-400" />
@@ -587,7 +590,7 @@ const BlogPostPage = () => {
             
             <div className="mt-6 pt-6 border-t border-slate-700">
               <button 
-                onClick={() => handleSocialShare('copy', post)}
+                onClick={() => handleSocialShare('copy')}
                 className="w-full flex items-center justify-center gap-2 p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all duration-300 hover:scale-105"
               >
                 <Share2 className="w-5 h-5 text-slate-300" />

@@ -309,7 +309,7 @@ const HelpCenterPage = () => {
                 <button 
                   onClick={() => {
                     if (contact.type === "email") {
-                      window.location.href = `mailto:${contact.email}`;
+                      window.location.href = '/contact#contact-form';
                     } else {
                       window.open(contact.link, '_blank');
                     }
