@@ -16,10 +16,10 @@ const TeamLoginPage = () => {
 
   // Team members data from database
   const teamMembers = [
-    { id: 1, name: 'Aon Imran', role: 'CEO' },
-    { id: 2, name: 'Zain Abbas', role: 'Marketing' },
-    { id: 3, name: 'Zohaib Nadeem', role: 'Social Media' },
-    { id: 4, name: 'Prof. Muhammad Jahangeer', role: 'Admin' }
+    { id: 1, name: 'Aon Imran', role: 'CEO', passwordHint: 'ThorxAonImran!9426' },
+    { id: 2, name: 'Zain Abbas', role: 'Marketing', passwordHint: 'ThorxZainAbbas@1111' },
+    { id: 3, name: 'Zohaib Nadeem', role: 'Social Media', passwordHint: 'ThorxZohaibNadeem#7777' },
+    { id: 4, name: 'Prof. Muhammad Jahangeer', role: 'Admin', passwordHint: 'ThorxMuhammadJahangeer$0000' }
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -119,6 +119,13 @@ const TeamLoginPage = () => {
                 {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
             </div>
+            {formData.name && (
+              <div className="mt-2 p-2 bg-blue-900/20 border border-blue-500/20 rounded-lg">
+                <p className="text-blue-300 text-xs">
+                  <strong>Password:</strong> {teamMembers.find(m => m.name === formData.name)?.passwordHint}
+                </p>
+              </div>
+            )}
           </div>
 
           <button

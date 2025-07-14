@@ -125,6 +125,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { name, password } = req.body;
       
+      console.log("Team login attempt:", { name, passwordLength: password?.length });
+      
       if (!name || !password) {
         return res.status(400).json({ error: "Name and password required" });
       }
@@ -133,11 +135,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const teamMember = await storage.getTeamMemberByName(name);
       
       if (!teamMember) {
+        console.log("Team member not found:", name);
         return res.status(401).json({ error: "Invalid credentials" });
       }
 
       // Check if team member is active
       if (!teamMember.isActive) {
+        console.log("Team member inactive:", name);
         return res.status(401).json({ error: "Account is inactive" });
       }
 
@@ -145,7 +149,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const isValidPassword = await bcrypt.compare(password, teamMember.password);
       
       if (!isValidPassword) {
-        return res.status(401).json({ error: "Invalid credentials" });
+        console.log("Invalid password for:", name);
+        return res.status(401).json({ error: "Invalid password. Please check your password and try again." });
       }
 
       // Generate JWT token for team member
