@@ -236,7 +236,7 @@ const HelpCenterPage = () => {
             Our support team is here to help you 24/7. Choose your preferred way to get in touch.
           </p>
           
-          <div className="grid grid-cols-1 gap-8 max-w-lg mx-auto">
+          <div className="grid grid-cols-1 gap-8 max-w-md mx-auto">
             {[
               { 
                 icon: Mail, 
@@ -249,63 +249,45 @@ const HelpCenterPage = () => {
             ].map((contact, index) => (
               <div
                 key={index}
-                className="relative bg-slate-800/70 p-10 rounded-3xl border border-slate-700/50 hover:border-slate-500/50 transition-all duration-500 group hover:shadow-2xl hover:shadow-slate-900/50 backdrop-blur-lg hover:scale-105 hover:-translate-y-2 text-center overflow-hidden"
+                className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-slate-600 transition-all duration-300 group hover:shadow-2xl hover:shadow-slate-900/50 backdrop-blur-sm hover:scale-105 hover:-translate-y-1 text-center"
               >
-                {/* Animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-700/15 via-slate-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Enhanced border glow effect */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-slate-600/25 via-slate-500/25 to-slate-600/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
-                
-                {/* Floating particles effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute top-4 right-4 w-2 h-2 bg-slate-500/30 rounded-full animate-ping delay-300" />
-                  <div className="absolute bottom-4 left-4 w-1 h-1 bg-slate-400/40 rounded-full animate-ping delay-700" />
+                {/* Icon container */}
+                <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-700 transition-colors shadow-lg">
+                  <contact.icon className="w-8 h-8 text-slate-400 group-hover:text-slate-300 transition-colors" />
                 </div>
                 
-                {/* Enhanced icon container */}
-                <div className="relative w-24 h-24 bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:from-slate-700 group-hover:to-slate-800 transition-all duration-500 shadow-2xl group-hover:shadow-slate-600/30 group-hover:scale-110">
-                  <contact.icon className="w-12 h-12 text-slate-400 group-hover:text-slate-200 transition-all duration-500 group-hover:scale-110" />
-                  
-                  {/* Pulse ring effect */}
-                  <div className="absolute inset-0 rounded-3xl bg-slate-500/20 animate-ping opacity-0 group-hover:opacity-100" />
-                  <div className="absolute inset-2 rounded-2xl bg-slate-400/10 animate-ping opacity-0 group-hover:opacity-100 delay-200" />
-                </div>
-                
-                <h3 className="text-2xl font-bold text-slate-200 mb-4 group-hover:text-white transition-colors duration-300">
+                <h3 className="text-xl font-bold text-slate-200 mb-3 group-hover:text-white transition-colors">
                   {contact.title}
                 </h3>
                 
-                <p className="text-slate-400 mb-6 group-hover:text-slate-300 transition-colors duration-300 leading-relaxed text-lg">
+                <p className="text-slate-400 mb-6 group-hover:text-slate-300 transition-colors">
                   {contact.description}
                 </p>
                 
-                {/* Enhanced email display */}
+                {/* Email display */}
                 <div className="mb-6">
                   <a 
                     href={`mailto:${contact.email}`}
-                    className="inline-flex items-center gap-3 text-slate-300 hover:text-white font-semibold text-lg bg-slate-700/50 px-6 py-3 rounded-xl hover:bg-slate-600/50 transition-all duration-300 group-hover:scale-105 border border-slate-600/30 hover:border-slate-500/50"
+                    className="inline-flex items-center gap-2 text-slate-300 hover:text-white font-semibold bg-slate-700/50 px-4 py-2 rounded-xl hover:bg-slate-600/50 transition-all duration-300"
                   >
-                    <Mail className="w-5 h-5" />
+                    <Mail className="w-4 h-4" />
                     {contact.email}
                   </a>
                 </div>
                 
-                {/* Availability badge */}
+                {/* Availability */}
                 <div className="flex items-center justify-center text-slate-500 text-sm mb-6">
                   <Clock className="w-4 h-4 mr-2" />
-                  <span className="bg-slate-700/50 px-4 py-2 rounded-full border border-slate-600/30">
-                    {contact.availability}
-                  </span>
+                  <span>{contact.availability}</span>
                 </div>
                 
-                {/* Enhanced call-to-action button */}
+                {/* Call-to-action button */}
                 <button 
                   onClick={() => window.location.href = `mailto:${contact.email}`}
-                  className="w-full bg-gradient-to-r from-slate-700 to-slate-600 text-slate-200 px-8 py-4 rounded-xl font-bold hover:from-slate-600 hover:to-slate-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-slate-700/30 transform active:scale-95 group-hover:shadow-xl border border-slate-600/30 hover:border-slate-500/50"
+                  className="w-full bg-slate-700 text-slate-200 px-8 py-3 rounded-xl font-bold hover:bg-slate-600 transition-all duration-300 hover:scale-105 transform active:scale-95"
                 >
-                  <span className="flex items-center justify-center gap-3">
-                    <Mail className="w-5 h-5" />
+                  <span className="flex items-center justify-center gap-2">
+                    <Mail className="w-4 h-4" />
                     {contact.action}
                   </span>
                 </button>
