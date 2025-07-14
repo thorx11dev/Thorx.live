@@ -4405,3 +4405,42 @@ body {
 .dark .celestial-form-group:hover .lucide {
   color: #94a3b8;
 }
+
+/* Mobile-optimized hero section layout enhancements */
+@media (max-width: 640px) {
+  /* Enhanced mobile hero content spacing */
+  .hero-mobile-content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  /* Improved mobile button touch targets */
+  .hero-mobile-buttons {
+    gap: 1rem;
+  }
+  
+  /* Enhanced mobile text readability */
+  .hero-mobile-title {
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+  
+  /* Mobile-specific subtitle optimizations */
+  .hero-mobile-subtitle {
+    line-height: 1.6;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  /* Enhanced mobile navigation spacing */
+  .hero-mobile-nav {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Mobile viewport height handling */
+  .hero-mobile-container {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+}

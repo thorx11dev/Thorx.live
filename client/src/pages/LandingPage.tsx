@@ -39,8 +39,8 @@ const LandingPage = memo(() => {
         />
       </Suspense>
       
-      {/* Hero Section */}
-      <div className="relative h-screen cosmic-gradient-primary">
+      {/* Hero Section - Mobile Optimized Container */}
+      <div className="relative h-screen cosmic-gradient-primary min-h-[100dvh] sm:min-h-screen hero-mobile-container">
         {/* Professional Cosmic Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Elegant orbital rings */}
@@ -115,56 +115,60 @@ const LandingPage = memo(() => {
           </div>
         </div>
 
-        {/* Professional Navigation */}
-        <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
+        {/* Professional Navigation - Mobile Optimized */}
+        <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6 hero-mobile-nav">
           <div className="cosmic-fade-in">
             <ThorxLogo size="md" logoColor="#e2e8f0" />
           </div>
-          <div className="flex items-center gap-3 sm:gap-6 cosmic-fade-in" style={{animationDelay: '0.3s'}}>
+          {/* Mobile-optimized navigation buttons with improved touch targets */}
+          <div className="flex items-center gap-2 sm:gap-6 cosmic-fade-in" style={{animationDelay: '0.3s'}}>
             <Link 
               to="/auth" 
-              className="text-slate-300 hover:text-white transition-all duration-300 relative group text-sm sm:text-base font-medium"
+              className="text-slate-300 hover:text-white transition-all duration-300 relative group text-sm sm:text-base font-medium px-2 py-2 sm:px-0 sm:py-0"
             >
               Sign In
               <span className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 w-0 group-hover:w-full transition-all duration-300" />
             </Link>
             <Link 
               to="/auth" 
-              className="cosmic-btn-primary px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-sm sm:text-base font-semibold"
+              className="cosmic-btn-primary px-3 sm:px-6 py-2 sm:py-2.5 rounded-lg text-sm sm:text-base font-semibold min-h-[40px] flex items-center justify-center"
             >
               Get Started
             </Link>
           </div>
         </nav>
 
-        {/* Professional Hero Content */}
-        <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 -mt-16 sm:-mt-20">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-            {/* Left side - Content */}
+        {/* Professional Hero Content - Mobile Optimized Layout */}
+        <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 -mt-12 sm:-mt-16 md:-mt-20 hero-mobile-content">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center w-full">
+            {/* Left side - Content - Mobile Layout Optimization */}
             <div className="text-center lg:text-left px-2 sm:px-0">
-              <div className="mb-4 sm:mb-6">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight cosmic-slide-up text-slate-200 font-semibold">
-                  <span className="block">Explore the</span>
+              {/* Mobile-optimized title section with improved spacing */}
+              <div className="mb-6 sm:mb-8 md:mb-6">
+                <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight cosmic-slide-up text-slate-200 font-semibold hero-mobile-title">
+                  <span className="block mb-2">Explore the</span>
                   <span className="block font-medium">Digital Universe</span>
                 </h1>
               </div>
               
-              <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-6 sm:mb-8 max-w-lg mx-auto lg:mx-0 cosmic-slide-up" style={{animationDelay: '0.3s'}}>
+              {/* Mobile-optimized subtitle with better line height and spacing */}
+              <p className="text-lg sm:text-xl md:text-xl text-slate-300 mb-8 sm:mb-10 md:mb-8 max-w-lg mx-auto lg:mx-0 cosmic-slide-up leading-relaxed px-4 sm:px-0 hero-mobile-subtitle" style={{animationDelay: '0.3s'}}>
                 Navigate through cosmic earning opportunities with Thorx. A professional platform designed for the modern digital explorer.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start cosmic-scale-in" style={{animationDelay: '0.6s'}}>
+              {/* Mobile-optimized button layout with enhanced spacing and touch targets */}
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 justify-center lg:justify-start cosmic-scale-in px-4 sm:px-0 hero-mobile-buttons" style={{animationDelay: '0.6s'}}>
                 <Link 
                   to="/auth" 
-                  className="cosmic-btn-primary px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold inline-flex items-center justify-center gap-2 sm:gap-3 group text-sm sm:text-base"
+                  className="cosmic-btn-primary px-8 sm:px-8 py-4 sm:py-4 rounded-xl font-bold inline-flex items-center justify-center gap-3 sm:gap-3 group text-base sm:text-base min-h-[56px] w-full sm:w-auto"
                 >
                   <span>Start Your Journey</span>
-                  <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 group-hover:rotate-12 transition-all duration-300" />
+                  <ArrowRight className="w-5 sm:w-5 h-5 sm:h-5 group-hover:translate-x-1 group-hover:rotate-12 transition-all duration-300" />
                 </Link>
                 
                 <Link 
                   to="/auth" 
-                  className="cosmic-btn-secondary px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base text-center"
+                  className="cosmic-btn-secondary px-8 sm:px-8 py-4 sm:py-4 rounded-xl font-bold text-base sm:text-base text-center min-h-[56px] w-full sm:w-auto"
                 >
                   Sign In
                 </Link>
