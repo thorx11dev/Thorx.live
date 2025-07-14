@@ -328,8 +328,8 @@ const LandingPage = memo(() => {
             </div>
           </div>
 
-          {/* Professional Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+          {/* Professional Features Grid - Mobile Layout Matched to Stats Section */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-16">
             {[
               {
                 icon: Satellite,
@@ -361,8 +361,8 @@ const LandingPage = memo(() => {
                 {/* Professional Cosmic Feature Card */}
                 <div className="relative cosmic-hover-lift">
                   
-                  {/* Main Card Structure */}
-                  <div className="relative p-10 rounded-3xl overflow-hidden cosmic-glass min-h-[400px] flex flex-col justify-between">
+                  {/* Main Card Structure - Mobile Responsive */}
+                  <div className="relative p-6 sm:p-10 rounded-3xl overflow-hidden cosmic-glass min-h-[300px] sm:min-h-[400px] flex flex-col justify-between mobile-card-container">
                     
                     {/* Elegant background gradient on hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
@@ -386,11 +386,11 @@ const LandingPage = memo(() => {
                       </div>
                     </div>
                     
-                    {/* Professional Icon Container */}
-                    <div className="relative mb-8 z-10">
-                      <div className="relative mx-auto w-24 h-24">
+                    {/* Professional Icon Container - Mobile Responsive */}
+                    <div className="relative mb-6 sm:mb-8 z-10">
+                      <div className="relative mx-auto w-16 h-16 sm:w-24 sm:h-24 mobile-card-icon">
                         {/* Main icon container */}
-                        <div className="w-24 h-24 cosmic-glass-light rounded-full 
+                        <div className="w-16 h-16 sm:w-24 sm:h-24 cosmic-glass-light rounded-full 
                                       flex items-center justify-center 
                                       transition-all duration-500 group-hover:bg-slate-700/90 
                                       shadow-2xl group-hover:shadow-blue-500/20
@@ -399,7 +399,7 @@ const LandingPage = memo(() => {
                                       relative overflow-hidden">
                           
                           {/* Main icon */}
-                          <feature.icon className="w-12 h-12 text-slate-300 group-hover:text-white 
+                          <feature.icon className="w-8 h-8 sm:w-12 sm:h-12 text-slate-300 group-hover:text-white 
                                                  transition-all duration-500 relative z-10
                                                  group-hover:scale-110 group-hover:drop-shadow-lg" />
                           
@@ -412,7 +412,7 @@ const LandingPage = memo(() => {
                         {/* Professional badge */}
                         <div className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 
                                       transition-all duration-300 delay-200">
-                          <span className="px-3 py-1 bg-blue-500/20 backdrop-blur-sm text-blue-300 
+                          <span className="px-2 py-1 sm:px-3 sm:py-1 bg-blue-500/20 backdrop-blur-sm text-blue-300 
                                          text-xs font-medium rounded-full border border-blue-400/40">
                             {feature.badge}
                           </span>
@@ -420,17 +420,17 @@ const LandingPage = memo(() => {
                       </div>
                     </div>
                     
-                    {/* Professional Content */}
-                    <div className="space-y-6 relative z-10 text-center">
-                      <h3 className="text-2xl font-bold text-white relative
+                    {/* Professional Content - Mobile Responsive */}
+                    <div className="space-y-4 sm:space-y-6 relative z-10 text-center mobile-card-content">
+                      <h3 className="text-lg sm:text-2xl font-bold text-white relative
                                    transition-all duration-500 group-hover:text-blue-100
-                                   group-hover:scale-105 cosmic-text-shadow">
+                                   group-hover:scale-105 cosmic-text-shadow mobile-card-title">
                         {feature.title}
                       </h3>
                       
-                      <p className="text-slate-300 leading-relaxed text-lg
+                      <p className="text-slate-300 leading-relaxed text-sm sm:text-lg
                                   transition-all duration-500 group-hover:text-slate-200
-                                  group-hover:scale-105">
+                                  group-hover:scale-105 mobile-card-description">
                         {feature.description}
                       </p>
                     </div>
@@ -492,8 +492,8 @@ const LandingPage = memo(() => {
             </p>
           </div>
 
-          {/* NEW COSMIC FEATURES GRID - Inspired by stats section with constellation theme */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          {/* NEW COSMIC FEATURES GRID - Mobile Layout Matched to Stats Section */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
             {[
               {
                 icon: Rocket,
@@ -540,28 +540,28 @@ const LandingPage = memo(() => {
                 {/* Professional benefit card */}
                 <div className="relative cosmic-hover-lift">
                   
-                  {/* Main card container */}
-                  <div className="p-8 rounded-2xl relative overflow-hidden cosmic-glass text-center min-h-[300px] flex flex-col justify-center">
+                  {/* Main card container - Mobile Responsive */}
+                  <div className="p-6 sm:p-8 rounded-2xl relative overflow-hidden cosmic-glass text-center min-h-[250px] sm:min-h-[300px] flex flex-col justify-center mobile-card-container">
                     
                     {/* Elegant background gradient */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
                     
-                    {/* Professional icon */}
-                    <div className="relative mb-6 z-10">
-                      <div className="w-20 h-20 cosmic-glass-light rounded-full 
+                    {/* Professional icon - Mobile Responsive */}
+                    <div className="relative mb-4 sm:mb-6 z-10">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 cosmic-glass-light rounded-full 
                                     flex items-center justify-center mx-auto 
                                     transition-all duration-500 
                                     shadow-lg group-hover:shadow-blue-500/20
                                     transform-gpu group-hover:scale-110 group-hover:rotate-6
                                     relative overflow-hidden border-2 border-slate-600/30 
-                                    group-hover:border-blue-400/50">
+                                    group-hover:border-blue-400/50 mobile-card-icon">
                         
                         {/* Energy field */}
                         <div className="absolute inset-0 bg-blue-500/20 
                                       opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
                         
                         {/* Clean icon */}
-                        <feature.icon className="w-10 h-10 text-slate-300 group-hover:text-white 
+                        <feature.icon className="w-8 h-8 sm:w-10 sm:h-10 text-slate-300 group-hover:text-white 
                                              transition-all duration-500 relative z-10" />
                         
                         {/* Elegant ring */}
@@ -571,17 +571,17 @@ const LandingPage = memo(() => {
                       </div>
                     </div>
                     
-                    {/* Professional content */}
-                    <div className="space-y-4 relative z-10">
-                      <h3 className="text-xl font-bold text-white mb-4 relative
+                    {/* Professional content - Mobile Responsive */}
+                    <div className="space-y-3 sm:space-y-4 relative z-10 mobile-card-content">
+                      <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 relative
                                    transition-all duration-500 group-hover:text-blue-100
-                                   group-hover:scale-105 cosmic-text-shadow">
+                                   group-hover:scale-105 cosmic-text-shadow mobile-card-title">
                         {feature.title}
                       </h3>
                       
                       <p className="text-slate-300 text-sm leading-relaxed
                                   transition-all duration-500 group-hover:text-slate-200
-                                  group-hover:scale-105">
+                                  group-hover:scale-105 mobile-card-description">
                         {feature.description}
                       </p>
                     </div>
