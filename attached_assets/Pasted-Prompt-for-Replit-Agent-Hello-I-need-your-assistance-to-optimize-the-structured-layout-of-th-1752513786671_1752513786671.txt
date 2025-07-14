@@ -1,0 +1,49 @@
+Prompt for Replit Agent:
+
+Hello,
+
+I need your assistance to optimize the structured layout of the hero section on the Thorx landing page exclusively for mobile screens. Please carefully follow these instructions:
+
+Scope of Work:
+
+Only modify the layout structure of the hero section on the landing page when viewed on mobile devices (small screen widths).
+
+Do not alter any visual design elements such as colors, fonts, images, icons, buttons, or text content.
+
+Do not change or affect any other sections of the landing page or any other pages within the Thorx platform.
+
+The desktop layout and design must remain exactly as is.
+
+Objective:
+
+Rearrange the existing hero section components (e.g., headline, subheadline, call-to-action buttons, images, or any other elements present) to improve visibility, readability, and user experience on mobile screens.
+
+Ensure that all hero section content is easily accessible without horizontal scrolling or overlapping.
+
+Maintain proper spacing and alignment to avoid clutter and improve clarity.
+
+The hero section must load and display correctly on all common mobile screen sizes.
+
+Technical Details:
+
+Implement the layout changes using responsive design best practices (CSS media queries, flexbox/grid adjustments, or any other appropriate method).
+
+Avoid introducing new dependencies or frameworks.
+
+Ensure that the rearrangement does not negatively impact page load speed or accessibility.
+
+Test the hero section on multiple mobile viewport widths to verify consistent visibility and usability.
+
+Deliverables:
+
+Provide the updated code snippets or files with the rearranged layout for the hero section on mobile.
+
+Include comments or documentation explaining the changes made and how they improve mobile visibility.
+
+Confirm that no other parts of the landing page or other pages have been modified.
+
+Please prioritize maintaining the integrity of the original design while enhancing the mobile user experience through thoughtful rearrangement of the hero section layout.
+
+Thank you for your meticulous attention to detail.
+
+If you need me to help you further refine or customize this prompt, please let me know.
