@@ -166,8 +166,8 @@ const Dashboard = memo(() => {
           <p className="text-secondary">Welcome back! Here's your cosmic earning overview.</p>
         </motion.div>
 
-        {/* Mobile-Enhanced Stats Cards */}
-        <div className="thorx-mobile-grid-stack sm:grid-cols-2 lg:grid-cols-4 thorx-mobile-section-gap">
+        {/* MOBILE-OPTIMIZED: Stats Cards - Single Column on Mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
           {statCards.map((card, index) => (
             <motion.div
               key={index}
@@ -179,18 +179,18 @@ const Dashboard = memo(() => {
                 y: -5,
                 boxShadow: "0 20px 40px rgba(45, 58, 74, 0.15)"
               }}
-              className="bg-secondary rounded-xl thorx-mobile-card border border-primary hover:border-soft-pink/30 transition-all duration-300 shadow-primary"
+              className="bg-secondary rounded-xl p-4 md:p-6 border border-primary hover:border-soft-pink/30 transition-all duration-300 shadow-primary min-h-[80px] md:min-h-[120px]"
             >
-              <div className="flex items-center justify-between thorx-mobile-content-gap">
-                <div className={`inline-flex items-center justify-center thorx-mobile-touch-target rounded-lg ${card.bgColor}`}>
+              <div className="flex items-center justify-between mb-3 md:mb-4">
+                <div className={`inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg ${card.bgColor}`}>
                   <card.icon className="w-5 h-5 md:w-6 md:h-6 text-[#2D2D2D]" color="#2D2D2D" />
                 </div>
-                <span className="thorx-mobile-text-sm font-medium text-green-600 bg-green-50 px-2 md:px-3 py-1 rounded-full border border-green-100">
+                <span className="text-xs md:text-sm font-medium text-green-600 bg-green-50 px-2 md:px-3 py-1 rounded-full border border-green-100">
                   {card.trend}
                 </span>
               </div>
-              <div className="thorx-mobile-heading-md md:text-2xl font-bold text-primary mb-1">{card.value}</div>
-              <div className="thorx-mobile-text-sm text-secondary">{card.title}</div>
+              <div className="text-lg md:text-2xl font-bold text-primary mb-1">{card.value}</div>
+              <div className="text-xs md:text-sm text-secondary">{card.title}</div>
             </motion.div>
           ))}
         </div>

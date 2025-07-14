@@ -60,7 +60,7 @@ const Navbar = () => {
                 >
                   <Link
                     to={item.path}
-                    className={`relative thorx-mobile-nav-item thorx-mobile-touch-target transition-all duration-300 group ${
+                    className={`relative flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
                       active
                         ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-md'
                         : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800/50'

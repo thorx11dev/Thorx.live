@@ -115,35 +115,35 @@ const LandingPage = memo(() => {
           </div>
         </div>
 
-        {/* Mobile-Optimized Professional Navigation */}
-        <nav className="relative z-50 flex justify-between items-center thorx-mobile-container py-4 sm:py-6">
+        {/* Professional Navigation */}
+        <nav className="relative z-50 flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
           <div className="cosmic-fade-in">
             <ThorxLogo size="md" logoColor="#e2e8f0" />
           </div>
-          <div className="flex items-center gap-2 sm:gap-6 cosmic-fade-in" style={{animationDelay: '0.3s'}}>
+          <div className="flex items-center gap-3 sm:gap-6 cosmic-fade-in" style={{animationDelay: '0.3s'}}>
             <Link 
               to="/auth" 
-              className="text-slate-300 hover:text-white transition-all duration-300 relative group thorx-mobile-text-base font-medium thorx-mobile-touch-target"
+              className="text-slate-300 hover:text-white transition-all duration-300 relative group text-sm sm:text-base font-medium"
             >
               Sign In
               <span className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 w-0 group-hover:w-full transition-all duration-300" />
             </Link>
             <Link 
               to="/auth" 
-              className="cosmic-btn-primary thorx-mobile-btn-secondary sm:px-6 sm:py-2.5 rounded-lg thorx-mobile-text-base font-semibold"
+              className="cosmic-btn-primary px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-sm sm:text-base font-semibold"
             >
               Get Started
             </Link>
           </div>
         </nav>
 
-        {/* Mobile-Optimized Professional Hero Content */}
-        <div className="relative z-10 flex items-center justify-center h-full thorx-mobile-container -mt-16 sm:-mt-20">
+        {/* Professional Hero Content */}
+        <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 -mt-16 sm:-mt-20">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left side - Content */}
-            <div className="text-center lg:text-left">
-              <div className="thorx-mobile-content-gap">
-                <h1 className="thorx-mobile-heading-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight cosmic-slide-up text-slate-200 font-semibold">
+            <div className="text-center lg:text-left px-2 sm:px-0">
+              <div className="mb-4 sm:mb-6">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight cosmic-slide-up text-slate-200 font-semibold">
                   <span className="block">Explore the</span>
                   <span className="block font-medium">Digital Universe</span>
                 </h1>
@@ -324,8 +324,8 @@ const LandingPage = memo(() => {
             </div>
           </div>
 
-          {/* Mobile-Optimized Professional Features Grid */}
-          <div className="thorx-mobile-grid-stack md:grid-cols-3 thorx-mobile-section-gap lg:gap-16">
+          {/* Professional Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             {[
               {
                 icon: Satellite,
@@ -357,8 +357,8 @@ const LandingPage = memo(() => {
                 {/* Professional Cosmic Feature Card */}
                 <div className="relative cosmic-hover-lift">
                   
-                  {/* Mobile-Optimized Main Card Structure */}
-                  <div className="relative thorx-mobile-card rounded-3xl overflow-hidden cosmic-glass min-h-[320px] sm:min-h-[400px] flex flex-col justify-between">
+                  {/* Main Card Structure */}
+                  <div className="relative p-10 rounded-3xl overflow-hidden cosmic-glass min-h-[400px] flex flex-col justify-between">
                     
                     {/* Elegant background gradient on hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
@@ -416,15 +416,15 @@ const LandingPage = memo(() => {
                       </div>
                     </div>
                     
-                    {/* Mobile-Optimized Professional Content */}
-                    <div className="thorx-mobile-content-gap relative z-10 text-center">
-                      <h3 className="thorx-mobile-heading-lg font-bold text-white relative
+                    {/* Professional Content */}
+                    <div className="space-y-6 relative z-10 text-center">
+                      <h3 className="text-2xl font-bold text-white relative
                                    transition-all duration-500 group-hover:text-blue-100
                                    group-hover:scale-105 cosmic-text-shadow">
                         {feature.title}
                       </h3>
                       
-                      <p className="text-slate-300 leading-relaxed thorx-mobile-text-base
+                      <p className="text-slate-300 leading-relaxed text-lg
                                   transition-all duration-500 group-hover:text-slate-200
                                   group-hover:scale-105">
                         {feature.description}
@@ -488,8 +488,8 @@ const LandingPage = memo(() => {
             </p>
           </div>
 
-          {/* Mobile-Optimized Benefits Grid */}
-          <div className="thorx-mobile-grid-stack md:grid-cols-2 lg:grid-cols-4 thorx-mobile-section-gap lg:gap-12">
+          {/* NEW COSMIC FEATURES GRID - Inspired by stats section with constellation theme */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
               {
                 icon: Rocket,
@@ -536,8 +536,8 @@ const LandingPage = memo(() => {
                 {/* Professional benefit card */}
                 <div className="relative cosmic-hover-lift">
                   
-                  {/* Mobile-Optimized Benefits Card */}
-                  <div className="thorx-mobile-card rounded-2xl relative overflow-hidden cosmic-glass text-center min-h-[240px] sm:min-h-[300px] flex flex-col justify-center">
+                  {/* Main card container */}
+                  <div className="p-8 rounded-2xl relative overflow-hidden cosmic-glass text-center min-h-[300px] flex flex-col justify-center">
                     
                     {/* Elegant background gradient */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
@@ -567,15 +567,15 @@ const LandingPage = memo(() => {
                       </div>
                     </div>
                     
-                    {/* Mobile-Optimized Benefits Content */}
-                    <div className="thorx-mobile-content-gap relative z-10">
-                      <h3 className="thorx-mobile-heading-md font-bold text-white mb-4 relative
+                    {/* Professional content */}
+                    <div className="space-y-4 relative z-10">
+                      <h3 className="text-xl font-bold text-white mb-4 relative
                                    transition-all duration-500 group-hover:text-blue-100
                                    group-hover:scale-105 cosmic-text-shadow">
                         {feature.title}
                       </h3>
                       
-                      <p className="text-slate-300 thorx-mobile-text-sm leading-relaxed
+                      <p className="text-slate-300 text-sm leading-relaxed
                                   transition-all duration-500 group-hover:text-slate-200
                                   group-hover:scale-105">
                         {feature.description}
@@ -769,7 +769,7 @@ const LandingPage = memo(() => {
           <div className="absolute bottom-1/4 right-10 w-px h-16 bg-gradient-to-t from-slate-400/25 to-transparent animate-pulse" style={{ animationDelay: '3s' }}></div>
         </div>
 
-        <div className="max-w-4xl mx-auto thorx-mobile-container text-center relative z-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           {/* Professional heading */}
           <div className="mb-6 cosmic-slide-up">
             <h2 className="text-4xl md:text-5xl relative text-slate-200 font-semibold">
@@ -781,15 +781,15 @@ const LandingPage = memo(() => {
             Join thousands of users who have already discovered the power of Thorx
           </p>
           
-          {/* Mobile-Optimized CTA buttons */}
-          <div className="flex flex-col sm:flex-row thorx-mobile-section-gap justify-center cosmic-scale-in" style={{animationDelay: '0.4s'}}>
+          {/* Professional CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center cosmic-scale-in" style={{animationDelay: '0.4s'}}>
             {/* Primary CTA Button */}
             <div className="relative group">
               
               <Link 
                 to="/auth" 
                 className="relative cosmic-btn-primary 
-                         thorx-mobile-btn rounded-2xl font-bold 
+                         px-10 py-4 rounded-2xl font-bold 
                          transition-all duration-500 inline-flex items-center justify-center gap-3 
                          group-hover:scale-105 group-hover:-translate-y-1
                          transform-gpu"
