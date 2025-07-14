@@ -12,7 +12,19 @@ const ContactPage = () => {
   });
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Check if there's a hash in the URL
+    const hash = window.location.hash;
+    if (hash === '#contact-form') {
+      // Small delay to ensure page is loaded
+      setTimeout(() => {
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+          contactForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -163,7 +175,12 @@ const ContactPage = () => {
                 {info.title === "Email Support" ? (
                   <div className="mb-3">
                     <button 
-                      onClick={() => window.location.href = '#contact-form'}
+                      onClick={() => {
+                        const contactForm = document.getElementById('contact-form');
+                        if (contactForm) {
+                          contactForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }}
                       className="inline-flex items-center gap-2 text-slate-300 hover:text-white font-semibold bg-slate-700/50 px-4 py-2 rounded-xl hover:bg-slate-600/50 transition-all duration-300"
                     >
                       <Mail className="w-4 h-4" />
@@ -201,7 +218,12 @@ const ContactPage = () => {
                 {/* Call-to-action buttons */}
                 {info.title === "Email Support" && (
                   <button 
-                    onClick={() => window.location.href = '#contact-form'}
+                    onClick={() => {
+                      const contactForm = document.getElementById('contact-form');
+                      if (contactForm) {
+                        contactForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }}
                     className="w-full bg-slate-700 text-slate-200 px-6 py-3 rounded-xl font-semibold hover:bg-slate-600 transition-all duration-300 hover:scale-105 transform active:scale-95"
                   >
                     <span className="flex items-center justify-center gap-2">
