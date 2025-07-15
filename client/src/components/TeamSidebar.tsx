@@ -20,7 +20,7 @@ import {
 export const TeamSidebar = () => {
   const { teamMember, logout } = useTeamAuth();
   const [location] = useLocation();
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const getRoleColor = (role: string) => {
     switch (role) {
@@ -91,22 +91,20 @@ export const TeamSidebar = () => {
 
   return (
     <div 
-      className={`bg-slate-800 h-screen flex flex-col transition-all duration-300 ease-in-out relative ${
+      className={`bg-slate-800 h-screen flex flex-col transition-all duration-200 ease-in-out relative ${
         isCollapsed ? 'w-16' : 'w-64'
       }`}
-      onMouseEnter={() => setIsCollapsed(false)}
-      onMouseLeave={() => setIsCollapsed(true)}
     >
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-slate-700">
-        <div className={`flex items-center transition-all duration-300 ${
+        <div className={`flex items-center transition-all duration-200 ${
           isCollapsed ? 'justify-center w-full' : 'space-x-3'
         }`}>
           <div className="flex-shrink-0">
             <ThorxLogo size="sm" />
           </div>
           {!isCollapsed && (
-            <div className="min-w-0 opacity-100 transition-opacity duration-300">
+            <div className="min-w-0 opacity-100 transition-opacity duration-200">
               <h1 className="text-lg font-bold text-slate-200 truncate">Team Portal</h1>
               <p className="text-xs text-slate-400 truncate">Thorx Management</p>
             </div>
@@ -138,7 +136,7 @@ export const TeamSidebar = () => {
 
       {/* User Info */}
       <div className="p-4 border-b border-slate-700">
-        <div className={`flex items-center transition-all duration-300 ${
+        <div className={`flex items-center transition-all duration-200 ${
           isCollapsed ? 'justify-center' : 'space-x-3'
         }`}>
           <div className={`w-10 h-10 rounded-full ${getRoleColor(teamMember?.role || '')} flex items-center justify-center flex-shrink-0`}>
@@ -147,7 +145,7 @@ export const TeamSidebar = () => {
             </span>
           </div>
           {!isCollapsed && (
-            <div className="min-w-0 opacity-100 transition-opacity duration-300">
+            <div className="min-w-0 opacity-100 transition-opacity duration-200">
               <p className="text-slate-200 font-medium truncate">{teamMember?.name}</p>
               <p className="text-xs text-slate-400 truncate">{getRoleTitle(teamMember?.role || '')}</p>
             </div>
@@ -172,7 +170,7 @@ export const TeamSidebar = () => {
           >
             <item.icon className="w-5 h-5 flex-shrink-0" />
             {!isCollapsed && (
-              <span className="font-medium opacity-100 transition-opacity duration-300">
+              <span className="font-medium opacity-100 transition-opacity duration-200">
                 {item.label}
               </span>
             )}
@@ -191,7 +189,7 @@ export const TeamSidebar = () => {
         >
           <LogOut className="w-5 h-5 flex-shrink-0" />
           {!isCollapsed && (
-            <span className="font-medium opacity-100 transition-opacity duration-300">
+            <span className="font-medium opacity-100 transition-opacity duration-200">
               Logout
             </span>
           )}

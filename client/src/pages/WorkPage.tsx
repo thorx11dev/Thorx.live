@@ -397,9 +397,30 @@ const WorkPage = memo(() => {
   if (isLoading) {
     return (
       <div className="flex min-h-screen bg-slate-900">
-        <TeamSidebar />
+        <div className="w-64 bg-slate-800 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
+        </div>
         <div className="flex-1 flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <p className="text-white text-lg">Loading workspace...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!teamMember) {
+    return (
+      <div className="flex min-h-screen bg-slate-900">
+        <div className="w-64 bg-slate-800 flex items-center justify-center">
+          <div className="text-slate-400">No access</div>
+        </div>
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <p className="text-white text-lg mb-4">Authentication required</p>
+            <p className="text-slate-400">Please log in to access the workspace</p>
+          </div>
         </div>
       </div>
     );
@@ -410,10 +431,10 @@ const WorkPage = memo(() => {
       <TeamSidebar />
       <div className="flex-1">
         <Suspense fallback={<div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-slate-900 flex items-center justify-center">
-          <div className="text-white text-xl font-semibold">Loading optimized interface...</div>
+          <div className="text-white text-xl font-semibold">Initializing workspace...</div>
         </div>}>
           <PerformanceOptimizer />
-          <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-slate-900 thorx-performance-optimized">
+          <div className="min-h-screen pt-4 px-4 sm:px-6 lg:px-8 bg-slate-900 thorx-performance-optimized">
             <div className="max-w-7xl mx-auto">
             {/* Header */}
             <motion.div
@@ -423,7 +444,7 @@ const WorkPage = memo(() => {
               className="mb-8"
             >
               <h1 className="text-4xl font-bold text-white mb-2">Cosmic Workplace</h1>
-              <p className="text-slate-300">Three universes of earning opportunities await your exploration</p>
+              <p className="text-slate-300">Welcome {teamMember?.name} - Your earning universe awaits</p>
             </motion.div>
 
             {/* Performance Overview */}
