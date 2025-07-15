@@ -11,11 +11,7 @@ import {
   LogOut,
   Menu,
   X,
-  ChevronLeft,
-  ChevronRight,
-  Briefcase,
-  Settings,
-  Shield
+  ChevronRight
 } from 'lucide-react';
 
 export const TeamSidebar = () => {
@@ -44,49 +40,24 @@ export const TeamSidebar = () => {
   };
 
   const getNavigationItems = () => {
-    const role = teamMember?.role;
-    
-    // Base navigation items for all users
-    const baseItems = [
-      { path: '/team/dashboard', label: 'Dashboard', icon: Home }
+    const items = [
+      { path: '/team/dashboard', label: 'Dashboard', icon: Home, accessible: true },
+      { path: '/team/inbox', label: 'Inbox', icon: Mail, accessible: true },
+      { path: '/team/chat', label: 'Linkage', icon: MessageCircle, accessible: true },
+      { path: '/team/market', label: 'Digital Market', icon: TrendingUp, accessible: true }
     ];
 
-    // Role-specific navigation assignments
-    const roleSpecificItems = {
-      'ceo': [
-        { path: '/team/users', label: 'User Care', icon: Users },
-        { path: '/team/inbox', label: 'Inbox', icon: Mail },
-        { path: '/team/chat', label: 'Linkage', icon: MessageCircle },
-        { path: '/team/hub', label: 'Team Hub', icon: Shield },
-        { path: '/team/work', label: 'Work', icon: Briefcase },
-        { path: '/team/market', label: 'Digital Market', icon: TrendingUp },
-        { path: '/team/settings', label: 'Settings', icon: Settings }
-      ],
-      'marketing': [
-        { path: '/team/users', label: 'User Care', icon: Users },
-        { path: '/team/inbox', label: 'Inbox', icon: Mail },
-        { path: '/team/chat', label: 'Linkage', icon: MessageCircle },
-        { path: '/team/work', label: 'Work', icon: Briefcase },
-        { path: '/team/settings', label: 'Settings', icon: Settings }
-      ],
-      'social_media': [
-        { path: '/team/users', label: 'User Care', icon: Users },
-        { path: '/team/inbox', label: 'Inbox', icon: Mail },
-        { path: '/team/chat', label: 'Linkage', icon: MessageCircle },
-        { path: '/team/work', label: 'Work', icon: Briefcase },
-        { path: '/team/market', label: 'Digital Market', icon: TrendingUp },
-        { path: '/team/settings', label: 'Settings', icon: Settings }
-      ],
-      'admin': [
-        { path: '/team/users', label: 'User Care', icon: Users },
-        { path: '/team/inbox', label: 'Inbox', icon: Mail },
-        { path: '/team/chat', label: 'Linkage', icon: MessageCircle },
-        { path: '/team/work', label: 'Work', icon: Briefcase },
-        { path: '/team/settings', label: 'Settings', icon: Settings }
-      ]
-    };
+    // Add role-specific items
+    if (teamMember?.role === 'ceo' || teamMember?.role === 'admin') {
+      items.splice(2, 0, { path: '/team/users', label: 'User Care', icon: Users, accessible: true });
+    }
 
-    return [...baseItems, ...(roleSpecificItems[role as keyof typeof roleSpecificItems] || [])];
+    // CEO-only Team Hub access
+    if (teamMember?.role === 'ceo') {
+      items.push({ path: '/team/hub', label: 'Team Hub', icon: Users, accessible: true });
+    }
+
+    return items;
   };
 
   const handleLogout = () => {
