@@ -5,30 +5,30 @@ async function initializeTeamMembers() {
   try {
     console.log('Initializing team members...');
     
-    // Team member data with updated passwords
+    // Team member data with passwords from environment variables
     const teamMembers = [
       {
         name: "Aon Imran",
         email: "aon@thorx.live",
-        password: "ThorxAonImran!9426",
+        password: process.env.TEAM_PASSWORD_AON || "DefaultPassword123!",
         role: "ceo"
       },
       {
         name: "Zain Abbas",
         email: "zain@thorx.live",
-        password: "ThorxZainAbbas@1111",
+        password: process.env.TEAM_PASSWORD_ZAIN || "DefaultPassword123!",
         role: "marketing"
       },
       {
         name: "Zohaib Nadeem",
         email: "zohaib@thorx.live",
-        password: "ThorxZohaibNadeem#7777",
+        password: process.env.TEAM_PASSWORD_ZOHAIB || "DefaultPassword123!",
         role: "social_media"
       },
       {
         name: "Prof. Muhammad Jahangeer",
         email: "jahangeer@thorx.live",
-        password: "ThorxMuhammadJahangeer$0000",
+        password: process.env.TEAM_PASSWORD_JAHANGEER || "DefaultPassword123!",
         role: "admin"
       }
     ];
