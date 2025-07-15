@@ -45,6 +45,11 @@ export interface IStorage {
   // Ban report methods
   createBanReport(report: InsertBanReport): Promise<BanReport>;
   getBanReportsByUser(userId: number): Promise<BanReport[]>;
+  
+  // Enhanced user ban methods
+  banUser(userId: number, reason: string, bannedBy: number): Promise<User | undefined>;
+  unbanUser(userId: number, reason: string, unbannedBy: number): Promise<User | undefined>;
+  getBannedUsers(): Promise<User[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -215,6 +220,56 @@ export class DatabaseStorage implements IStorage {
 
   async getBanReportsByUser(userId: number): Promise<BanReport[]> {
     return db.select().from(banReports).where(eq(banReports.userId, userId));
+  }
+
+  async banUser(userId: number, reason: string, bannedBy: number): Promise<User | undefined> {
+    const [user] = await db.update(users)
+      .set({ 
+        isBanned: true, 
+        banReason: reason, 
+        bannedBy: bannedBy,
+        bannedAt: new Date(),
+        updatedAt: new Date()
+      })
+      .where(eq(users.id, userId))
+      .returning();
+    
+    // Create ban report
+    await this.createBanReport({
+      userId,
+      teamMemberId: bannedBy,
+      reason,
+      action: 'ban'
+    });
+    
+    return user || undefined;
+  }
+
+  async unbanUser(userId: number, reason: string, unbannedBy: number): Promise<User | undefined> {
+    const [user] = await db.update(users)
+      .set({ 
+        isBanned: false, 
+        banReason: null,
+        bannedBy: null,
+        bannedAt: null,
+        updatedAt: new Date()
+      })
+      .where(eq(users.id, userId))
+      .returning();
+    
+    // Create unban report
+    await this.createBanReport({
+      userId,
+      teamMemberId: unbannedBy,
+      reason,
+      action: 'unban'
+    });
+    
+    return user || undefined;
+  }
+
+  async getBannedUsers(): Promise<User[]> {
+    return await db.select().from(users).where(eq(users.isBanned, true)).orderBy(desc(users.bannedAt));
   }
 }
 

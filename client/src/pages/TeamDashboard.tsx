@@ -1,57 +1,62 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTeamAuth } from '@/hooks/useTeamAuth';
-import { ThorxLogo } from '@/components/ThorxLogo';
-import UserCarePage from './UserCarePage';
-import InboxPage from './InboxPage';
-import LinkagePage from './LinkagePage';
-import TeamHubPage from './TeamHubPage';
-import DigitalMarketPage from './DigitalMarketPage';
-import { 
-  BarChart3, 
-  Users, 
-  MessageCircle, 
-  Settings, 
-  LogOut,
-  Shield,
-  Globe,
-  Briefcase,
-  Activity,
-  Link2,
-  ShoppingCart
-} from 'lucide-react';
+import { Users, Mail, Shield, Settings, TrendingUp, Activity, MessageCircle, Bell } from 'lucide-react';
+import TeamNavbar from '@/components/TeamNavbar';
 
 const TeamDashboard = () => {
-  const { teamMember, logout, getAccessiblePages } = useTeamAuth();
-  const [activeTab, setActiveTab] = useState('overview');
+  const { teamMember } = useTeamAuth();
+  const [stats, setStats] = useState({
+    totalUsers: 0,
+    activeUsers: 0,
+    bannedUsers: 0,
+    unreadMessages: 0,
+    teamMessages: 0,
+    onlineMembers: 0
+  });
+  const [loading, setLoading] = useState(true);
 
-  const handleLogout = () => {
-    logout();
-    window.location.href = '/team/login';
-  };
+  useEffect(() => {
+    loadDashboardStats();
+  }, []);
 
-  const getNavigationItems = () => {
-    const accessiblePages = getAccessiblePages();
-    const allNavItems = [
-      { id: 'overview', label: 'Overview', icon: BarChart3, page: 'dashboard' },
-      { id: 'user-care', label: 'User Care', icon: Users, page: 'user-care' },
-      { id: 'inbox', label: 'Inbox', icon: MessageCircle, page: 'inbox' },
-      { id: 'linkage', label: 'Linkage', icon: Link2, page: 'linkage' },
-      { id: 'team-hub', label: 'Team Hub', icon: Shield, page: 'team-hub' },
-      { id: 'digital-market', label: 'Digital Market', icon: ShoppingCart, page: 'digital-market' },
-      { id: 'work', label: 'Work', icon: Briefcase, page: 'work' },
-      { id: 'settings', label: 'Settings', icon: Settings, page: 'settings' }
-    ];
+  const loadDashboardStats = async () => {
+    setLoading(true);
+    try {
+      const token = localStorage.getItem('thorx_team_auth_token');
+      
+      // Load stats from various endpoints
+      const [usersResponse, messagesResponse, teamResponse, chatResponse] = await Promise.all([
+        fetch('/api/team/users', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        }),
+        fetch('/api/team/messages', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        }),
+        fetch('/api/team/members', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        }).catch(() => ({ ok: false })), // CEO only, handle gracefully
+        fetch('/api/team/chat', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        })
+      ]);
 
-    return allNavItems.filter(item => accessiblePages.includes(item.page));
-  };
+      const users = usersResponse.ok ? await usersResponse.json() : [];
+      const messages = messagesResponse.ok ? await messagesResponse.json() : [];
+      const teamMembers = teamResponse.ok ? await teamResponse.json() : [];
+      const chats = chatResponse.ok ? await chatResponse.json() : [];
 
-  const getRoleColor = (role: string) => {
-    switch (role) {
-      case 'ceo': return 'bg-gradient-to-r from-yellow-500 to-orange-500';
-      case 'marketing': return 'bg-gradient-to-r from-green-500 to-teal-500';
-      case 'social_media': return 'bg-gradient-to-r from-pink-500 to-purple-500';
-      case 'admin': return 'bg-gradient-to-r from-blue-500 to-indigo-500';
-      default: return 'bg-gradient-to-r from-gray-500 to-slate-500';
+      setStats({
+        totalUsers: users.length,
+        activeUsers: users.filter((user: any) => user.isActive && !user.isBanned).length,
+        bannedUsers: users.filter((user: any) => user.isBanned).length,
+        unreadMessages: messages.filter((msg: any) => !msg.isRead).length,
+        teamMessages: chats.length,
+        onlineMembers: teamMembers.filter((member: any) => member.isActive).length
+      });
+    } catch (error) {
+      console.error('Error loading dashboard stats:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,175 +70,182 @@ const TeamDashboard = () => {
     }
   };
 
+  const getRoleColor = (role: string) => {
+    switch (role) {
+      case 'ceo': return 'bg-yellow-500';
+      case 'marketing': return 'bg-green-500';
+      case 'social_media': return 'bg-pink-500';
+      case 'admin': return 'bg-blue-500';
+      default: return 'bg-gray-500';
+    }
+  };
+
+  const getAccessiblePages = () => {
+    const pages = [
+      { name: 'Inbox', description: 'Contact messages', icon: Mail },
+      { name: 'Linkage', description: 'Team chat', icon: MessageCircle },
+      { name: 'Digital Market', description: 'Marketplace', icon: TrendingUp }
+    ];
+
+    if (teamMember?.role === 'ceo' || teamMember?.role === 'admin') {
+      pages.push({ name: 'User Care', description: 'User management', icon: Users });
+    }
+
+    if (teamMember?.role === 'ceo') {
+      pages.push({ name: 'Team Hub', description: 'Team settings', icon: Settings });
+    }
+
+    return pages;
+  };
+
+  if (loading) {
+    return (
+      <div className="p-6 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-slate-900 flex">
-      {/* Sidebar */}
-      <div className="w-64 bg-slate-800 border-r border-slate-700">
-        {/* Logo and Brand */}
-        <div className="p-6 border-b border-slate-700">
-          <div className="flex items-center space-x-3">
-            <ThorxLogo size="md" className="text-slate-200" />
-            <div>
-              <h1 className="text-lg font-bold text-slate-200">Team Portal</h1>
-              <p className="text-xs text-slate-400">Management Hub</p>
-            </div>
+    <div className="min-h-screen bg-slate-900">
+      <TeamNavbar />
+      <div className="p-6 space-y-6">
+      {/* Welcome Header */}
+      <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+        <div className="flex items-center space-x-4">
+          <div className={`w-12 h-12 rounded-full ${getRoleColor(teamMember?.role || '')} flex items-center justify-center`}>
+            <span className="text-white font-bold text-lg">
+              {teamMember?.name?.split(' ').map(n => n[0]).join('') || 'TM'}
+            </span>
           </div>
-        </div>
-
-        {/* Team Member Info */}
-        <div className="p-6 border-b border-slate-700">
-          <div className="flex items-center space-x-3">
-            <div className={`w-10 h-10 rounded-full ${getRoleColor(teamMember?.role || '')} flex items-center justify-center`}>
-              <span className="text-white font-bold text-sm">
-                {teamMember?.name?.split(' ').map(n => n[0]).join('') || 'TM'}
-              </span>
-            </div>
-            <div>
-              <h3 className="text-slate-200 font-medium">{teamMember?.name}</h3>
-              <p className="text-xs text-slate-400">{getRoleTitle(teamMember?.role || '')}</p>
-            </div>
+          <div>
+            <h2 className="text-xl font-semibold text-slate-200">
+              Welcome, {teamMember?.name}
+            </h2>
+            <p className="text-slate-400">{getRoleTitle(teamMember?.role || '')}</p>
           </div>
-        </div>
-
-        {/* Navigation */}
-        <nav className="p-4 space-y-2">
-          {getNavigationItems().map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id)}
-              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors ${
-                activeTab === item.id
-                  ? 'bg-blue-600 text-white'
-                  : 'text-slate-300 hover:bg-slate-700 hover:text-white'
-              }`}
-            >
-              <item.icon className="w-5 h-5" />
-              <span className="font-medium">{item.label}</span>
-            </button>
-          ))}
-        </nav>
-
-        {/* Logout Button */}
-        <div className="absolute bottom-4 left-4 right-4">
-          <button
-            onClick={handleLogout}
-            className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-red-400 hover:bg-red-900/20 hover:text-red-300 transition-colors"
-          >
-            <LogOut className="w-5 h-5" />
-            <span className="font-medium">Logout</span>
-          </button>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Header */}
-        <header className="bg-slate-800 border-b border-slate-700 px-6 py-4">
+      {/* Statistics Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-bold text-slate-200">
-                {getNavigationItems().find(item => item.id === activeTab)?.label || 'Dashboard'}
-              </h2>
-              <p className="text-slate-400 text-sm">
-                Welcome back, {teamMember?.name}
-              </p>
+              <p className="text-slate-400 text-sm">Total Users</p>
+              <p className="text-2xl font-bold text-slate-200">{stats.totalUsers}</p>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="text-right">
-                <p className="text-sm text-slate-300">{new Date().toLocaleDateString()}</p>
-                <p className="text-xs text-slate-400">{new Date().toLocaleTimeString()}</p>
-              </div>
+            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+              <Users className="w-6 h-6 text-white" />
             </div>
           </div>
-        </header>
+        </div>
 
-        {/* Content Area */}
-        <main className="flex-1 bg-slate-900">
-          {activeTab === 'overview' && (
-            <div className="p-6 space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-slate-400 text-sm">Total Users</p>
-                      <p className="text-2xl font-bold text-slate-200">1,234</p>
-                    </div>
-                    <Users className="w-8 h-8 text-blue-400" />
-                  </div>
-                </div>
-                
-                <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-slate-400 text-sm">Active Tasks</p>
-                      <p className="text-2xl font-bold text-slate-200">567</p>
-                    </div>
-                    <Briefcase className="w-8 h-8 text-green-400" />
-                  </div>
-                </div>
-                
-                <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-slate-400 text-sm">Unread Messages</p>
-                      <p className="text-2xl font-bold text-slate-200">23</p>
-                    </div>
-                    <MessageCircle className="w-8 h-8 text-purple-400" />
-                  </div>
-                </div>
-                
-                <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-slate-400 text-sm">System Status</p>
-                      <p className="text-2xl font-bold text-green-400">Online</p>
-                    </div>
-                    <Activity className="w-8 h-8 text-green-400" />
-                  </div>
-                </div>
-              </div>
+        <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-slate-400 text-sm">Active Users</p>
+              <p className="text-2xl font-bold text-green-400">{stats.activeUsers}</p>
+            </div>
+            <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
+              <Activity className="w-6 h-6 text-white" />
+            </div>
+          </div>
+        </div>
 
-              <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-                <h3 className="text-lg font-semibold text-slate-200 mb-4">Recent Activity</h3>
-                <div className="space-y-3">
-                  {[1, 2, 3, 4, 5].map((item) => (
-                    <div key={item} className="flex items-center justify-between p-3 bg-slate-700 rounded-lg">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-                          <Users className="w-4 h-4 text-white" />
-                        </div>
-                        <div>
-                          <p className="text-slate-200 text-sm">New user registered</p>
-                          <p className="text-slate-400 text-xs">2 minutes ago</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+        <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-slate-400 text-sm">Banned Users</p>
+              <p className="text-2xl font-bold text-red-400">{stats.bannedUsers}</p>
+            </div>
+            <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
+              <Shield className="w-6 h-6 text-white" />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-slate-400 text-sm">Unread Messages</p>
+              <p className="text-2xl font-bold text-yellow-400">{stats.unreadMessages}</p>
+            </div>
+            <div className="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center">
+              <Mail className="w-6 h-6 text-white" />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-slate-400 text-sm">Team Messages</p>
+              <p className="text-2xl font-bold text-purple-400">{stats.teamMessages}</p>
+            </div>
+            <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
+              <MessageCircle className="w-6 h-6 text-white" />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-slate-400 text-sm">Online Members</p>
+              <p className="text-2xl font-bold text-blue-400">{stats.onlineMembers}</p>
+            </div>
+            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+              <Users className="w-6 h-6 text-white" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Actions */}
+      <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+        <h3 className="text-lg font-semibold text-slate-200 mb-4">Quick Actions</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {getAccessiblePages().map((page) => (
+            <div
+              key={page.name}
+              className="bg-slate-700 rounded-lg p-4 hover:bg-slate-600 transition-colors cursor-pointer"
+            >
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                  <page.icon className="w-4 h-4 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-medium text-slate-200">{page.name}</h4>
+                  <p className="text-sm text-slate-400">{page.description}</p>
                 </div>
               </div>
             </div>
-          )}
+          ))}
+        </div>
+      </div>
 
-          {activeTab === 'user-care' && <UserCarePage />}
-          {activeTab === 'inbox' && <InboxPage />}
-          {activeTab === 'linkage' && <LinkagePage />}
-          {activeTab === 'team-hub' && <TeamHubPage />}
-          {activeTab === 'digital-market' && <DigitalMarketPage />}
-          
-          {activeTab !== 'overview' && activeTab !== 'user-care' && activeTab !== 'inbox' && 
-           activeTab !== 'linkage' && activeTab !== 'team-hub' && activeTab !== 'digital-market' && (
-            <div className="p-6">
-              <div className="bg-slate-800 rounded-lg p-8 border border-slate-700 text-center">
-                <h3 className="text-lg font-semibold text-slate-200 mb-2">
-                  {getNavigationItems().find(item => item.id === activeTab)?.label}
-                </h3>
-                <p className="text-slate-400">
-                  This section is under development. Full functionality coming soon.
-                </p>
-              </div>
-            </div>
-          )}
-        </main>
+      {/* Recent Activity */}
+      <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+        <h3 className="text-lg font-semibold text-slate-200 mb-4">Recent Activity</h3>
+        <div className="space-y-3">
+          <div className="flex items-center space-x-3 text-sm">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span className="text-slate-300">Team dashboard loaded successfully</span>
+            <span className="text-slate-500">Just now</span>
+          </div>
+          <div className="flex items-center space-x-3 text-sm">
+            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+            <span className="text-slate-300">System statistics updated</span>
+            <span className="text-slate-500">2 minutes ago</span>
+          </div>
+          <div className="flex items-center space-x-3 text-sm">
+            <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+            <span className="text-slate-300">New user registered</span>
+            <span className="text-slate-500">1 hour ago</span>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   );

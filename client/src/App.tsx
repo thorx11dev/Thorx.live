@@ -22,6 +22,11 @@ import BlogPostPage from './pages/BlogPostPage';
 import Navbar from './components/Navbar';
 import TeamLoginPage from './pages/TeamLoginPage';
 import TeamDashboard from './pages/TeamDashboard';
+import UserCarePage from './pages/UserCarePage';
+import InboxPage from './pages/InboxPage';
+import LinkagePage from './pages/LinkagePage';
+import TeamHubPage from './pages/TeamHubPage';
+import DigitalMarketPage from './pages/DigitalMarketPage';
 
 function App() {
   return (
@@ -42,6 +47,31 @@ function App() {
                 <Route path="/team/dashboard">
                   <TeamProtectedRoute>
                     <TeamDashboard />
+                  </TeamProtectedRoute>
+                </Route>
+                <Route path="/team/users">
+                  <TeamProtectedRoute>
+                    <UserCarePage />
+                  </TeamProtectedRoute>
+                </Route>
+                <Route path="/team/inbox">
+                  <TeamProtectedRoute>
+                    <InboxPage />
+                  </TeamProtectedRoute>
+                </Route>
+                <Route path="/team/chat">
+                  <TeamProtectedRoute>
+                    <LinkagePage />
+                  </TeamProtectedRoute>
+                </Route>
+                <Route path="/team/hub">
+                  <TeamProtectedRoute>
+                    <TeamHubPage />
+                  </TeamProtectedRoute>
+                </Route>
+                <Route path="/team/market">
+                  <TeamProtectedRoute>
+                    <DigitalMarketPage />
                   </TeamProtectedRoute>
                 </Route>
                 

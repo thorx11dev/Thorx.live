@@ -14,6 +14,7 @@ export const users = pgTable("users", {
   isActive: boolean("is_active").default(true),
   isBanned: boolean("is_banned").default(false),
   banReason: text("ban_reason"),
+  bannedBy: integer("banned_by").references(() => teamMembers.id),
   bannedAt: timestamp("banned_at"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),

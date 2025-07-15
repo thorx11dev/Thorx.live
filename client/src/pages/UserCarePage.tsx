@@ -1,21 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useTeamAuth } from '@/hooks/useTeamAuth';
-import { apiRequest } from '@/lib/queryClient';
-import { 
-  Users, 
-  Database, 
-  Shield, 
-  AlertTriangle,
-  CheckCircle,
-  XCircle,
-  Eye,
-  EyeOff,
-  Search,
-  Filter,
-  RefreshCw
-} from 'lucide-react';
+import { Search, Eye, EyeOff, Ban, CheckCircle, AlertCircle, UserX, Shield, Clock, User } from 'lucide-react';
 
-interface User {
+interface UserAccount {
   id: number;
   username: string;
   email: string;
@@ -25,25 +12,26 @@ interface User {
   isActive: boolean;
   isBanned: boolean;
   banReason?: string;
+  bannedBy?: number;
   bannedAt?: string;
   createdAt: string;
+  updatedAt: string;
 }
 
 const UserCarePage = () => {
   const { teamMember } = useTeamAuth();
   const [activeTab, setActiveTab] = useState<'database' | 'report'>('database');
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<UserAccount[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'banned'>('all');
-  const [showPasswords, setShowPasswords] = useState(false);
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [banModalOpen, setBanModalOpen] = useState(false);
-  const [banReason, setBanReason] = useState('');
+  const [showPasswords, setShowPasswords] = useState<{[key: number]: boolean}>({});
+  
+  // Report section state
+  const [selectedUser, setSelectedUser] = useState<UserAccount | null>(null);
   const [actionType, setActionType] = useState<'ban' | 'unban'>('ban');
-  const [actionLoading, setActionLoading] = useState(false);
+  const [banReason, setBanReason] = useState('');
+  const [processing, setProcessing] = useState(false);
 
-  // Load users on component mount
   useEffect(() => {
     loadUsers();
   }, []);
@@ -52,13 +40,12 @@ const UserCarePage = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('thorx_team_auth_token');
-      const response = await apiRequest('/api/team/users', {
-        method: 'GET',
+      const response = await fetch('/api/team/users', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
       });
-
+      
       if (response.ok) {
         const userData = await response.json();
         setUsers(userData);
@@ -70,254 +57,181 @@ const UserCarePage = () => {
     }
   };
 
-  const handleBanUnban = async () => {
+  const handleBanAction = async () => {
     if (!selectedUser || !banReason.trim()) return;
-
-    setActionLoading(true);
+    
+    setProcessing(true);
     try {
       const token = localStorage.getItem('thorx_team_auth_token');
-      const endpoint = actionType === 'ban' ? 'ban' : 'unban';
+      const endpoint = actionType === 'ban' ? `/api/team/users/${selectedUser.id}/ban` : `/api/team/users/${selectedUser.id}/unban`;
       
-      const response = await apiRequest(`/api/team/users/${selectedUser.id}/${endpoint}`, {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify({ reason: banReason }),
+        body: JSON.stringify({
+          reason: banReason,
+        }),
       });
-
+      
       if (response.ok) {
-        // Refresh users list
+        // Refresh user list
         await loadUsers();
-        setBanModalOpen(false);
-        setBanReason('');
         setSelectedUser(null);
+        setBanReason('');
+        alert(`User ${actionType === 'ban' ? 'banned' : 'unbanned'} successfully`);
+      } else {
+        alert('Failed to process request');
       }
     } catch (error) {
-      console.error('Error updating user status:', error);
+      console.error('Error processing ban action:', error);
+      alert('Error processing request');
     } finally {
-      setActionLoading(false);
+      setProcessing(false);
     }
   };
 
-  const openBanModal = (user: User, type: 'ban' | 'unban') => {
-    setSelectedUser(user);
-    setActionType(type);
-    setBanModalOpen(true);
-    setBanReason('');
+  const togglePasswordVisibility = (userId: number) => {
+    setShowPasswords(prev => ({
+      ...prev,
+      [userId]: !prev[userId]
+    }));
   };
 
-  const filteredUsers = users.filter(user => {
-    const matchesSearch = user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.lastName.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesFilter = filterStatus === 'all' || 
-                         (filterStatus === 'active' && !user.isBanned) ||
-                         (filterStatus === 'banned' && user.isBanned);
-    
-    return matchesSearch && matchesFilter;
-  });
+  const filteredUsers = users.filter(user => 
+    user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  if (loading) {
+    return (
+      <div className="p-6 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-200 flex items-center space-x-2">
-            <Users className="w-6 h-6" />
-            <span>User Care</span>
-          </h1>
-          <p className="text-slate-400 text-sm mt-1">Manage user accounts and handle reports</p>
+    <div className="p-6">
+      {/* Tab Navigation */}
+      <div className="mb-6">
+        <div className="flex space-x-1 bg-slate-800 p-1 rounded-lg">
+          <button
+            onClick={() => setActiveTab('database')}
+            className={`flex-1 py-2 px-4 rounded-md transition-colors ${
+              activeTab === 'database'
+                ? 'bg-blue-600 text-white'
+                : 'text-slate-300 hover:bg-slate-700'
+            }`}
+          >
+            Database
+          </button>
+          <button
+            onClick={() => setActiveTab('report')}
+            className={`flex-1 py-2 px-4 rounded-md transition-colors ${
+              activeTab === 'report'
+                ? 'bg-blue-600 text-white'
+                : 'text-slate-300 hover:bg-slate-700'
+            }`}
+          >
+            Report
+          </button>
         </div>
-        <button
-          onClick={loadUsers}
-          disabled={loading}
-          className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white px-4 py-2 rounded-lg transition-colors"
-        >
-          <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-          <span>Refresh</span>
-        </button>
-      </div>
-
-      {/* Tabs */}
-      <div className="flex space-x-4 border-b border-slate-700">
-        <button
-          onClick={() => setActiveTab('database')}
-          className={`flex items-center space-x-2 px-4 py-2 rounded-t-lg transition-colors ${
-            activeTab === 'database'
-              ? 'bg-slate-700 text-white border-b-2 border-blue-500'
-              : 'text-slate-400 hover:text-slate-200'
-          }`}
-        >
-          <Database className="w-4 h-4" />
-          <span>Database</span>
-        </button>
-        <button
-          onClick={() => setActiveTab('report')}
-          className={`flex items-center space-x-2 px-4 py-2 rounded-t-lg transition-colors ${
-            activeTab === 'report'
-              ? 'bg-slate-700 text-white border-b-2 border-blue-500'
-              : 'text-slate-400 hover:text-slate-200'
-          }`}
-        >
-          <Shield className="w-4 h-4" />
-          <span>Report</span>
-        </button>
       </div>
 
       {/* Database Tab */}
       {activeTab === 'database' && (
-        <div className="space-y-4">
-          {/* Search and Filter */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
+        <div>
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-lg font-semibold text-slate-200">User Database</h3>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search users..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="pl-10 pr-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            <div className="flex items-center space-x-2">
-              <Filter className="w-4 h-4 text-slate-400" />
-              <select
-                value={filterStatus}
-                onChange={(e) => setFilterStatus(e.target.value as 'all' | 'active' | 'banned')}
-                className="bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="all">All Users</option>
-                <option value="active">Active Only</option>
-                <option value="banned">Banned Only</option>
-              </select>
-            </div>
-            <button
-              onClick={() => setShowPasswords(!showPasswords)}
-              className="flex items-center space-x-2 bg-slate-700 hover:bg-slate-600 text-slate-200 px-3 py-2 rounded-lg transition-colors"
-            >
-              {showPasswords ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              <span>{showPasswords ? 'Hide' : 'Show'} Passwords</span>
-            </button>
           </div>
 
-          {/* Users Table */}
           <div className="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-slate-700">
                   <tr>
-                    <th className="px-4 py-3 text-left text-slate-200 font-medium">User</th>
-                    <th className="px-4 py-3 text-left text-slate-200 font-medium">Email</th>
-                    <th className="px-4 py-3 text-left text-slate-200 font-medium">Password</th>
-                    <th className="px-4 py-3 text-left text-slate-200 font-medium">Earnings</th>
-                    <th className="px-4 py-3 text-left text-slate-200 font-medium">Status</th>
-                    <th className="px-4 py-3 text-left text-slate-200 font-medium">Actions</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">User</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Email</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Password</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Phone</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Earnings</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Status</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Joined</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-700">
-                  {loading ? (
-                    <tr>
-                      <td colSpan={6} className="px-4 py-8 text-center text-slate-400">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
-                        <p className="mt-2">Loading users...</p>
-                      </td>
-                    </tr>
-                  ) : filteredUsers.length === 0 ? (
-                    <tr>
-                      <td colSpan={6} className="px-4 py-8 text-center text-slate-400">
-                        No users found matching your criteria.
-                      </td>
-                    </tr>
-                  ) : (
-                    filteredUsers.map((user) => (
-                      <tr key={user.id} className="hover:bg-slate-700/50 transition-colors">
-                        <td className="px-4 py-3">
+                  {filteredUsers.map((user) => (
+                    <tr key={user.id} className="hover:bg-slate-700">
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                            <User className="w-4 h-4 text-white" />
+                          </div>
                           <div>
-                            <p className="text-slate-200 font-medium">{user.firstName} {user.lastName}</p>
-                            <p className="text-slate-400 text-sm">@{user.username}</p>
+                            <div className="text-sm font-medium text-slate-200">
+                              {user.firstName} {user.lastName}
+                            </div>
+                            <div className="text-sm text-slate-400">@{user.username}</div>
                           </div>
-                        </td>
-                        <td className="px-4 py-3 text-slate-200">{user.email}</td>
-                        <td className="px-4 py-3">
-                          <span className="bg-slate-700 text-slate-300 px-2 py-1 rounded text-sm font-mono">
-                            {showPasswords ? '••••••••' : '••••••••'}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                        {user.email}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-sm text-slate-300">
+                            {showPasswords[user.id] ? '••••••••' : '••••••••'}
                           </span>
-                        </td>
-                        <td className="px-4 py-3 text-slate-200">${user.totalEarnings}</td>
-                        <td className="px-4 py-3">
-                          <div className="flex items-center space-x-2">
-                            {user.isBanned ? (
-                              <div className="flex items-center space-x-1 text-red-400">
-                                <XCircle className="w-4 h-4" />
-                                <span className="text-sm">Banned</span>
-                              </div>
-                            ) : (
-                              <div className="flex items-center space-x-1 text-green-400">
-                                <CheckCircle className="w-4 h-4" />
-                                <span className="text-sm">Active</span>
-                              </div>
-                            )}
-                          </div>
-                        </td>
-                        <td className="px-4 py-3">
-                          <div className="flex space-x-2">
-                            {user.isBanned ? (
-                              <button
-                                onClick={() => openBanModal(user, 'unban')}
-                                className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm transition-colors"
-                              >
-                                Unban
-                              </button>
-                            ) : (
-                              <button
-                                onClick={() => openBanModal(user, 'ban')}
-                                className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm transition-colors"
-                              >
-                                Ban
-                              </button>
-                            )}
-                          </div>
-                        </td>
-                      </tr>
-                    ))
-                  )}
+                          <button
+                            onClick={() => togglePasswordVisibility(user.id)}
+                            className="text-slate-400 hover:text-slate-300"
+                          >
+                            {showPasswords[user.id] ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                          </button>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                        N/A
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                        ${user.totalEarnings}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {user.isBanned ? (
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            <UserX className="w-3 h-3 mr-1" />
+                            Banned
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <CheckCircle className="w-3 h-3 mr-1" />
+                            Active
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                        {new Date(user.createdAt).toLocaleDateString()}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-slate-400 text-sm">Total Users</p>
-                  <p className="text-2xl font-bold text-slate-200">{users.length}</p>
-                </div>
-                <Users className="w-8 h-8 text-blue-400" />
-              </div>
-            </div>
-            <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-slate-400 text-sm">Active Users</p>
-                  <p className="text-2xl font-bold text-green-400">{users.filter(u => !u.isBanned).length}</p>
-                </div>
-                <CheckCircle className="w-8 h-8 text-green-400" />
-              </div>
-            </div>
-            <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-slate-400 text-sm">Banned Users</p>
-                  <p className="text-2xl font-bold text-red-400">{users.filter(u => u.isBanned).length}</p>
-                </div>
-                <XCircle className="w-8 h-8 text-red-400" />
-              </div>
             </div>
           </div>
         </div>
@@ -325,90 +239,148 @@ const UserCarePage = () => {
 
       {/* Report Tab */}
       {activeTab === 'report' && (
-        <div className="space-y-6">
-          <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-            <h3 className="text-lg font-semibold text-slate-200 mb-4 flex items-center space-x-2">
-              <AlertTriangle className="w-5 h-5 text-yellow-400" />
-              <span>User Management Actions</span>
-            </h3>
-            <p className="text-slate-400 mb-4">
-              Use this section to manage user accounts. All actions require a detailed reason and are logged for audit purposes.
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-slate-700 rounded-lg p-4">
-                <h4 className="font-medium text-slate-200 mb-2">Ban User Account</h4>
-                <p className="text-slate-400 text-sm mb-3">
-                  Temporarily restrict user access to the platform. User will see ban reason when attempting to log in.
-                </p>
-                <p className="text-yellow-400 text-sm">
-                  ⚠️ Use the Database tab to select and ban specific users
-                </p>
-              </div>
-              
-              <div className="bg-slate-700 rounded-lg p-4">
-                <h4 className="font-medium text-slate-200 mb-2">Unban User Account</h4>
-                <p className="text-slate-400 text-sm mb-3">
-                  Restore user access to the platform. User will regain full access to all features.
-                </p>
-                <p className="text-green-400 text-sm">
-                  ✅ Use the Database tab to select and unban specific users
-                </p>
+        <div>
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold text-slate-200 mb-2">User Management Actions</h3>
+            <p className="text-slate-400 text-sm">Ban or unban user accounts with mandatory reason documentation.</p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* User Selection */}
+            <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+              <h4 className="text-md font-medium text-slate-200 mb-4">Select User</h4>
+              <div className="space-y-3 max-h-64 overflow-y-auto">
+                {users.map((user) => (
+                  <div
+                    key={user.id}
+                    onClick={() => setSelectedUser(user)}
+                    className={`p-3 rounded-lg border cursor-pointer transition-colors ${
+                      selectedUser?.id === user.id
+                        ? 'border-blue-500 bg-blue-900/20'
+                        : 'border-slate-600 hover:border-slate-500'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="text-sm font-medium text-slate-200">
+                          {user.firstName} {user.lastName}
+                        </div>
+                        <div className="text-xs text-slate-400">@{user.username}</div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        {user.isBanned ? (
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            <UserX className="w-3 h-3 mr-1" />
+                            Banned
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <CheckCircle className="w-3 h-3 mr-1" />
+                            Active
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-        </div>
-      )}
 
-      {/* Ban/Unban Modal */}
-      {banModalOpen && selectedUser && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-slate-800 rounded-lg p-6 w-full max-w-md border border-slate-700">
-            <h3 className="text-lg font-semibold text-slate-200 mb-4">
-              {actionType === 'ban' ? 'Ban User' : 'Unban User'}
-            </h3>
-            <p className="text-slate-400 mb-4">
-              You are about to {actionType} <strong>{selectedUser.firstName} {selectedUser.lastName}</strong>. 
-              Please provide a reason for this action.
-            </p>
-            
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Reason for {actionType} (required)
-                </label>
-                <textarea
-                  value={banReason}
-                  onChange={(e) => setBanReason(e.target.value)}
-                  placeholder={`Enter reason for ${actionType}...`}
-                  className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 h-24 resize-none"
-                  required
-                />
-              </div>
+            {/* Action Panel */}
+            <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+              <h4 className="text-md font-medium text-slate-200 mb-4">Take Action</h4>
               
-              <div className="flex justify-end space-x-3">
-                <button
-                  onClick={() => {
-                    setBanModalOpen(false);
-                    setSelectedUser(null);
-                    setBanReason('');
-                  }}
-                  className="px-4 py-2 text-slate-400 hover:text-slate-200 transition-colors"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={handleBanUnban}
-                  disabled={!banReason.trim() || actionLoading}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                    actionType === 'ban'
-                      ? 'bg-red-600 hover:bg-red-700 text-white'
-                      : 'bg-green-600 hover:bg-green-700 text-white'
-                  } disabled:opacity-50 disabled:cursor-not-allowed`}
-                >
-                  {actionLoading ? 'Processing...' : `${actionType === 'ban' ? 'Ban' : 'Unban'} User`}
-                </button>
-              </div>
+              {selectedUser ? (
+                <div className="space-y-4">
+                  {/* Selected User Info */}
+                  <div className="p-3 bg-slate-700 rounded-lg">
+                    <div className="text-sm font-medium text-slate-200">
+                      {selectedUser.firstName} {selectedUser.lastName}
+                    </div>
+                    <div className="text-xs text-slate-400">{selectedUser.email}</div>
+                    <div className="text-xs text-slate-400 mt-1">
+                      Current Status: {selectedUser.isBanned ? 'Banned' : 'Active'}
+                    </div>
+                  </div>
+
+                  {/* Action Type */}
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                      Action Type
+                    </label>
+                    <div className="flex space-x-4">
+                      <button
+                        onClick={() => setActionType('ban')}
+                        className={`px-4 py-2 rounded-lg border transition-colors ${
+                          actionType === 'ban'
+                            ? 'border-red-500 bg-red-900/20 text-red-300'
+                            : 'border-slate-600 text-slate-300 hover:border-slate-500'
+                        }`}
+                      >
+                        <Ban className="w-4 h-4 inline mr-2" />
+                        Ban User
+                      </button>
+                      <button
+                        onClick={() => setActionType('unban')}
+                        className={`px-4 py-2 rounded-lg border transition-colors ${
+                          actionType === 'unban'
+                            ? 'border-green-500 bg-green-900/20 text-green-300'
+                            : 'border-slate-600 text-slate-300 hover:border-slate-500'
+                        }`}
+                      >
+                        <Shield className="w-4 h-4 inline mr-2" />
+                        Unban User
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Reason Input */}
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                      Reason (Required)
+                    </label>
+                    <textarea
+                      value={banReason}
+                      onChange={(e) => setBanReason(e.target.value)}
+                      placeholder={`Enter reason for ${actionType}ning this user...`}
+                      rows={3}
+                      className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                    />
+                  </div>
+
+                  {/* Action Button */}
+                  <button
+                    onClick={handleBanAction}
+                    disabled={processing || !banReason.trim()}
+                    className={`w-full py-3 px-4 rounded-lg font-medium transition-colors ${
+                      actionType === 'ban'
+                        ? 'bg-red-600 hover:bg-red-700 disabled:bg-red-800'
+                        : 'bg-green-600 hover:bg-green-700 disabled:bg-green-800'
+                    } text-white disabled:opacity-50 disabled:cursor-not-allowed`}
+                  >
+                    {processing ? (
+                      <div className="flex items-center justify-center space-x-2">
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                        <span>Processing...</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center space-x-2">
+                        {actionType === 'ban' ? (
+                          <UserX className="w-4 h-4" />
+                        ) : (
+                          <Shield className="w-4 h-4" />
+                        )}
+                        <span>{actionType === 'ban' ? 'Ban User' : 'Unban User'}</span>
+                      </div>
+                    )}
+                  </button>
+                </div>
+              ) : (
+                <div className="text-center py-8">
+                  <AlertCircle className="w-12 h-12 text-slate-400 mx-auto mb-4" />
+                  <p className="text-slate-400">Select a user to take action</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
