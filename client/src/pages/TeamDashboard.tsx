@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTeamAuth } from '@/hooks/useTeamAuth';
 import { Users, Mail, Shield, Settings, TrendingUp, Activity, MessageCircle, Bell } from 'lucide-react';
-import TeamNavbar from '@/components/TeamNavbar';
+import TeamSidebar from '@/components/TeamSidebar';
 
 const TeamDashboard = () => {
   const { teamMember } = useTeamAuth();
@@ -107,9 +107,9 @@ const TeamDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900">
-      <TeamNavbar />
-      <div className="p-6 space-y-6">
+    <div className="flex min-h-screen bg-slate-900">
+      <TeamSidebar />
+      <div className="flex-1 p-6 space-y-6">
       {/* Welcome Header */}
       <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
         <div className="flex items-center space-x-4">

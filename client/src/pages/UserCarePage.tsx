@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTeamAuth } from '@/hooks/useTeamAuth';
 import { Search, Eye, EyeOff, Ban, CheckCircle, AlertCircle, UserX, Shield, Clock, User } from 'lucide-react';
+import TeamSidebar from '@/components/TeamSidebar';
 
 interface UserAccount {
   id: number;
@@ -109,14 +110,19 @@ const UserCarePage = () => {
 
   if (loading) {
     return (
-      <div className="p-6 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+      <div className="flex min-h-screen bg-slate-900">
+        <TeamSidebar />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="p-6">
+    <div className="flex min-h-screen bg-slate-900">
+      <TeamSidebar />
+      <div className="flex-1 p-6">
       {/* Tab Navigation */}
       <div className="mb-6">
         <div className="flex space-x-1 bg-slate-800 p-1 rounded-lg">
@@ -385,6 +391,7 @@ const UserCarePage = () => {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 };

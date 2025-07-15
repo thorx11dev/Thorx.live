@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTeamAuth } from '@/hooks/useTeamAuth';
 import { Mail, MailOpen, Search, Calendar, User, RefreshCw, Star, Archive } from 'lucide-react';
+import TeamSidebar from '@/components/TeamSidebar';
 
 interface ContactMessage {
   id: number;
@@ -117,14 +118,19 @@ const InboxPage = () => {
 
   if (loading) {
     return (
-      <div className="p-6 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+      <div className="flex min-h-screen bg-slate-900">
+        <TeamSidebar />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="p-6">
+    <div className="flex min-h-screen bg-slate-900">
+      <TeamSidebar />
+      <div className="flex-1 p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h3 className="text-lg font-semibold text-slate-200">Inbox</h3>
@@ -323,6 +329,7 @@ const InboxPage = () => {
             )}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

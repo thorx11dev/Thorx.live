@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTeamAuth } from '@/hooks/useTeamAuth';
 import { Send, Smile, Paperclip, MoreVertical, User, Clock } from 'lucide-react';
+import TeamSidebar from '@/components/TeamSidebar';
 
 interface TeamChat {
   id: number;
@@ -156,14 +157,19 @@ const LinkagePage = () => {
 
   if (loading) {
     return (
-      <div className="p-6 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+      <div className="flex min-h-screen bg-slate-900">
+        <TeamSidebar />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="p-6 h-full">
+    <div className="flex min-h-screen bg-slate-900">
+      <TeamSidebar />
+      <div className="flex-1 p-6 h-full">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-full">
         {/* Team Members Sidebar */}
         <div className="lg:col-span-1">
@@ -300,6 +306,7 @@ const LinkagePage = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

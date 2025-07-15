@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTeamAuth } from '@/hooks/useTeamAuth';
 import { Shield, Key, User, Eye, EyeOff, CheckCircle, AlertCircle, Save, RefreshCw } from 'lucide-react';
+import TeamSidebar from '@/components/TeamSidebar';
 
 interface TeamMember {
   id: number;
@@ -125,11 +126,14 @@ const TeamHubPage = () => {
   // Only allow access to CEO
   if (teamMember?.role !== 'ceo') {
     return (
-      <div className="p-6 flex items-center justify-center h-64">
-        <div className="text-center">
-          <Shield className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-slate-200 mb-2">Access Denied</h3>
-          <p className="text-slate-400">This area is restricted to CEO/Founder only.</p>
+      <div className="flex min-h-screen bg-slate-900">
+        <TeamSidebar />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <Shield className="w-16 h-16 text-red-500 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-slate-200 mb-2">Access Denied</h3>
+            <p className="text-slate-400">This area is restricted to CEO/Founder only.</p>
+          </div>
         </div>
       </div>
     );
@@ -137,14 +141,19 @@ const TeamHubPage = () => {
 
   if (loading) {
     return (
-      <div className="p-6 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+      <div className="flex min-h-screen bg-slate-900">
+        <TeamSidebar />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="p-6">
+    <div className="flex min-h-screen bg-slate-900">
+      <TeamSidebar />
+      <div className="flex-1 p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h3 className="text-lg font-semibold text-slate-200">Team Hub</h3>
@@ -345,6 +354,7 @@ const TeamHubPage = () => {
             </p>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
