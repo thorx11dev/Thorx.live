@@ -16,10 +16,10 @@ const TeamLoginPage = () => {
 
   // Team members data from database
   const teamMembers = [
-    { id: 1, name: 'Aon Imran', role: 'CEO', passwordHint: 'ThorxAonImran!9426' },
-    { id: 2, name: 'Zain Abbas', role: 'Marketing', passwordHint: 'ThorxZainAbbas@1111' },
-    { id: 3, name: 'Zohaib Nadeem', role: 'Social Media', passwordHint: 'ThorxZohaibNadeem#7777' },
-    { id: 4, name: 'Prof. Muhammad Jahangeer', role: 'Admin', passwordHint: 'ThorxMuhammadJahangeer$0000' }
+    { id: 1, name: 'Aon Imran', role: 'CEO' },
+    { id: 2, name: 'Zain Abbas', role: 'Marketing' },
+    { id: 3, name: 'Zohaib Nadeem', role: 'Social Media' },
+    { id: 4, name: 'Prof. Muhammad Jahangeer', role: 'Admin' }
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
