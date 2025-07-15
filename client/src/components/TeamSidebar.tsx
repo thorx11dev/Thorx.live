@@ -20,7 +20,7 @@ import {
 export const TeamSidebar = () => {
   const { teamMember, logout } = useTeamAuth();
   const [location] = useLocation();
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   const getRoleColor = (role: string) => {
     switch (role) {
@@ -90,9 +90,13 @@ export const TeamSidebar = () => {
   };
 
   return (
-    <div className={`bg-slate-800 h-screen flex flex-col transition-all duration-300 ease-in-out relative ${
-      isCollapsed ? 'w-16' : 'w-64'
-    }`}>
+    <div 
+      className={`bg-slate-800 h-screen flex flex-col transition-all duration-300 ease-in-out relative ${
+        isCollapsed ? 'w-16' : 'w-64'
+      }`}
+      onMouseEnter={() => setIsCollapsed(false)}
+      onMouseLeave={() => setIsCollapsed(true)}
+    >
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-slate-700">
         <div className={`flex items-center transition-all duration-300 ${
