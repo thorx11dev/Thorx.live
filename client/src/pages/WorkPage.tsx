@@ -43,12 +43,14 @@ import {
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
 import { useAdvancedPerformance } from '../hooks/useAdvancedPerformance';
+import { useTeamAuth } from '@/hooks/useTeamAuth';
 import TeamSidebar from '@/components/TeamSidebar';
 
 const PerformanceOptimizer = React.lazy(() => import('../performance/PerformanceOptimizer'));
 
 const WorkPage = memo(() => {
   const { enableGPUAcceleration } = useAdvancedPerformance();
+  const { teamMember, isLoading } = useTeamAuth();
   const [activeSection, setActiveSection] = useState('ads');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -358,11 +360,11 @@ const WorkPage = memo(() => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-secondary border-2 border-primary rounded-lg p-4 shadow-lg"
+          className="bg-slate-800 border-2 border-slate-600 rounded-lg p-4 shadow-lg"
         >
-          <p className="text-primary font-semibold mb-2">{label}</p>
+          <p className="text-white font-semibold mb-2">{label}</p>
           {payload.map((entry: any, index: number) => (
-            <p key={index} className="text-primary font-medium">
+            <p key={index} className="text-white font-medium">
               <span 
                 className="inline-block w-3 h-3 rounded-full mr-2"
                 style={{ backgroundColor: entry.color }}
@@ -382,25 +384,36 @@ const WorkPage = memo(() => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-secondary border-2 border-primary rounded-lg p-3 shadow-lg"
+          className="bg-slate-800 border-2 border-slate-600 rounded-lg p-3 shadow-lg"
         >
-          <p className="text-primary font-semibold">{payload[0].name}</p>
-          <p className="text-primary font-medium">{`${payload[0].value}% - $${payload[0].payload.earnings}`}</p>
+          <p className="text-white font-semibold">{payload[0].name}</p>
+          <p className="text-white font-medium">{`${payload[0].value}% - $${payload[0].payload.earnings}`}</p>
         </motion.div>
       );
     }
     return null;
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex min-h-screen bg-slate-900">
+        <TeamSidebar />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex min-h-screen bg-slate-900">
       <TeamSidebar />
       <div className="flex-1">
-        <Suspense fallback={<div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary flex items-center justify-center">
-          <div className="text-primary text-xl font-semibold">Loading optimized interface...</div>
+        <Suspense fallback={<div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-slate-900 flex items-center justify-center">
+          <div className="text-white text-xl font-semibold">Loading optimized interface...</div>
         </div>}>
           <PerformanceOptimizer />
-          <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary thorx-performance-optimized">
+          <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-slate-900 thorx-performance-optimized">
             <div className="max-w-7xl mx-auto">
             {/* Header */}
             <motion.div
@@ -409,8 +422,8 @@ const WorkPage = memo(() => {
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              <h1 className="text-4xl font-bold text-primary mb-2">Cosmic Workplace</h1>
-              <p className="text-secondary">Three universes of earning opportunities await your exploration</p>
+              <h1 className="text-4xl font-bold text-white mb-2">Cosmic Workplace</h1>
+              <p className="text-slate-300">Three universes of earning opportunities await your exploration</p>
             </motion.div>
 
             {/* Performance Overview */}
@@ -432,7 +445,7 @@ const WorkPage = memo(() => {
                     scale: 1.02,
                     boxShadow: "0 20px 40px rgba(45, 58, 74, 0.15)"
                   }}
-                  className="bg-secondary rounded-xl p-4 md:p-6 border border-primary transition-all duration-300 shadow-primary"
+                  className="bg-slate-800 rounded-xl p-4 md:p-6 border border-slate-700 transition-all duration-300 shadow-lg"
                 >
                   <div className="flex items-center justify-between mb-3 md:mb-4">
                     <div className={`inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg ${metric.color}`}>
@@ -440,8 +453,8 @@ const WorkPage = memo(() => {
                     </div>
                     <span className="text-xl md:text-2xl">🌌</span>
                   </div>
-                  <div className="text-lg md:text-2xl font-bold text-primary mb-1">{metric.value}</div>
-                  <div className="text-xs md:text-sm text-secondary">{metric.title}</div>
+                  <div className="text-lg md:text-2xl font-bold text-white mb-1">{metric.value}</div>
+                  <div className="text-xs md:text-sm text-slate-400">{metric.title}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -457,59 +470,59 @@ const WorkPage = memo(() => {
                 onClick={() => setActiveSection('ads')}
                 className={`flex items-center justify-center sm:justify-start space-x-3 px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 border ${
                   activeSection === 'ads'
-                    ? 'bg-soft-pink/20 text-primary border-soft-pink/30 shadow-lg'
-                    : 'text-secondary hover:bg-tertiary hover:text-primary border-primary'
+                    ? 'bg-blue-600 text-white border-blue-500 shadow-lg'
+                    : 'text-slate-400 hover:bg-slate-700 hover:text-white border-slate-600'
                 }`}
               >
                 <Play className="w-5 h-5" />
-                <span style={{ color: '#666666' }}>Ads Cosmos</span>
+                <span>Ads Cosmos</span>
               </button>
               <button
                 onClick={() => setActiveSection('social')}
                 className={`flex items-center justify-center sm:justify-start space-x-3 px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 border ${
                   activeSection === 'social'
-                    ? 'bg-soft-pink/20 text-primary border-soft-pink/30 shadow-lg'
-                    : 'text-secondary hover:bg-tertiary hover:text-primary border-primary'
+                    ? 'bg-blue-600 text-white border-blue-500 shadow-lg'
+                    : 'text-slate-400 hover:bg-slate-700 hover:text-white border-slate-600'
                 }`}
               >
                 <Heart className="w-5 h-5" />
-                <span style={{ color: '#666666' }}>Social Cosmos</span>
+                <span>Social Cosmos</span>
               </button>
               <button
                 onClick={() => setActiveSection('sites')}
                 className={`flex items-center justify-center sm:justify-start space-x-3 px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 border ${
                   activeSection === 'sites'
-                    ? 'bg-soft-pink/20 text-primary border-soft-pink/30 shadow-lg'
-                    : 'text-secondary hover:bg-tertiary hover:text-primary border-primary'
+                    ? 'bg-blue-600 text-white border-blue-500 shadow-lg'
+                    : 'text-slate-400 hover:bg-slate-700 hover:text-white border-slate-600'
                 }`}
               >
                 <Globe className="w-5 h-5" />
-                <span style={{ color: '#666666' }}>Site Cosmos</span>
+                <span>Site Cosmos</span>
               </button>
             </motion.div>
 
             {/* Content sections would continue here... */}
             {/* This is a simplified version - the full WorkPortal content would be much longer */}
             <div className="text-center py-12">
-              <h2 className="text-2xl font-bold text-primary mb-4">Work Portal Active</h2>
-              <p className="text-secondary mb-8">
+              <h2 className="text-2xl font-bold text-white mb-4">Work Portal Active</h2>
+              <p className="text-slate-300 mb-8">
                 Welcome to the Cosmic Workplace - your gateway to earning opportunities across multiple universes.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-secondary rounded-lg p-6 border border-primary">
-                  <Play className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-primary mb-2">Ads Cosmos</h3>
-                  <p className="text-secondary">Watch premium video advertisements and earn rewards</p>
+                <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+                  <Play className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-white mb-2">Ads Cosmos</h3>
+                  <p className="text-slate-300">Watch premium video advertisements and earn rewards</p>
                 </div>
-                <div className="bg-secondary rounded-lg p-6 border border-primary">
-                  <Heart className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-primary mb-2">Social Cosmos</h3>
-                  <p className="text-secondary">Complete social media tasks and engage with content</p>
+                <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+                  <Heart className="w-12 h-12 text-pink-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-white mb-2">Social Cosmos</h3>
+                  <p className="text-slate-300">Complete social media tasks and engage with content</p>
                 </div>
-                <div className="bg-secondary rounded-lg p-6 border border-primary">
-                  <Globe className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-primary mb-2">Site Cosmos</h3>
-                  <p className="text-secondary">Visit websites and explore new platforms</p>
+                <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+                  <Globe className="w-12 h-12 text-green-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-white mb-2">Site Cosmos</h3>
+                  <p className="text-slate-300">Visit websites and explore new platforms</p>
                 </div>
               </div>
             </div>
