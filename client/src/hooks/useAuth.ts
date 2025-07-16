@@ -120,6 +120,7 @@ export const useAuthState = () => {
       
       const data = await response.json();
       
+      // Store authentication data
       localStorage.setItem('thorx_auth_token', data.token);
       localStorage.setItem('thorx_user_data', JSON.stringify(data.user));
       
@@ -157,6 +158,7 @@ export const useAuthState = () => {
       
       const data = await response.json();
       
+      // Store authentication data
       localStorage.setItem('thorx_auth_token', data.token);
       localStorage.setItem('thorx_user_data', JSON.stringify(data.user));
       

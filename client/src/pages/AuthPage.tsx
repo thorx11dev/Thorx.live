@@ -179,6 +179,9 @@ const AuthPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Prevent duplicate submissions
+    if (isLoading) return;
+    
     if (!validateForm()) return;
 
     setIsLoading(true);
@@ -189,9 +192,28 @@ const AuthPage = () => {
       
       if (isLogin) {
         success = await login(formData.email, formData.password, formData.rememberMe);
+        
+        if (success) {
+          setNotification({
+            type: 'success',
+            message: 'Welcome back to Thorx!'
+          });
+          
+          setTimeout(() => {
+            setLocation('/dashboard');
+          }, 1500);
+        } else {
+          setNotification({
+            type: 'error',
+            message: 'Invalid credentials. Please check your email and password.'
+          });
+        }
       } else {
-        // Generate username from email
-        const username = formData.email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+        // Generate username from email (ensure minimum length of 3 characters)
+        let username = formData.email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (username.length < 3) {
+          username = username + Math.random().toString(36).substring(2, 5);
+        }
         
         success = await register({
           username,
@@ -200,27 +222,28 @@ const AuthPage = () => {
           firstName: formData.firstName || '',
           lastName: formData.lastName || ''
         });
-      }
-      
-      if (success) {
-        setNotification({
-          type: 'success',
-          message: isLogin ? 'Welcome back to Thorx!' : 'Account created successfully!'
-        });
         
-        setTimeout(() => {
-          setLocation('/dashboard');
-        }, 1500);
-      } else {
-        setNotification({
-          type: 'error',
-          message: isLogin ? 'Invalid credentials. Please try again.' : 'Registration failed. Please try again.'
-        });
+        if (success) {
+          setNotification({
+            type: 'success',
+            message: 'Account created successfully! Please check your email for verification.'
+          });
+          
+          setTimeout(() => {
+            setLocation('/dashboard');
+          }, 1500);
+        } else {
+          setNotification({
+            type: 'error',
+            message: 'Registration failed. This email may already be registered.'
+          });
+        }
       }
     } catch (error) {
+      console.error('Authentication error:', error);
       setNotification({
         type: 'error',
-        message: 'Something went wrong. Please try again.'
+        message: 'Something went wrong. Please try again later.'
       });
     } finally {
       setIsLoading(false);
