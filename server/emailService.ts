@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
+import { emailAvatarService } from './emailAvatarService.js';
 
 interface EmailVerificationData {
   userId: number;
@@ -113,20 +114,10 @@ export class EmailService {
   }
 
   /**
-   * Get base64 encoded logo for email template
+   * Get base64 encoded logo for email template (using avatar service)
    */
   private getThorxLogoBase64(): string {
-    const fs = require('fs');
-    const path = require('path');
-    
-    try {
-      const logoPath = path.join(__dirname, '../client/src/assets/thorx-logo.jpg');
-      const logoBuffer = fs.readFileSync(logoPath);
-      return logoBuffer.toString('base64');
-    } catch (error) {
-      console.error('Error loading logo:', error);
-      return '';
-    }
+    return emailAvatarService.getLogoBase64() || '';
   }
 
   /**
@@ -140,14 +131,14 @@ export class EmailService {
         <div style="text-align: center; margin: 0 auto 20px;">
           <img src="data:image/jpeg;base64,${logoBase64}" 
                alt="Thorx Logo" 
-               style="width: 200px; height: auto; max-width: 100%; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);" />
+               style="width: 160px; height: auto; max-width: 100%; display: block; margin: 0 auto; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);" />
         </div>
       `;
     } else {
       // Fallback to text logo if image loading fails
       return `
         <div style="text-align: center; margin: 0 auto 20px;">
-          <div style="font-size: 56px; font-weight: 800; color: #e2e8f0; text-align: center; letter-spacing: 3px; text-shadow: 0 4px 8px rgba(0,0,0,0.4);">
+          <div style="font-size: 48px; font-weight: 800; color: #e2e8f0; text-align: center; letter-spacing: 2px; text-shadow: 0 4px 8px rgba(0,0,0,0.4);">
             THORX
           </div>
         </div>
@@ -468,33 +459,32 @@ export class EmailService {
 
       const htmlContent = this.generateEmailTemplate(email, verificationLink);
 
-      const logoBase64 = this.getThorxLogoBase64();
+      const avatarConfig = emailAvatarService.getAvatarConfig();
+      const senderConfig = emailAvatarService.getSenderConfig(email);
       
       const mailOptions = {
-        from: {
-          name: 'Thorx Platform',
-          address: process.env.EMAIL_USER || 'support@thorx.live'
-        },
+        ...senderConfig,
         to: email,
-        subject: 'Verify Your Thorx Account - Unlock the Digital Universe',
+        subject: 'Verify Your Thorx Account',
         html: htmlContent,
         text: `Welcome to Thorx! Please verify your email address by clicking this link: ${verificationLink}`,
-        priority: 'high', // Set high priority for faster delivery
+        priority: 'high',
         headers: {
           'X-Priority': '1',
           'X-MSMail-Priority': 'High',
           'Importance': 'high',
-          'X-Mailer': 'Thorx Email System',
-          'X-Auto-Response-Suppress': 'All'
+          'X-Mailer': 'Thorx',
+          'X-Auto-Response-Suppress': 'All',
+          'List-Unsubscribe': '<mailto:unsubscribe@thorx.live>',
+          'X-Entity-Ref-ID': 'thorx-verification-email',
+          ...senderConfig.headers
         },
-        // Add profile picture for email clients that support it
-        attachments: logoBase64 ? [{
-          filename: 'thorx-logo.jpg',
-          content: logoBase64,
-          encoding: 'base64',
-          cid: 'thorx-profile-logo',
-          contentDisposition: 'inline'
-        }] : []
+        // Profile picture configuration for email clients
+        attachments: avatarConfig ? [avatarConfig] : [],
+        replyTo: {
+          name: 'Thorx Support',
+          address: 'support@thorx.live'
+        }
       };
 
       // Use Promise.race to timeout after 5 seconds for speed optimization
@@ -504,7 +494,7 @@ export class EmailService {
       );
 
       await Promise.race([emailPromise, timeoutPromise]);
-      console.log(`📧 Verification email sent to ${email} with logo attachment`);
+      console.log(`📧 Verification email sent to ${email} with Thorx profile picture attachment`);
       return true;
     } catch (error) {
       console.error('Error sending verification email:', error);

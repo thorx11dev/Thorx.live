@@ -1,5 +1,5 @@
 import React from 'react';
-import thorxLogoImage from '@assets/WhatsApp Image 2025-07-14 at 11.14.27_2d89cec2_1752688726343.jpg';
+import thorxLogoImage from '@assets/WhatsApp Image 2025-07-14 at 11.14.27_2d89cec2_1752689411906.jpg';
 
 interface ThorxEmailLogoProps {
   size?: 'sm' | 'md' | 'lg';
