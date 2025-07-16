@@ -44,7 +44,7 @@ export class EmailService {
       secure: process.env.EMAIL_SECURE === 'true', // true for 465, false for other ports
       auth: {
         user: process.env.EMAIL_USER || 'support@thorx.live',
-        pass: process.env.EMAIL_PASS || 'your-password'
+        pass: process.env.EMAIL_APP_PASSWORD || process.env.EMAIL_PASS || 'your-password'
       },
       tls: {
         rejectUnauthorized: false // Accept self-signed certificates
