@@ -113,6 +113,70 @@ export class EmailService {
   }
 
   /**
+   * Generate SVG logo for email template
+   */
+  private getThorxLogoSVG(): string {
+    return `
+      <svg width="140" height="56" viewBox="0 0 280 112" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin: 0 auto; display: block;">
+        <defs>
+          <linearGradient id="thorxGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#e2e8f0" stop-opacity="1" />
+            <stop offset="50%" stop-color="#e2e8f0" stop-opacity="0.8" />
+            <stop offset="100%" stop-color="#e2e8f0" stop-opacity="0.9" />
+          </linearGradient>
+          <filter id="letterShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+          </filter>
+        </defs>
+        
+        <!-- Letter T -->
+        <g filter="url(#letterShadow)">
+          <rect x="8" y="20" width="40" height="8" fill="url(#thorxGradient)" rx="2"/>
+          <rect x="22" y="20" width="12" height="52" fill="url(#thorxGradient)" rx="2"/>
+        </g>
+        
+        <!-- Letter h -->
+        <g filter="url(#letterShadow)">
+          <rect x="58" y="8" width="10" height="64" fill="url(#thorxGradient)" rx="2"/>
+          <rect x="58" y="36" width="26" height="8" fill="url(#thorxGradient)" rx="2"/>
+          <rect x="76" y="44" width="10" height="28" fill="url(#thorxGradient)" rx="2"/>
+        </g>
+        
+        <!-- Letter o -->
+        <g filter="url(#letterShadow)">
+          <rect x="98" y="36" width="28" height="8" fill="url(#thorxGradient)" rx="2"/>
+          <rect x="98" y="64" width="28" height="8" fill="url(#thorxGradient)" rx="2"/>
+          <rect x="98" y="36" width="8" height="36" fill="url(#thorxGradient)" rx="2"/>
+          <rect x="118" y="36" width="8" height="36" fill="url(#thorxGradient)" rx="2"/>
+        </g>
+        
+        <!-- Letter r -->
+        <g filter="url(#letterShadow)">
+          <rect x="138" y="36" width="10" height="36" fill="url(#thorxGradient)" rx="2"/>
+          <rect x="138" y="36" width="20" height="8" fill="url(#thorxGradient)" rx="2"/>
+          <rect x="138" y="50" width="16" height="8" fill="url(#thorxGradient)" rx="2"/>
+          <rect x="148" y="36" width="8" height="16" fill="url(#thorxGradient)" rx="2"/>
+        </g>
+        
+        <!-- Letter x -->
+        <g filter="url(#letterShadow)">
+          <rect x="168" y="36" width="10" height="16" fill="url(#thorxGradient)" rx="2" transform="rotate(20 173 44)"/>
+          <rect x="168" y="56" width="10" height="16" fill="url(#thorxGradient)" rx="2" transform="rotate(-20 173 64)"/>
+          <rect x="188" y="36" width="10" height="16" fill="url(#thorxGradient)" rx="2" transform="rotate(-20 193 44)"/>
+          <rect x="188" y="56" width="10" height="16" fill="url(#thorxGradient)" rx="2" transform="rotate(20 193 64)"/>
+        </g>
+        
+        <!-- Cosmic accent elements -->
+        <g opacity="0.6">
+          <circle cx="240" cy="25" r="2" fill="#e2e8f0" opacity="0.8"/>
+          <circle cx="250" cy="35" r="1.5" fill="#e2e8f0" opacity="0.6"/>
+          <circle cx="245" cy="45" r="1" fill="#e2e8f0" opacity="0.5"/>
+        </g>
+      </svg>
+    `;
+  }
+
+  /**
    * Generate professional HTML email template with Thorx branding
    */
   private generateEmailTemplate(email: string, verificationLink: string): string {
@@ -165,23 +229,12 @@ export class EmailService {
         }
         
         .logo {
-            width: 80px;
-            height: 80px;
             margin: 0 auto 20px;
-            background: #475569;
-            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             z-index: 1;
-        }
-        
-        .logo-shape {
-            width: 40px;
-            height: 40px;
-            background: #e2e8f0;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
         }
         
         .brand-name {
@@ -352,7 +405,7 @@ export class EmailService {
     <div class="email-container">
         <div class="header">
             <div class="logo">
-                <div class="logo-shape"></div>
+                ${this.getThorxLogoSVG()}
             </div>
             <h1 class="brand-name">Thorx</h1>
             <p class="tagline">Navigate the digital universe with confidence</p>
