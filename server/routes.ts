@@ -51,10 +51,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       // Send verification email (use production email service)
+      console.log(`📧 Sending verification email to: ${user.email}`);
+      const emailStartTime = Date.now();
+      
       const emailSent = await emailService.sendVerificationEmail(user.id, user.email);
       
-      if (!emailSent) {
-        console.error("Failed to send verification email to:", user.email);
+      const emailEndTime = Date.now();
+      const emailDeliveryTime = emailEndTime - emailStartTime;
+      
+      if (emailSent) {
+        console.log(`✅ Verification email sent successfully to ${user.email} in ${emailDeliveryTime}ms`);
+      } else {
+        console.error(`❌ Failed to send verification email to: ${user.email} after ${emailDeliveryTime}ms`);
         // Don't fail registration if email fails - user can resend later
       }
 
@@ -161,6 +169,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Email verification error:", error);
       res.redirect(`/verify-email?error=server-error`);
+    }
+  });
+
+  // Debug endpoint for testing email delivery
+  app.post("/api/debug/test-email", async (req, res) => {
+    try {
+      const { email } = req.body;
+      
+      if (!email) {
+        return res.status(400).json({ error: "Email address required" });
+      }
+      
+      console.log(`📧 Testing email delivery to: ${email}`);
+      const startTime = Date.now();
+      
+      // Send test email using the same service
+      const emailSent = await emailService.sendVerificationEmail(999, email);
+      
+      const endTime = Date.now();
+      const deliveryTime = endTime - startTime;
+      
+      console.log(`⏱️ Email delivery took: ${deliveryTime}ms`);
+      
+      res.json({
+        success: emailSent,
+        deliveryTime: `${deliveryTime}ms`,
+        message: emailSent ? "Test email sent successfully" : "Failed to send test email"
+      });
+    } catch (error) {
+      console.error("Test email error:", error);
+      res.status(500).json({ error: "Failed to send test email" });
     }
   });
 
