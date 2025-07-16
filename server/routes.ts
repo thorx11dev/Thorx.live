@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { emailService } from "./emailService";
 import { developmentEmailService } from "./emailService.dev";
+import emailDebugRouter from "./routes/emailDebug";
 
 const JWT_SECRET = process.env.JWT_SECRET || "thorx-cosmic-secret-key";
 
@@ -661,6 +662,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(400).json({ error: "Invalid payout data" });
     }
   });
+
+  // Email debug routes
+  app.use('/api/email', emailDebugRouter);
 
   const httpServer = createServer(app);
 

@@ -14,6 +14,7 @@ import {
 import { ThorxLogo } from '../components/ThorxLogo';
 import { useAuth } from '../hooks/useAuth';
 import { apiRequest } from '../lib/queryClient';
+import EmailTroubleshootingGuide from '../components/EmailTroubleshootingGuide';
 
 interface VerificationResult {
   success: boolean;
@@ -322,6 +323,13 @@ const EmailVerificationPage = () => {
               </button>
             </div>
           </div>
+          
+          {/* Email Troubleshooting Guide */}
+          {(!verificationResult?.success && !isVerifying) && (
+            <div className="mt-8 max-w-4xl mx-auto">
+              <EmailTroubleshootingGuide />
+            </div>
+          )}
         </div>
       </div>
     </div>

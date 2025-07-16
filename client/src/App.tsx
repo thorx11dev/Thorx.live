@@ -23,6 +23,7 @@ import BlogPostPage from './pages/BlogPostPage';
 import EmailVerificationPage from './pages/EmailVerificationPage';
 import EmailTestPage from './pages/EmailTestPage';
 import AuthTestPage from './pages/AuthTestPage';
+import EmailDebugPage from './pages/EmailDebugPage';
 import Navbar from './components/Navbar';
 import TeamLoginPage from './pages/TeamLoginPage';
 import TeamDashboard from './pages/TeamDashboard';
@@ -47,6 +48,7 @@ function App() {
                 <Route path="/verify-email" component={EmailVerificationPage} />
                 <Route path="/email-test" component={EmailTestPage} />
                 <Route path="/auth-test" component={AuthTestPage} />
+                <Route path="/email-debug" component={EmailDebugPage} />
                 <Route path="/performance" component={PerformancePage} />
                 
                 {/* Team Routes */}
