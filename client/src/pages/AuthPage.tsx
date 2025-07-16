@@ -190,7 +190,11 @@ const AuthPage = () => {
       if (isLogin) {
         success = await login(formData.email, formData.password, formData.rememberMe);
       } else {
+        // Generate username from email
+        const username = formData.email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+        
         success = await register({
+          username,
           email: formData.email,
           password: formData.password,
           firstName: formData.firstName || '',
