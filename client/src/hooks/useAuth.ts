@@ -5,6 +5,8 @@ interface User {
   email: string;
   firstName: string;
   lastName: string;
+  isEmailVerified: boolean;
+  emailVerifiedAt?: string;
   preferences?: UserPreferences;
 }
 

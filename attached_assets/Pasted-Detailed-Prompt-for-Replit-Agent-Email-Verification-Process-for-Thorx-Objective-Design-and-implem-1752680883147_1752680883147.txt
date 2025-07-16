@@ -1,0 +1,62 @@
+Detailed Prompt for Replit Agent: Email Verification Process for Thorx
+Objective
+Design and implement a complete email verification system for the Thorx revenue-sharing platform. This system must prompt new users to verify their email address after registration, enabling access to Thorx features upon successful verification.
+
+Functional Requirements
+Trigger: After completing registration, users must immediately receive a notification to verify their email address before they can access any Thorx platform features.
+
+Verification Email:
+
+Send an email to the address provided during registration.
+
+The email must feature Thorx branding and content, presenting a visually appealing design aligned with Thorx’s identity.
+
+The body should clearly explain the importance of email verification for unlocking full Thorx platform access.
+
+Include call-to-action language that motivates users to complete the process.
+
+Embed an advanced and secure email verification link (e.g., time-limited, single-use, using a signed token) that enables users to verify ownership of the email address.
+
+Verification Endpoints:
+
+Create an endpoint that the verification link lands on, which will mark the email as verified if the token is valid.
+
+Handle all appropriate edge cases (expired, reused, or tampered tokens), and provide friendly, branded feedback to the user.
+
+User Notification:
+
+After registration, display an on-screen message stating:
+“A verification email has been sent to your address. Please check your inbox and follow the instructions to verify your email and unlock Thorx features.”
+
+Block access to platform features until verification is complete.
+
+Technical Guidelines
+Employ best practices for secure email verification, ensuring tokens cannot be guessed or forged.
+
+Structure the code for easy future modifications (e.g., updating branding, email templates).
+
+Ensure responsive behavior in both the verification email and the user-facing messages for mobile and desktop devices.
+
+Use environment variables or secure storage for mail server credentials and sender identity.
+
+Thorx Branding & Content Requirements
+Emails must feature:
+
+The Thorx logo and color palette.
+
+A short welcome message introducing the Thorx platform’s benefits.
+
+A clear button or link labeled "Verify Your Email and Unlock Thorx."
+
+Professional design (consider HTML/CSS for formatting) that reflects the innovative and user-focused nature of Thorx.
+
+Consider including a footer with Thorx contact/support information and links to platform policies.
+
+Deliverables
+Full backend implementation of the email verification process.
+
+Email HTML template files with embedded Thorx branding.
+
+Instructions for integrating the process into the current Thorx registration flow.
+
+Clear in-code documentation for all major functions and modules.

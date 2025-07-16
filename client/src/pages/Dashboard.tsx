@@ -11,12 +11,16 @@ import {
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
 import { CosmicDollarSign } from '../components/icons/CosmicIcons';
 import { useAdvancedPerformance } from '../hooks/useAdvancedPerformance';
+import { EmailVerificationPrompt } from '../components/EmailVerificationPrompt';
+import { useAuth } from '../hooks/useAuth';
 
 // Lazy load heavy components for better performance
 const PerformanceOptimizer = lazy(() => import('../performance/PerformanceOptimizer'));
 
 const Dashboard = memo(() => {
   const { enableGPUAcceleration } = useAdvancedPerformance();
+  const { user } = useAuth();
+  const [showEmailVerificationPrompt, setShowEmailVerificationPrompt] = useState(false);
   
   const [stats, setStats] = useState({
     totalEarnings: 1547.50,
@@ -57,6 +61,15 @@ const Dashboard = memo(() => {
     // Enable GPU acceleration for smooth performance
     enableGPUAcceleration();
     
+    // Check if user needs email verification
+    if (user && !user.isEmailVerified) {
+      const timer = setTimeout(() => {
+        setShowEmailVerificationPrompt(true);
+      }, 2000); // Show prompt after 2 seconds
+      
+      return () => clearTimeout(timer);
+    }
+    
     // Simulate real-time updates
     const interval = setInterval(() => {
       setStats(prev => ({
@@ -67,7 +80,7 @@ const Dashboard = memo(() => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [enableGPUAcceleration]);
+  }, [enableGPUAcceleration, user]);
 
   const statCards = useMemo(() => [
     {
@@ -395,6 +408,17 @@ const Dashboard = memo(() => {
           </div>
         </motion.div>
       </div>
+      
+      {/* Email Verification Prompt */}
+      <EmailVerificationPrompt
+        isVisible={showEmailVerificationPrompt}
+        onClose={() => setShowEmailVerificationPrompt(false)}
+        userEmail={user?.email}
+        onVerificationSent={() => {
+          setShowEmailVerificationPrompt(false);
+          // You could add a toast notification here
+        }}
+      />
     </div>
   );
 });

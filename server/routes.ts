@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertUserSchema, insertTaskSchema, insertPayoutSchema, insertContactMessageSchema } from "@shared/schema";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { emailService } from "./emailService";
 
 const JWT_SECRET = process.env.JWT_SECRET || "thorx-cosmic-secret-key";
 
@@ -42,13 +43,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Hash password
       const hashedPassword = await bcrypt.hash(userData.password, 10);
       
-      // Create user
+      // Create user (initially unverified)
       const user = await storage.createUser({
         ...userData,
         password: hashedPassword
       });
 
-      // Generate JWT token
+      // Send verification email
+      const emailSent = await emailService.sendVerificationEmail(user.id, user.email);
+      
+      if (!emailSent) {
+        console.error("Failed to send verification email to:", user.email);
+        // Don't fail registration if email fails - user can resend later
+      }
+
+      // Generate JWT token (user can login but features will be limited until verified)
       const token = jwt.sign(
         { userId: user.id, username: user.username },
         JWT_SECRET,
@@ -56,15 +65,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       );
 
       res.status(201).json({
-        message: "User created successfully",
+        message: "User created successfully. Please check your email for verification instructions.",
         token,
         user: {
           id: user.id,
           username: user.username,
           email: user.email,
           firstName: user.firstName,
-          lastName: user.lastName
-        }
+          lastName: user.lastName,
+          isEmailVerified: user.isEmailVerified
+        },
+        requiresEmailVerification: true
       });
     } catch (error) {
       console.error("Registration error:", error);
@@ -111,11 +122,108 @@ export async function registerRoutes(app: Express): Promise<Server> {
           email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
-          totalEarnings: user.totalEarnings
+          totalEarnings: user.totalEarnings,
+          isEmailVerified: user.isEmailVerified
         }
       });
     } catch (error) {
       console.error("Login error:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+
+  // Email verification routes
+  app.get("/api/auth/verify-email", async (req, res) => {
+    try {
+      const { token } = req.query;
+      
+      if (!token || typeof token !== 'string') {
+        return res.status(400).json({ error: "Verification token required" });
+      }
+
+      // Verify the token
+      const verificationResult = await emailService.verifyEmailToken(token);
+      
+      if (!verificationResult.success) {
+        return res.status(400).json({ 
+          error: verificationResult.error || "Invalid verification token" 
+        });
+      }
+
+      // Mark email as verified in database
+      const user = await storage.verifyUserEmail(verificationResult.userId!);
+      
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      res.json({
+        message: "Email verified successfully! You can now access all Thorx features.",
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          isEmailVerified: user.isEmailVerified,
+          emailVerifiedAt: user.emailVerifiedAt
+        }
+      });
+    } catch (error) {
+      console.error("Email verification error:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+
+  app.post("/api/auth/resend-verification", authenticateToken, async (req, res) => {
+    try {
+      const userId = req.user.userId;
+      
+      // Get user details
+      const user = await storage.getUser(userId);
+      
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      if (user.isEmailVerified) {
+        return res.status(400).json({ error: "Email is already verified" });
+      }
+
+      // Resend verification email
+      const emailSent = await emailService.resendVerificationEmail(user.id, user.email);
+      
+      if (!emailSent) {
+        return res.status(500).json({ error: "Failed to send verification email" });
+      }
+
+      res.json({
+        message: "Verification email sent successfully. Please check your inbox."
+      });
+    } catch (error) {
+      console.error("Resend verification error:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+
+  app.get("/api/auth/verification-status", authenticateToken, async (req, res) => {
+    try {
+      const userId = req.user.userId;
+      
+      // Get user details
+      const user = await storage.getUser(userId);
+      
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      res.json({
+        isEmailVerified: user.isEmailVerified,
+        emailVerifiedAt: user.emailVerifiedAt,
+        email: user.email
+      });
+    } catch (error) {
+      console.error("Verification status error:", error);
       res.status(500).json({ error: "Internal server error" });
     }
   });
