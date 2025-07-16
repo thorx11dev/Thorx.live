@@ -1,10 +1,11 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 
 interface User {
-  id: string;
+  id: number;
   email: string;
   firstName: string;
   lastName: string;
+  username: string;
   isEmailVerified: boolean;
   emailVerifiedAt?: string;
   preferences?: UserPreferences;
@@ -59,6 +60,7 @@ interface AuthContextType {
 }
 
 interface RegisterData {
+  username: string;
   email: string;
   password: string;
   firstName: string;
@@ -102,55 +104,30 @@ export const useAuthState = () => {
     setIsLoading(true);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
       
-      // Mock successful login
-      const mockUser: User = {
-        id: '1',
-        email,
-        firstName: 'John',
-        lastName: 'Doe',
-        preferences: {
-          theme: 'light',
-          fontSize: 'medium',
-          language: 'en',
-          timezone: 'UTC-5',
-          notifications: {
-            email: true,
-            push: true,
-            sms: false,
-            sound: true,
-            frequency: 'immediate',
-            types: {
-              earnings: true,
-              tasks: true,
-              payouts: true,
-              mentions: true,
-              updates: false,
-              security: true
-            }
-          },
-          privacy: {
-            profileVisibility: 'public',
-            showEarnings: true,
-            showActivity: true,
-            allowMessages: true,
-            contentFiltering: false
-          }
-        }
-      };
+      if (!response.ok) {
+        const error = await response.json();
+        console.error('Login error:', error);
+        return false;
+      }
       
-      const token = 'mock_jwt_token_' + Date.now();
+      const data = await response.json();
       
-      localStorage.setItem('thorx_auth_token', token);
-      localStorage.setItem('thorx_user_data', JSON.stringify(mockUser));
+      localStorage.setItem('thorx_auth_token', data.token);
+      localStorage.setItem('thorx_user_data', JSON.stringify(data.user));
       
       if (rememberMe) {
         localStorage.setItem('thorx_remember_me', 'true');
       }
       
-      setUser(mockUser);
+      setUser(data.user);
       return true;
     } catch (error) {
       console.error('Login error:', error);
@@ -164,51 +141,26 @@ export const useAuthState = () => {
     setIsLoading(true);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
       
-      // Mock successful registration
-      const mockUser: User = {
-        id: '1',
-        email: userData.email,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        preferences: {
-          theme: 'light',
-          fontSize: 'medium',
-          language: 'en',
-          timezone: 'UTC-5',
-          notifications: {
-            email: true,
-            push: true,
-            sms: false,
-            sound: true,
-            frequency: 'immediate',
-            types: {
-              earnings: true,
-              tasks: true,
-              payouts: true,
-              mentions: true,
-              updates: false,
-              security: true
-            }
-          },
-          privacy: {
-            profileVisibility: 'public',
-            showEarnings: true,
-            showActivity: true,
-            allowMessages: true,
-            contentFiltering: false
-          }
-        }
-      };
+      if (!response.ok) {
+        const error = await response.json();
+        console.error('Registration error:', error);
+        return false;
+      }
       
-      const token = 'mock_jwt_token_' + Date.now();
+      const data = await response.json();
       
-      localStorage.setItem('thorx_auth_token', token);
-      localStorage.setItem('thorx_user_data', JSON.stringify(mockUser));
+      localStorage.setItem('thorx_auth_token', data.token);
+      localStorage.setItem('thorx_user_data', JSON.stringify(data.user));
       
-      setUser(mockUser);
+      setUser(data.user);
       return true;
     } catch (error) {
       console.error('Registration error:', error);

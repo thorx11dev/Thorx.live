@@ -50,9 +50,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         password: hashedPassword
       });
 
-      // Send verification email
-      const currentEmailService = process.env.NODE_ENV === 'development' ? developmentEmailService : emailService;
-      const emailSent = await currentEmailService.sendVerificationEmail(user.id, user.email);
+      // Send verification email (use production email service)
+      const emailSent = await emailService.sendVerificationEmail(user.id, user.email);
       
       if (!emailSent) {
         console.error("Failed to send verification email to:", user.email);
@@ -143,9 +142,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Verification token required" });
       }
 
-      // Verify the token
-      const currentEmailService = process.env.NODE_ENV === 'development' ? developmentEmailService : emailService;
-      const verificationResult = await currentEmailService.verifyEmailToken(token);
+      // Verify the token (use production email service)
+      const verificationResult = await emailService.verifyEmailToken(token);
       
       if (!verificationResult.success) {
         return res.status(400).json({ 
@@ -193,9 +191,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Email is already verified" });
       }
 
-      // Resend verification email
-      const currentEmailService = process.env.NODE_ENV === 'development' ? developmentEmailService : emailService;
-      const emailSent = await currentEmailService.resendVerificationEmail(user.id, user.email);
+      // Resend verification email (use production email service)
+      const emailSent = await emailService.resendVerificationEmail(user.id, user.email);
       
       if (!emailSent) {
         return res.status(500).json({ error: "Failed to send verification email" });

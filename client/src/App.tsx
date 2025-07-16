@@ -3,6 +3,7 @@ import AuthProvider from './components/AuthProvider';
 import { TeamAuthProvider } from './components/TeamAuthProvider';
 import ThemeProvider from './components/ThemeProvider';
 import ProtectedRoute from './components/ProtectedRoute';
+import EmailVerifiedRoute from './components/EmailVerifiedRoute';
 import TeamProtectedRoute from './components/TeamProtectedRoute';
 import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
@@ -87,36 +88,36 @@ function App() {
                   </ProtectedRoute>
                 </Route>
                 <Route path="/earnings">
-                  <ProtectedRoute>
+                  <EmailVerifiedRoute>
                     <>
                       <Navbar />
                       <EarningsInterface />
                     </>
-                  </ProtectedRoute>
+                  </EmailVerifiedRoute>
                 </Route>
                 <Route path="/work">
-                  <ProtectedRoute>
+                  <EmailVerifiedRoute>
                     <>
                       <Navbar />
                       <WorkPortal />
                     </>
-                  </ProtectedRoute>
+                  </EmailVerifiedRoute>
                 </Route>
                 <Route path="/payout">
-                  <ProtectedRoute>
+                  <EmailVerifiedRoute>
                     <>
                       <Navbar />
                       <PayoutSystem />
                     </>
-                  </ProtectedRoute>
+                  </EmailVerifiedRoute>
                 </Route>
                 <Route path="/settings">
-                  <ProtectedRoute>
+                  <EmailVerifiedRoute>
                     <>
                       <Navbar />
                       <SettingsHub />
                     </>
-                  </ProtectedRoute>
+                  </EmailVerifiedRoute>
                 </Route>
 
                 <Route path="/features" component={FeaturesPage} />

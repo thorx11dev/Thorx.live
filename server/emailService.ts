@@ -38,18 +38,28 @@ export class EmailService {
    * Initialize email transporter with environment configuration
    */
   private initializeTransporter(): void {
-    const emailConfig: EmailConfig = {
-      service: process.env.EMAIL_SERVICE || 'other',
+    const emailConfig = {
       host: process.env.EMAIL_HOST || 'mail.privateemail.com',
       port: parseInt(process.env.EMAIL_PORT || '587'),
-      secure: process.env.EMAIL_SECURE === 'true',
+      secure: process.env.EMAIL_SECURE === 'true', // true for 465, false for other ports
       auth: {
         user: process.env.EMAIL_USER || 'support@thorx.live',
         pass: process.env.EMAIL_PASS || 'your-password'
+      },
+      tls: {
+        rejectUnauthorized: false // Accept self-signed certificates
       }
     };
 
     this.transporter = nodemailer.createTransport(emailConfig);
+    
+    // Log configuration for debugging (without password)
+    console.log('📧 Email service configuration:', {
+      host: emailConfig.host,
+      port: emailConfig.port,
+      secure: emailConfig.secure,
+      user: emailConfig.auth.user
+    });
   }
 
   /**
