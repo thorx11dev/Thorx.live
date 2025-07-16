@@ -48,7 +48,15 @@ export class EmailService {
       },
       tls: {
         rejectUnauthorized: false // Accept self-signed certificates
-      }
+      },
+      // Optimization settings for faster email delivery
+      pool: true, // Use connection pooling
+      maxConnections: 5, // Maximum concurrent connections
+      maxMessages: 100, // Maximum messages per connection
+      rateLimit: 10, // Send up to 10 messages per second
+      connectionTimeout: 2000, // 2 second connection timeout
+      greetingTimeout: 2000, // 2 second greeting timeout
+      socketTimeout: 5000, // 5 second socket timeout
     };
 
     this.transporter = nodemailer.createTransport(emailConfig);
@@ -418,7 +426,7 @@ export class EmailService {
   async sendVerificationEmail(userId: number, email: string): Promise<boolean> {
     try {
       const token = this.generateVerificationToken(userId, email);
-      const verificationLink = `${process.env.CLIENT_URL || 'http://localhost:5000'}/verify-email?token=${token}`;
+      const verificationLink = `${process.env.CLIENT_URL || 'http://localhost:5000'}/api/auth/verify-email?token=${token}`;
       
       // Store token data for validation
       this.verificationTokens.set(token, {
@@ -438,10 +446,22 @@ export class EmailService {
         to: email,
         subject: 'Verify Your Thorx Account - Unlock the Digital Universe',
         html: htmlContent,
-        text: `Welcome to Thorx! Please verify your email address by clicking this link: ${verificationLink}`
+        text: `Welcome to Thorx! Please verify your email address by clicking this link: ${verificationLink}`,
+        priority: 'high', // Set high priority for faster delivery
+        headers: {
+          'X-Priority': '1',
+          'X-MSMail-Priority': 'High',
+          'Importance': 'high'
+        }
       };
 
-      await this.transporter.sendMail(mailOptions);
+      // Use Promise.race to timeout after 5 seconds for speed optimization
+      const emailPromise = this.transporter.sendMail(mailOptions);
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Email timeout')), 5000)
+      );
+
+      await Promise.race([emailPromise, timeoutPromise]);
       return true;
     } catch (error) {
       console.error('Error sending verification email:', error);

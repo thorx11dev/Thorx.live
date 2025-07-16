@@ -139,40 +139,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { token } = req.query;
       
       if (!token || typeof token !== 'string') {
-        return res.status(400).json({ error: "Verification token required" });
+        return res.redirect(`/verify-email?error=invalid-token`);
       }
 
       // Verify the token (use production email service)
       const verificationResult = await emailService.verifyEmailToken(token);
       
       if (!verificationResult.success) {
-        return res.status(400).json({ 
-          error: verificationResult.error || "Invalid verification token" 
-        });
+        return res.redirect(`/verify-email?error=invalid-token`);
       }
 
       // Mark email as verified in database
       const user = await storage.verifyUserEmail(verificationResult.userId!);
       
       if (!user) {
-        return res.status(404).json({ error: "User not found" });
+        return res.redirect(`/verify-email?error=user-not-found`);
       }
 
-      res.json({
-        message: "Email verified successfully! You can now access all Thorx features.",
-        user: {
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          isEmailVerified: user.isEmailVerified,
-          emailVerifiedAt: user.emailVerifiedAt
-        }
-      });
+      // Redirect to frontend with success message
+      res.redirect(`/verify-email?success=true&verified=true`);
     } catch (error) {
       console.error("Email verification error:", error);
-      res.status(500).json({ error: "Internal server error" });
+      res.redirect(`/verify-email?error=server-error`);
     }
   });
 

@@ -38,15 +38,40 @@ const EmailVerificationPage = () => {
   const [isResending, setIsResending] = useState(false);
   const { user } = useAuth();
 
-  // Get token from URL query parameters
+  // Get parameters from URL query
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get('token');
+  const success = urlParams.get('success') === 'true';
+  const verified = urlParams.get('verified') === 'true';
+  const error = urlParams.get('error');
 
   useEffect(() => {
-    if (token) {
+    if (success && verified) {
+      // Direct success from API redirect
+      setVerificationResult({
+        success: true,
+        message: 'Email verified successfully! You can now access all Thorx features.',
+      });
+    } else if (error) {
+      // Direct error from API redirect
+      let errorMessage = 'Email verification failed';
+      if (error === 'invalid-token') {
+        errorMessage = 'Invalid or expired verification token';
+      } else if (error === 'user-not-found') {
+        errorMessage = 'User not found';
+      } else if (error === 'server-error') {
+        errorMessage = 'Server error during verification';
+      }
+      setVerificationResult({
+        success: false,
+        message: errorMessage,
+        error: error
+      });
+    } else if (token) {
+      // Legacy token verification (should not happen with new flow)
       verifyEmailToken(token);
     }
-  }, [token]);
+  }, [token, success, verified, error]);
 
   const verifyEmailToken = async (verificationToken: string) => {
     setIsVerifying(true);
