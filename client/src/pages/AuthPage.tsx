@@ -12,11 +12,14 @@ import {
   Shield,
   Star,
   Sparkles,
-  UserCheck
+  UserCheck,
+  Info,
+  AlertTriangle
 } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
 import { useAuth } from '../hooks/useAuth';
 import { ThorxLogo } from '../components/ThorxLogo';
+import { EmailValidator } from '../utils/emailValidation';
 
 interface FormData {
   email: string;
@@ -34,6 +37,12 @@ interface ValidationErrors {
   firstName?: string;
   lastName?: string;
   general?: string;
+}
+
+interface EmailValidationState {
+  isValidating: boolean;
+  result: any;
+  showSuggestion: boolean;
 }
 
 // Team member interfaces removed - now using dedicated team login page
@@ -74,6 +83,35 @@ const AuthPage = () => {
   });
 
   const [errors, setErrors] = useState<ValidationErrors>({});
+  const [emailValidation, setEmailValidation] = useState<EmailValidationState>({
+    isValidating: false,
+    result: null,
+    showSuggestion: false
+  });
+
+  // Real-time email validation
+  useEffect(() => {
+    if (formData.email && formData.email.length > 3) {
+      setEmailValidation(prev => ({ ...prev, isValidating: true }));
+      
+      const timeoutId = setTimeout(() => {
+        const result = EmailValidator.validate(formData.email);
+        setEmailValidation({
+          isValidating: false,
+          result,
+          showSuggestion: result.suggestions ? true : false
+        });
+      }, 300); // Debounce validation
+
+      return () => clearTimeout(timeoutId);
+    } else {
+      setEmailValidation({
+        isValidating: false,
+        result: null,
+        showSuggestion: false
+      });
+    }
+  }, [formData.email]);
 
   // Password strength calculation
   useEffect(() => {
@@ -98,12 +136,16 @@ const AuthPage = () => {
   const validateForm = (): boolean => {
     const newErrors: ValidationErrors = {};
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Enhanced email validation
     if (!formData.email) {
       newErrors.email = 'Email is required';
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+    } else {
+      const emailResult = EmailValidator.validate(formData.email);
+      if (!emailResult.isValid) {
+        newErrors.email = EmailValidator.getValidationMessage(emailResult);
+      } else if (emailResult.score < 70) {
+        newErrors.email = 'Please use a more reliable email address';
+      }
     }
 
     // Password validation
@@ -543,16 +585,104 @@ const AuthPage = () => {
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className={`w-full pl-10 pr-4 py-3 bg-slate-700/50 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 transition-all duration-200 text-slate-200 placeholder-slate-500 ${
+                    className={`w-full pl-10 pr-10 py-3 bg-slate-700/50 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 transition-all duration-200 text-slate-200 placeholder-slate-500 ${
                       errors.email 
                         ? 'border-red-400' 
+                        : emailValidation.result && !emailValidation.result.isValid
+                        ? 'border-yellow-400'
+                        : emailValidation.result && emailValidation.result.isValid && emailValidation.result.score >= 80
+                        ? 'border-green-400'
                         : 'border-slate-600'
                     }`}
                     placeholder="john@example.com"
                   />
+                  
+                  {/* Email Validation Status Icon */}
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    {emailValidation.isValidating ? (
+                      <div className="animate-spin w-4 h-4 border-2 border-slate-500 border-t-slate-300 rounded-full"></div>
+                    ) : emailValidation.result && formData.email.length > 3 ? (
+                      emailValidation.result.isValid ? (
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                      ) : (
+                        <AlertTriangle className="w-4 h-4 text-yellow-400" />
+                      )
+                    ) : null}
+                  </div>
                 </div>
+                
+                {/* Email Validation Messages */}
                 {errors.email && (
-                  <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                  <p className="text-red-400 text-sm mt-1 flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3" />
+                    {errors.email}
+                  </p>
+                )}
+                
+                {/* Email Quality Score */}
+                {emailValidation.result && !errors.email && formData.email.length > 3 && (
+                  <div className="mt-2 space-y-1">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-slate-400">Email Quality Score</span>
+                      <span className={`font-medium ${
+                        emailValidation.result.score >= 80 ? 'text-green-400' :
+                        emailValidation.result.score >= 60 ? 'text-yellow-400' :
+                        'text-red-400'
+                      }`}>
+                        {emailValidation.result.score}/100
+                      </span>
+                    </div>
+                    <div className="w-full bg-slate-700 rounded-full h-1">
+                      <div 
+                        className={`h-1 rounded-full transition-all duration-300 ${
+                          emailValidation.result.score >= 80 ? 'bg-green-400' :
+                          emailValidation.result.score >= 60 ? 'bg-yellow-400' :
+                          'bg-red-400'
+                        }`}
+                        style={{ width: `${emailValidation.result.score}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Email Suggestions */}
+                {emailValidation.showSuggestion && emailValidation.result.suggestions && (
+                  <div className="mt-2 p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <Info className="w-4 h-4 text-blue-400 mt-0.5" />
+                      <div>
+                        <p className="text-blue-300 text-sm font-medium">Suggestion:</p>
+                        <p className="text-blue-200 text-sm">{emailValidation.result.suggestions}</p>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const suggestion = emailValidation.result.suggestions;
+                            if (suggestion) {
+                              const suggestedEmail = suggestion.split(' ')[3]; // Extract email from "Did you mean email?"
+                              if (suggestedEmail) {
+                                setFormData({...formData, email: suggestedEmail});
+                              }
+                            }
+                          }}
+                          className="text-blue-400 hover:text-blue-300 text-sm underline mt-1"
+                        >
+                          Use this suggestion
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Email Warnings */}
+                {emailValidation.result && emailValidation.result.warnings.length > 0 && !errors.email && (
+                  <div className="mt-2">
+                    {emailValidation.result.warnings.map((warning, index) => (
+                      <p key={index} className="text-yellow-400 text-sm flex items-center gap-1">
+                        <AlertTriangle className="w-3 h-3" />
+                        {warning}
+                      </p>
+                    ))}
+                  </div>
                 )}
               </div>
 
