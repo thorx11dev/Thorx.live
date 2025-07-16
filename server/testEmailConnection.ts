@@ -1,34 +1,37 @@
-import { emailService } from './emailService';
+import nodemailer from 'nodemailer';
 
 async function testEmailConnection() {
-  console.log('🔍 Testing email service connection and delivery...');
-  
+  const transporter = nodemailer.createTransport({
+    host: 'mail.privateemail.com',
+    port: 587,
+    secure: false,
+    auth: {
+      user: 'support@thorx.live',
+      pass: process.env.EMAIL_APP_PASSWORD
+    },
+    tls: {
+      rejectUnauthorized: false,
+      ciphers: 'SSLv3'
+    }
+  });
+
   try {
-    // Test email connection
-    const testResult = await emailService.sendVerificationEmail(999, 'test@example.com');
+    console.log('🔍 Testing email server connection...');
+    await transporter.verify();
+    console.log('✅ Email server connection successful!');
     
-    if (testResult) {
-      console.log('✅ Email service connection successful');
-      console.log('📧 Test email sent to test@example.com');
-    } else {
-      console.log('❌ Email service connection failed');
-    }
+    // Test sending a simple email
+    const result = await transporter.sendMail({
+      from: '"Thorx" <support@thorx.live>',
+      to: 'support@thorx.live',
+      subject: 'Test Email Connection',
+      text: 'This is a test email to verify the connection.'
+    });
     
-    // Test with a real email to verify delivery
-    console.log('\n🔍 Testing with a real email address...');
-    const realTestResult = await emailService.sendVerificationEmail(998, 'support@thorx.live');
-    
-    if (realTestResult) {
-      console.log('✅ Real email test successful');
-      console.log('📧 Test email sent to support@thorx.live');
-    } else {
-      console.log('❌ Real email test failed');
-    }
-    
+    console.log('✅ Test email sent successfully:', result.messageId);
   } catch (error) {
-    console.error('❌ Email service error:', error);
+    console.error('❌ Email connection failed:', error);
   }
 }
 
-// Run the test
 testEmailConnection();

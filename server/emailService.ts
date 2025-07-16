@@ -48,16 +48,15 @@ export class EmailService {
         pass: process.env.EMAIL_APP_PASSWORD || process.env.EMAIL_PASS || 'your-password'
       },
       tls: {
-        rejectUnauthorized: false // Accept self-signed certificates
+        rejectUnauthorized: false, // Accept self-signed certificates
+        ciphers: 'SSLv3'
       },
-      // Optimization settings for faster email delivery
-      pool: true, // Use connection pooling
-      maxConnections: 5, // Maximum concurrent connections
-      maxMessages: 100, // Maximum messages per connection
-      rateLimit: 10, // Send up to 10 messages per second
-      connectionTimeout: 2000, // 2 second connection timeout
-      greetingTimeout: 2000, // 2 second greeting timeout
-      socketTimeout: 5000, // 5 second socket timeout
+      // Simplified settings for better reliability
+      pool: false, // Disable connection pooling for more reliability
+      connectionTimeout: 10000, // 10 second connection timeout
+      greetingTimeout: 10000, // 10 second greeting timeout
+      socketTimeout: 15000, // 15 second socket timeout
+      debug: false, // Disable debug logging
     };
 
     this.transporter = nodemailer.createTransport(emailConfig);
@@ -459,11 +458,8 @@ export class EmailService {
 
       const htmlContent = this.generateEmailTemplate(email, verificationLink);
 
-      const avatarConfig = emailAvatarService.getAvatarConfig();
-      const senderConfig = emailAvatarService.getSenderConfig(email);
-      
       const mailOptions = {
-        ...senderConfig,
+        from: '"Thorx" <support@thorx.live>',
         to: email,
         subject: 'Verify Your Thorx Account',
         html: htmlContent,
@@ -474,13 +470,8 @@ export class EmailService {
           'X-MSMail-Priority': 'High',
           'Importance': 'high',
           'X-Mailer': 'Thorx',
-          'X-Auto-Response-Suppress': 'All',
-          'List-Unsubscribe': '<mailto:unsubscribe@thorx.live>',
-          'X-Entity-Ref-ID': 'thorx-verification-email',
-          ...senderConfig.headers
+          'X-Entity-Ref-ID': 'thorx-verification-email'
         },
-        // Profile picture configuration for email clients
-        attachments: avatarConfig ? [avatarConfig] : [],
         replyTo: {
           name: 'Thorx Support',
           address: 'support@thorx.live'
@@ -490,7 +481,7 @@ export class EmailService {
       // Use Promise.race to timeout after 5 seconds for speed optimization
       const emailPromise = this.transporter.sendMail(mailOptions);
       const timeoutPromise = new Promise((_, reject) => 
-        setTimeout(() => reject(new Error('Email timeout')), 5000)
+        setTimeout(() => reject(new Error('Email timeout')), 15000)
       );
 
       await Promise.race([emailPromise, timeoutPromise]);
