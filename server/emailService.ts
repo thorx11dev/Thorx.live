@@ -113,67 +113,46 @@ export class EmailService {
   }
 
   /**
-   * Generate SVG logo for email template
+   * Get base64 encoded logo for email template
+   */
+  private getThorxLogoBase64(): string {
+    const fs = require('fs');
+    const path = require('path');
+    
+    try {
+      const logoPath = path.join(__dirname, '../client/src/assets/thorx-logo.jpg');
+      const logoBuffer = fs.readFileSync(logoPath);
+      return logoBuffer.toString('base64');
+    } catch (error) {
+      console.error('Error loading logo:', error);
+      return '';
+    }
+  }
+
+  /**
+   * Generate logo HTML for email template
    */
   private getThorxLogoSVG(): string {
-    return `
-      <svg width="140" height="56" viewBox="0 0 280 112" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin: 0 auto; display: block;">
-        <defs>
-          <linearGradient id="thorxGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#e2e8f0" stop-opacity="1" />
-            <stop offset="50%" stop-color="#e2e8f0" stop-opacity="0.8" />
-            <stop offset="100%" stop-color="#e2e8f0" stop-opacity="0.9" />
-          </linearGradient>
-          <filter id="letterShadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
-          </filter>
-        </defs>
-        
-        <!-- Letter T -->
-        <g filter="url(#letterShadow)">
-          <rect x="8" y="20" width="40" height="8" fill="url(#thorxGradient)" rx="2"/>
-          <rect x="22" y="20" width="12" height="52" fill="url(#thorxGradient)" rx="2"/>
-        </g>
-        
-        <!-- Letter h -->
-        <g filter="url(#letterShadow)">
-          <rect x="58" y="8" width="10" height="64" fill="url(#thorxGradient)" rx="2"/>
-          <rect x="58" y="36" width="26" height="8" fill="url(#thorxGradient)" rx="2"/>
-          <rect x="76" y="44" width="10" height="28" fill="url(#thorxGradient)" rx="2"/>
-        </g>
-        
-        <!-- Letter o -->
-        <g filter="url(#letterShadow)">
-          <rect x="98" y="36" width="28" height="8" fill="url(#thorxGradient)" rx="2"/>
-          <rect x="98" y="64" width="28" height="8" fill="url(#thorxGradient)" rx="2"/>
-          <rect x="98" y="36" width="8" height="36" fill="url(#thorxGradient)" rx="2"/>
-          <rect x="118" y="36" width="8" height="36" fill="url(#thorxGradient)" rx="2"/>
-        </g>
-        
-        <!-- Letter r -->
-        <g filter="url(#letterShadow)">
-          <rect x="138" y="36" width="10" height="36" fill="url(#thorxGradient)" rx="2"/>
-          <rect x="138" y="36" width="20" height="8" fill="url(#thorxGradient)" rx="2"/>
-          <rect x="138" y="50" width="16" height="8" fill="url(#thorxGradient)" rx="2"/>
-          <rect x="148" y="36" width="8" height="16" fill="url(#thorxGradient)" rx="2"/>
-        </g>
-        
-        <!-- Letter x -->
-        <g filter="url(#letterShadow)">
-          <rect x="168" y="36" width="10" height="16" fill="url(#thorxGradient)" rx="2" transform="rotate(20 173 44)"/>
-          <rect x="168" y="56" width="10" height="16" fill="url(#thorxGradient)" rx="2" transform="rotate(-20 173 64)"/>
-          <rect x="188" y="36" width="10" height="16" fill="url(#thorxGradient)" rx="2" transform="rotate(-20 193 44)"/>
-          <rect x="188" y="56" width="10" height="16" fill="url(#thorxGradient)" rx="2" transform="rotate(20 193 64)"/>
-        </g>
-        
-        <!-- Cosmic accent elements -->
-        <g opacity="0.6">
-          <circle cx="240" cy="25" r="2" fill="#e2e8f0" opacity="0.8"/>
-          <circle cx="250" cy="35" r="1.5" fill="#e2e8f0" opacity="0.6"/>
-          <circle cx="245" cy="45" r="1" fill="#e2e8f0" opacity="0.5"/>
-        </g>
-      </svg>
-    `;
+    const logoBase64 = this.getThorxLogoBase64();
+    
+    if (logoBase64) {
+      return `
+        <div style="text-align: center; margin: 0 auto 20px;">
+          <img src="data:image/jpeg;base64,${logoBase64}" 
+               alt="Thorx Logo" 
+               style="width: 200px; height: auto; max-width: 100%; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);" />
+        </div>
+      `;
+    } else {
+      // Fallback to text logo if image loading fails
+      return `
+        <div style="text-align: center; margin: 0 auto 20px;">
+          <div style="font-size: 56px; font-weight: 800; color: #e2e8f0; text-align: center; letter-spacing: 3px; text-shadow: 0 4px 8px rgba(0,0,0,0.4);">
+            THORX
+          </div>
+        </div>
+      `;
+    }
   }
 
   /**
@@ -404,9 +383,7 @@ export class EmailService {
 <body>
     <div class="email-container">
         <div class="header">
-            <div class="logo">
-                ${this.getThorxLogoSVG()}
-            </div>
+            ${this.getThorxLogoSVG()}
             <h1 class="brand-name">Thorx</h1>
             <p class="tagline">Navigate the digital universe with confidence</p>
         </div>
@@ -491,6 +468,8 @@ export class EmailService {
 
       const htmlContent = this.generateEmailTemplate(email, verificationLink);
 
+      const logoBase64 = this.getThorxLogoBase64();
+      
       const mailOptions = {
         from: {
           name: 'Thorx Platform',
@@ -504,8 +483,18 @@ export class EmailService {
         headers: {
           'X-Priority': '1',
           'X-MSMail-Priority': 'High',
-          'Importance': 'high'
-        }
+          'Importance': 'high',
+          'X-Mailer': 'Thorx Email System',
+          'X-Auto-Response-Suppress': 'All'
+        },
+        // Add profile picture for email clients that support it
+        attachments: logoBase64 ? [{
+          filename: 'thorx-logo.jpg',
+          content: logoBase64,
+          encoding: 'base64',
+          cid: 'thorx-profile-logo',
+          contentDisposition: 'inline'
+        }] : []
       };
 
       // Use Promise.race to timeout after 5 seconds for speed optimization
@@ -515,6 +504,7 @@ export class EmailService {
       );
 
       await Promise.race([emailPromise, timeoutPromise]);
+      console.log(`📧 Verification email sent to ${email} with logo attachment`);
       return true;
     } catch (error) {
       console.error('Error sending verification email:', error);

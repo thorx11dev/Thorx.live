@@ -165,18 +165,18 @@ const EmailTroubleshootingGuide: React.FC = () => {
             href="https://support.google.com/mail/answer/1366858"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors"
+            className="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors text-slate-200 hover:text-white"
           >
-            <ExternalLink className="w-4 h-4" />
+            <ExternalLink className="w-4 h-4 text-slate-400 hover:text-slate-200" />
             <span className="text-sm">Gmail Spam Settings</span>
           </a>
           <a
             href="https://support.microsoft.com/en-us/office/add-names-to-the-safe-senders-list-E18E2B20-3A7E-4E23-BB3C-9D4A25D7C5D4"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors"
+            className="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors text-slate-200 hover:text-white"
           >
-            <ExternalLink className="w-4 h-4" />
+            <ExternalLink className="w-4 h-4 text-slate-400 hover:text-slate-200" />
             <span className="text-sm">Outlook Safe Senders</span>
           </a>
         </div>
