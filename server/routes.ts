@@ -5,6 +5,7 @@ import { insertUserSchema, insertTaskSchema, insertPayoutSchema, insertContactMe
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { emailService } from "./emailService";
+import { developmentEmailService } from "./emailService.dev";
 
 const JWT_SECRET = process.env.JWT_SECRET || "thorx-cosmic-secret-key";
 
@@ -50,7 +51,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       // Send verification email
-      const emailSent = await emailService.sendVerificationEmail(user.id, user.email);
+      const currentEmailService = process.env.NODE_ENV === 'development' ? developmentEmailService : emailService;
+      const emailSent = await currentEmailService.sendVerificationEmail(user.id, user.email);
       
       if (!emailSent) {
         console.error("Failed to send verification email to:", user.email);
@@ -142,7 +144,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Verify the token
-      const verificationResult = await emailService.verifyEmailToken(token);
+      const currentEmailService = process.env.NODE_ENV === 'development' ? developmentEmailService : emailService;
+      const verificationResult = await currentEmailService.verifyEmailToken(token);
       
       if (!verificationResult.success) {
         return res.status(400).json({ 
@@ -191,7 +194,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Resend verification email
-      const emailSent = await emailService.resendVerificationEmail(user.id, user.email);
+      const currentEmailService = process.env.NODE_ENV === 'development' ? developmentEmailService : emailService;
+      const emailSent = await currentEmailService.resendVerificationEmail(user.id, user.email);
       
       if (!emailSent) {
         return res.status(500).json({ error: "Failed to send verification email" });
