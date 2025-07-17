@@ -27,7 +27,7 @@ export const PerformanceOptimizer: React.FC = () => {
     const startTime = performance.now();
     
     // Measure different performance aspects
-    const loadTime = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+    const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
     const renderTime = performance.now() - startTime;
     
     // Memory usage (if available)
@@ -37,13 +37,18 @@ export const PerformanceOptimizer: React.FC = () => {
     // Bundle size estimation
     const bundleSize = document.querySelectorAll('script[src*="assets"]').length * 50; // Approximate KB
     
+    // Safe load time calculation
+    const loadTime = navigation && navigation.loadEventEnd && navigation.loadEventStart
+      ? navigation.loadEventEnd - navigation.loadEventStart
+      : 0;
+    
     setMetrics({
-      loadTime: loadTime ? loadTime.loadEventEnd - loadTime.loadEventStart : 0,
-      renderTime,
+      loadTime: loadTime || 0,
+      renderTime: renderTime || 0,
       bundleSize,
       memoryUsage,
       scrollPerformance: 0,
-      componentMountTime: renderTime
+      componentMountTime: renderTime || 0
     });
   }, []);
 
