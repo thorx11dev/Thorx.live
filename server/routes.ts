@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { emailService } from "./emailService";
 import { developmentEmailService } from "./emailService.dev";
+import { productionEmailService } from "./emailService.production";
 import emailDebugRouter from "./routes/emailDebug";
 
 const JWT_SECRET = process.env.JWT_SECRET || "thorx-cosmic-secret-key";
@@ -51,19 +52,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
         password: hashedPassword
       });
 
-      // Send verification email (use production email service)
+      // Send verification email using production email service
       console.log(`📧 Sending verification email to: ${user.email}`);
       const emailStartTime = Date.now();
       
-      const emailSent = await emailService.sendVerificationEmail(user.id, user.email);
+      const emailResult = await productionEmailService.sendVerificationEmail(user.id, user.email);
       
       const emailEndTime = Date.now();
       const emailDeliveryTime = emailEndTime - emailStartTime;
       
-      if (emailSent) {
-        console.log(`✅ Verification email sent successfully to ${user.email} in ${emailDeliveryTime}ms`);
+      if (emailResult.success) {
+        console.log(`✅ ${emailResult.message} to ${user.email} in ${emailDeliveryTime}ms`);
       } else {
-        console.error(`❌ Failed to send verification email to: ${user.email} after ${emailDeliveryTime}ms`);
+        console.error(`❌ Failed to send verification email to: ${user.email} - ${emailResult.message} after ${emailDeliveryTime}ms`);
         // Don't fail registration if email fails - user can resend later
       }
 
@@ -151,8 +152,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.redirect(`/verify-email?error=invalid-token`);
       }
 
-      // Verify the token (use production email service)
-      const verificationResult = await emailService.verifyEmailToken(token);
+      // Verify the token using production email service
+      const verificationResult = await productionEmailService.verifyEmailToken(token);
       
       if (!verificationResult.success) {
         return res.redirect(`/verify-email?error=invalid-token`);
@@ -185,8 +186,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log(`📧 Testing email delivery to: ${email}`);
       const startTime = Date.now();
       
-      // Send test email using the same service
-      const emailSent = await emailService.sendVerificationEmail(999, email);
+      // Send test email using production service
+      const emailResult = await productionEmailService.sendVerificationEmail(999, email);
       
       const endTime = Date.now();
       const deliveryTime = endTime - startTime;
@@ -194,9 +195,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log(`⏱️ Email delivery took: ${deliveryTime}ms`);
       
       res.json({
-        success: emailSent,
+        success: emailResult.success,
         deliveryTime: `${deliveryTime}ms`,
-        message: emailSent ? "Test email sent successfully" : "Failed to send test email"
+        message: emailResult.message,
+        messageId: emailResult.messageId
       });
     } catch (error) {
       console.error("Test email error:", error);
