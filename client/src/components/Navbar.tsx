@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, User, LogOut, Settings, Home, BarChart3, DollarSign, Briefcase, CreditCard, Bell, Shield, HelpCircle, Star, Crown } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { ThorxLogo } from './ThorxLogo';
+import { RestrictedNavigation } from './RestrictedNavigation';
 
 const Navbar = () => {
   const [location] = useLocation();
@@ -58,7 +59,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Link
+                  <RestrictedNavigation
                     to={item.path}
                     className={`relative flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
                       active
@@ -87,7 +88,7 @@ const Navbar = () => {
                       whileHover={{ scaleX: 1 }}
                       transition={{ duration: 0.3 }}
                     />
-                  </Link>
+                  </RestrictedNavigation>
                 </motion.div>
               );
             })}
@@ -318,7 +319,7 @@ const Navbar = () => {
                       whileHover={{ x: 4 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <Link
+                      <RestrictedNavigation
                         to={item.path}
                         className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                           active
@@ -334,7 +335,7 @@ const Navbar = () => {
                           <Icon className="w-5 h-5" />
                         </motion.div>
                         <span>{item.label}</span>
-                      </Link>
+                      </RestrictedNavigation>
                     </motion.div>
                   );
                 })}

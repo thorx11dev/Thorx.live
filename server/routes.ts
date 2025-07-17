@@ -222,9 +222,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Resend verification email (use production email service)
-      const emailSent = await emailService.resendVerificationEmail(user.id, user.email);
+      const emailResult = await productionEmailService.sendVerificationEmail(user.id, user.email);
       
-      if (!emailSent) {
+      if (!emailResult.success) {
         return res.status(500).json({ error: "Failed to send verification email" });
       }
 

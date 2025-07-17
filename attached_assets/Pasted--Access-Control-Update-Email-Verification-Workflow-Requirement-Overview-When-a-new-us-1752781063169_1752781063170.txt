@@ -1,0 +1,55 @@
+### Access Control Update: Email Verification Workflow
+
+**Requirement Overview:**  
+When a new user registers but has not yet verified their email address, the Thorx platform must restrict their navigation capabilities while offering guidance and actionable solutions. The design should be both visually clear and user-centric.
+
+#### Dashboard Header Prompt
+
+- **Display a prominent notification at the top** of the Dashboard:  
+  > Please verify your email address to unlock other pages of Thorx!
+- The notification must remain fixed and highly visible until the user’s email is verified.
+
+#### Resend Verification Email Feature
+
+- **A dynamic 'Resend' button must be positioned below the prompt.**
+  - When clicked, this button should immediately trigger a backend process to resend the verification email to the currently registered address.
+  - If the system is processing a resend request, disable the button and show a loading indicator until the process completes.
+  - After successful resend, display a short confirmation message, *e.g.,* “A new verification email has been sent to your address.”
+
+#### Navigation Restriction & Visual Feedback
+
+- **Block all navigation to other pages** until the email is verified. Users attempting to navigate should remain on the Dashboard.
+- **Every navigation bar item must be visually marked:**
+  - Add a clear red underline or border to each navigation tab/button.
+  - Optionally display a tooltip upon hover:  
+    > Page locked: Please verify your email to access.
+- Ensure that clicking a navigation item will not cause a full page reload or route change, preventing circumvention of access control.
+
+#### User Experience Details
+
+- This system should function seamlessly on both desktop and mobile displays.
+- Use concise, supportive messages to reduce user frustration.
+- The system must check verification status in real-time (e.g., polling or WebSockets, if supported) so pages become accessible immediately after successful verification.
+
+### Example Pseudocode (for Clarity)
+
+```pseudo
+If user.email_verified == False:
+    Display verification prompt at header
+    Show 'Resend' button; handle click with resend_email()
+    For each nav_item in navigation_bar:
+        Apply red underline
+        OnClick: Prevent default navigation
+        Tooltip: "Page locked: Please verify your email to access."
+Else:
+    Hide verification prompt and enable navigation
+```
+
+### Guidance for Implementation
+
+- Use modular React/Vue/Next components (or relevant framework) for the prompt and navigation bar modifications.
+- Integrate state management to reflect live verification status and control UI changes instantly.
+- Ensure backend endpoint for resending verification mails is robust and rate-limited to prevent abuse.
+- Design with accessibility in mind, ensuring screen reader compatibility and clear focus states on interactive elements.
+
+By combining these principles, Thorx’s access control will offer a modern, intuitive, and robust security experience, guiding users with clarity while maintaining the integrity of platform features prior to verification.
