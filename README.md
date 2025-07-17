@@ -73,6 +73,43 @@ thorx/
 ### Prerequisites
 - Node.js (v18 or higher)
 - PostgreSQL database (Neon Database recommended)
+- Git for version control
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/thorx11dev/Thorx-Platform.git
+   cd Thorx-Platform
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables:**
+   Create a `.env` file in the root directory with:
+   ```env
+   DATABASE_URL=your_neon_database_url
+   JWT_SECRET=your_jwt_secret_key
+   EMAIL_USER=your_email@domain.com
+   EMAIL_PASS=your_email_password
+   EMAIL_HOST=your_smtp_host
+   EMAIL_PORT=587
+   ```
+
+4. **Initialize the database:**
+   ```bash
+   npm run db:push
+   ```
+
+5. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+The application will be available at `http://localhost:5000`
 - Email service credentials (for verification emails)
 
 ### Installation
