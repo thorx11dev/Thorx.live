@@ -5,6 +5,13 @@
 
 echo "🚀 Setting up GitHub repository for Thorx Platform..."
 
+# Clean up any existing lock files
+echo "Cleaning up Git lock files..."
+rm -f .git/config.lock
+rm -f .git/index.lock
+rm -f .git/HEAD.lock
+rm -f .git/refs/heads/main.lock
+
 # Check if git is initialized
 if [ ! -d ".git" ]; then
     echo "Initializing Git repository..."
