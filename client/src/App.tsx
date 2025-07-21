@@ -7,12 +7,12 @@ import ProtectedRoute from './components/ProtectedRoute';
 import TeamProtectedRoute from './components/TeamProtectedRoute';
 import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard_Simple';
 import EarningsInterface from './pages/EarningsInterface';
 import WorkPortal from './pages/WorkPortal';
 import PayoutSystem from './pages/PayoutSystem';
 import SettingsHub from './pages/SettingsHub';
-import PerformancePage from './pages/PerformancePage';
+
 import FeaturesPage from './pages/FeaturesPage';
 import UpdatesPage from './pages/UpdatesPage';
 import HelpCenterPage from './pages/HelpCenterPage';
@@ -43,7 +43,7 @@ function App() {
                 <Route path="/login" component={AuthPage} />
                 <Route path="/register" component={AuthPage} />
 
-                <Route path="/performance" component={PerformancePage} />
+
                 
                 {/* Team Routes */}
                 <Route path="/team/login" component={TeamLoginPage} />

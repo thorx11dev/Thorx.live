@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo, useMemo, useCallback, Suspense } from 'react';
+import React, { useState, useEffect, memo, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Play, 
@@ -42,12 +42,7 @@ import {
   Smartphone
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
-import { useAdvancedPerformance } from '../hooks/useAdvancedPerformance';
-
-const PerformanceOptimizer = React.lazy(() => import('../performance/PerformanceOptimizer'));
-
 const WorkPortal = memo(() => {
-  const { enableGPUAcceleration } = useAdvancedPerformance();
   const [activeSection, setActiveSection] = useState('ads');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -392,11 +387,7 @@ const WorkPortal = memo(() => {
   };
 
   return (
-    <Suspense fallback={<div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary flex items-center justify-center">
-      <div className="text-primary text-xl font-semibold">Loading optimized interface...</div>
-    </div>}>
-      <PerformanceOptimizer />
-      <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary thorx-performance-optimized">
+    <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-primary">
         <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -1058,7 +1049,6 @@ const WorkPortal = memo(() => {
         </AnimatePresence>
         </div>
       </div>
-    </Suspense>
   );
 });
 

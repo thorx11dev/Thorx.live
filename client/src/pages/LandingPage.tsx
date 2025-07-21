@@ -1,49 +1,20 @@
 import { Link } from 'wouter';
 import { ArrowRight, Globe, Shield, Users, TrendingUp, DollarSign, Activity, ChevronDown, Satellite, Rocket, Target, Star, Gem, Headphones, Sparkles, Trophy, Zap } from 'lucide-react';
-import { useEffect, useState, lazy, Suspense, memo, startTransition } from 'react';
+import { useEffect, useState, memo } from 'react';
 import ThorxLogo from '../components/ThorxLogo';
-import { useAdvancedPerformance } from '../hooks/useAdvancedPerformance';
-import PerformanceOptimizer from '../performance/PerformanceOptimizer';
 
-// Lazy load heavy components for better performance
-const EnhancedAnimatedClouds = lazy(() => import('../components/3d/EnhancedAnimatedClouds'));
-const AnimatedClouds = lazy(() => import('../components/3d/AnimatedClouds'));
+
+
 
 const LandingPage = memo(() => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const { performanceScore, enableGPUAcceleration } = useAdvancedPerformance();
-
   useEffect(() => {
-    // Use startTransition for non-urgent state updates to prevent suspension errors
-    startTransition(() => {
-      setIsLoaded(true);
-    });
-    
     // Immediate DOM operations
     window.scrollTo(0, 0);
-    
-    // Enable GPU acceleration for smooth animations
-    enableGPUAcceleration();
-    
-    // Add performance optimization classes
-    document.body.classList.add('thorx-performance-optimized');
-  }, [enableGPUAcceleration]);
+  }, []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-900 thorx-performance-optimized">
-      {/* Background Performance Optimizer */}
-      <PerformanceOptimizer />
-      {/* 3D Animated Clouds with Parallax Effect - Lazy loaded for performance */}
-      {isLoaded && (
-        <Suspense fallback={<div className="absolute inset-0 z-5 bg-transparent" />}>
-          <EnhancedAnimatedClouds 
-            density="low" 
-            scrollFactor={0.4} 
-            className="z-5" 
-            enableInteraction={false} 
-          />
-        </Suspense>
-      )}
+    <div className="relative min-h-screen overflow-hidden bg-slate-900">
+
       
       {/* Hero Section - Mobile Optimized Container */}
       <div className="relative h-screen cosmic-gradient-primary min-h-[100dvh] sm:min-h-screen hero-mobile-container">
@@ -258,12 +229,7 @@ const LandingPage = memo(() => {
 
       {/* RECREATED FEATURES SECTION - Neo-Cosmic Design */}
       <div className="relative py-32 bg-slate-800 overflow-hidden">
-        {/* Enhanced animated clouds with different density */}
-        {isLoaded && (
-          <Suspense fallback={<div className="absolute inset-0 z-0 bg-transparent" />}>
-            <AnimatedClouds density="medium" scrollFactor={0.3} className="z-0 opacity-40" />
-          </Suspense>
-        )}
+
         
         {/* Neo-Cosmic Background Environment */}
         <div className="absolute inset-0">
@@ -615,12 +581,7 @@ const LandingPage = memo(() => {
 
       {/* Stats Section */}
       <div className="relative py-24 bg-slate-800 overflow-hidden">
-        {/* Additional clouds for stats section */}
-        {isLoaded && (
-          <Suspense fallback={<div className="absolute inset-0 z-0 bg-transparent" />}>
-            <AnimatedClouds density="low" scrollFactor={0.15} className="z-0 opacity-40" />
-          </Suspense>
-        )}
+
         {/* Enhanced Background with Data Visualization Effects */}
         <div className="absolute inset-0">
           {/* Matrix-style data streams */}
@@ -760,16 +721,7 @@ const LandingPage = memo(() => {
 
       {/* CTA Section */}
       <div className="relative py-24 bg-slate-900 overflow-hidden">
-        {/* 3D Animated Clouds for CTA Section */}
-        {isLoaded && (
-          <Suspense fallback={<div className="absolute inset-0 z-5 bg-transparent" />}>
-            <AnimatedClouds 
-              density="low" 
-              scrollFactor={0.3} 
-              className="z-5" 
-            />
-          </Suspense>
-        )}
+
         
         {/* Enhanced Background with Call-to-Action Energy */}
         <div className="absolute inset-0">
