@@ -54,10 +54,7 @@ const WorkPortal = memo(() => {
   const [completedSites, setCompletedSites] = useState<number[]>([]);
   const [socialTaskProgress, setSocialTaskProgress] = useState<{[key: number]: number}>({});
 
-  // Enable GPU acceleration on mount
-  useEffect(() => {
-    enableGPUAcceleration();
-  }, [enableGPUAcceleration]);
+
 
   // IMPROVED: High-contrast colors for better visibility
   const chartColors = {
