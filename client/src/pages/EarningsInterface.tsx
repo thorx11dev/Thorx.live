@@ -65,12 +65,52 @@ const EarningsInterface = memo(() => {
     sitesVisited: 77
   };
 
-  // Monthly breakdown data
-  const monthlyData = [
-    { month: 'Jan Week 1', ads: 245.50, social: 189.75, sites: 98.25, total: 533.50 },
-    { month: 'Jan Week 2', ads: 278.25, social: 215.50, sites: 112.75, total: 606.50 },
-    { month: 'Jan Week 3', ads: 304.50, social: 239.75, sites: 131.25, total: 675.50 },
-    { month: 'Jan Week 4', ads: 332.75, social: 267.25, sites: 145.50, total: 745.50 }
+  // Weekly breakdown data with enhanced metrics
+  const weeklyData = [
+    { 
+      week: 'Week 1', 
+      period: 'Jan 1-7',
+      ads: 245.50, 
+      social: 189.75, 
+      sites: 98.25, 
+      total: 533.50,
+      growth: '+12.3%',
+      tasks: 156,
+      efficiency: 92.1
+    },
+    { 
+      week: 'Week 2', 
+      period: 'Jan 8-14',
+      ads: 278.25, 
+      social: 215.50, 
+      sites: 112.75, 
+      total: 606.50,
+      growth: '+13.7%',
+      tasks: 178,
+      efficiency: 94.8
+    },
+    { 
+      week: 'Week 3', 
+      period: 'Jan 15-21',
+      ads: 304.50, 
+      social: 239.75, 
+      sites: 131.25, 
+      total: 675.50,
+      growth: '+11.4%',
+      tasks: 189,
+      efficiency: 96.2
+    },
+    { 
+      week: 'Week 4', 
+      period: 'Jan 22-28',
+      ads: 332.75, 
+      social: 267.25, 
+      sites: 145.50, 
+      total: 745.50,
+      growth: '+10.4%',
+      tasks: 201,
+      efficiency: 97.5
+    }
   ];
 
   // Enhanced tooltip component with better styling
@@ -421,48 +461,201 @@ const EarningsInterface = memo(() => {
             transition={{ duration: 0.3 }}
             className="space-y-8"
           >
-            {/* Monthly Progress Chart */}
+            {/* Modern Weekly Progress Chart */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               whileHover={{ 
-                boxShadow: "0 20px 40px rgba(45, 58, 74, 0.12)"
+                boxShadow: "0 25px 50px rgba(45, 58, 74, 0.15)",
+                transform: "translateY(-2px)"
               }}
-              className="bg-secondary rounded-xl p-4 md:p-6 border border-primary transition-all duration-300 shadow-primary"
+              className="bg-gradient-to-br from-secondary via-secondary to-tertiary rounded-2xl p-6 md:p-8 border border-primary transition-all duration-500 shadow-xl relative overflow-hidden"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 md:mb-6">
-                <h3 className="text-lg md:text-xl font-bold text-primary mb-2 sm:mb-0">Monthly Cosmic Progress</h3>
-                <div className="flex items-center space-x-2 bg-tertiary px-3 py-1 rounded-lg">
-                  <Calendar className="w-3 h-3 md:w-4 md:h-4 text-secondary" />
-                  <span className="text-xs md:text-sm text-secondary">January 2024</span>
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-5">
+                <div className="absolute top-0 left-0 w-32 h-32 bg-soft-pink rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-0 w-40 h-40 bg-pale-blue rounded-full blur-3xl"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-36 h-36 bg-light-teal rounded-full blur-3xl"></div>
+              </div>
+              
+              <div className="relative z-10">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 md:mb-8">
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold text-primary mb-2">Weekly Cosmic Performance</h3>
+                    <p className="text-secondary text-sm md:text-base">Track your progress across all universes</p>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-2 bg-gradient-to-r from-soft-pink/20 to-pale-blue/20 px-4 py-2 rounded-xl border border-soft-pink/20">
+                      <Zap className="w-4 h-4 text-soft-pink" />
+                      <span className="text-sm font-medium text-primary">Live Analytics</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-tertiary px-4 py-2 rounded-xl">
+                      <Calendar className="w-4 h-4 text-secondary" />
+                      <span className="text-sm text-secondary">January 2024</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Enhanced Chart Container */}
+                <div className="bg-gradient-to-br from-primary/50 to-secondary rounded-xl p-4 mb-6">
+                  <ResponsiveContainer width="100%" height={280} className="md:!h-[350px]">
+                    <AreaChart data={weeklyData} margin={{ top: 20, right: 20, left: 0, bottom: 20 }}>
+                      <defs>
+                        <linearGradient id="adsGradientWeekly" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#E91E63" stopOpacity={0.4}/>
+                          <stop offset="95%" stopColor="#E91E63" stopOpacity={0.05}/>
+                        </linearGradient>
+                        <linearGradient id="socialGradientWeekly" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#2196F3" stopOpacity={0.4}/>
+                          <stop offset="95%" stopColor="#2196F3" stopOpacity={0.05}/>
+                        </linearGradient>
+                        <linearGradient id="sitesGradientWeekly" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#009688" stopOpacity={0.4}/>
+                          <stop offset="95%" stopColor="#009688" stopOpacity={0.05}/>
+                        </linearGradient>
+                        <filter id="glow">
+                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feMerge> 
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                          </feMerge>
+                        </filter>
+                      </defs>
+                      <CartesianGrid strokeDasharray="2 4" stroke="#E5E7EB" strokeOpacity={0.3} />
+                      <XAxis 
+                        dataKey="week" 
+                        stroke="#6B7280"
+                        fontSize={13}
+                        fontWeight={600}
+                        axisLine={false}
+                        tickLine={false}
+                        tick={{ fill: '#6B7280' }}
+                      />
+                      <YAxis 
+                        stroke="#6B7280" 
+                        fontSize={12}
+                        fontWeight={500}
+                        axisLine={false}
+                        tickLine={false}
+                        width={50}
+                        tick={{ fill: '#6B7280' }}
+                      />
+                      <Tooltip 
+                        content={({ active, payload, label }) => {
+                          if (active && payload && payload.length) {
+                            const data = payload[0].payload;
+                            return (
+                              <motion.div
+                                initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                className="bg-primary border-2 border-soft-pink/30 rounded-xl p-4 shadow-2xl backdrop-blur-sm"
+                              >
+                                <div className="text-center mb-3">
+                                  <p className="text-white font-bold text-lg">{label}</p>
+                                  <p className="text-gray-300 text-sm">{data.period}</p>
+                                </div>
+                                <div className="space-y-2">
+                                  <div className="flex items-center justify-between">
+                                    <div className="flex items-center space-x-2">
+                                      <div className="w-3 h-3 rounded-full bg-gradient-to-r from-pink-400 to-pink-600"></div>
+                                      <span className="text-gray-200 text-sm">Ads Cosmos</span>
+                                    </div>
+                                    <span className="text-white font-bold">${data.ads}</span>
+                                  </div>
+                                  <div className="flex items-center justify-between">
+                                    <div className="flex items-center space-x-2">
+                                      <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-blue-600"></div>
+                                      <span className="text-gray-200 text-sm">Social Cosmos</span>
+                                    </div>
+                                    <span className="text-white font-bold">${data.social}</span>
+                                  </div>
+                                  <div className="flex items-center justify-between">
+                                    <div className="flex items-center space-x-2">
+                                      <div className="w-3 h-3 rounded-full bg-gradient-to-r from-teal-400 to-teal-600"></div>
+                                      <span className="text-gray-200 text-sm">Site Cosmos</span>
+                                    </div>
+                                    <span className="text-white font-bold">${data.sites}</span>
+                                  </div>
+                                  <div className="pt-2 mt-2 border-t border-gray-600">
+                                    <div className="flex items-center justify-between">
+                                      <span className="text-gray-200 font-medium">Total Earned</span>
+                                      <span className="text-green-400 font-bold text-lg">${data.total}</span>
+                                    </div>
+                                    <div className="flex items-center justify-between text-sm">
+                                      <span className="text-gray-300">Growth</span>
+                                      <span className="text-green-400 font-medium">{data.growth}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </motion.div>
+                            );
+                          }
+                          return null;
+                        }}
+                      />
+                      <Area 
+                        type="monotone" 
+                        dataKey="ads" 
+                        stackId="1"
+                        stroke="#E91E63" 
+                        fill="url(#adsGradientWeekly)"
+                        strokeWidth={3}
+                        filter="url(#glow)"
+                      />
+                      <Area 
+                        type="monotone" 
+                        dataKey="social" 
+                        stackId="1"
+                        stroke="#2196F3" 
+                        fill="url(#socialGradientWeekly)"
+                        strokeWidth={3}
+                        filter="url(#glow)"
+                      />
+                      <Area 
+                        type="monotone" 
+                        dataKey="sites" 
+                        stackId="1"
+                        stroke="#009688" 
+                        fill="url(#sitesGradientWeekly)"
+                        strokeWidth={3}
+                        filter="url(#glow)"
+                      />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </div>
+
+                {/* Weekly Performance Cards */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  {weeklyData.map((week, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.1 * index }}
+                      whileHover={{ 
+                        scale: 1.05,
+                        boxShadow: "0 10px 25px rgba(45, 58, 74, 0.15)"
+                      }}
+                      className="bg-gradient-to-br from-tertiary to-secondary rounded-xl p-4 border border-primary/50 transition-all duration-300"
+                    >
+                      <div className="text-center">
+                        <div className="text-sm font-medium text-secondary mb-1">{week.week}</div>
+                        <div className="text-xs text-secondary/80 mb-2">{week.period}</div>
+                        <div className="text-xl font-bold text-primary mb-2">${week.total}</div>
+                        <div className="flex items-center justify-center space-x-1 text-xs">
+                          <TrendingUp className="w-3 h-3 text-green-500" />
+                          <span className="text-green-500 font-medium">{week.growth}</span>
+                        </div>
+                        <div className="mt-2 text-xs text-secondary">
+                          <div>{week.tasks} tasks</div>
+                          <div>{week.efficiency}% efficiency</div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
-              <ResponsiveContainer width="100%" height={220} className="md:!h-[300px]">
-                <BarChart data={monthlyData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                  <XAxis 
-                    dataKey="month" 
-                    stroke="#6B7280" 
-                    fontSize={12}
-                    fontWeight={500}
-                    axisLine={false}
-                    tickLine={false}
-                  />
-                  <YAxis 
-                    stroke="#6B7280" 
-                    fontSize={11}
-                    fontWeight={500}
-                    axisLine={false}
-                    tickLine={false}
-                    width={35}
-                  />
-                  <Tooltip content={<CustomTooltip />} />
-                  <Bar dataKey="ads" fill={chartColors.ads} radius={[2, 2, 0, 0]} />
-                  <Bar dataKey="social" fill={chartColors.social} radius={[2, 2, 0, 0]} />
-                  <Bar dataKey="sites" fill={chartColors.sites} radius={[2, 2, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
             </motion.div>
 
             {/* Detailed Earnings Table */}
