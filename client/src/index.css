@@ -5,10 +5,77 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Base styles */
+/* Base styles - Force dark mode from the start */
 @layer base {
+  :root {
+    /* Dark theme variables - applied immediately */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #e2e8f0;
+    --text-tertiary: #cbd5e1;
+    --border-primary: #475569;
+    --border-secondary: #334155;
+    --shadow-primary: rgba(0, 0, 0, 0.4);
+    --shadow-secondary: rgba(0, 0, 0, 0.25);
+    color-scheme: dark;
+  }
+  
+  html {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+  }
+  
   body {
     font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+    min-height: 100vh;
+  }
+  
+  /* Prevent any white flashes */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Force dark backgrounds on all elements by default */
+  div, section, main, article, aside, nav, header, footer {
+    background-color: transparent;
+  }
+  
+  /* Prevent any default white backgrounds */
+  input, textarea, select {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-primary) !important;
+  }
+  
+  /* Prevent white overlay effects */
+  .overlay, .modal, .popup {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+  }
+  
+  /* Force dark scrollbars */
+  ::-webkit-scrollbar {
+    background-color: var(--bg-primary) !important;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: var(--bg-secondary) !important;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--bg-tertiary) !important;
+    border-radius: 6px;
+  }
+  
+  /* Prevent any form elements from showing white */
+  button {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-primary) !important;
   }
 }
 
@@ -68,19 +135,19 @@
   background: #475569;
 }
 
-/* Minimal glass morphism effects */
+/* Minimal glass morphism effects - ALWAYS DARK */
 .cosmic-glass {
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(15, 23, 42, 0.3);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
 }
 
 .cosmic-glass-light {
   backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(30, 41, 59, 0.2);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(30, 41, 59, 0.6) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Professional hover effects */
@@ -157,12 +224,12 @@
   50% { opacity: 0.5; }
 }
 
-/* Enhanced Dropdown Visibility */
+/* Enhanced Dropdown Visibility - ALWAYS DARK */
 .dropdown-menu {
   position: absolute !important;
   z-index: 9999 !important;
-  background: white !important;
-  border: 1px solid #e2e8f0 !important;
+  background: #1e293b !important;
+  border: 1px solid #475569 !important;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
   border-radius: 12px !important;
   min-width: 288px !important;
@@ -170,26 +237,12 @@
   transform-origin: top right !important;
 }
 
-.dark .dropdown-menu {
-  background: #1e293b !important;
-  border-color: #475569 !important;
-}
-
 .dropdown-menu-item {
-  color: #374151 !important;
+  color: #d1d5db !important;
   transition: all 0.2s ease !important;
 }
 
 .dropdown-menu-item:hover {
-  background: #f1f5f9 !important;
-  color: #1e293b !important;
-}
-
-.dark .dropdown-menu-item {
-  color: #d1d5db !important;
-}
-
-.dark .dropdown-menu-item:hover {
   background: #475569 !important;
   color: #f1f5f9 !important;
 }
@@ -241,34 +294,36 @@
   }
 }
 
-/* Professional button styles with minimal colors */
+/* Professional button styles with dark theme */
 .cosmic-btn-primary {
-  background: #e2e8f0;
-  color: #0f172a;
+  background: #475569 !important;
+  color: #f8fafc !important;
   font-weight: 700;
   border: 2px solid transparent;
-  box-shadow: 0 4px 15px rgba(226, 232, 240, 0.2);
+  box-shadow: 0 4px 15px rgba(71, 85, 105, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cosmic-btn-primary:hover {
-  background: #f1f5f9;
+  background: #64748b !important;
+  color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(226, 232, 240, 0.3);
+  box-shadow: 0 8px 25px rgba(100, 116, 139, 0.3);
 }
 
 .cosmic-btn-secondary {
-  background: #475569;
-  color: #ffffff;
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
   font-weight: 600;
   border: 2px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cosmic-btn-secondary:hover {
-  background: #64748b;
+  background: #334155 !important;
+  color: #f8fafc !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(100, 116, 139, 0.3);
+  box-shadow: 0 8px 25px rgba(51, 65, 85, 0.3);
 }
 
 /* ========================================

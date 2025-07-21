@@ -3,9 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <meta name="color-scheme" content="dark light" />
+    <meta name="color-scheme" content="dark only" />
     <meta name="theme-color" content="#0f172a" />
     <meta name="msapplication-TileColor" content="#0f172a" />
+    <style>
+      /* Prevent any white flash before React loads */
+      html, body, #root {
+        background-color: #0f172a !important;
+        color: #f8fafc !important;
+      }
+      /* Hide content during initial load to prevent white flash */
+      #root:empty {
+        background-color: #0f172a !important;
+        min-height: 100vh;
+      }
+    </style>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="renderer" content="webkit" />
     <meta name="force-rendering" content="webkit" />
