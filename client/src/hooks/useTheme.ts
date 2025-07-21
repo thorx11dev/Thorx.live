@@ -21,6 +21,11 @@ export const useTheme = () => {
 export const useThemeState = () => {
   const [theme, setThemeState] = useState<Theme>(() => {
     // Thorx now uses only dark mode for the best cosmic experience
+    // Apply theme immediately to prevent white flash
+    const root = document.documentElement;
+    root.classList.add('dark');
+    root.setAttribute('data-theme', 'dark');
+    document.body.style.backgroundColor = '#0f172a';
     return 'dark';
   });
 
