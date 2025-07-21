@@ -122,7 +122,7 @@ const Dashboard = () => {
                 <div className={`inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg ${card.bgColor}`}>
                   <card.icon className="w-5 h-5 md:w-6 md:h-6 text-[#2D2D2D]" color="#2D2D2D" />
                 </div>
-                <span className="text-xs md:text-sm font-medium text-green-600 bg-green-50 px-2 md:px-3 py-1 rounded-full border border-green-100">
+                <span className="text-xs md:text-sm font-medium text-green-400 bg-slate-800 px-2 md:px-3 py-1 rounded-full border border-slate-600">
                   {card.trend}
                 </span>
               </div>
@@ -233,8 +233,8 @@ const Dashboard = () => {
                   <div className="font-bold text-primary text-sm md:text-base mb-1">{activity.amount}</div>
                   <div className={`text-xs px-2 py-1 rounded-full border whitespace-nowrap ${
                     activity.status === 'completed' 
-                      ? 'bg-green-50 text-green-800 border-green-200' 
-                      : 'bg-yellow-50 text-yellow-800 border-yellow-200'
+                      ? 'bg-slate-800 text-green-400 border-slate-600' 
+                      : 'bg-slate-800 text-yellow-400 border-slate-600'
                   }`}>
                     {activity.status}
                   </div>

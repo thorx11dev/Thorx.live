@@ -17,7 +17,37 @@
         background-color: #0f172a !important;
         min-height: 100vh;
       }
+      /* Force all elements to be dark during page load */
+      * {
+        background-color: inherit !important;
+        transition: none !important;
+      }
+      /* Prevent any white containers or cards */
+      div, section, article, nav, header, footer {
+        background-color: transparent !important;
+        color: #f8fafc !important;
+      }
     </style>
+    <script>
+      // Apply dark theme IMMEDIATELY before any rendering
+      (function() {
+        const root = document.documentElement;
+        root.classList.add('dark');
+        root.setAttribute('data-theme', 'dark');
+        root.style.setProperty('color-scheme', 'dark');
+        document.body.style.setProperty('background-color', '#0f172a', 'important');
+        
+        // Set CSS custom properties immediately
+        root.style.setProperty('--bg-primary', '#0f172a');
+        root.style.setProperty('--bg-secondary', '#1e293b');
+        root.style.setProperty('--bg-tertiary', '#334155');
+        root.style.setProperty('--text-primary', '#f8fafc');
+        root.style.setProperty('--text-secondary', '#e2e8f0');
+        root.style.setProperty('--text-tertiary', '#cbd5e1');
+        root.style.setProperty('--border-primary', '#475569');
+        root.style.setProperty('--border-secondary', '#334155');
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="renderer" content="webkit" />
     <meta name="force-rendering" content="webkit" />

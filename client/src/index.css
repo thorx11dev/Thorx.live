@@ -77,6 +77,37 @@
     color: var(--text-primary) !important;
     border-color: var(--border-primary) !important;
   }
+  
+  /* Prevent React component white flashes during initialization */
+  [data-reactroot], #root > div {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+  }
+  
+  /* Force all cards, containers, and panels to be dark */
+  .bg-white, .bg-gray-50, .bg-gray-100, .bg-slate-50, .bg-slate-100 {
+    background-color: var(--bg-secondary) !important;
+  }
+  
+  /* Force all text colors to be light */
+  .text-gray-900, .text-slate-900, .text-black {
+    color: var(--text-primary) !important;
+  }
+  
+  .text-gray-800, .text-slate-800 {
+    color: var(--text-secondary) !important;
+  }
+  
+  /* Force all borders to be dark */
+  .border-gray-200, .border-slate-200, .border-gray-300 {
+    border-color: var(--border-primary) !important;
+  }
+  
+  /* Prevent any white overlays or modals */
+  [role="dialog"], .modal, .overlay, .popup {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+  }
 }
 
 /* Custom utility classes */
