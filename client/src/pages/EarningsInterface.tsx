@@ -65,51 +65,91 @@ const EarningsInterface = memo(() => {
     sitesVisited: 77
   };
 
-  // Weekly breakdown data with enhanced metrics
-  const weeklyData = [
+  // Single week detailed daily breakdown
+  const singleWeekData = [
     { 
-      week: 'Week 1', 
-      period: 'Jan 1-7',
-      ads: 245.50, 
-      social: 189.75, 
-      sites: 98.25, 
-      total: 533.50,
-      growth: '+12.3%',
-      tasks: 156,
-      efficiency: 92.1
+      day: 'Monday', 
+      short: 'Mon',
+      date: 'Jan 15',
+      ads: 52.75, 
+      social: 38.50, 
+      sites: 21.25, 
+      total: 112.50,
+      tasks: 28,
+      efficiency: 94.2,
+      topUniverse: 'Ads Cosmos'
     },
     { 
-      week: 'Week 2', 
-      period: 'Jan 8-14',
-      ads: 278.25, 
-      social: 215.50, 
-      sites: 112.75, 
-      total: 606.50,
-      growth: '+13.7%',
-      tasks: 178,
-      efficiency: 94.8
+      day: 'Tuesday', 
+      short: 'Tue',
+      date: 'Jan 16',
+      ads: 48.25, 
+      social: 42.75, 
+      sites: 19.50, 
+      total: 110.50,
+      tasks: 31,
+      efficiency: 96.8,
+      topUniverse: 'Social Cosmos'
     },
     { 
-      week: 'Week 3', 
-      period: 'Jan 15-21',
-      ads: 304.50, 
-      social: 239.75, 
-      sites: 131.25, 
-      total: 675.50,
-      growth: '+11.4%',
-      tasks: 189,
-      efficiency: 96.2
+      day: 'Wednesday', 
+      short: 'Wed',
+      date: 'Jan 17',
+      ads: 61.50, 
+      social: 35.25, 
+      sites: 24.75, 
+      total: 121.50,
+      tasks: 26,
+      efficiency: 92.3,
+      topUniverse: 'Ads Cosmos'
     },
     { 
-      week: 'Week 4', 
-      period: 'Jan 22-28',
-      ads: 332.75, 
-      social: 267.25, 
-      sites: 145.50, 
-      total: 745.50,
-      growth: '+10.4%',
-      tasks: 201,
-      efficiency: 97.5
+      day: 'Thursday', 
+      short: 'Thu',
+      date: 'Jan 18',
+      ads: 44.75, 
+      social: 49.25, 
+      sites: 22.00, 
+      total: 116.00,
+      tasks: 33,
+      efficiency: 98.1,
+      topUniverse: 'Social Cosmos'
+    },
+    { 
+      day: 'Friday', 
+      short: 'Fri',
+      date: 'Jan 19',
+      ads: 58.50, 
+      social: 41.75, 
+      sites: 26.25, 
+      total: 126.50,
+      tasks: 29,
+      efficiency: 95.7,
+      topUniverse: 'Ads Cosmos'
+    },
+    { 
+      day: 'Saturday', 
+      short: 'Sat',
+      date: 'Jan 20',
+      ads: 67.25, 
+      social: 44.50, 
+      sites: 28.75, 
+      total: 140.50,
+      tasks: 35,
+      efficiency: 97.4,
+      topUniverse: 'Ads Cosmos'
+    },
+    { 
+      day: 'Sunday', 
+      short: 'Sun',
+      date: 'Jan 21',
+      ads: 39.75, 
+      social: 32.25, 
+      sites: 16.50, 
+      total: 88.50,
+      tasks: 22,
+      efficiency: 89.6,
+      topUniverse: 'Ads Cosmos'
     }
   ];
 
@@ -461,199 +501,243 @@ const EarningsInterface = memo(() => {
             transition={{ duration: 0.3 }}
             className="space-y-8"
           >
-            {/* Modern Weekly Progress Chart */}
+            {/* Cosmic Daily Earnings Constellation */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              whileHover={{ 
-                boxShadow: "0 25px 50px rgba(45, 58, 74, 0.15)",
-                transform: "translateY(-2px)"
-              }}
-              className="bg-gradient-to-br from-secondary via-secondary to-tertiary rounded-2xl p-6 md:p-8 border border-primary transition-all duration-500 shadow-xl relative overflow-hidden"
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="relative"
             >
-              {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-0 left-0 w-32 h-32 bg-soft-pink rounded-full blur-3xl"></div>
-                <div className="absolute bottom-0 right-0 w-40 h-40 bg-pale-blue rounded-full blur-3xl"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-36 h-36 bg-light-teal rounded-full blur-3xl"></div>
-              </div>
-              
-              <div className="relative z-10">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 md:mb-8">
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-bold text-primary mb-2">Weekly Cosmic Performance</h3>
-                    <p className="text-secondary text-sm md:text-base">Track your progress across all universes</p>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="flex items-center space-x-2 bg-gradient-to-r from-soft-pink/20 to-pale-blue/20 px-4 py-2 rounded-xl border border-soft-pink/20">
-                      <Zap className="w-4 h-4 text-soft-pink" />
-                      <span className="text-sm font-medium text-primary">Live Analytics</span>
-                    </div>
-                    <div className="flex items-center space-x-2 bg-tertiary px-4 py-2 rounded-xl">
-                      <Calendar className="w-4 h-4 text-secondary" />
-                      <span className="text-sm text-secondary">January 2024</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Enhanced Chart Container */}
-                <div className="bg-gradient-to-br from-primary/50 to-secondary rounded-xl p-4 mb-6">
-                  <ResponsiveContainer width="100%" height={280} className="md:!h-[350px]">
-                    <AreaChart data={weeklyData} margin={{ top: 20, right: 20, left: 0, bottom: 20 }}>
-                      <defs>
-                        <linearGradient id="adsGradientWeekly" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#E91E63" stopOpacity={0.4}/>
-                          <stop offset="95%" stopColor="#E91E63" stopOpacity={0.05}/>
-                        </linearGradient>
-                        <linearGradient id="socialGradientWeekly" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#2196F3" stopOpacity={0.4}/>
-                          <stop offset="95%" stopColor="#2196F3" stopOpacity={0.05}/>
-                        </linearGradient>
-                        <linearGradient id="sitesGradientWeekly" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#009688" stopOpacity={0.4}/>
-                          <stop offset="95%" stopColor="#009688" stopOpacity={0.05}/>
-                        </linearGradient>
-                        <filter id="glow">
-                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                          <feMerge> 
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                          </feMerge>
-                        </filter>
-                      </defs>
-                      <CartesianGrid strokeDasharray="2 4" stroke="#E5E7EB" strokeOpacity={0.3} />
-                      <XAxis 
-                        dataKey="week" 
-                        stroke="#6B7280"
-                        fontSize={13}
-                        fontWeight={600}
-                        axisLine={false}
-                        tickLine={false}
-                        tick={{ fill: '#6B7280' }}
-                      />
-                      <YAxis 
-                        stroke="#6B7280" 
-                        fontSize={12}
-                        fontWeight={500}
-                        axisLine={false}
-                        tickLine={false}
-                        width={50}
-                        tick={{ fill: '#6B7280' }}
-                      />
-                      <Tooltip 
-                        content={({ active, payload, label }) => {
-                          if (active && payload && payload.length) {
-                            const data = payload[0].payload;
-                            return (
-                              <motion.div
-                                initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                className="bg-primary border-2 border-soft-pink/30 rounded-xl p-4 shadow-2xl backdrop-blur-sm"
-                              >
-                                <div className="text-center mb-3">
-                                  <p className="text-white font-bold text-lg">{label}</p>
-                                  <p className="text-gray-300 text-sm">{data.period}</p>
-                                </div>
-                                <div className="space-y-2">
-                                  <div className="flex items-center justify-between">
-                                    <div className="flex items-center space-x-2">
-                                      <div className="w-3 h-3 rounded-full bg-gradient-to-r from-pink-400 to-pink-600"></div>
-                                      <span className="text-gray-200 text-sm">Ads Cosmos</span>
-                                    </div>
-                                    <span className="text-white font-bold">${data.ads}</span>
-                                  </div>
-                                  <div className="flex items-center justify-between">
-                                    <div className="flex items-center space-x-2">
-                                      <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-blue-600"></div>
-                                      <span className="text-gray-200 text-sm">Social Cosmos</span>
-                                    </div>
-                                    <span className="text-white font-bold">${data.social}</span>
-                                  </div>
-                                  <div className="flex items-center justify-between">
-                                    <div className="flex items-center space-x-2">
-                                      <div className="w-3 h-3 rounded-full bg-gradient-to-r from-teal-400 to-teal-600"></div>
-                                      <span className="text-gray-200 text-sm">Site Cosmos</span>
-                                    </div>
-                                    <span className="text-white font-bold">${data.sites}</span>
-                                  </div>
-                                  <div className="pt-2 mt-2 border-t border-gray-600">
-                                    <div className="flex items-center justify-between">
-                                      <span className="text-gray-200 font-medium">Total Earned</span>
-                                      <span className="text-green-400 font-bold text-lg">${data.total}</span>
-                                    </div>
-                                    <div className="flex items-center justify-between text-sm">
-                                      <span className="text-gray-300">Growth</span>
-                                      <span className="text-green-400 font-medium">{data.growth}</span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </motion.div>
-                            );
-                          }
-                          return null;
-                        }}
-                      />
-                      <Area 
-                        type="monotone" 
-                        dataKey="ads" 
-                        stackId="1"
-                        stroke="#E91E63" 
-                        fill="url(#adsGradientWeekly)"
-                        strokeWidth={3}
-                        filter="url(#glow)"
-                      />
-                      <Area 
-                        type="monotone" 
-                        dataKey="social" 
-                        stackId="1"
-                        stroke="#2196F3" 
-                        fill="url(#socialGradientWeekly)"
-                        strokeWidth={3}
-                        filter="url(#glow)"
-                      />
-                      <Area 
-                        type="monotone" 
-                        dataKey="sites" 
-                        stackId="1"
-                        stroke="#009688" 
-                        fill="url(#sitesGradientWeekly)"
-                        strokeWidth={3}
-                        filter="url(#glow)"
-                      />
-                    </AreaChart>
-                  </ResponsiveContainer>
-                </div>
-
-                {/* Weekly Performance Cards */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                  {weeklyData.map((week, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.1 * index }}
-                      whileHover={{ 
-                        scale: 1.05,
-                        boxShadow: "0 10px 25px rgba(45, 58, 74, 0.15)"
+              {/* Cosmic Background Environment */}
+              <div className="absolute inset-0 rounded-3xl overflow-hidden">
+                {/* Starfield Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+                  {[...Array(50)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-white rounded-full opacity-60 animate-pulse"
+                      style={{
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 100}%`,
+                        animationDelay: `${Math.random() * 3}s`,
+                        animationDuration: `${2 + Math.random() * 2}s`
                       }}
-                      className="bg-gradient-to-br from-tertiary to-secondary rounded-xl p-4 border border-primary/50 transition-all duration-300"
-                    >
-                      <div className="text-center">
-                        <div className="text-sm font-medium text-secondary mb-1">{week.week}</div>
-                        <div className="text-xs text-secondary/80 mb-2">{week.period}</div>
-                        <div className="text-xl font-bold text-primary mb-2">${week.total}</div>
-                        <div className="flex items-center justify-center space-x-1 text-xs">
-                          <TrendingUp className="w-3 h-3 text-green-500" />
-                          <span className="text-green-500 font-medium">{week.growth}</span>
-                        </div>
-                        <div className="mt-2 text-xs text-secondary">
-                          <div>{week.tasks} tasks</div>
-                          <div>{week.efficiency}% efficiency</div>
-                        </div>
-                      </div>
-                    </motion.div>
+                    />
                   ))}
+                </div>
+                
+                {/* Nebula Clouds */}
+                <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-radial from-purple-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-radial from-blue-500/10 via-blue-500/5 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute top-1/2 left-1/3 w-72 h-72 bg-gradient-radial from-pink-500/10 via-pink-500/5 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+              </div>
+
+              {/* Main Content */}
+              <div className="relative z-10 bg-gradient-to-br from-slate-800/80 via-slate-700/60 to-slate-800/80 backdrop-blur-xl rounded-3xl border border-slate-600/50 shadow-2xl">
+                <div className="p-8">
+                  {/* Header */}
+                  <div className="text-center mb-8">
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      className="inline-flex items-center space-x-3 mb-4"
+                    >
+                      <div className="w-3 h-3 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full animate-pulse"></div>
+                      <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent">
+                        Cosmic Weekly Journey
+                      </h3>
+                      <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                    </motion.div>
+                    <p className="text-slate-300 text-lg">January 15-21, 2024 • Daily Universe Exploration</p>
+                  </div>
+
+                  {/* Constellation Chart */}
+                  <div className="relative h-80 md:h-96 mb-8">
+                    <svg className="w-full h-full" viewBox="0 0 800 300">
+                      <defs>
+                        {/* Gradients for each universe */}
+                        <radialGradient id="adsGlow" cx="50%" cy="50%" r="50%">
+                          <stop offset="0%" stopColor="#EC4899" stopOpacity="0.8"/>
+                          <stop offset="100%" stopColor="#EC4899" stopOpacity="0.2"/>
+                        </radialGradient>
+                        <radialGradient id="socialGlow" cx="50%" cy="50%" r="50%">
+                          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8"/>
+                          <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.2"/>
+                        </radialGradient>
+                        <radialGradient id="sitesGlow" cx="50%" cy="50%" r="50%">
+                          <stop offset="0%" stopColor="#10B981" stopOpacity="0.8"/>
+                          <stop offset="100%" stopColor="#10B981" stopOpacity="0.2"/>
+                        </radialGradient>
+                        
+                        {/* Connection Lines */}
+                        <linearGradient id="connectionGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#6366F1" stopOpacity="0.3"/>
+                          <stop offset="50%" stopColor="#EC4899" stopOpacity="0.6"/>
+                          <stop offset="100%" stopColor="#10B981" stopOpacity="0.3"/>
+                        </linearGradient>
+                      </defs>
+                      
+                      {/* Connection Lines Between Days */}
+                      {singleWeekData.map((day, index) => {
+                        if (index === singleWeekData.length - 1) return null;
+                        const x1 = 80 + (index * 100);
+                        const y1 = 250 - (day.total * 1.2);
+                        const x2 = 80 + ((index + 1) * 100);
+                        const y2 = 250 - (singleWeekData[index + 1].total * 1.2);
+                        
+                        return (
+                          <motion.line
+                            key={`connection-${index}`}
+                            initial={{ pathLength: 0, opacity: 0 }}
+                            animate={{ pathLength: 1, opacity: 1 }}
+                            transition={{ duration: 1, delay: 0.5 + index * 0.2 }}
+                            x1={x1}
+                            y1={y1}
+                            x2={x2}
+                            y2={y2}
+                            stroke="url(#connectionGrad)"
+                            strokeWidth="2"
+                            strokeDasharray="4 4"
+                          />
+                        );
+                      })}
+
+                      {/* Planet-like Day Nodes */}
+                      {singleWeekData.map((day, index) => {
+                        const x = 80 + (index * 100);
+                        const baseY = 250 - (day.total * 1.2);
+                        const maxRadius = 35;
+                        const radius = Math.max(15, (day.total / 150) * maxRadius);
+                        
+                        return (
+                          <g key={day.day}>
+                            {/* Planet Glow */}
+                            <motion.circle
+                              initial={{ scale: 0, opacity: 0 }}
+                              animate={{ scale: 1, opacity: 1 }}
+                              transition={{ duration: 0.8, delay: 0.3 + index * 0.1 }}
+                              cx={x}
+                              cy={baseY}
+                              r={radius + 8}
+                              fill={day.topUniverse === 'Ads Cosmos' ? 'url(#adsGlow)' : 
+                                    day.topUniverse === 'Social Cosmos' ? 'url(#socialGlow)' : 
+                                    'url(#sitesGlow)'}
+                              className="animate-pulse"
+                            />
+                            
+                            {/* Main Planet */}
+                            <motion.circle
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ duration: 0.6, delay: 0.5 + index * 0.1, type: "spring" }}
+                              cx={x}
+                              cy={baseY}
+                              r={radius}
+                              fill={day.topUniverse === 'Ads Cosmos' ? '#EC4899' : 
+                                    day.topUniverse === 'Social Cosmos' ? '#3B82F6' : 
+                                    '#10B981'}
+                              className="cursor-pointer hover:brightness-110 transition-all duration-300"
+                            />
+                            
+                            {/* Planet Rings */}
+                            <motion.ellipse
+                              initial={{ scaleX: 0, opacity: 0 }}
+                              animate={{ scaleX: 1, opacity: 0.6 }}
+                              transition={{ duration: 1, delay: 0.8 + index * 0.1 }}
+                              cx={x}
+                              cy={baseY}
+                              rx={radius + 12}
+                              ry="3"
+                              fill="none"
+                              stroke="#ffffff"
+                              strokeWidth="1"
+                              strokeOpacity="0.4"
+                            />
+                            
+                            {/* Day Label */}
+                            <motion.text
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
+                              x={x}
+                              y={baseY + radius + 25}
+                              textAnchor="middle"
+                              fill="#E2E8F0"
+                              fontSize="12"
+                              fontWeight="600"
+                            >
+                              {day.short}
+                            </motion.text>
+                            
+                            {/* Earnings Amount */}
+                            <motion.text
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
+                              x={x}
+                              y={baseY - radius - 10}
+                              textAnchor="middle"
+                              fill="#F1F5F9"
+                              fontSize="14"
+                              fontWeight="bold"
+                            >
+                              ${day.total}
+                            </motion.text>
+                          </g>
+                        );
+                      })}
+                    </svg>
+                  </div>
+
+                  {/* Universe Legend */}
+                  <div className="flex flex-wrap justify-center gap-6 mb-8">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-r from-pink-400 to-pink-600 animate-pulse"></div>
+                      <span className="text-slate-200 font-medium">Ads Cosmos</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                      <span className="text-slate-200 font-medium">Social Cosmos</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                      <span className="text-slate-200 font-medium">Site Cosmos</span>
+                    </div>
+                  </div>
+
+                  {/* Daily Summary Cards */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+                    {singleWeekData.map((day, index) => (
+                      <motion.div
+                        key={day.day}
+                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 1.5 + index * 0.1 }}
+                        whileHover={{ 
+                          scale: 1.05,
+                          boxShadow: "0 15px 35px rgba(45, 58, 74, 0.2)"
+                        }}
+                        className="bg-gradient-to-br from-slate-700/60 to-slate-800/60 backdrop-blur-sm rounded-xl p-3 border border-slate-600/30 transition-all duration-300"
+                      >
+                        <div className="text-center">
+                          <div className="text-xs font-bold text-slate-300 mb-1">{day.short}</div>
+                          <div className="text-xs text-slate-400 mb-2">{day.date}</div>
+                          <div className="text-lg font-bold text-white mb-2">${day.total}</div>
+                          <div className="text-xs space-y-1">
+                            <div className="flex justify-between text-slate-300">
+                              <span>Tasks:</span>
+                              <span className="font-medium">{day.tasks}</span>
+                            </div>
+                            <div className="flex justify-between text-slate-300">
+                              <span>Efficiency:</span>
+                              <span className="font-medium text-green-400">{day.efficiency}%</span>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
