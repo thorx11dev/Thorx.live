@@ -4,10 +4,7 @@ import { storage } from "./storage";
 import { insertUserSchema, insertTaskSchema, insertPayoutSchema, insertContactMessageSchema } from "@shared/schema";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { emailService } from "./emailService";
-import { developmentEmailService } from "./emailService.dev";
-import { productionEmailService } from "./emailService.production";
-import emailDebugRouter from "./routes/emailDebug";
+
 
 const JWT_SECRET = process.env.JWT_SECRET || "thorx-cosmic-secret-key";
 
@@ -52,23 +49,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         password: hashedPassword
       });
 
-      // Send verification email using production email service
-      console.log(`📧 Sending verification email to: ${user.email}`);
-      const emailStartTime = Date.now();
-      
-      const emailResult = await productionEmailService.sendVerificationEmail(user.id, user.email);
-      
-      const emailEndTime = Date.now();
-      const emailDeliveryTime = emailEndTime - emailStartTime;
-      
-      if (emailResult.success) {
-        console.log(`✅ ${emailResult.message} to ${user.email} in ${emailDeliveryTime}ms`);
-      } else {
-        console.error(`❌ Failed to send verification email to: ${user.email} - ${emailResult.message} after ${emailDeliveryTime}ms`);
-        // Don't fail registration if email fails - user can resend later
-      }
-
-      // Generate JWT token (user can login but features will be limited until verified)
+      // Generate JWT token
       const token = jwt.sign(
         { userId: user.id, username: user.username },
         JWT_SECRET,
@@ -76,17 +57,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       );
 
       res.status(201).json({
-        message: "User created successfully. Please check your email for verification instructions.",
+        message: "User created successfully.",
         token,
         user: {
           id: user.id,
           username: user.username,
           email: user.email,
           firstName: user.firstName,
-          lastName: user.lastName,
-          isEmailVerified: user.isEmailVerified
-        },
-        requiresEmailVerification: true
+          lastName: user.lastName
+        }
       });
     } catch (error) {
       console.error("Registration error:", error);
@@ -134,7 +113,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           firstName: user.firstName,
           lastName: user.lastName,
           totalEarnings: user.totalEarnings,
-          isEmailVerified: user.isEmailVerified
+
         }
       });
     } catch (error) {
@@ -174,90 +153,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Debug endpoint for testing email delivery
-  app.post("/api/debug/test-email", async (req, res) => {
-    try {
-      const { email } = req.body;
-      
-      if (!email) {
-        return res.status(400).json({ error: "Email address required" });
-      }
-      
-      console.log(`📧 Testing email delivery to: ${email}`);
-      const startTime = Date.now();
-      
-      // Send test email using production service
-      const emailResult = await productionEmailService.sendVerificationEmail(999, email);
-      
-      const endTime = Date.now();
-      const deliveryTime = endTime - startTime;
-      
-      console.log(`⏱️ Email delivery took: ${deliveryTime}ms`);
-      
-      res.json({
-        success: emailResult.success,
-        deliveryTime: `${deliveryTime}ms`,
-        message: emailResult.message,
-        messageId: emailResult.messageId
-      });
-    } catch (error) {
-      console.error("Test email error:", error);
-      res.status(500).json({ error: "Failed to send test email" });
-    }
-  });
 
-  app.post("/api/auth/resend-verification", authenticateToken, async (req, res) => {
-    try {
-      const userId = req.user.userId;
-      
-      // Get user details
-      const user = await storage.getUser(userId);
-      
-      if (!user) {
-        return res.status(404).json({ error: "User not found" });
-      }
-
-      if (user.isEmailVerified) {
-        return res.status(400).json({ error: "Email is already verified" });
-      }
-
-      // Resend verification email (use production email service)
-      const emailResult = await productionEmailService.sendVerificationEmail(user.id, user.email);
-      
-      if (!emailResult.success) {
-        return res.status(500).json({ error: "Failed to send verification email" });
-      }
-
-      res.json({
-        message: "Verification email sent successfully. Please check your inbox."
-      });
-    } catch (error) {
-      console.error("Resend verification error:", error);
-      res.status(500).json({ error: "Internal server error" });
-    }
-  });
-
-  app.get("/api/auth/verification-status", authenticateToken, async (req, res) => {
-    try {
-      const userId = req.user.userId;
-      
-      // Get user details
-      const user = await storage.getUser(userId);
-      
-      if (!user) {
-        return res.status(404).json({ error: "User not found" });
-      }
-
-      res.json({
-        isEmailVerified: user.isEmailVerified,
-        emailVerifiedAt: user.emailVerifiedAt,
-        email: user.email
-      });
-    } catch (error) {
-      console.error("Verification status error:", error);
-      res.status(500).json({ error: "Internal server error" });
-    }
-  });
 
   // Team member authentication routes
   app.post("/api/team/login", async (req, res) => {
@@ -665,8 +561,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Email debug routes
-  app.use('/api/email', emailDebugRouter);
+
 
   const httpServer = createServer(app);
 

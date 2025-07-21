@@ -16,10 +16,7 @@ export interface IStorage {
   getAllUsers(): Promise<User[]>;
   updateUserBanStatus(userId: number, isBanned: boolean, reason?: string): Promise<User | undefined>;
   
-  // Email verification methods
-  verifyUserEmail(userId: number): Promise<User | undefined>;
-  updateVerificationToken(userId: number, token: string, expiry: Date): Promise<User | undefined>;
-  getUserByVerificationToken(token: string): Promise<User | undefined>;
+
   
   // Task methods
   getUserTasks(userId: number): Promise<Task[]>;
@@ -277,40 +274,7 @@ export class DatabaseStorage implements IStorage {
     return await db.select().from(users).where(eq(users.isBanned, true)).orderBy(desc(users.bannedAt));
   }
 
-  // Email verification methods
-  async verifyUserEmail(userId: number): Promise<User | undefined> {
-    const [user] = await db.update(users)
-      .set({ 
-        isEmailVerified: true,
-        emailVerifiedAt: new Date(),
-        verificationToken: null,
-        verificationTokenExpiry: null,
-        updatedAt: new Date()
-      })
-      .where(eq(users.id, userId))
-      .returning();
-    return user || undefined;
-  }
 
-  async updateVerificationToken(userId: number, token: string, expiry: Date): Promise<User | undefined> {
-    const [user] = await db.update(users)
-      .set({ 
-        verificationToken: token,
-        verificationTokenExpiry: expiry,
-        updatedAt: new Date()
-      })
-      .where(eq(users.id, userId))
-      .returning();
-    return user || undefined;
-  }
-
-  async getUserByVerificationToken(token: string): Promise<User | undefined> {
-    const [user] = await db.select()
-      .from(users)
-      .where(eq(users.verificationToken, token))
-      .limit(1);
-    return user || undefined;
-  }
 }
 
 export const storage = new DatabaseStorage();

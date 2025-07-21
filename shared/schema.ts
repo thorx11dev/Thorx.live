@@ -16,10 +16,6 @@ export const users = pgTable("users", {
   banReason: text("ban_reason"),
   bannedBy: integer("banned_by").references(() => teamMembers.id),
   bannedAt: timestamp("banned_at"),
-  isEmailVerified: boolean("is_email_verified").default(false),
-  emailVerifiedAt: timestamp("email_verified_at"),
-  verificationToken: text("verification_token"),
-  verificationTokenExpiry: timestamp("verification_token_expiry"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });

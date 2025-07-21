@@ -3,7 +3,7 @@ import AuthProvider from './components/AuthProvider';
 import { TeamAuthProvider } from './components/TeamAuthProvider';
 import ThemeProvider from './components/ThemeProvider';
 import ProtectedRoute from './components/ProtectedRoute';
-import EmailVerifiedRoute from './components/EmailVerifiedRoute';
+
 import TeamProtectedRoute from './components/TeamProtectedRoute';
 import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
@@ -20,10 +20,7 @@ import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
-import EmailVerificationPage from './pages/EmailVerificationPage';
-import EmailTestPage from './pages/EmailTestPage';
-import AuthTestPage from './pages/AuthTestPage';
-import EmailDebugPage from './pages/EmailDebugPage';
+
 import Navbar from './components/Navbar';
 import TeamLoginPage from './pages/TeamLoginPage';
 import TeamDashboard from './pages/TeamDashboard';
@@ -45,10 +42,7 @@ function App() {
                 <Route path="/auth" component={AuthPage} />
                 <Route path="/login" component={AuthPage} />
                 <Route path="/register" component={AuthPage} />
-                <Route path="/verify-email" component={EmailVerificationPage} />
-                <Route path="/email-test" component={EmailTestPage} />
-                <Route path="/auth-test" component={AuthTestPage} />
-                <Route path="/email-debug" component={EmailDebugPage} />
+
                 <Route path="/performance" component={PerformancePage} />
                 
                 {/* Team Routes */}
@@ -94,36 +88,36 @@ function App() {
                   </ProtectedRoute>
                 </Route>
                 <Route path="/earnings">
-                  <EmailVerifiedRoute>
+                  <ProtectedRoute>
                     <>
                       <Navbar />
                       <EarningsInterface />
                     </>
-                  </EmailVerifiedRoute>
+                  </ProtectedRoute>
                 </Route>
                 <Route path="/work">
-                  <EmailVerifiedRoute>
+                  <ProtectedRoute>
                     <>
                       <Navbar />
                       <WorkPortal />
                     </>
-                  </EmailVerifiedRoute>
+                  </ProtectedRoute>
                 </Route>
                 <Route path="/payout">
-                  <EmailVerifiedRoute>
+                  <ProtectedRoute>
                     <>
                       <Navbar />
                       <PayoutSystem />
                     </>
-                  </EmailVerifiedRoute>
+                  </ProtectedRoute>
                 </Route>
                 <Route path="/settings">
-                  <EmailVerifiedRoute>
+                  <ProtectedRoute>
                     <>
                       <Navbar />
                       <SettingsHub />
                     </>
-                  </EmailVerifiedRoute>
+                  </ProtectedRoute>
                 </Route>
 
                 <Route path="/features" component={FeaturesPage} />
