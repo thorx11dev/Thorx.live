@@ -501,234 +501,122 @@ const EarningsInterface = memo(() => {
             transition={{ duration: 0.3 }}
             className="space-y-8"
           >
-            {/* Enhanced Cosmic Daily Earnings Constellation */}
+            {/* Cosmic Daily Earnings Constellation */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="relative"
             >
-              {/* Enhanced Cosmic Background Environment */}
+              {/* Cosmic Background Environment */}
               <div className="absolute inset-0 rounded-3xl overflow-hidden">
-                {/* Dynamic Starfield Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-purple-900 to-slate-900">
-                  {[...Array(100)].map((_, i) => (
+                {/* Starfield Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+                  {[...Array(50)].map((_, i) => (
                     <div
                       key={i}
-                      className="absolute rounded-full animate-pulse"
+                      className="absolute w-1 h-1 bg-white rounded-full opacity-60 animate-pulse"
                       style={{
                         left: `${Math.random() * 100}%`,
                         top: `${Math.random() * 100}%`,
-                        width: `${Math.random() * 3 + 1}px`,
-                        height: `${Math.random() * 3 + 1}px`,
-                        backgroundColor: i < 70 ? '#ffffff' : i < 85 ? '#60a5fa' : '#ec4899',
-                        opacity: Math.random() * 0.8 + 0.2,
-                        animationDelay: `${Math.random() * 4}s`,
-                        animationDuration: `${1.5 + Math.random() * 3}s`
+                        animationDelay: `${Math.random() * 3}s`,
+                        animationDuration: `${2 + Math.random() * 2}s`
                       }}
                     />
                   ))}
                 </div>
                 
-                {/* Enhanced Nebula Clouds with Better Colors */}
-                <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-radial from-purple-400/20 via-purple-500/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-radial from-cyan-400/20 via-blue-500/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.2s' }}></div>
-                <div className="absolute top-1/3 left-1/2 w-[350px] h-[350px] bg-gradient-radial from-pink-400/20 via-pink-500/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2.4s' }}></div>
-                <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-gradient-radial from-emerald-400/15 via-emerald-500/8 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3.6s' }}></div>
-                
-                {/* Shooting Stars */}
-                <div className="absolute top-1/4 left-0 w-2 h-0.5 bg-gradient-to-r from-transparent via-white to-transparent opacity-60 animate-ping" style={{ animationDelay: '2s', animationDuration: '4s' }}></div>
-                <div className="absolute top-3/4 right-0 w-3 h-0.5 bg-gradient-to-l from-transparent via-blue-300 to-transparent opacity-40 animate-ping" style={{ animationDelay: '5s', animationDuration: '6s' }}></div>
+                {/* Nebula Clouds */}
+                <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-radial from-purple-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-radial from-blue-500/10 via-blue-500/5 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute top-1/2 left-1/3 w-72 h-72 bg-gradient-radial from-pink-500/10 via-pink-500/5 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
               </div>
 
-              {/* Enhanced Main Content with Better Visibility */}
-              <div className="relative z-10 bg-gradient-to-br from-slate-800/90 via-slate-700/80 to-slate-800/90 backdrop-blur-2xl rounded-3xl border-2 border-slate-500/30 shadow-2xl ring-1 ring-white/10">
-                <div className="p-8 md:p-10">
-                  {/* Enhanced Header */}
-                  <div className="text-center mb-10">
+              {/* Main Content */}
+              <div className="relative z-10 bg-gradient-to-br from-slate-800/80 via-slate-700/60 to-slate-800/80 backdrop-blur-xl rounded-3xl border border-slate-600/50 shadow-2xl">
+                <div className="p-8">
+                  {/* Header */}
+                  <div className="text-center mb-8">
                     <motion.div
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ duration: 0.6, delay: 0.2 }}
-                      className="inline-flex items-center space-x-4 mb-6"
+                      className="inline-flex items-center space-x-3 mb-4"
                     >
-                      <div className="relative">
-                        <div className="w-4 h-4 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full animate-pulse shadow-lg shadow-pink-500/50"></div>
-                        <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full animate-ping opacity-30"></div>
-                      </div>
-                      <h3 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-white via-cyan-200 to-purple-300 bg-clip-text text-transparent drop-shadow-2xl">
+                      <div className="w-3 h-3 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full animate-pulse"></div>
+                      <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent">
                         Cosmic Weekly Journey
                       </h3>
-                      <div className="relative">
-                        <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-400 rounded-full animate-pulse shadow-lg shadow-purple-500/50" style={{ animationDelay: '0.5s' }}></div>
-                        <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-400 rounded-full animate-ping opacity-30" style={{ animationDelay: '0.5s' }}></div>
-                      </div>
+                      <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
                     </motion.div>
-                    <motion.p 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.4 }}
-                      className="text-slate-200 text-xl font-medium bg-gradient-to-r from-slate-200 to-slate-300 bg-clip-text text-transparent"
-                    >
-                      January 15-21, 2024 • Daily Universe Exploration
-                    </motion.p>
-                    <motion.div
-                      initial={{ width: 0, opacity: 0 }}
-                      animate={{ width: "120px", opacity: 1 }}
-                      transition={{ duration: 1, delay: 0.6 }}
-                      className="mx-auto mt-4 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 rounded-full shadow-lg"
-                    ></motion.div>
+                    <p className="text-slate-300 text-lg">January 15-21, 2024 • Daily Universe Exploration</p>
                   </div>
 
-                  {/* Enhanced Constellation Chart */}
-                  <div className="relative h-96 md:h-[450px] mb-10 p-6 bg-gradient-to-br from-slate-900/50 to-slate-800/30 rounded-2xl border border-slate-600/30 shadow-inner">
-                    <svg className="w-full h-full drop-shadow-2xl" viewBox="0 0 800 350">
+                  {/* Constellation Chart */}
+                  <div className="relative h-80 md:h-96 mb-8">
+                    <svg className="w-full h-full" viewBox="0 0 800 300">
                       <defs>
-                        {/* Enhanced Gradients for each universe */}
-                        <radialGradient id="adsGlow" cx="50%" cy="50%" r="60%">
-                          <stop offset="0%" stopColor="#FF1B8D" stopOpacity="0.9"/>
-                          <stop offset="40%" stopColor="#EC4899" stopOpacity="0.6"/>
-                          <stop offset="100%" stopColor="#EC4899" stopOpacity="0.1"/>
+                        {/* Gradients for each universe */}
+                        <radialGradient id="adsGlow" cx="50%" cy="50%" r="50%">
+                          <stop offset="0%" stopColor="#EC4899" stopOpacity="0.8"/>
+                          <stop offset="100%" stopColor="#EC4899" stopOpacity="0.2"/>
                         </radialGradient>
-                        <radialGradient id="socialGlow" cx="50%" cy="50%" r="60%">
-                          <stop offset="0%" stopColor="#0EA5E9" stopOpacity="0.9"/>
-                          <stop offset="40%" stopColor="#3B82F6" stopOpacity="0.6"/>
-                          <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.1"/>
+                        <radialGradient id="socialGlow" cx="50%" cy="50%" r="50%">
+                          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8"/>
+                          <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.2"/>
                         </radialGradient>
-                        <radialGradient id="sitesGlow" cx="50%" cy="50%" r="60%">
-                          <stop offset="0%" stopColor="#00E676" stopOpacity="0.9"/>
-                          <stop offset="40%" stopColor="#10B981" stopOpacity="0.6"/>
-                          <stop offset="100%" stopColor="#10B981" stopOpacity="0.1"/>
+                        <radialGradient id="sitesGlow" cx="50%" cy="50%" r="50%">
+                          <stop offset="0%" stopColor="#10B981" stopOpacity="0.8"/>
+                          <stop offset="100%" stopColor="#10B981" stopOpacity="0.2"/>
                         </radialGradient>
                         
-                        {/* Enhanced Connection Lines */}
+                        {/* Connection Lines */}
                         <linearGradient id="connectionGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.6"/>
-                          <stop offset="25%" stopColor="#06B6D4" stopOpacity="0.8"/>
-                          <stop offset="50%" stopColor="#EC4899" stopOpacity="0.9"/>
-                          <stop offset="75%" stopColor="#F59E0B" stopOpacity="0.8"/>
-                          <stop offset="100%" stopColor="#10B981" stopOpacity="0.6"/>
+                          <stop offset="0%" stopColor="#6366F1" stopOpacity="0.3"/>
+                          <stop offset="50%" stopColor="#EC4899" stopOpacity="0.6"/>
+                          <stop offset="100%" stopColor="#10B981" stopOpacity="0.3"/>
                         </linearGradient>
-                        
-                        {/* Planet Surface Gradients */}
-                        <radialGradient id="adsPlanet" cx="30%" cy="30%" r="70%">
-                          <stop offset="0%" stopColor="#FFE4E1"/>
-                          <stop offset="50%" stopColor="#FF69B4"/>
-                          <stop offset="100%" stopColor="#DC143C"/>
-                        </radialGradient>
-                        <radialGradient id="socialPlanet" cx="30%" cy="30%" r="70%">
-                          <stop offset="0%" stopColor="#E0F6FF"/>
-                          <stop offset="50%" stopColor="#87CEEB"/>
-                          <stop offset="100%" stopColor="#4682B4"/>
-                        </radialGradient>
-                        <radialGradient id="sitesPlanet" cx="30%" cy="30%" r="70%">
-                          <stop offset="0%" stopColor="#F0FFF0"/>
-                          <stop offset="50%" stopColor="#98FB98"/>
-                          <stop offset="100%" stopColor="#228B22"/>
-                        </radialGradient>
-                        
-                        {/* Enhanced Glow Effect */}
-                        <filter id="enhancedGlow" x="-50%" y="-50%" width="200%" height="200%">
-                          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                          <feMerge> 
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                          </feMerge>
-                        </filter>
                       </defs>
                       
-                      {/* Enhanced Connection Lines Between Days */}
+                      {/* Connection Lines Between Days */}
                       {singleWeekData.map((day, index) => {
                         if (index === singleWeekData.length - 1) return null;
                         const x1 = 80 + (index * 100);
-                        const y1 = 280 - (day.total * 1.4);
+                        const y1 = 250 - (day.total * 1.2);
                         const x2 = 80 + ((index + 1) * 100);
-                        const y2 = 280 - (singleWeekData[index + 1].total * 1.4);
+                        const y2 = 250 - (singleWeekData[index + 1].total * 1.2);
                         
                         return (
-                          <g key={`connection-group-${index}`}>
-                            {/* Background glow line */}
-                            <motion.line
-                              initial={{ pathLength: 0, opacity: 0 }}
-                              animate={{ pathLength: 1, opacity: 1 }}
-                              transition={{ duration: 1.2, delay: 0.3 + index * 0.15 }}
-                              x1={x1}
-                              y1={y1}
-                              x2={x2}
-                              y2={y2}
-                              stroke="url(#connectionGrad)"
-                              strokeWidth="6"
-                              strokeOpacity="0.3"
-                              filter="url(#enhancedGlow)"
-                            />
-                            {/* Main connection line */}
-                            <motion.line
-                              initial={{ pathLength: 0, opacity: 0 }}
-                              animate={{ pathLength: 1, opacity: 1 }}
-                              transition={{ duration: 1, delay: 0.5 + index * 0.2 }}
-                              x1={x1}
-                              y1={y1}
-                              x2={x2}
-                              y2={y2}
-                              stroke="url(#connectionGrad)"
-                              strokeWidth="3"
-                              strokeDasharray="6 6"
-                              strokeLinecap="round"
-                            />
-                            {/* Animated flowing effect */}
-                            <motion.line
-                              initial={{ pathLength: 0, opacity: 0 }}
-                              animate={{ 
-                                pathLength: [0, 1, 0], 
-                                opacity: [0, 0.8, 0] 
-                              }}
-                              transition={{ 
-                                duration: 2, 
-                                delay: 1.5 + index * 0.3,
-                                repeat: Infinity,
-                                repeatDelay: 3
-                              }}
-                              x1={x1}
-                              y1={y1}
-                              x2={x2}
-                              y2={y2}
-                              stroke="#ffffff"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                            />
-                          </g>
+                          <motion.line
+                            key={`connection-${index}`}
+                            initial={{ pathLength: 0, opacity: 0 }}
+                            animate={{ pathLength: 1, opacity: 1 }}
+                            transition={{ duration: 1, delay: 0.5 + index * 0.2 }}
+                            x1={x1}
+                            y1={y1}
+                            x2={x2}
+                            y2={y2}
+                            stroke="url(#connectionGrad)"
+                            strokeWidth="2"
+                            strokeDasharray="4 4"
+                          />
                         );
                       })}
 
-                      {/* Enhanced Planet-like Day Nodes */}
+                      {/* Planet-like Day Nodes */}
                       {singleWeekData.map((day, index) => {
                         const x = 80 + (index * 100);
-                        const baseY = 280 - (day.total * 1.4);
-                        const maxRadius = 40;
-                        const radius = Math.max(20, (day.total / 150) * maxRadius);
+                        const baseY = 250 - (day.total * 1.2);
+                        const maxRadius = 35;
+                        const radius = Math.max(15, (day.total / 150) * maxRadius);
                         
                         return (
                           <g key={day.day}>
-                            {/* Outer Glow Ring */}
+                            {/* Planet Glow */}
                             <motion.circle
                               initial={{ scale: 0, opacity: 0 }}
                               animate={{ scale: 1, opacity: 1 }}
-                              transition={{ duration: 1, delay: 0.2 + index * 0.15 }}
-                              cx={x}
-                              cy={baseY}
-                              r={radius + 15}
-                              fill={day.topUniverse === 'Ads Cosmos' ? 'url(#adsGlow)' : 
-                                    day.topUniverse === 'Social Cosmos' ? 'url(#socialGlow)' : 
-                                    'url(#sitesGlow)'}
-                              className="animate-pulse"
-                              filter="url(#enhancedGlow)"
-                            />
-                            
-                            {/* Planet Atmosphere */}
-                            <motion.circle
-                              initial={{ scale: 0, opacity: 0 }}
-                              animate={{ scale: 1, opacity: 0.6 }}
-                              transition={{ duration: 0.8, delay: 0.4 + index * 0.1 }}
+                              transition={{ duration: 0.8, delay: 0.3 + index * 0.1 }}
                               cx={x}
                               cy={baseY}
                               r={radius + 8}
@@ -736,139 +624,65 @@ const EarningsInterface = memo(() => {
                                     day.topUniverse === 'Social Cosmos' ? 'url(#socialGlow)' : 
                                     'url(#sitesGlow)'}
                               className="animate-pulse"
-                              style={{ animationDelay: `${index * 0.2}s` }}
                             />
                             
-                            {/* Main Planet Surface */}
+                            {/* Main Planet */}
                             <motion.circle
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
-                              transition={{ duration: 0.8, delay: 0.6 + index * 0.1, type: "spring", bounce: 0.3 }}
+                              transition={{ duration: 0.6, delay: 0.5 + index * 0.1, type: "spring" }}
                               cx={x}
                               cy={baseY}
                               r={radius}
-                              fill={day.topUniverse === 'Ads Cosmos' ? 'url(#adsPlanet)' : 
-                                    day.topUniverse === 'Social Cosmos' ? 'url(#socialPlanet)' : 
-                                    'url(#sitesPlanet)'}
-                              className="cursor-pointer hover:brightness-125 transition-all duration-500"
-                              filter="url(#enhancedGlow)"
+                              fill={day.topUniverse === 'Ads Cosmos' ? '#EC4899' : 
+                                    day.topUniverse === 'Social Cosmos' ? '#3B82F6' : 
+                                    '#10B981'}
+                              className="cursor-pointer hover:brightness-110 transition-all duration-300"
                             />
                             
-                            {/* Planet Highlight */}
-                            <motion.circle
-                              initial={{ scale: 0, opacity: 0 }}
-                              animate={{ scale: 1, opacity: 0.4 }}
-                              transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                              cx={x - radius * 0.3}
-                              cy={baseY - radius * 0.3}
-                              r={radius * 0.3}
-                              fill="#ffffff"
-                              className="opacity-30"
-                            />
-                            
-                            {/* Multiple Planet Rings */}
-                            <motion.ellipse
-                              initial={{ scaleX: 0, opacity: 0 }}
-                              animate={{ scaleX: 1, opacity: 0.8 }}
-                              transition={{ duration: 1.2, delay: 1 + index * 0.1 }}
-                              cx={x}
-                              cy={baseY}
-                              rx={radius + 18}
-                              ry="2"
-                              fill="none"
-                              stroke="#ffffff"
-                              strokeWidth="2"
-                              strokeOpacity="0.6"
-                            />
+                            {/* Planet Rings */}
                             <motion.ellipse
                               initial={{ scaleX: 0, opacity: 0 }}
                               animate={{ scaleX: 1, opacity: 0.6 }}
-                              transition={{ duration: 1.4, delay: 1.2 + index * 0.1 }}
+                              transition={{ duration: 1, delay: 0.8 + index * 0.1 }}
                               cx={x}
                               cy={baseY}
-                              rx={radius + 25}
-                              ry="1.5"
+                              rx={radius + 12}
+                              ry="3"
                               fill="none"
                               stroke="#ffffff"
                               strokeWidth="1"
                               strokeOpacity="0.4"
                             />
                             
-                            {/* Orbiting Moons */}
-                            <motion.circle
-                              animate={{ 
-                                rotate: 360
-                              }}
-                              transition={{ 
-                                duration: 8 + index,
-                                repeat: Infinity,
-                                ease: "linear"
-                              }}
-                              style={{ originX: x, originY: baseY }}
-                              cx={x + radius + 12}
-                              cy={baseY}
-                              r="2"
-                              fill="#ffffff"
-                              opacity="0.7"
-                            />
-                            
-                            {/* Enhanced Day Label */}
+                            {/* Day Label */}
                             <motion.text
-                              initial={{ opacity: 0, y: 15 }}
+                              initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.6, delay: 1.4 + index * 0.1 }}
+                              transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
                               x={x}
-                              y={baseY + radius + 35}
+                              y={baseY + radius + 25}
                               textAnchor="middle"
-                              fill="#F1F5F9"
-                              fontSize="14"
-                              fontWeight="700"
-                              textShadow="0 2px 4px rgba(0,0,0,0.5)"
+                              fill="#E2E8F0"
+                              fontSize="12"
+                              fontWeight="600"
                             >
                               {day.short}
                             </motion.text>
                             
-                            {/* Enhanced Earnings Amount */}
+                            {/* Earnings Amount */}
                             <motion.text
-                              initial={{ opacity: 0, scale: 0.6 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ duration: 0.6, delay: 1.6 + index * 0.1 }}
-                              x={x}
-                              y={baseY - radius - 20}
-                              textAnchor="middle"
-                              fill="#FFFFFF"
-                              fontSize="16"
-                              fontWeight="900"
-                              textShadow="0 2px 8px rgba(0,0,0,0.8)"
-                            >
-                              ${day.total}
-                            </motion.text>
-                            
-                            {/* Efficiency Badge */}
-                            <motion.rect
                               initial={{ opacity: 0, scale: 0.8 }}
                               animate={{ opacity: 1, scale: 1 }}
-                              transition={{ duration: 0.5, delay: 1.8 + index * 0.1 }}
-                              x={x + radius - 8}
-                              y={baseY - radius + 5}
-                              width="16"
-                              height="12"
-                              rx="6"
-                              fill={day.efficiency >= 95 ? "#10B981" : day.efficiency >= 90 ? "#F59E0B" : "#EF4444"}
-                              opacity="0.9"
-                            />
-                            <motion.text
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ duration: 0.5, delay: 2 + index * 0.1 }}
-                              x={x + radius}
-                              y={baseY - radius + 14}
+                              transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
+                              x={x}
+                              y={baseY - radius - 10}
                               textAnchor="middle"
-                              fill="#ffffff"
-                              fontSize="8"
-                              fontWeight="600"
+                              fill="#F1F5F9"
+                              fontSize="14"
+                              fontWeight="bold"
                             >
-                              {Math.round(day.efficiency)}
+                              ${day.total}
                             </motion.text>
                           </g>
                         );
@@ -876,115 +690,48 @@ const EarningsInterface = memo(() => {
                     </svg>
                   </div>
 
-                  {/* Enhanced Universe Legend */}
-                  <div className="flex flex-wrap justify-center gap-8 mb-10">
-                    <motion.div 
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6, delay: 2.2 }}
-                      className="flex items-center space-x-3 bg-gradient-to-r from-pink-500/20 to-pink-600/10 px-4 py-3 rounded-xl border border-pink-400/30"
-                    >
-                      <div className="relative">
-                        <div className="w-5 h-5 rounded-full bg-gradient-to-r from-pink-400 to-pink-600 animate-pulse shadow-lg shadow-pink-500/50"></div>
-                        <div className="absolute inset-0 w-5 h-5 rounded-full bg-gradient-to-r from-pink-400 to-pink-600 animate-ping opacity-20"></div>
-                      </div>
-                      <span className="text-white font-bold text-lg">Ads Cosmos</span>
-                    </motion.div>
-                    <motion.div 
-                      initial={{ opacity: 0, y: -20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 2.4 }}
-                      className="flex items-center space-x-3 bg-gradient-to-r from-blue-500/20 to-blue-600/10 px-4 py-3 rounded-xl border border-blue-400/30"
-                    >
-                      <div className="relative">
-                        <div className="w-5 h-5 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 animate-pulse shadow-lg shadow-blue-500/50"></div>
-                        <div className="absolute inset-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 animate-ping opacity-20"></div>
-                      </div>
-                      <span className="text-white font-bold text-lg">Social Cosmos</span>
-                    </motion.div>
-                    <motion.div 
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6, delay: 2.6 }}
-                      className="flex items-center space-x-3 bg-gradient-to-r from-emerald-500/20 to-emerald-600/10 px-4 py-3 rounded-xl border border-emerald-400/30"
-                    >
-                      <div className="relative">
-                        <div className="w-5 h-5 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600 animate-pulse shadow-lg shadow-emerald-500/50"></div>
-                        <div className="absolute inset-0 w-5 h-5 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600 animate-ping opacity-20"></div>
-                      </div>
-                      <span className="text-white font-bold text-lg">Site Cosmos</span>
-                    </motion.div>
+                  {/* Universe Legend */}
+                  <div className="flex flex-wrap justify-center gap-6 mb-8">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-r from-pink-400 to-pink-600 animate-pulse"></div>
+                      <span className="text-slate-200 font-medium">Ads Cosmos</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                      <span className="text-slate-200 font-medium">Social Cosmos</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                      <span className="text-slate-200 font-medium">Site Cosmos</span>
+                    </div>
                   </div>
 
-                  {/* Enhanced Daily Summary Cards */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+                  {/* Daily Summary Cards */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
                     {singleWeekData.map((day, index) => (
                       <motion.div
                         key={day.day}
-                        initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{ duration: 0.6, delay: 2.8 + index * 0.15 }}
+                        transition={{ duration: 0.5, delay: 1.5 + index * 0.1 }}
                         whileHover={{ 
-                          scale: 1.08,
-                          boxShadow: "0 20px 40px rgba(45, 58, 74, 0.3)",
-                          rotateY: 5
+                          scale: 1.05,
+                          boxShadow: "0 15px 35px rgba(45, 58, 74, 0.2)"
                         }}
-                        className="relative bg-gradient-to-br from-slate-700/80 to-slate-800/80 backdrop-blur-lg rounded-2xl p-4 border-2 border-slate-600/40 transition-all duration-500 overflow-hidden"
+                        className="bg-gradient-to-br from-slate-700/60 to-slate-800/60 backdrop-blur-sm rounded-xl p-3 border border-slate-600/30 transition-all duration-300"
                       >
-                        {/* Card Background Glow */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
-                        
-                        {/* Top Universe Indicator */}
-                        <div className="absolute top-2 right-2 w-3 h-3 rounded-full animate-pulse"
-                             style={{ 
-                               backgroundColor: day.topUniverse === 'Ads Cosmos' ? '#EC4899' : 
-                                              day.topUniverse === 'Social Cosmos' ? '#3B82F6' : '#10B981',
-                               boxShadow: `0 0 8px ${day.topUniverse === 'Ads Cosmos' ? '#EC4899' : 
-                                                    day.topUniverse === 'Social Cosmos' ? '#3B82F6' : '#10B981'}50`
-                             }}></div>
-                        
-                        <div className="relative z-10 text-center">
-                          <div className="text-sm font-bold text-white mb-1">{day.short}</div>
-                          <div className="text-xs text-slate-300 mb-3">{day.date}</div>
-                          <div className="text-xl font-extrabold text-transparent bg-gradient-to-r from-white to-slate-200 bg-clip-text mb-3">
-                            ${day.total}
-                          </div>
-                          
-                          {/* Enhanced Stats */}
-                          <div className="space-y-2 text-xs">
-                            <div className="flex justify-between items-center text-slate-200">
-                              <span className="flex items-center space-x-1">
-                                <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
-                                <span>Tasks</span>
-                              </span>
-                              <span className="font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                                {day.tasks}
-                              </span>
+                        <div className="text-center">
+                          <div className="text-xs font-bold text-slate-300 mb-1">{day.short}</div>
+                          <div className="text-xs text-slate-400 mb-2">{day.date}</div>
+                          <div className="text-lg font-bold text-white mb-2">${day.total}</div>
+                          <div className="text-xs space-y-1">
+                            <div className="flex justify-between text-slate-300">
+                              <span>Tasks:</span>
+                              <span className="font-medium">{day.tasks}</span>
                             </div>
-                            
-                            <div className="flex justify-between items-center text-slate-200">
-                              <span className="flex items-center space-x-1">
-                                <div className="w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full"></div>
-                                <span>Efficiency</span>
-                              </span>
-                              <span className="font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-                                {day.efficiency}%
-                              </span>
-                            </div>
-                            
-                            {/* Performance Bar */}
-                            <div className="mt-3">
-                              <div className="w-full bg-slate-600/50 rounded-full h-2 overflow-hidden">
-                                <motion.div
-                                  initial={{ width: 0 }}
-                                  animate={{ width: `${(day.efficiency / 100) * 100}%` }}
-                                  transition={{ duration: 1, delay: 3.2 + index * 0.1 }}
-                                  className="h-full bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 rounded-full shadow-lg"
-                                  style={{
-                                    boxShadow: `0 0 10px ${day.efficiency >= 95 ? '#10B981' : day.efficiency >= 90 ? '#F59E0B' : '#EF4444'}50`
-                                  }}
-                                ></motion.div>
-                              </div>
+                            <div className="flex justify-between text-slate-300">
+                              <span>Efficiency:</span>
+                              <span className="font-medium text-green-400">{day.efficiency}%</span>
                             </div>
                           </div>
                         </div>
