@@ -1,85 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" class="dark" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" content="#0f172a" />
     <meta name="msapplication-TileColor" content="#0f172a" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="renderer" content="webkit" />
     <meta name="force-rendering" content="webkit" />
-    <title>Thorx - Cosmic Earning Platform</title>
-    
-    <!-- Immediate dark theme to prevent white flash -->
-    <style>
-      /* Critical CSS to prevent white flash */
-      html, body {
-        background-color: #0f172a !important;
-        color: #f8fafc !important;
-        margin: 0;
-        padding: 0;
-      }
-      
-      #root {
-        background-color: #0f172a !important;
-        min-height: 100vh;
-      }
-      
-      /* Thorx Dark Theme Variables */
-      :root {
-        --bg-primary: #0f172a;
-        --bg-secondary: #1e293b;
-        --bg-tertiary: #334155;
-        --text-primary: #f8fafc;
-        --text-secondary: #e2e8f0;
-        --text-tertiary: #cbd5e1;
-        --border-primary: #475569;
-        --border-secondary: #334155;
-        --shadow-primary: rgba(0, 0, 0, 0.4);
-        --shadow-secondary: rgba(0, 0, 0, 0.25);
-        color-scheme: dark;
-      }
-      
-      /* Prevent any white backgrounds */
-      * {
-        background-color: inherit;
-      }
-      
-      /* Loading state styling */
-      .loading-fallback {
-        background-color: #0f172a !important;
-        color: #f8fafc !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        font-family: 'Space Grotesk', sans-serif;
-      }
-    </style>
-    
-    <!-- Preload critical fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   </head>
-  <body class="dark">
-    <div id="root">
-      <!-- Loading fallback with dark theme -->
-      <div class="loading-fallback">
-        <div style="text-align: center;">
-          <div style="width: 24px; height: 24px; border: 3px solid #334155; border-top: 3px solid #f8fafc; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px;"></div>
-          <div style="color: #e2e8f0; font-size: 14px;">Loading Thorx...</div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Add spinning animation -->
-    <style>
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-    </style>
-    
+  <body>
+    <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
     <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
